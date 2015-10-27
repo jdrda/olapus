@@ -19,8 +19,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        print "ok";
-        die;
+       return view('admin/master');
     }
 
 }

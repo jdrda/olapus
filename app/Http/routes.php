@@ -12,22 +12,6 @@
 */
 
 /**
- * Authentication
- */
-Route::group(['prefix' => 'auth'], function () {
-    
-    Route::get('login', [
-        'as' => 'authGetLogin', 'uses' => 'Auth\AuthController@getLogin'
-    ]);
-    Route::post('login', [
-        'as' => 'authPostLogin', 'uses' => 'Auth\AuthController@postLogin'
-    ]);
-    Route::get('logout', [
-        'as' => 'authLogout', 'uses' => 'Auth\AuthController@getLogout'
-    ]);
-});
-
-/**
  * Root
  */
 Route::get('/', ['as' => 'root', function () {
@@ -51,5 +35,21 @@ Route::group(['prefix' => env('APP_ADMIN_URL'), 'middleware' => 'auth'], functio
      */
     Route::get('/', [
         'as' => 'adminDashboard', 'uses' => 'Admin\DashboardController@index'
+    ]);
+});
+
+/**
+ * Authentication
+ */
+Route::group(['prefix' => 'auth'], function () {
+    
+    Route::get('login', [
+        'as' => 'authGetLogin', 'uses' => 'Auth\AuthController@getLogin'
+    ]);
+    Route::post('login', [
+        'as' => 'authPostLogin', 'uses' => 'Auth\AuthController@postLogin'
+    ]);
+    Route::get('logout', [
+        'as' => 'authLogout', 'uses' => 'Auth\AuthController@getLogout'
     ]);
 });

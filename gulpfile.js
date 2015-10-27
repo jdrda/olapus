@@ -32,6 +32,7 @@ elixir(function(mix) {
             .copy("bower_components/bootstrap/dist/js/bootstrap.js", 
     "resources/assets/js/admin");
     
+    
     /**
      * Font Awesome
      */
@@ -49,10 +50,26 @@ elixir(function(mix) {
             .copy("bower_components/Ionicons/png", "public/build/png");
     
     /**
+     * jquery.SlimScroll
+     */
+    mix
+            .copy("bower_components/slimScroll/jquery.slimscroll.js", 
+    "resources/assets/js/admin");
+    
+    
+    /**
+     * jquery.FastClick
+     */
+    mix
+            .copy("bower_components/fastclick/lib/fastclick.js", 
+    "resources/assets/js/admin");
+    
+    /**
      * Admin LTE
      */
     mix
-            .copy("bower_components/AdminLTE/dist/css", "resources/assets/css/admin")
+            .copy("bower_components/AdminLTE/dist/css/AdminLTE.css", "resources/assets/css/admin")
+            .copy("bower_components/AdminLTE/dist/css/skins/_all-skins.css", "resources/assets/css/admin/skins")
             .copy("bower_components/AdminLTE/dist/img", "public/build/img")
             .copy("bower_components/AdminLTE/dist/js/app.js", "resources/assets/js/admin");
     
@@ -67,11 +84,13 @@ elixir(function(mix) {
         'admin/font-awesome.css',
         'admin/ionicons.css',
         'admin/AdminLTE.css',
-        'admin/skins/skin-blue.css'
+        'admin/skins/_all-skins.css'
         ], 'public/css/admin.css')
             .scripts([
         'admin/jquery.js',
         'admin/bootstrap.js',
+        'admin/jquery.slimscroll.js',
+        'admin/fastclick.js',
         'admin/app.js',
         ], 'public/js/admin.js')
         .version(['css/admin.css', 'js/admin.js'])
