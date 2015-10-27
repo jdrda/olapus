@@ -1,0 +1,34 @@
+{
+  "name": "Olapus",
+  "description": "Simple out of box solution for easy administering of any website.",
+  "keywords": [
+    "laravel",
+    "cms"
+  ],
+  "main": "",
+  "authors": [
+    "Jan Drda <jdrda@outlook.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "https://www.olapus.com/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jdrda/olapus.git"
+  },
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "html5shiv": "~3.7.3",
+    "respond": "~1.4.2",
+    "font-awesome": "~4.4.0",
+    "Ionicons": "ionicons#~2.0.1"
+  }
+}
