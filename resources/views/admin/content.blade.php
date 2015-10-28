@@ -5,12 +5,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        @yield('page_name', '')
-        <small>@yield('page_description', '')</small>
+        @yield('page-name', '')
+        <small>@yield('page-description', '')</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="@yield('page_icon', 'fa fa-dashboard')"></i> {{ trans('home') }}</a></li>
-        <li class="active">@yield('page_name', '')</li>
+        <li><a href="#"><i class="@yield('page_icon', 'fa fa-home')"></i> {{ trans('admin.home') }}</a></li>
+        <li class="active">@yield('page-name', '')</li>
       </ol>
     </section>
     <!-- /Content Header (Page header) -->
