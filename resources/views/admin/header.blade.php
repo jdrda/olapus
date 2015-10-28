@@ -1,25 +1,31 @@
 <!-- Main Header -->
   <header class="main-header">
 
+    @section('logo')
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="{{ route('adminDashboard') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>{{ substr(env('APP_NAME'), 0, 1) }} }}</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Admin</b>{{ env('APP_NAME') }}</span>
     </a>
+    <!-- /Logo -->
+    @show
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only">{{ trans('admin.toggle_navigation') }}</span>
       </a>
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
+          
+          @section('messages')  
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
+              
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
@@ -53,7 +59,9 @@
             </ul>
           </li>
           <!-- /.messages-menu -->
-
+          @endsection
+          
+          @section('notifications')  
           <!-- Notifications Menu -->
           <li class="dropdown notifications-menu">
             <!-- Menu toggle button -->
@@ -77,6 +85,9 @@
               <li class="footer"><a href="#">View all</a></li>
             </ul>
           </li>
+          @endsection
+          
+          @section('tasks')  
           <!-- Tasks Menu -->
           <li class="dropdown tasks-menu">
             <!-- Menu Toggle Button -->
@@ -113,6 +124,9 @@
               </li>
             </ul>
           </li>
+          @endsection
+          
+          @section('user_menu')
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
@@ -159,8 +173,9 @@
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
+          @endsection
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            <a href="{{ url('auth/logout') }}"><i class="glyphicon glyphicon-log-out"></i></a>
           </li>
         </ul>
       </div>

@@ -73,10 +73,29 @@ elixir(function(mix) {
             .copy("bower_components/AdminLTE/dist/img", "public/build/img")
             .copy("bower_components/AdminLTE/dist/js/app.js", "resources/assets/js/admin");
     
-    
+    /**
+     * HTML5 Shiv
+     */
+    mix
+            .copy("bower_components/html5shiv/dist/html5shiv.js", "resources/assets/js/admin");
     
     /**
-     * Admin styles and scripts
+     * Respond
+     */
+    mix
+            .copy("bower_components/respond/src/respond.js", "resources/assets/js/admin");
+    
+    /**
+     * HTML5 workaround scripts
+     */
+    mix
+            .scripts([
+        'admin/html5shiv.js',
+        'admin/respond.js'], 'public/js/html5workaround.js')
+    ;
+    
+    /**
+     * Admin main styles and scripts
      */
     mix
             .styles([
@@ -93,7 +112,7 @@ elixir(function(mix) {
         'admin/fastclick.js',
         'admin/app.js',
         ], 'public/js/admin.js')
-        .version(['css/admin.css', 'js/admin.js'])
+            .version(['css/admin.css', 'js/admin.js', 'js/html5workaround.js'])
     ;
     
 });
