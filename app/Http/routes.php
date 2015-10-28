@@ -53,3 +53,8 @@ Route::group(['prefix' => 'auth'], function () {
         'as' => 'authLogout', 'uses' => 'Auth\AuthController@getLogout'
     ]);
 });
+
+/**
+ * Custom routes
+ */
+require_once('routesCustom.php');
