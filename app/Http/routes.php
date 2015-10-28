@@ -36,6 +36,38 @@ Route::group(['prefix' => env('APP_ADMIN_URL'), 'middleware' => 'auth'], functio
     Route::get('/', [
         'as' => 'adminDashboard', 'uses' => 'Admin\DashboardController@index'
     ]);
+    
+    /**
+     * Articles
+     */
+    Route::resource('article', 'Admin\ArticleController');
+    
+    /**
+     * Category
+     */
+    Route::resource('category', 'Admin\CategoryController');
+    
+    /**
+     * Slides
+     */
+    Route::resource('slide', 'Admin\SlideController');
+    
+    /**
+     * Sliders
+     */
+    Route::resource('slider', 'Admin\SliderController');
+    
+    /**
+     * Settings
+     */
+    Route::resource('settings', 'Admin\SettingsController');
+    
+    /**
+     * Users
+     */
+    Route::resource('user', 'Admin\UserController');
+    
+    
 });
 
 /**
