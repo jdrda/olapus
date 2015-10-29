@@ -28,16 +28,7 @@
   <div class="login-box-body">
       <p class="login-box-msg">{{ trans('login.headline') }}</p>
 
-      @if (count($errors) > 0)
-      <div class="alert alert-danger">
-          <strong>{{ trans('login.error') }}</strong> {{ trans('login.problems_with_input') }}.<br><br>
-          <ul>
-              @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div>
-      @endif
+      @include('admin.errors')
       
       <form action="{{ route('authPostLogin') }}" method="post">
       {!! csrf_field() !!}

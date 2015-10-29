@@ -39,7 +39,14 @@
         <li class="header">{{ strtoupper(trans('admin.menu_header')) }}</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="@yield('menu-class-dashboard')"><a href="{{ route('adminDashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li class="@yield('menu-class-article')"><a href="{{ url('admin/article') }}"><i class="fa fa-newspaper-o"></i> <span>Articles</span></a></li>
+        <li class="treeview @yield('menu-class-articles')">
+          <a href="#"><i class="fa fa-newspaper-o"></i> <span>Articles</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li class="@yield('menu-class-article')"><a href="{{ url('admin/article') }}"><i class="fa fa-newspaper-o"></i> <span>Articles</span></a></li>
+            <li class="@yield('menu-class-category')"><a href="{{ url('admin/articleCategory') }}"><i class="fa fa-clone"></i>Categories</a></li>
+          </ul>
+        </li>
+        
         <li class="treeview @yield('menu-class-sliders')">
           <a href="#"><i class="fa fa-sliders"></i> <span>Sliders</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
@@ -50,7 +57,6 @@
         <li class="treeview @yield('menu-class-administration')">
           <a href="#"><i class="fa fa-gears"></i> <span>Administration</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li class="@yield('menu-class-category')"><a href="{{ url('admin/category') }}"><i class="fa fa-clone"></i>Categories</a></li>
             <li class="@yield('menu-class-settings')"><a href="{{ url('admin/settings') }}"><i class="fa fa-gear"></i> Settings</a></li>
             <li class="@yield('menu-class-user')"><a href="{{ url('admin/user') }}"><i class="fa fa-user"></i> Users</a></li>
           </ul>
