@@ -45,7 +45,7 @@ Route::group(['prefix' => env('APP_ADMIN_URL'), 'middleware' => 'auth'], functio
     /**
      * Category
      */
-    Route::resource('category', 'Admin\CategoryController');
+    Route::resource('articleCategory', 'Admin\ArticleCategoryController');
     
     /**
      * Slides
