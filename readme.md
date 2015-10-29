@@ -1,4 +1,4 @@
-## Olapus - "Open LAravel PUblishing System
+## Olapus - Open LAravel PUblishing System
 
 Simple out of box solution for easy administering of any website
 
@@ -8,4 +8,4 @@ Please report to security@olapus.com
 
 ### License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+The Olapus is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
