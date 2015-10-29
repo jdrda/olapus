@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        
+        $arResults = \App\User::paginate(env('ADMIN_PAGINATE'));
+        
+        return view('admin.modules.user.index', ['results' => $arResults]);
     }
 
     /**
@@ -82,5 +86,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        print "destroy";
     }
 }

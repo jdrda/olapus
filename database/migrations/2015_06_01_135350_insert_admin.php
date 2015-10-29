@@ -19,8 +19,8 @@ class InsertAdmin extends Migration
                                     'name' => 'admin',
                                     'email' => 'admin@admin.com',
                                     'password' => Hash::make('admin'),
-                                    'created_at' => 'NOW()',
-                                    'updated_at' => 'NOW()'
+                                    'created_at' => Carbon\Carbon::now(),
+                                    'updated_at' => Carbon\Carbon::now()
                                     ),                             
                         ));
     }
