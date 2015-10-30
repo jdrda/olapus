@@ -20,7 +20,8 @@ class InsertAdmin extends Migration
                                     'email' => 'admin@admin.com',
                                     'password' => Hash::make('admin'),
                                     'created_at' => Carbon\Carbon::now(),
-                                    'updated_at' => Carbon\Carbon::now()
+                                    'updated_at' => Carbon\Carbon::now(),
+                                    'deleted_at' => NULL
                                     ),                             
                         ));
     }

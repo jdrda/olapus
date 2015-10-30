@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticles extends Migration
+class CreateSettings extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,12 @@ class CreateArticles extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function(Blueprint $table)
+        Schema::create('settings', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name', 255);
-                        $table->string('meta_description', 255);
-                        $table->string('meta_keywords', 255);
-			$table->text('text');
-                        $table->string('url', 255)->unique();
-                        $table->binary('image');
+			$table->string('name', 255)->unique();
+                        $table->string('value', 255);
+                        $table->string('description', 255);
 			$table->timestamps();
                         $table->softDeletes();
 		});
@@ -33,6 +30,6 @@ class CreateArticles extends Migration
      */
     public function down()
     {
-        Schema::drop('articles');
+        Schema::drop('settings');
     }
 }
