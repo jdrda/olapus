@@ -19,5 +19,7 @@ return [
         'name' => 'Name',
         'email' => 'E-mail',
         'update_at' => 'Update',
+        'password' => 'Password',
+        'password_again' => 'Password again'
     ]
 ];

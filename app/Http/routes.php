@@ -60,12 +60,14 @@ Route::group(['prefix' => env('APP_ADMIN_URL'), 'middleware' => 'auth'], functio
     /**
      * Settings
      */
-    Route::resource('settings', 'Admin\SettingsController');
+    Route::resource('settings', 'Admin\SettingsController', 
+            ['except' => ['delete', 'show']]);
     
     /**
      * Users
      */
-    Route::resource('user', 'Admin\UserController');
+    Route::resource('user', 'Admin\UserController',
+            ['except' => ['show']]);
     
     
 });

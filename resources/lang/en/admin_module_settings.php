@@ -11,13 +11,14 @@ return [
     |
     */
     
-    'name' => 'Users',
-    'description' => 'Users management',
-    'delete_row_confirmation' => 'Are you sure you want to delete user',
+    'name' => 'Settings',
+    'description' => 'Various settings for system',
+    'delete_row_confirmation' => 'Are you sure you want to delete setting called',
     'fields' => [
         'id' => 'ID',
         'name' => 'Name',
-        'email' => 'E-mail',
+        'value' => 'Value',
+        'description' => 'Description',
         'update_at' => 'Update',
     ]
 ];

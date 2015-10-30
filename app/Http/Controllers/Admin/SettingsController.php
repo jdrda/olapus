@@ -5,9 +5,19 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Settings;
 
 class SettingsController extends Controller
 {
+    
+    /**
+     * Validation rules
+     */
+    protected $arValidationArray = [
+                    'name' => 'required|max:255|unique:settings',
+                    'value' => 'max:255',
+                    'password' => 'max:255'];
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,15 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        //
+        /**
+         * Get the rows
+         */
+        $arResults = Settings::orderBy('id', 'desc')->paginate(env('ADMIN_PAGINATE'));
+        
+        /**
+         * Return page
+         */
+        return view('admin.modules.settings.index', ['results' => $arResults]);
     }
 
     /**
@@ -25,7 +43,10 @@ class SettingsController extends Controller
      */
     public function create()
     {
-        //
+        /**
+         * Return page
+         */
+        return view('admin.modules.settings.create_edit');
     }
 
     /**
@@ -36,7 +57,24 @@ class SettingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /**
+         * Validate input
+         */
+        $this->validate($request, $this->arValidationArray);
+        
+        /**
+         * Create row
+         */
+        Settings::create([
+            'name' => $request['name'],
+            'value' => $request['value'],
+            'description' => $request['description'],
+        ]);
+        
+        /**
+         * Redirect to index
+         */
+        return redirect('admin/settings');
     }
 
     /**
@@ -58,7 +96,28 @@ class SettingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        /**
+         * Get the row
+         */
+        $arResults = Settings::find($id);
+        
+        /**
+         * Row does not exist - redirect
+         */
+        if($arResults == FALSE){
+            
+            return redirect("admin/settings")->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
+        }
+        
+        /**
+         * Set the put method for update
+         */
+        $arResults['_method'] = 'PUT';
+        
+        /**
+         * Return page
+         */    
+        return view('admin.modules.settings.create_edit', ['results' => $arResults]);
     }
 
     /**
@@ -70,7 +129,40 @@ class SettingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /**
+         * Validate input
+         */
+        $this->validate($request, $this->arValidationArray);
+        
+        /**
+         * Get the row
+         */
+        $arResults = Settings::find($id);
+        
+        /**
+         * Row does not exist - redirect
+         */
+        if($arResults == FALSE){
+            
+            return redirect("admin/settings")->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
+        }
+        
+        /**
+         * Set updated values
+         */
+        $arResults->name = $request['name'];
+        $arResults->value = $request['value'];
+        $arResults->description = $request['description'];
+        
+        /**
+         * Save the changes
+         */
+        $arResults->save();
+        
+        /**
+         * Return to index
+         */
+        return redirect('admin/settings');
     }
 
     /**
@@ -81,6 +173,14 @@ class SettingsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        /**
+         * Delete the setting
+         */
+        Settings::destroy($id);
+        
+        /**
+         * Redirect to index
+         */
+        return redirect('admin/settings');
     }
 }

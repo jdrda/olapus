@@ -1,13 +1,13 @@
 @extends('admin.master')
 
-@section('page-name', trans('admin_module_user.name') )
+@section('page-name', trans('admin_module_settings.name') )
 
-@section('page-icon', 'fa fa-user')
+@section('page-icon', 'fa fa-gear')
 
-@section('page-description', trans('admin_module_user.description'))
+@section('page-description', trans('admin_module_settings.description'))
 
 @section('menu-class-administration', 'active')
-@section('menu-class-user', 'active')
+@section('menu-class-settings', 'active')
 
 @section('content')
 <div class="row">
@@ -15,7 +15,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">
-                    {{ trans('admin_module_user.name') }}
+                    {{ trans('admin_module_settings.name') }}
                 </h3>
 
 
@@ -43,31 +43,27 @@
                         @include('admin.errors')
 
                         <!-- Form -->
-                         <form action="{{ url('admin/user') }}@if(isset($results->_method))/{{ $results->id }}@endif" method="post">
+                        <form action="{{ url('admin/settings') }}@if(isset($results->_method))/{{ $results->id }}@endif" method="post">
                             {!! csrf_field() !!}
                             @if(isset($results->_method))
                             <input type="hidden" name="_method" value="{{ $results->_method }}">
                             @endif
                             <div class="form-group has-feedback">
-                                <label for='name'>{{ trans('admin_module_user.fields.name') }}</label>
+                                <label for='name'>{{ trans('admin_module_settings.fields.name') }}</label>
                                 <input type="text" name="name" class="form-control" value="{{ $results->name or old('name') }}">
-                                <span class="fa fa-user form-control-feedback"></span>
+                                <span class="fa fa-key form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <label for='email'>{{ trans('admin_module_user.fields.email') }}</label>
-                                <input type="email" name="email" class="form-control"value="{{ $results->email or old('email') }}">
-                                <span class="fa fa-envelope form-control-feedback"></span>
+                                <label for='value'>{{ trans('admin_module_settings.fields.value') }}</label>
+                                <input type="text" name="value" class="form-control" value="{{ $results->value or old('value') }}">
+                                <span class="fa fa-paperclip form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <label for='password'>{{ trans('admin_module_user.fields.password') }}</label>
-                                    <input type="password" name="password" class="form-control" id="password" value='{{ isset($results->password) ? '######' : '' }}'>
-                                <span class="fa fa-lock form-control-feedback"></span>
+                                <label for='description'>{{ trans('admin_module_settings.fields.description') }}</label>
+                                <input type="text" name="description" class="form-control" value="{{ $results->description or old('description') }}">
+                                <span class="fa fa-align-left form-control-feedback"></span>
                             </div>
-                            <div class="form-group has-feedback">
-                                <label for='password_confirmation'>{{ trans('admin_module_user.fields.password_again') }}</label>
-                                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" value='{{ isset($results->password) ? '######' : '' }}'>
-                                <span class="fa fa-lock form-control-feedback"></span>
-                            </div>
+                            
                             <div class="form-group text-right">
                                 <button type='submit' name='submit' class='btn btn-primary btn-flat'>Save</button>
                             </div>

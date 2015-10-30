@@ -18,6 +18,7 @@ class UserController extends Controller
                     'email' => 'required|email|max:255|unique:users',
                     'password' => 'required|confirmed|min:6'];
     
+    
     /**
      * Display a listing of the resource.
      *
@@ -110,6 +111,11 @@ class UserController extends Controller
         }
         
         /**
+         * Set the put method for update
+         */
+        $arResults['_method'] = 'PUT';
+        
+        /**
          * Return page
          */    
         return view('admin.modules.user.create_edit', ['results' => $arResults]);
@@ -129,7 +135,10 @@ class UserController extends Controller
         /**
          * Validate input
          */
-        $this->validate($request, $this->arValidationArray);
+        $this->validate($request, [
+                    'name' => 'required|max:255',
+                    'email' => 'required|email|max:255|unique:users,email_address,'.$id,
+                    'password' => 'required|confirmed|min:6']);
         
         /**
          * Get the row
