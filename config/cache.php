@@ -51,14 +51,14 @@ return [
             'driver'  => 'memcached',
             'servers' => [
                 [
-                    'host' => '127.0.0.1', 'port' => 11211, 'weight' => 100,
+                    'host' => env('CACHE_MEMCACHED_SERVER_HOST', '127.0.0.1'), 'port' => env('CACHE_MEMCACHED_SERVER_HOST', 11211), 'weight' => env('CACHE_MEMCACHED_SERVER_WEIGHT', 100),
                 ],
             ],
         ],
 
         'redis' => [
             'driver' => 'redis',
-            'connection' => 'default',
+            'connection' => env('CACHE_REDIS_CONNECTION', 'default'),
         ],
 
     ],
@@ -74,6 +74,6 @@ return [
     |
     */
 
-    'prefix' => 'laravel',
+    'prefix' => env('CACHE_PREFIX', 'laravel'),
 
 ];
