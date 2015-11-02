@@ -175,7 +175,7 @@
           <!-- Control Sidebar Toggle Button -->
           @endsection
           <li>
-            <a href="{{ url('auth/logout') }}"><i class="glyphicon glyphicon-log-out"></i></a>
+            <a href="{{ route('authLogout') }}"><i class="glyphicon glyphicon-log-out"></i></a>
           </li>
         </ul>
       </div>

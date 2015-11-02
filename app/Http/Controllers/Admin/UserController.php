@@ -75,7 +75,7 @@ class UserController extends Controller
         /**
          * Redirect to index
          */
-        return redirect('admin/user');
+        return redirect(route('admin.user.index'));
     }
 
     /**
@@ -107,7 +107,7 @@ class UserController extends Controller
          */
         if($arResults == FALSE){
             
-            return redirect("admin/user")->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
+            return redirect(route('admin.user.index'))->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
         }
         
         /**
@@ -150,7 +150,7 @@ class UserController extends Controller
          */
         if($arResults == FALSE){
             
-            return redirect("admin/user")->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
+            return redirect(route('admin.user.index'))->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
         }
         
         /**
@@ -174,7 +174,7 @@ class UserController extends Controller
         /**
          * Return to index
          */
-        return redirect('admin/user');
+        return redirect(route('admin.user.index'));
     }
 
     /**
@@ -193,7 +193,7 @@ class UserController extends Controller
         /**
          * Redirect to index
          */
-        return redirect('admin/user');
+        return redirect(route('admin.user.index'));
     }
 
 }

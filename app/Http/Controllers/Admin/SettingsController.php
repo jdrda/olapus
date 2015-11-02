@@ -28,7 +28,7 @@ class SettingsController extends Controller
         /**
          * Get the rows
          */
-        $arResults = Settings::orderBy('id', 'desc')->paginate(env('ADMIN_PAGINATE'));
+        $arResults = Settings::orderBy('id', 'desc')->paginate(env('ADMIN_PAGINATE', 10));
         
         /**
          * Return page
@@ -74,7 +74,7 @@ class SettingsController extends Controller
         /**
          * Redirect to index
          */
-        return redirect('admin/settings');
+        return redirect(route('admin.settings.index'));
     }
 
     /**
@@ -106,7 +106,7 @@ class SettingsController extends Controller
          */
         if($arResults == FALSE){
             
-            return redirect("admin/settings")->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
+            return redirect(route('admin.settings.index'))->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
         }
         
         /**
@@ -144,7 +144,7 @@ class SettingsController extends Controller
          */
         if($arResults == FALSE){
             
-            return redirect("admin/settings")->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
+            return redirect(route('admin.settings.index'))->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
         }
         
         /**
@@ -162,7 +162,7 @@ class SettingsController extends Controller
         /**
          * Return to index
          */
-        return redirect('admin/settings');
+        return redirect(route('admin.settings.index'));
     }
 
     /**
@@ -181,6 +181,6 @@ class SettingsController extends Controller
         /**
          * Redirect to index
          */
-        return redirect('admin/settings');
+        return redirect(route('admin.settings.index'));
     }
 }
