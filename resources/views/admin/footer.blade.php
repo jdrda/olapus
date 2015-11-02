@@ -6,6 +6,6 @@
     </div>
     <!-- Default to the left -->
     @section('copyright')
-    <strong>Copyright &copy; {{ date('Y') }} <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>{{ trans('admin.copyright') }} &copy; {{ date('Y') }} <a href="{{ env('VENDOR_COMPANY_NAME') }}">{{ env('VENDOR_COMPANY_NAME') }}</a>.</strong> {{ trans('admin.all_rights_reserved') }}. {{ trans('admin.developed_on') }} <a href="https://www.olapus.com?version={{ config('app.version') }}" rel="nofollow" target="_blank">Olapus</a>. 
     @show
   </footer>

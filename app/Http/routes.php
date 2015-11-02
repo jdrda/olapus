@@ -58,6 +58,11 @@ Route::group(['prefix' => env('APP_ADMIN_URL'), 'middleware' => 'auth'], functio
     Route::resource('slider', 'Admin\SliderController');
     
     /**
+     * Images
+     */
+    Route::resource('image', 'Admin\ImageController');
+    
+    /**
      * Settings
      */
     Route::resource('settings', 'Admin\SettingsController', 

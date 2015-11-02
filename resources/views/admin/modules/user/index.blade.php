@@ -23,7 +23,7 @@
                 <div class="box-tools">
 
                     <div class="input-group input-group-sm">
-                        <a href="{{ url('admin/user/create') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('admin.user.create') }}" class="btn btn-success btn-sm">
                             <i class="fa fa-plus"></i> {{ trans('admin.add_new') }}
                         </a>
 
@@ -67,7 +67,7 @@
                             <td class="hidden-xs">{{ $result->email }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format')) }}</td>
                             <td class="text-right">
-                                <a href="{{ url('admin/user/' . $result->id . '/edit') }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
+                                <a href="{{ route('admin.user.edit', [$result->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
                                 <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><i class="fa fa-remove"></i> {{ trans('admin.delete') }}</button>
                             </td>
                         </tr>
