@@ -43,7 +43,7 @@
                         @include('admin.errors')
 
                         <!-- Form -->
-                         <form action="{{ url('admin/user') }}@if(isset($results->_method))/{{ $results->id }}@endif" method="post">
+                         <form action="@if(isset($results->_method)){{ route('admin.user.update', $results->id) }}@else{{ route('admin.user.store') }}@endif" method="post">
                             {!! csrf_field() !!}
                             @if(isset($results->_method))
                             <input type="hidden" name="_method" value="{{ $results->_method }}">

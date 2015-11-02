@@ -23,7 +23,7 @@
                 <div class="box-tools">
 
                     <div class="input-group input-group-sm">
-                        <a href="{{ url('admin/settings/create') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('admin.settings.create') }}" class="btn btn-success btn-sm">
                             <i class="fa fa-plus"></i> {{ trans('admin.add_new') }}
                         </a>
 
@@ -69,7 +69,7 @@
                             <td class="hidden-xs hidden-sm">{{ $result->description }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format')) }}</td>
                             <td class="text-right">
-                                <a href="{{ url('admin/settings/' . $result->id . '/edit') }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
+                                <a href="{{ route('admin.settings.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
                             </td>
                         </tr>
                         @endforeach
