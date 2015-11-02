@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Image;
 
 class ImageController extends Controller
 {
@@ -19,12 +19,12 @@ class ImageController extends Controller
         /**
          * Get the rows
          */
-        $arResults = Settings::orderBy('id', 'desc')->paginate(env('ADMIN_MEDIA_PAGINATE', 10));
+        $arResults = Image::orderBy('id', 'desc')->paginate(env('ADMIN_MEDIA_PAGINATE', 10));
         
         /**
          * Return page
          */
-        return view('admin.modules.settings.index', ['results' => $arResults]);
+        return view('admin.modules.image.index', ['results' => $arResults]);
     }
 
     /**

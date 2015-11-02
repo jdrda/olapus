@@ -1,13 +1,13 @@
 @extends('admin.master')
 
-@section('page-name', trans('admin_module_settings.name') )
+@section('page-name', trans('admin_module_image.name') )
 
 @section('page-icon', 'fa fa-image')
 
-@section('page-description', trans('admin_module_settings.description'))
+@section('page-description', trans('admin_module_image.description'))
 
 @section('menu-class-administration', 'active')
-@section('menu-class-settings', 'active')
+@section('menu-class-image', 'active')
 
 @section('content')
 <div class="row">
@@ -15,7 +15,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">
-                    {{ trans('admin_module_settings.name') }}
+                    {{ trans('admin_module_image.name') }}
                     <small>(total rows {{ $results->count() }} of {{ $results->total() }}, showing page {{ $results->currentPage() }} of {{ $results->lastPage() }})</small>
                 </h3>
 
@@ -23,7 +23,7 @@
                 <div class="box-tools">
 
                     <div class="input-group input-group-sm">
-                        <a href="{{ route('admin.settings.create') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('admin.image.create') }}" class="btn btn-success btn-sm">
                             <i class="fa fa-plus"></i> {{ trans('admin.add_new') }}
                         </a>
 
@@ -54,11 +54,11 @@
                 <table class="table table-hover table-responsive">
                     <tbody>
                         <tr>
-                            <th>{{ trans('admin_module_settings.fields.id') }}</th>
-                            <th>{{ trans('admin_module_settings.fields.name') }}</th>
-                            <th class="hidden-xs">{{ trans('admin_module_settings.fields.value') }}</th>
-                            <th class="hidden-xs hidden-sm">{{ trans('admin_module_settings.fields.description') }}</th>
-                            <th class="hidden-xs hidden-sm">{{ trans('admin_module_settings.fields.updated_at') }}</th>
+                            <th>{{ trans('admin_module_image.fields.id') }}</th>
+                            <th>{{ trans('admin_module_image.fields.name') }}</th>
+                            <th class="hidden-xs">{{ trans('admin_module_image.fields.url') }}</th>
+                            <th class="hidden-xs hidden-sm">{{ trans('admin_module_image.fields.description') }}</th>
+                            <th class="hidden-xs hidden-sm">{{ trans('admin_module_image.fields.updated_at') }}</th>
                             <th class="text-right">{{ trans('admin.actions') }}</th>
                         </tr>
                         @foreach ($results as $result)
@@ -69,7 +69,7 @@
                             <td class="hidden-xs hidden-sm">{{ $result->description }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format')) }}</td>
                             <td class="text-right">
-                                <a href="{{ route('admin.settings.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
+                                <a href="{{ route('admin.image.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
                             </td>
                         </tr>
                         @endforeach
