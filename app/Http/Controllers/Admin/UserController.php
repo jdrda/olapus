@@ -29,7 +29,7 @@ class UserController extends Controller
         /**
          * Get the rows
          */
-        $arResults = User::orderBy('id', 'desc')->paginate(env('ADMIN_PAGINATE'));
+        $arResults = User::orderBy('id', 'desc')->paginate(env('ADMIN_PAGINATE', 10));
         
         /**
          * Return page

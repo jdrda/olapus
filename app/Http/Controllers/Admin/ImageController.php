@@ -19,7 +19,7 @@ class ImageController extends Controller
         /**
          * Get the rows
          */
-        $arResults = Settings::orderBy('id', 'desc')->paginate(env('ADMIN_MEDIA_PAGINATE'));
+        $arResults = Settings::orderBy('id', 'desc')->paginate(env('ADMIN_MEDIA_PAGINATE', 10));
         
         /**
          * Return page
