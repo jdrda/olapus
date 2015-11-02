@@ -1,13 +1,13 @@
 @extends('admin.master')
 
-@section('page-name', trans('admin_module_user.name') )
+@section('page-name', trans('admin_module_settings.name') )
 
-@section('page-icon', 'fa fa-user')
+@section('page-icon', 'fa fa-image')
 
-@section('page-description', trans('admin_module_user.description'))
+@section('page-description', trans('admin_module_settings.description'))
 
 @section('menu-class-administration', 'active')
-@section('menu-class-user', 'active')
+@section('menu-class-settings', 'active')
 
 @section('content')
 <div class="row">
@@ -15,7 +15,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">
-                    {{ trans('admin_module_user.name') }}
+                    {{ trans('admin_module_settings.name') }}
                     <small>(total rows {{ $results->count() }} of {{ $results->total() }}, showing page {{ $results->currentPage() }} of {{ $results->lastPage() }})</small>
                 </h3>
 
@@ -23,7 +23,7 @@
                 <div class="box-tools">
 
                     <div class="input-group input-group-sm">
-                        <a href="{{ route('admin.user.create') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('admin.settings.create') }}" class="btn btn-success btn-sm">
                             <i class="fa fa-plus"></i> {{ trans('admin.add_new') }}
                         </a>
 
@@ -54,21 +54,22 @@
                 <table class="table table-hover table-responsive">
                     <tbody>
                         <tr>
-                            <th>{{ trans('admin_module_user.fields.id') }}</th>
-                            <th>{{ trans('admin_module_user.fields.name') }}</th>
-                            <th class="hidden-xs">{{ trans('admin_module_user.fields.email') }}</th>
-                            <th class="hidden-xs hidden-sm">{{ trans('admin_module_user.fields.updated_at') }}</th>
+                            <th>{{ trans('admin_module_settings.fields.id') }}</th>
+                            <th>{{ trans('admin_module_settings.fields.name') }}</th>
+                            <th class="hidden-xs">{{ trans('admin_module_settings.fields.value') }}</th>
+                            <th class="hidden-xs hidden-sm">{{ trans('admin_module_settings.fields.description') }}</th>
+                            <th class="hidden-xs hidden-sm">{{ trans('admin_module_settings.fields.updated_at') }}</th>
                             <th class="text-right">{{ trans('admin.actions') }}</th>
                         </tr>
                         @foreach ($results as $result)
                         <tr>
                             <td>{{ $result->id }}</td>
                             <td>{{ $result->name }}</td>
-                            <td class="hidden-xs">{{ $result->email }}</td>
+                            <td class="hidden-xs">{{ $result->value }}</td>
+                            <td class="hidden-xs hidden-sm">{{ $result->description }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format')) }}</td>
                             <td class="text-right">
-                                <a href="{{ route('admin.user.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
-                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><i class="fa fa-remove"></i> {{ trans('admin.delete') }}</button>
+                                <a href="{{ route('admin.settings.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
                             </td>
                         </tr>
                         @endforeach
@@ -93,8 +94,6 @@
 @endsection
 
 @section('foot')
-
-@include('admin/modules/delete_modals');
 
 @parent
 @endsection

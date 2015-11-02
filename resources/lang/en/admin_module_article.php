@@ -19,6 +19,8 @@ return [
         'name' => 'Name',
         'value' => 'Value',
         'description' => 'Description',
-        'update_at' => 'Update',
+        'created_at' => 'Create at',
+        'updated_at' => 'Update at',
+        'deleted_at' => 'Deleted at',
     ]
 ];

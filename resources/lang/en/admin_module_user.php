@@ -18,8 +18,10 @@ return [
         'id' => 'ID',
         'name' => 'Name',
         'email' => 'E-mail',
-        'update_at' => 'Update',
         'password' => 'Password',
-        'password_again' => 'Password again'
+        'password_again' => 'Password again',
+        'created_at' => 'Create at',
+        'updated_at' => 'Update at',
+        'deleted_at' => 'Deleted at',
     ]
 ];

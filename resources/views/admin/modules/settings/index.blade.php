@@ -58,7 +58,7 @@
                             <th>{{ trans('admin_module_settings.fields.name') }}</th>
                             <th class="hidden-xs">{{ trans('admin_module_settings.fields.value') }}</th>
                             <th class="hidden-xs hidden-sm">{{ trans('admin_module_settings.fields.description') }}</th>
-                            <th class="hidden-xs hidden-sm">{{ trans('admin_module_settings.fields.update_at') }}</th>
+                            <th class="hidden-xs hidden-sm">{{ trans('admin_module_settings.fields.updated_at') }}</th>
                             <th class="text-right">{{ trans('admin.actions') }}</th>
                         </tr>
                         @foreach ($results as $result)

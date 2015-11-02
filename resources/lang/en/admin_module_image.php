@@ -4,25 +4,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Admin Users Language Lines
+    | Admin Images Language Lines
     |--------------------------------------------------------------------------
     |
     | The following language lines are used for login page
     |
     */
     
-    'name' => 'Article categories',
-    'description' => 'Categories for the articles',
-    'delete_row_confirmation' => 'Are you sure you want to delete category called',
+    'name' => 'Images',
+    'description' => 'Manage pictures',
+    'delete_row_confirmation' => 'Are you sure you want to delete image called',
     'fields' => [
         'id' => 'ID',
         'name' => 'Name',
-        'color' => 'Color',
-        'meta_description' => 'META description',
-        'meta_keywords' => 'META keywords',
-        'text' => 'Text',
-        'url' => 'URL',
-        'image' => 'Image',
+        'description' => 'Description',
+        'alt' => 'Alternative name (ALT attribute)',
+        'url' => 'Friendly URL',
+        'image' => 'Image data',
         'created_at' => 'Create at',
         'updated_at' => 'Update at',
         'deleted_at' => 'Deleted at',
