@@ -24,13 +24,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {  
         /**
          * Get the rows
          */
-        $arResults = User::orderBy('id', 'desc')->paginate(env('ADMIN_PAGINATE', 10));
-        
+        $arResults = User::allColumns(@$request->search)->orderByColumns()->paginate(env('ADMIN_PAGINATE', 10));
+
         /**
          * Return page
          */

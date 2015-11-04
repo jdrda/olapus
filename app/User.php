@@ -10,6 +10,8 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Http\Controllers\Admin\VirtualFulltextController as VirtualFulltext;
+use App\Http\Controllers\Admin\OrderByHandlingController;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -45,4 +47,50 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
     
+    /**
+     * Fields to search in fulltext mode
+     * 
+     * @var array
+     */
+    protected $fulltextFields = [
+        'id',
+        'name' => [
+            'operator' => 'LIKE',
+            'prefix' => '%',
+            'sufix' => '%'
+        ],
+        'email' => [
+            'operator' => 'LIKE',
+            'prefix' => '%',
+            'sufix' => '%'
+        ],
+    ];
+    
+    /**
+     * Default order by
+     */
+    protected $orderBy = [
+      'id' => 'desc'  
+    ];
+    
+    /**
+     * Scope for fulltext search
+     * 
+     * @param query $query
+     * @param string $word
+     */
+    public function scopeAllColumns($query){
+  
+        return virtualFulltextSearchColumns($query, request('search'), $this->fulltextFields);
+    }
+    
+    /**
+     * Order by
+     * 
+     * @param type $query
+     */
+    public function scopeOrderByColumns($query){
+        
+        return orderByColumns($query, $this->orderBy);
+    }
 }
