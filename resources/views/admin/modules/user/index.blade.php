@@ -80,7 +80,7 @@
                                 </a>
                             </th>
                             <th class="hidden-xs">
-                                <a href="{{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'email']) }}">
+                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'email' and request('orderbytype') == 'asc'){{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'email', 'orderbytype' => 'desc']) }}@else{{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'email', 'orderbytype' => 'asc']) }}@endif">
                                     {{ trans('admin_module_user.fields.email') }}
                                     @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'email')
                                     <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
@@ -88,7 +88,7 @@
                                 </a>
                             </th>
                             <th class="hidden-xs hidden-sm">
-                                <a href="{{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at']) }}">
+                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at' and request('orderbytype') == 'asc'){{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'desc']) }}@else{{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'asc']) }}@endif">
                                     {{ trans('admin_module_user.fields.updated_at') }}
                                     @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at')
                                     <i class='fa fa-sort-numeric-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>

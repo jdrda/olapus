@@ -9,14 +9,13 @@ use App\Settings;
 
 class SettingsController extends Controller
 {
-    
     /**
      * Validation rules
      */
     protected $arValidationArray = [
                     'name' => 'required|max:255|unique:settings',
                     'value' => 'max:255',
-                    'password' => 'max:255'];
+                    'description' => 'max:255'];
     
     /**
      * Display a listing of the resource.
@@ -26,9 +25,17 @@ class SettingsController extends Controller
     public function index()
     {
         /**
+         * Handle saved settings
+         */
+        if(($redirectRoute = resetSaveIndexParameters('admin.settings')) !== FALSE){
+            
+            return redirect($redirectRoute);
+        }
+        
+        /**
          * Get the rows
          */
-        $arResults = Settings::orderBy('id', 'desc')->paginate(env('ADMIN_PAGINATE', 10));
+        $arResults = Settings::allColumns(@$request->search)->orderByColumns()->paginate(env('ADMIN_PAGINATE', 10));
         
         /**
          * Return page
@@ -132,7 +139,10 @@ class SettingsController extends Controller
         /**
          * Validate input
          */
-        $this->validate($request, $this->arValidationArray);
+        $this->validate($request, [
+                    'name' => 'required|max:255|unique:settings,name,'.$id,
+                    'value' => 'required|email|max:255',
+                    'password' => 'required|confirmed|min:6']);
         
         /**
          * Get the row

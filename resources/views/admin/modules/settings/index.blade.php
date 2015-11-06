@@ -22,22 +22,24 @@
 
                 <div class="box-tools">
 
-                    <div class="input-group input-group-sm">
-                        <a href="{{ route('admin.settings.create') }}" class="btn btn-success btn-sm">
-                            <i class="fa fa-plus"></i> {{ trans('admin.add_new') }}
-                        </a>
+                    <form action="{{ route('admin.settings.index') }}" method="get">
 
-                    </div>
+                        <!-- Search box -->
+                        <div class="input-group input-group-sm" style="width: 200px;">
+                            <input type="text" name="search" class="form-control pull-right" placeholder="Search" value="{{ request('search') }}">
 
-                    <!-- Search box DEACTIVATED -->
-                    <!--<div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                            <!-- /Search box -->
 
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            <a href="{{ route('admin.settings.create') }}" class="btn btn-success btn-sm form-control">
+                                <i class="fa fa-plus"></i> {{ trans('admin.add_new') }}
+                            </a>
                         </div>
-                    </div>-->
-                    <!-- /Search box DEACTIVATED -->
+
+                    </form>
+
                 </div>
 
             </div>
@@ -54,12 +56,56 @@
                 <table class="table table-hover table-responsive">
                     <tbody>
                         <tr>
-                            <th>{{ trans('admin_module_settings.fields.id') }}</th>
-                            <th>{{ trans('admin_module_settings.fields.name') }}</th>
-                            <th class="hidden-xs">{{ trans('admin_module_settings.fields.value') }}</th>
-                            <th class="hidden-xs hidden-sm">{{ trans('admin_module_settings.fields.description') }}</th>
-                            <th class="hidden-xs hidden-sm">{{ trans('admin_module_settings.fields.updated_at') }}</th>
-                            <th class="text-right">{{ trans('admin.actions') }}</th>
+                            <th>
+                                 <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'id' and request('orderbytype') == 'asc'){{ route('admin.settings.index', ['search' => request('search'), 'orderbycolumn' => 'id', 'orderbytype' => 'desc']) }}@else{{ route('admin.settings.index', ['search' => request('search'), 'orderbycolumn' => 'id', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans('admin_module_settings.fields.id') }}
+                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'id')
+                                    <i class='fa fa-sort-numeric-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
+                                    @endif
+                                </a>    
+                            </th>
+                            <th>
+                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'name' and request('orderbytype') == 'asc'){{ route('admin.settings.index', ['search' => request('search'), 'orderbycolumn' => 'name', 'orderbytype' => 'desc']) }}@else{{ route('admin.settings.index', ['search' => request('search'), 'orderbycolumn' => 'name', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans('admin_module_settings.fields.name') }}
+                                    @if(Request::has('orderbycolumn'))
+                                        @if(request('orderbycolumn') == 'name')
+                                        <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
+                                        @endif
+                                    @else
+                                    <i class='fa fa-sort-alpha-desc'></i>
+                                    @endif
+                                </a> 
+                            </th>
+                            <th class="hidden-xs">
+                                 <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'value' and request('orderbytype') == 'asc'){{ route('admin.settings.index', ['search' => request('search'), 'orderbycolumn' => 'value', 'orderbytype' => 'desc']) }}@else{{ route('admin.settings.index', ['search' => request('search'), 'orderbycolumn' => 'value', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans('admin_module_settings.fields.value') }}
+                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'value')
+                                    <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
+                                    @endif
+                                </a>
+                                
+                            </th>
+                            <th class="hidden-xs hidden-sm">
+                                 <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'description' and request('orderbytype') == 'asc'){{ route('admin.settings.index', ['search' => request('search'), 'orderbycolumn' => 'description', 'orderbytype' => 'desc']) }}@else{{ route('admin.settings.index', ['search' => request('search'), 'orderbycolumn' => 'description', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans('admin_module_settings.fields.description') }}
+                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'description')
+                                    <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
+                                    @endif
+                                </a>
+                                
+                            </th>
+                            <th class="hidden-xs hidden-sm">
+                                 <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at' and request('orderbytype') == 'asc'){{ route('admin.settings.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'desc']) }}@else{{ route('admin.settings.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans('admin_module_settings.fields.updated_at') }}
+                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at')
+                                    <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
+                                    @endif
+                                </a>
+                                
+                            </th>
+                            <th class="text-right">
+                                {{ trans('admin.actions') }}
+                            </th>
                         </tr>
                         @foreach ($results as $result)
                         <tr>

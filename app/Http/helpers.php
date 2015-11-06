@@ -9,7 +9,7 @@
  * @return type
  */
 function virtualFulltextSearchColumns($query, $word, $fields) {
-
+  
     if (isset($word) && strlen($word) > 0) {
 
         $first = TRUE;
@@ -63,7 +63,8 @@ function orderByColumns($query, $orderBy) {
     if (Request::has('orderbycolumn') == TRUE && Request::has('orderbytype') == TRUE) {
 
         $query->orderBy(Request::input('orderbycolumn'), Request::input('orderbytype'));
-    } else {
+    } 
+    else {
         foreach ($orderBy as $orderByColumn => $orderByType) {
             $query->orderBy($orderByColumn, $orderByType);
         }
@@ -72,52 +73,57 @@ function orderByColumns($query, $orderBy) {
     return $query;
 }
 
-/**
- * Generate parameters for blade
- * 
- * @param type $orderBy
- */
-function orderByColumnsBlade($orderBy) {
-
-    $result = array();
-    $iterator = 0;
-
+function resetSaveIndexParameters($module, $possibleParameters = ['search', 'orderbycolumn', 'orderbytype']){
+    
     /**
-     * Non default value
+     * Get common parameters
      */
-    if (Request::has('orderbycolumn') == TRUE && Request::has('orderbytype') == TRUE) {
-
-        foreach ($orderBy as $orderByColumn => $orderByType) {
-
-            /**
-             * Change order by type
-             */
-            if (Request::input('orderbycolumn') == $orderByColumn) {
-
-                if ($orderByType == 'asc') {
-
-                    $result[$orderByColumn] = 'desc';
-                } else {
-
-                    $result[$orderByColumn] = 'asc';
-                }
-            }
-
-            /**
-             * Default order type
-             */ else {
-                $result[$orderByColumn] = 'asc';
-            }
-        }
-    }
+    $allParameters = Request::all();
+    
     /**
-     * Default value
-     */ else {
-        foreach ($orderBy as $orderByColumn => $orderByType) {
-            $result[$orderByColumn] = 'asc';
+     * Parse existing parameters
+     */
+    foreach ($allParameters as $parameter => $value){
+        
+        $cacheKey = implode('.', [$module, Auth::user()->id, $parameter]);
+        
+        /**
+         * Reset
+         */
+        if(empty($value) == TRUE){
+            
+            Cache::forget($cacheKey);
+            unset($allParameters[$parameter]);
+        }
+        /**
+         * Save
+         */
+        else{
+        
+            Cache::forever($cacheKey, $value);
         }
     }
     
-    print_r($result);
-    die;
+    /**
+     * Get new from cache
+     */
+    foreach($possibleParameters as $parameter => $value){
+        
+        $cacheKey = implode('.', [$module, Auth::user()->id, $value]);
+        
+        $allParameters[$value] = Cache::get($cacheKey);
+    }
+    
+    /**
+     * Redirect ?
+     */
+    $newRoute = route($module.'.index', $allParameters);
+    $oldRoute = Request::fullUrl();
+    
+    if($newRoute == $oldRoute){
+        return FALSE;
+    }
+    else{
+       return($newRoute);
+    }
 }

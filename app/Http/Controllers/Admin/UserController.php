@@ -27,6 +27,14 @@ class UserController extends Controller
     public function index(Request $request)
     {  
         /**
+         * Handle saved settings
+         */
+        if(($redirectRoute = resetSaveIndexParameters('admin.user')) !== FALSE){
+            
+            return redirect($redirectRoute);
+        }
+        
+        /**
          * Get the rows
          */
         $arResults = User::allColumns(@$request->search)->orderByColumns()->paginate(env('ADMIN_PAGINATE', 10));

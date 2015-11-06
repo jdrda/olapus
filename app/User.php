@@ -10,8 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Http\Controllers\Admin\VirtualFulltextController as VirtualFulltext;
-use App\Http\Controllers\Admin\OrderByHandlingController;
+use Illuminate\Support\Facades\Request;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -69,7 +68,7 @@ class User extends Model implements AuthenticatableContract,
     /**
      * Default order by
      */
-    protected $orderBy = [
+    protected $defaultOrderBy = [
       'id' => 'desc'  
     ];
     
@@ -91,6 +90,6 @@ class User extends Model implements AuthenticatableContract,
      */
     public function scopeOrderByColumns($query){
         
-        return orderByColumns($query, $this->orderBy);
+        return orderByColumns($query, $this->defaultOrderBy);
     }
 }
