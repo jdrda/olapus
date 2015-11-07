@@ -29,6 +29,7 @@
     "html5shiv": "~3.7.3",
     "respond": "~1.4.2",
     "font-awesome": "~4.4.0",
-    "Ionicons": "ionicons#~2.0.1"
+    "Ionicons": "ionicons#~2.0.1",
+    "speakingurl": "~7.0.0"
   }
 }

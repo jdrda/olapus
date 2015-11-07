@@ -69,7 +69,25 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /**
+         * Validate input
+         */
+        $this->validate($request, $this->arValidationArray);
+        
+        /**
+         * Create row
+         */
+        Settings::create([
+            'name' => $request['name'],
+            'alt' => $request['alt'],
+            'description' => $request['description'],
+            'image' => $request['image'],
+        ]);
+        
+        /**
+         * Redirect to index
+         */
+        return redirect(route('admin.settings.index'));
     }
 
     /**

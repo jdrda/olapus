@@ -3,7 +3,7 @@
 
     @section('logo')
     <!-- Logo -->
-    <a href="{{ route('adminDashboard') }}" class="logo">
+    <a href="{{ route('admin.dashboard.index') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>{{ substr(env('APP_NAME'), 0, 1) }} }}</b></span>
       <!-- logo for regular state and mobile devices -->

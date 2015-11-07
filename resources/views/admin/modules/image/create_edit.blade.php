@@ -6,7 +6,7 @@
 
 @section('page-description', trans('admin_module_image.description'))
 
-@section('menu-class-administration', 'active')
+@section('menu-class-media', 'active')
 @section('menu-class-image', 'active')
 
 @section('content')
@@ -55,13 +55,18 @@
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans('admin_module_image.fields.name') }}</label>
-                                <input type="text" name="name" class="form-control" value="{{ $results->name or old('name') }}">
+                                <input type="text" name="name" id="name" class="form-control" value="{{ $results->name or old('name') }}">
                                 <span class="fa fa-key form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='value'>{{ trans('admin_module_image.fields.alt') }}</label>
                                 <input type="text" name="alt" class="form-control" value="{{ $results->value or old('alt') }}">
-                                <span class="fa fa-paperclip form-control-feedback"></span>
+                                <span class="fa fa-code form-control-feedback"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label for='value'>{{ trans('admin_module_image.fields.url') }}</label>
+                                <input type="text" name="url" id='url' class="form-control" value="{{ $results->value or old('url') }}">
+                                <span class="fa fa-anchor form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='description'>{{ trans('admin_module_image.fields.description') }}</label>
@@ -82,4 +87,22 @@
         <!-- /.box -->
     </div>
 </div>
+@endsection
+
+@section('foot')
+@parent
+
+<script>
+$(function() {
+
+    // Automatic slugify
+    var lastValue = '';
+    setInterval(function() {
+        if ($("#name").val() != lastValue) {
+            lastValue = $("#name").val();
+            $('#url').val(getSlug($("#name").val()));
+        }
+    }, 500);
+});
+</script>
 @endsection

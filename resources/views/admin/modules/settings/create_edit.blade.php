@@ -1,10 +1,10 @@
 @extends('admin.master')
 
-@section('page-name', trans('admin_module_settings.name') )
+@section('page-name', trans($moduleNameBlade . '.name') )
 
 @section('page-icon', 'fa fa-gear')
 
-@section('page-description', trans('admin_module_settings.description'))
+@section('page-description', trans($moduleNameBlade . '.description'))
 
 @section('menu-class-administration', 'active')
 @section('menu-class-settings', 'active')
@@ -15,7 +15,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">
-                    {{ trans('admin_module_settings.name') }}
+                    {{ trans($moduleNameBlade . '.name') }}
                 </h3>
 
 
@@ -43,29 +43,29 @@
                         @include('admin.errors')
 
                         <!-- Form -->
-                        <form action="@if(isset($results->_method)){{ route('admin.settings.update', $results->id) }}@else{{ route('admin.settings.store') }}@endif" method="post">
+                        <form action="@if(isset($results->_method)){{ route($moduleBasicRoute . '.update', $results->id) }}@else{{ route($moduleBasicRoute . '.store') }}@endif" method="post">
                             {!! csrf_field() !!}
                             @if(isset($results->_method))
                             <input type="hidden" name="_method" value="{{ $results->_method }}">
                             @endif
                             <div class="form-group has-feedback">
-                                <label for='name'>{{ trans('admin_module_settings.fields.name') }}</label>
+                                <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }}</label>
                                 <input type="text" name="name" class="form-control" value="{{ $results->name or old('name') }}">
                                 <span class="fa fa-key form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <label for='value'>{{ trans('admin_module_settings.fields.value') }}</label>
+                                <label for='value'>{{ trans($moduleNameBlade . '.fields.value') }}</label>
                                 <input type="text" name="value" class="form-control" value="{{ $results->value or old('value') }}">
                                 <span class="fa fa-paperclip form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <label for='description'>{{ trans('admin_module_settings.fields.description') }}</label>
+                                <label for='description'>{{ trans($moduleNameBlade . '.fields.description') }}</label>
                                 <input type="text" name="description" class="form-control" value="{{ $results->description or old('description') }}">
                                 <span class="fa fa-align-left form-control-feedback"></span>
                             </div>
                             
                             <div class="form-group text-right">
-                                <button type='submit' name='submit' class='btn btn-primary btn-flat'>Save</button>
+                                <button type='submit' name='submit' class='btn btn-primary btn-flat'>{{ trans('admin.save') }}</button>
                             </div>
                         </form>
                         <!-- /Form -->

@@ -9,6 +9,7 @@
  * @return type
  */
 function virtualFulltextSearchColumns($query, $word, $fields) {
+    
   
     if (isset($word) && strlen($word) > 0) {
 
@@ -32,18 +33,24 @@ function virtualFulltextSearchColumns($query, $word, $fields) {
             if (isset($fieldAttributes['sufix']) == FALSE) {
                 $fieldAttributes['sufix'] = '';
             }
-
+            
             /**
              * Query builder
              */
             if ($first == TRUE) {
+                
+               
+              
                 $query->where($fieldName, $fieldAttributes['operator'], $fieldAttributes['prefix'] . $word
                         . $fieldAttributes['sufix']);
 
                 $first = FALSE;
-            } else {
+            } 
+            else {
                 $query->orWhere($fieldName, $fieldAttributes['operator'], $fieldAttributes['prefix'] . $word
                         . $fieldAttributes['sufix']);
+                
+                
             }
         }
     }
@@ -59,7 +66,7 @@ function virtualFulltextSearchColumns($query, $word, $fields) {
  * @return type
  */
 function orderByColumns($query, $orderBy) {
-
+    
     if (Request::has('orderbycolumn') == TRUE && Request::has('orderbytype') == TRUE) {
 
         $query->orderBy(Request::input('orderbycolumn'), Request::input('orderbytype'));
@@ -115,14 +122,25 @@ function resetSaveIndexParameters($module, $possibleParameters = ['search', 'ord
     }
     
     /**
+     * Sort parameters
+     */
+    asort($allParameters);
+    
+    /**
      * Redirect ?
      */
-    $newRoute = route($module.'.index', $allParameters);
+    $newRoute = trim(route($module.'.index', $allParameters), "?");
     $oldRoute = Request::fullUrl();
     
-    if($newRoute == $oldRoute){
+    /**
+     * Routes are the same, everything is OK
+     */
+    if(array_intersect(Request::input(), $allParameters) == Request::input()){
         return FALSE;
     }
+    /**
+     * Routes are different, return new route for redirect
+     */
     else{
        return($newRoute);
     }

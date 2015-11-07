@@ -10,11 +10,11 @@
                     <h4 class='modal-title'>{{ trans('admin.delete_row') }} {{ $result->id }}</h4>
                 </div>
                 <div class='modal-body'>
-                    <p>{{ trans('admin_module_user.delete_row_confirmation') }} <strong>{{ $result->name }}</strong>?</p>
+                    <p>@yield('delete_confirmation_text') <strong>{{ $result->name }}</strong>?</p>
                 </div>
                 <div class='modal-footer'>
                     <button type='button' class='btn btn-outline pull-left' data-dismiss='modal'>{{ trans('admin.close') }}</button>
-                    <form action="{{ url('admin/user/' . $result->id) }}" method="post" role="form" class="form">
+                    <form action="{{ route(str_replace("/", ".", Route::getCurrentRoute()->getPath()).".destroy", $result->id) }}" method="post" role="form" class="form">
                         <input type="hidden" name="_method" value="delete">
                         {!! csrf_field() !!}
                         <button type='submit' class='btn btn-outline'>{{ trans('admin.delete') }}</button>

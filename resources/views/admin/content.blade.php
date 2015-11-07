@@ -9,7 +9,7 @@
         <small>@yield('page-description', '')</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{{ route('adminDashboard') }}"><i class="@yield('page-icon', 'fa fa-home')"></i> {{ trans('admin.home') }}</a></li>
+        <li><a href="{{ route('admin.dashboard.index') }}"><i class="@yield('page-icon', 'fa fa-home')"></i> {{ trans('admin.home') }}</a></li>
         <li class="active">@yield('page-name', '')</li>
       </ol>
     </section>

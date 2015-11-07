@@ -1,15 +1,16 @@
 @extends('admin.master')
 
-@section('page-name', trans($moduleNameBlade . '.name') )
+@section('page-name', trans('admin_module_imagecategory.name') )
 
-@section('page-icon', 'fa fa-user')
+@section('page-icon', 'fa fa-file-image-o')
 
-@section('page-description', trans($moduleNameBlade . '.description'))
+@section('page-description', trans('admin_module_imagecategory.description'))
 
-@section('delete_confirmation_text', trans($moduleNameBlade . '.delete_row_confirmation'))
+@section('delete_confirmation_text', trans('admin_module_imagecategory.delete_row_confirmation'))
 
-@section('menu-class-administration', 'active')
-@section('menu-class-user', 'active')
+
+@section('menu-class-media', 'active')
+@section('menu-class-imagecategory', 'active')
 
 {{-- Order by --}}
 
@@ -20,14 +21,14 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">
-                    {{ trans($moduleNameBlade . '.name') }}
+                    {{ trans('admin_module_imagecategory.name') }}
                     <small>(total rows {{ $results->count() }} of {{ $results->total() }}, showing page {{ $results->currentPage() }} of {{ $results->lastPage() }})</small>
                 </h3>
 
 
                 <div class="box-tools">
 
-                    <form action="{{ route($moduleBasicRoute . '.index') }}" method="get">
+                    <form action="{{ route('admin.imageCategory.index') }}" method="get">
 
                         <!-- Search box -->
                         <div class="input-group input-group-sm" style="width: 200px;">
@@ -38,7 +39,7 @@
                             </div>
                             <!-- /Search box -->
 
-                            <a href="{{ route($moduleBasicRoute . '.create') }}" class="btn btn-success btn-sm form-control">
+                            <a href="{{ route('admin.imageCategory.create') }}" class="btn btn-success btn-sm form-control">
                                 <i class="fa fa-plus"></i> {{ trans('admin.add_new') }}
                             </a>
                         </div>
@@ -62,8 +63,8 @@
                     <tbody>
                         <tr>
                             <th>
-                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'id' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . 'index', ['search' => request('search'), 'orderbycolumn' => 'id', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'id', 'orderbytype' => 'asc']) }}@endif">
-                                    {{ trans($moduleNameBlade . '.fields.id') }}
+                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'id' and request('orderbytype') == 'asc'){{ route('admin.imageCategory.index', ['search' => request('search'), 'orderbycolumn' => 'id', 'orderbytype' => 'desc']) }}@else{{ route('admin.imageCategory.index', ['search' => request('search'), 'orderbycolumn' => 'id', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans('admin_module_imagecategory.fields.id') }}
                                     @if(Request::has('orderbycolumn'))
                                         @if(request('orderbycolumn') == 'id')
                                         <i class='fa fa-sort-numeric-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
@@ -74,24 +75,24 @@
                                 </a>
                             </th>
                             <th>
-                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'name' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'name', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'name', 'orderbytype' => 'asc']) }}@endif">
-                                    {{ trans($moduleNameBlade . '.fields.name') }}
+                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'name' and request('orderbytype') == 'asc'){{ route('admin.imageCategory.index', ['search' => request('search'), 'orderbycolumn' => 'name', 'orderbytype' => 'desc']) }}@else{{ route('admin.imageCategory.index', ['search' => request('search'), 'orderbycolumn' => 'name', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans('admin_module_imagecategory.fields.name') }}
                                     @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'name')
                                     <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
                                     @endif
                                 </a>
                             </th>
                             <th class="hidden-xs">
-                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'email' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'email', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'email', 'orderbytype' => 'asc']) }}@endif">
-                                    {{ trans($moduleNameBlade . '.fields.email') }}
-                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'email')
+                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'description' and request('orderbytype') == 'asc'){{ route('admin.imageCategory.index', ['search' => request('search'), 'orderbycolumn' => 'description', 'orderbytype' => 'desc']) }}@else{{ route('admin.imageCategory.index', ['search' => request('search'), 'orderbycolumn' => 'description', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans('admin_module_imagecategory.fields.description') }}
+                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'description')
                                     <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
                                     @endif
                                 </a>
                             </th>
                             <th class="hidden-xs hidden-sm">
-                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at' and request('orderbytype') == 'asc'){{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'asc']) }}@endif">
-                                    {{ trans($moduleNameBlade . '.fields.updated_at') }}
+                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at' and request('orderbytype') == 'asc'){{ route('admin.imageCategory.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'desc']) }}@else{{ route('admin.imageCategory.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans('admin_module_imagecategory.fields.updated_at') }}
                                     @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at')
                                     <i class='fa fa-sort-numeric-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
                                     @endif
@@ -105,10 +106,10 @@
                         <tr>
                             <td>{{ $result->id }}</td>
                             <td>{{ $result->name }}</td>
-                            <td class="hidden-xs">{{ $result->email }}</td>
+                            <td class="hidden-xs">{{ $result->description }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format')) }}</td>
                             <td class="text-right">
-                                <a href="{{ route($moduleBasicRoute . '.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
+                                <a href="{{ route('admin.imageCategory.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
                                 <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><i class="fa fa-remove"></i> {{ trans('admin.delete') }}</button>
                             </td>
                         </tr>

@@ -6,48 +6,34 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
-use App\Settings;
+use App\ImageCategory;
 
-class SettingsController extends Controller
+class ImageCategoryController extends Controller
 {
     /**
      * Module basic path
      */
-    protected $moduleBasicRoute = 'admin.settings';
+    protected $moduleBasicRoute = 'admin.imagecategory';
     
     /**
      * View basic path
      */
-    protected $moduleBasicTemplatePath = 'admin.modules.settings';
+    protected $moduleBasicTemplatePath = 'admin.modules.imagecategory';
     
     /**
      * Validation rules
      */
     protected $arValidationArray = [
                     'name' => 'required|max:255|unique:settings',
-                    'value' => 'max:255',
-                    'description' => 'max:255'];
-    
-    /**
-     * Constructor
-     */
-    public function __construct() {
-        View::share('moduleBasicRoute', $this->moduleBasicRoute);
-        View::share('moduleBasicTemplatePath', $this->moduleBasicTemplatePath);
-        
-        /**
-         * Module name for blade
-         */
-        $temp = explode('.', $this->moduleBasicRoute);
-        View::share('moduleNameBlade', $temp[0]."_module_".$temp[1]);
-    }
+                    'description' => 'max:255',
+                    'color' => 'max:255'];
     
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         /**
          * Handle saved settings
@@ -102,8 +88,8 @@ class SettingsController extends Controller
          */
         Settings::create([
             'name' => $request['name'],
-            'value' => $request['value'],
             'description' => $request['description'],
+            'color' => $request['description'],
         ]);
         
         /**
@@ -169,8 +155,8 @@ class SettingsController extends Controller
          */
         $this->validate($request, [
                     'name' => 'required|max:255|unique:settings,name,'.$id,
-                    'value' => 'max:255',
-                    'description' => 'max:255']);
+                    'description' => 'max:255',
+                    'color' => 'max:255']);
         
         /**
          * Get the row
@@ -189,8 +175,8 @@ class SettingsController extends Controller
          * Set updated values
          */
         $arResults->name = $request['name'];
-        $arResults->value = $request['value'];
         $arResults->description = $request['description'];
+        $arResults->color = $request['color'];
         
         /**
          * Save the changes

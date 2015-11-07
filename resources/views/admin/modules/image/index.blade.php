@@ -6,7 +6,9 @@
 
 @section('page-description', trans('admin_module_image.description'))
 
-@section('menu-class-administration', 'active')
+@section('delete_confirmation_text', trans('admin_module_image.delete_row_confirmation'))
+
+@section('menu-class-media', 'active')
 @section('menu-class-image', 'active')
 
 @section('content')
@@ -22,22 +24,24 @@
 
                 <div class="box-tools">
 
-                    <div class="input-group input-group-sm">
-                        <a href="{{ route('admin.image.create') }}" class="btn btn-success btn-sm">
-                            <i class="fa fa-plus"></i> {{ trans('admin.add_new') }}
-                        </a>
+                    <form action="{{ route('admin.image.index') }}" method="get">
 
-                    </div>
+                        <!-- Search box -->
+                        <div class="input-group input-group-sm" style="width: 200px;">
+                            <input type="text" name="search" class="form-control pull-right" placeholder="{{ trans('admin.search') }}" value="{{ request('search') }}">
 
-                    <!-- Search box DEACTIVATED -->
-                    <!--<div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                            <!-- /Search box -->
 
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            <a href="{{ route('admin.image.create') }}" class="btn btn-success btn-sm form-control">
+                                <i class="fa fa-plus"></i> {{ trans('admin.add_new') }}
+                            </a>
                         </div>
-                    </div>-->
-                    <!-- /Search box DEACTIVATED -->
+
+                    </form>
+
                 </div>
 
             </div>

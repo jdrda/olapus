@@ -95,6 +95,12 @@ elixir(function(mix) {
     ;
     
     /**
+     * Speakingurl
+     */
+    mix
+            .copy("bower_components/speakingurl/lib/speakingurl.js", "resources/assets/js/admin");
+    
+    /**
      * Admin main styles and scripts
      */
     mix
@@ -111,6 +117,7 @@ elixir(function(mix) {
         'admin/jquery.slimscroll.js',
         'admin/fastclick.js',
         'admin/app.js',
+        'admin/speakingurl.js',
         ], 'public/js/admin.js')
             .version(['css/admin.css', 'js/admin.js', 'js/html5workaround.js'])
     ;

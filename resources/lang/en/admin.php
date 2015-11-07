@@ -16,8 +16,10 @@ return [
     'menu_header' => 'Navigation',
     'add_new' => 'Add new',
     'edit' => 'Edit',
+    'save' => 'Save',
     'delete' => 'Delete',
     'close' => 'Close',
+    'search' => 'Search',
     'delete_row' => 'Delete the row #',
     'delete_row_confirmation' => 'Are you sure you want to delete row #',
     'actions' => 'Actions',
@@ -27,5 +29,6 @@ return [
     'menu_group_articles' => 'Articles',
     'menu_group_sliders' => 'Sliders',
     'menu_group_media' => 'Media',
-    'menu_group_administration' => 'Administration'
+    'menu_group_administration' => 'Administration',
+    
 ];

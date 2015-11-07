@@ -1,10 +1,10 @@
 @extends('admin.master')
 
-@section('page-name', trans('admin_module_user.name') )
+@section('page-name', trans($moduleNameBlade . '.name') )
 
 @section('page-icon', 'fa fa-user')
 
-@section('page-description', trans('admin_module_user.description'))
+@section('page-description', trans($moduleNameBlade . '.description'))
 
 @section('menu-class-administration', 'active')
 @section('menu-class-user', 'active')
@@ -15,7 +15,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">
-                    {{ trans('admin_module_user.name') }}
+                    {{ trans($moduleNameBlade . '.name') }}
                 </h3>
 
 
@@ -43,33 +43,33 @@
                         @include('admin.errors')
 
                         <!-- Form -->
-                         <form action="@if(isset($results->_method)){{ route('admin.user.update', $results->id) }}@else{{ route('admin.user.store') }}@endif" method="post">
+                         <form action="@if(isset($results->_method)){{ route($moduleBasicRoute . '.update', $results->id) }}@else{{ route($moduleBasicRoute . '.store') }}@endif" method="post">
                             {!! csrf_field() !!}
                             @if(isset($results->_method))
                             <input type="hidden" name="_method" value="{{ $results->_method }}">
                             @endif
                             <div class="form-group has-feedback">
-                                <label for='name'>{{ trans('admin_module_user.fields.name') }}</label>
+                                <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }}</label>
                                 <input type="text" name="name" class="form-control" value="{{ $results->name or old('name') }}">
                                 <span class="fa fa-user form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <label for='email'>{{ trans('admin_module_user.fields.email') }}</label>
+                                <label for='email'>{{ trans($moduleNameBlade . '.fields.email') }}</label>
                                 <input type="email" name="email" class="form-control"value="{{ $results->email or old('email') }}">
                                 <span class="fa fa-envelope form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <label for='password'>{{ trans('admin_module_user.fields.password') }}</label>
+                                <label for='password'>{{ trans($moduleNameBlade . '.fields.password') }}</label>
                                     <input type="password" name="password" class="form-control" id="password" value='{{ isset($results->password) ? '######' : '' }}'>
                                 <span class="fa fa-lock form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <label for='password_confirmation'>{{ trans('admin_module_user.fields.password_again') }}</label>
+                                <label for='password_confirmation'>{{ trans($moduleNameBlade . '.fields.password_again') }}</label>
                                 <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" value='{{ isset($results->password) ? '######' : '' }}'>
                                 <span class="fa fa-lock form-control-feedback"></span>
                             </div>
                             <div class="form-group text-right">
-                                <button type='submit' name='submit' class='btn btn-primary btn-flat'>Save</button>
+                                <button type='submit' name='submit' class='btn btn-primary btn-flat'>{{ trans('admin.save') }}</button>
                             </div>
                         </form>
                         <!-- /Form -->

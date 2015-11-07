@@ -22,7 +22,7 @@ Route::get('/', ['as' => 'root', function () {
  * Laravel default home redirection to admin
  */
 Route::get('home', ['as' => 'home', function () {
-        return Redirect::route('adminDashboard');
+        return Redirect::route('admin.dashboard.index');
 }]);
 
 /**
@@ -34,7 +34,7 @@ Route::group(['prefix' => env('APP_ADMIN_URL'), 'middleware' => 'auth'], functio
      * Main dashboard
      */
     Route::get('/', [
-        'as' => 'adminDashboard', 'uses' => 'Admin\DashboardController@index'
+        'as' => 'admin.dashboard.index', 'uses' => 'Admin\DashboardController@index'
     ]);
     
     /**
@@ -61,6 +61,11 @@ Route::group(['prefix' => env('APP_ADMIN_URL'), 'middleware' => 'auth'], functio
      * Images
      */
     Route::resource('image', 'Admin\ImageController');
+    
+    /**
+     * Image categories
+     */
+    Route::resource('imageCategory', 'Admin\ImageCategoryController');
     
     /**
      * Settings

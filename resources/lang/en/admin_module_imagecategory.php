@@ -11,16 +11,14 @@ return [
     |
     */
     
-    'name' => 'Images',
-    'description' => 'Manage pictures',
-    'delete_row_confirmation' => 'Are you sure you want to delete image called',
+    'name' => 'Image Category',
+    'description' => 'Manage image categories pictures',
+    'delete_row_confirmation' => 'Are you sure you want to delete category',
     'fields' => [
         'id' => 'ID',
         'name' => 'Name',
         'description' => 'Description',
-        'alt' => 'Alternative name (ALT attribute)',
-        'url' => 'Friendly URL',
-        'image' => 'Image file',
+        'color' => 'Color',
         'created_at' => 'Create at',
         'updated_at' => 'Update at',
         'deleted_at' => 'Deleted at',

@@ -4,21 +4,44 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    /**
+     * Module basic path
+     */
+    protected $moduleBasicRoute = 'admin.user';
+    
+    /**
+     * View basic path
+     */
+    protected $moduleBasicTemplatePath = 'admin.modules.user';
     
     /**
      * Validation rules
      */
     protected $arValidationArray = [
-                    'name' => 'required|max:255',
-                    'email' => 'required|email|max:255|unique:users',
-                    'password' => 'required|confirmed|min:6'];
+        'name' => 'required|max:255',
+        'email' => 'required|email|max:255|unique:users',
+        'password' => 'required|confirmed|min:6'];
     
-    
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        View::share('moduleBasicRoute', $this->moduleBasicRoute);
+        View::share('moduleBasicTemplatePath', $this->moduleBasicTemplatePath);
+        
+        /**
+         * Module name for blade
+         */
+        $temp = explode('.', $this->moduleBasicRoute);
+        View::share('moduleNameBlade', $temp[0]."_module_".$temp[1]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,10 +49,12 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {  
+        
         /**
          * Handle saved settings
          */
-        if(($redirectRoute = resetSaveIndexParameters('admin.user')) !== FALSE){
+        $redirectRoute = resetSaveIndexParameters($this->moduleBasicRoute);
+        if($redirectRoute !== FALSE){
             
             return redirect($redirectRoute);
         }
@@ -37,12 +62,14 @@ class UserController extends Controller
         /**
          * Get the rows
          */
-        $arResults = User::allColumns(@$request->search)->orderByColumns()->paginate(env('ADMIN_PAGINATE', 10));
+        $arResults = User::where( function($query) {
+                $query->allColumns();
+        })->orderByColumns()->paginate(env('ADMIN_PAGINATE', 10));
 
         /**
          * Return page
          */
-        return view('admin.modules.user.index', ['results' => $arResults]);
+        return view($this->moduleBasicTemplatePath.'.index', ['results' => $arResults]);
     }
 
     /**
@@ -55,7 +82,7 @@ class UserController extends Controller
         /**
          * Return page
          */
-        return view('admin.modules.user.create_edit');
+        return view($this->moduleBasicTemplatePath . '.create_edit');
     }
 
     /**
@@ -83,7 +110,7 @@ class UserController extends Controller
         /**
          * Redirect to index
          */
-        return redirect(route('admin.user.index'));
+        return redirect(route($this->moduleBasicRoute . '.index'));
     }
 
     /**
@@ -115,7 +142,7 @@ class UserController extends Controller
          */
         if($arResults == FALSE){
             
-            return redirect(route('admin.user.index'))->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
+            return redirect(route($this->moduleBasicRoute . '.index'))->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
         }
         
         /**
@@ -126,7 +153,7 @@ class UserController extends Controller
         /**
          * Return page
          */    
-        return view('admin.modules.user.create_edit', ['results' => $arResults]);
+        return view($this->moduleBasicTemplatePath . '.create_edit', ['results' => $arResults]);
         
     
     }
@@ -158,7 +185,7 @@ class UserController extends Controller
          */
         if($arResults == FALSE){
             
-            return redirect(route('admin.user.index'))->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
+            return redirect(route($this->moduleBasicRoute . '.index'))->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
         }
         
         /**
@@ -182,7 +209,7 @@ class UserController extends Controller
         /**
          * Return to index
          */
-        return redirect(route('admin.user.index'));
+        return redirect(route($this->moduleBasicRoute . '.index'));
     }
 
     /**
@@ -201,7 +228,7 @@ class UserController extends Controller
         /**
          * Redirect to index
          */
-        return redirect(route('admin.user.index'));
+        return redirect(route($this->moduleBasicRoute . '.index'));
     }
 
 }

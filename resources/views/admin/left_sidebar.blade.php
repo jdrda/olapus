@@ -38,7 +38,7 @@
       <ul class="sidebar-menu">
         <li class="header">{{ strtoupper(trans('admin.menu_header')) }}</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="@yield('menu-class-dashboard')"><a href="{{ route('adminDashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class="@yield('menu-class-dashboard')"><a href="{{ route('admin.dashboard.index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li class="treeview @yield('menu-class-articles')">
           <a href="#"><i class="fa fa-newspaper-o"></i> <span>{{ trans('admin.menu_group_articles') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
@@ -58,6 +58,7 @@
           <a href="#"><i class="fa fa-camera-retro"></i> <span>{{ trans('admin.menu_group_media') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
             <li class="@yield('menu-class-image')"><a href="{{ route('admin.image.index') }}"><i class="fa fa-image"></i> Images</a></li>
+            <li class="@yield('menu-class-imagecategory')"><a href="{{ route('admin.imageCategory.index') }}"><i class="fa fa-file-image-o"></i> Image categories</a></li>
           </ul>
         </li>
         <li class="treeview @yield('menu-class-administration')">

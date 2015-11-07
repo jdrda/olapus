@@ -1,10 +1,10 @@
 @extends('admin.master')
 
-@section('page-name', trans('admin_module_dashboard.name') )
+@section('page-name', trans($moduleNameBlade . '.name') )
 
 @section('page-icon', 'fa fa-dashboard')
 
-@section('page-description', trans('admin_module_dashboard.description'))
+@section('page-description', trans(moduleNameBlade . '.description'))
 
 @section('menu-class-dashboard', 'active')
 
