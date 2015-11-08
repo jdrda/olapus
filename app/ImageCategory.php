@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ImageCategory extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, AdminModelTrait;
     
     /**
      * The database table used by the model.
@@ -63,27 +63,6 @@ class ImageCategory extends Model
      */
     public function image(){
         
-        return $this->belongsToMany('App\Image');
-    }
-    
-    /**
-     * Scope for fulltext search
-     * 
-     * @param query $query
-     * @param string $word
-     */
-    public function scopeAllColumns($query){
-  
-        return virtualFulltextSearchColumns($query, request('search'), $this->fulltextFields);
-    }
-    
-    /**
-     * Order by
-     * 
-     * @param type $query
-     */
-    public function scopeOrderByColumns($query){
-        
-        return orderByColumns($query, $this->defaultOrderBy);
+        return $this->hasMany('App\Image');
     }
 }

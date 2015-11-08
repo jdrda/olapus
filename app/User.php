@@ -16,7 +16,7 @@ class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, SoftDeletes;
+    use Authenticatable, Authorizable, CanResetPassword, SoftDeletes, AdminModelTrait;
 
     /**
      * The database table used by the model.
@@ -71,25 +71,4 @@ class User extends Model implements AuthenticatableContract,
     protected $defaultOrderBy = [
       'id' => 'desc'  
     ];
-    
-    /**
-     * Scope for fulltext search
-     * 
-     * @param query $query
-     * @param string $word
-     */
-    public function scopeAllColumns($query){
-  
-        return virtualFulltextSearchColumns($query, request('search'), $this->fulltextFields);
-    }
-    
-    /**
-     * Order by
-     * 
-     * @param type $query
-     */
-    public function scopeOrderByColumns($query){
-        
-        return orderByColumns($query, $this->defaultOrderBy);
-    }
 }

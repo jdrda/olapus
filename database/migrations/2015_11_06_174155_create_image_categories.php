@@ -26,6 +26,7 @@ class CreateImageCategories extends Migration
          */
         Schema::create('image_imagecategory', function (Blueprint $table) {
             $table->integer('image_id')->unsigned()->index();
+            $table->integer('imagecategory_id')->unsigned()->index();
         });
     }
 

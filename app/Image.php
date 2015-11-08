@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Image extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, AdminModelTrait;
     
     /**
      * The database table used by the model.
@@ -28,7 +28,7 @@ class Image extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'alt', 'url', 'image'];
+    protected $fillable = ['name', 'description', 'alt', 'url', 'image', 'imagecategory_id'];
     
     /**
      * Fields to search in fulltext mode
@@ -67,23 +67,12 @@ class Image extends Model
     ];
     
     /**
-     * Scope for fulltext search
+     * Image category link
      * 
-     * @param query $query
-     * @param string $word
+     * @return type
      */
-    public function scopeAllColumns($query){
-  
-        return virtualFulltextSearchColumns($query, request('search'), $this->fulltextFields);
-    }
-    
-    /**
-     * Order by
-     * 
-     * @param type $query
-     */
-    public function scopeOrderByColumns($query){
+    public function imageCategory(){
         
-        return orderByColumns($query, $this->defaultOrderBy);
+        return $this->belongsTo('App\ImageCategory');
     }
 }

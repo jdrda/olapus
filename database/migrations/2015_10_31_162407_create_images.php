@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Image extends Migration
+class CreateImages extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class Image extends Migration
                         $table->string('description', 255);
                         $table->string('alt', 255);
                         $table->string('url', 255)->unique();
-                        $table->integer('imagecategory_id')->unsigned()->index();
+                        $table->integer('imagecategory_id')->unsigned()->index()->default(1);
                         $table->binary('image');
 			$table->timestamps();
                         $table->softDeletes();

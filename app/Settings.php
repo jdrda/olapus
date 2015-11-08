@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Settings extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, AdminModelTrait;
     
     /**
      * The database table used by the model.
@@ -61,24 +61,4 @@ class Settings extends Model
       'name' => 'asc'  
     ];
     
-    /**
-     * Scope for fulltext search
-     * 
-     * @param query $query
-     * @param string $word
-     */
-    public function scopeAllColumns($query){
-  
-        return virtualFulltextSearchColumns($query, request('search'), $this->fulltextFields);
-    }
-    
-    /**
-     * Order by
-     * 
-     * @param type $query
-     */
-    public function scopeOrderByColumns($query){
-        
-        return orderByColumns($query, $this->defaultOrderBy);
-    }
 }
