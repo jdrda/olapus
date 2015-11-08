@@ -4,7 +4,7 @@
 
 @section('page-icon', 'fa fa-dashboard')
 
-@section('page-description', trans(moduleNameBlade . '.description'))
+@section('page-description', trans($moduleNameBlade . '.description'))
 
 @section('menu-class-dashboard', 'active')
 

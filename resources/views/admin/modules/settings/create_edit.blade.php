@@ -49,8 +49,8 @@
                             <input type="hidden" name="_method" value="{{ $results->_method }}">
                             @endif
                             <div class="form-group has-feedback">
-                                <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }}</label>
-                                <input type="text" name="name" class="form-control" value="{{ $results->name or old('name') }}">
+                                <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }} *</label>
+                                <input type="text" name="name" class="form-control" value="{{ $results->name or old('name') }}" required>
                                 <span class="fa fa-key form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">

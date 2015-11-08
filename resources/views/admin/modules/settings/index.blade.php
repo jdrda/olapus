@@ -74,7 +74,7 @@
                                         <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
                                         @endif
                                     @else
-                                    <i class='fa fa-sort-alpha-desc'></i>
+                                    <i class='fa fa-sort-alpha-asc'></i>
                                     @endif
                                 </a> 
                             </th>

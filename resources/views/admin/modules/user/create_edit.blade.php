@@ -49,23 +49,23 @@
                             <input type="hidden" name="_method" value="{{ $results->_method }}">
                             @endif
                             <div class="form-group has-feedback">
-                                <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }}</label>
-                                <input type="text" name="name" class="form-control" value="{{ $results->name or old('name') }}">
+                                <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }} *</label>
+                                <input type="text" name="name" class="form-control" value="{{ $results->name or old('name') }}" required>
                                 <span class="fa fa-user form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <label for='email'>{{ trans($moduleNameBlade . '.fields.email') }}</label>
-                                <input type="email" name="email" class="form-control"value="{{ $results->email or old('email') }}">
+                                <label for='email'>{{ trans($moduleNameBlade . '.fields.email') }} *</label>
+                                <input type="email" name="email" class="form-control"value="{{ $results->email or old('email') }}" required>
                                 <span class="fa fa-envelope form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <label for='password'>{{ trans($moduleNameBlade . '.fields.password') }}</label>
-                                    <input type="password" name="password" class="form-control" id="password" value='{{ isset($results->password) ? '######' : '' }}'>
+                                <label for='password'>{{ trans($moduleNameBlade . '.fields.password') }} *</label>
+                                    <input type="password" name="password" class="form-control" id="password" value='{{ isset($results->password) ? '######' : '' }}' required>
                                 <span class="fa fa-lock form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <label for='password_confirmation'>{{ trans($moduleNameBlade . '.fields.password_again') }}</label>
-                                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" value='{{ isset($results->password) ? '######' : '' }}'>
+                                <label for='password_confirmation'>{{ trans($moduleNameBlade . '.fields.password_again') }} *</label>
+                                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" value='{{ isset($results->password) ? '######' : '' }}' required>
                                 <span class="fa fa-lock form-control-feedback"></span>
                             </div>
                             <div class="form-group text-right">

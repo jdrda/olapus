@@ -19,6 +19,7 @@ class Image extends Migration
                         $table->string('description', 255);
                         $table->string('alt', 255);
                         $table->string('url', 255)->unique();
+                        $table->integer('imagecategory_id')->unsigned()->index();
                         $table->binary('image');
 			$table->timestamps();
                         $table->softDeletes();
