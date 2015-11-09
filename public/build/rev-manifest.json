@@ -1,5 +1,7 @@
 {
   "css/admin.css": "css/admin-ffef20df12.css",
+  "css/pace.css": "css/pace-5ba55925b9.css",
   "js/admin.js": "js/admin-858111b93c.js",
-  "js/html5workaround.js": "js/html5workaround-f6fff3111b.js"
+  "js/html5workaround.js": "js/html5workaround-f6fff3111b.js",
+  "js/pace.js": "js/pace-7435c2ee87.js"
 }

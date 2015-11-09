@@ -65,18 +65,26 @@
                             <th class="hidden-xs hidden-sm">{{ trans('admin_module_image.fields.updated_at') }}</th>
                             <th class="text-right">{{ trans('admin.actions') }}</th>
                         </tr>
-                        @foreach ($results as $result)
-                        <tr>
-                            <td>{{ $result->id }}</td>
-                            <td>{{ $result->name }}</td>
-                            <td class="hidden-xs">{{ $result->value }}</td>
-                            <td class="hidden-xs hidden-sm">{{ $result->description }}</td>
-                            <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format')) }}</td>
-                            <td class="text-right">
-                                <a href="{{ route('admin.image.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
-                            </td>
-                        </tr>
-                        @endforeach
+                    </tbody>
+                </table>
+                @foreach ($results as $result)
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="{{ route('images/') }}" alt="...">
+                            <div class="caption">
+                                <h3>{{ $result->name }}</h3>
+                                <p><small>{{ $result->url }}</small></p>
+                                <p>{{ $result->description }}</p>
+                                <p>
+                                    <a href="{{ route($moduleBasicRoute . '.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
+                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><i class="fa fa-remove"></i> {{ trans('admin.delete') }}</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
 
                     </tbody>
                     

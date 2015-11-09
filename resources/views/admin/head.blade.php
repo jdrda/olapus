@@ -7,6 +7,11 @@
   <!-- /Meta information -->
   @show
   
+  @section('pace')
+  <script src="{{ asset(elixir('js/pace.js')) }}"></script>
+  <link href="{{ asset(elixir('css/pace.css')) }}" rel="stylesheet" />
+  @show
+  
   @section('css_styles')
   <!-- CSS styles -->
   <link rel="stylesheet" href="{{ asset(elixir('css/admin.css')) }}">

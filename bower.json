@@ -30,6 +30,7 @@
     "respond": "~1.4.2",
     "font-awesome": "~4.4.0",
     "Ionicons": "ionicons#~2.0.1",
-    "speakingurl": "~7.0.0"
+    "speakingurl": "~7.0.0",
+    "PACE": "pace#~1.0.2"
   }
 }

@@ -13,7 +13,9 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     
-    //mix.sass('app.scss');
+    /**
+     * ADMIN
+     */
     
     /**
      * jQuery
@@ -101,6 +103,19 @@ elixir(function(mix) {
             .copy("bower_components/speakingurl/lib/speakingurl.js", "resources/assets/js/admin");
     
     /**
+     * Pace
+     */
+    mix
+            .copy("bower_components/PACE/themes/blue/pace-theme-minimal.css", "resources/assets/css/admin")
+            .copy("bower_components/PACE/pace.js", "resources/assets/js/admin")
+            .styles([
+                'admin/pace-theme-flash.css',
+                ], 'public/css/pace.css')
+                    .scripts([
+                'admin/pace.js'
+                ], 'public/js/pace.js')
+    
+    /**
      * Admin main styles and scripts
      */
     mix
@@ -119,7 +134,9 @@ elixir(function(mix) {
         'admin/app.js',
         'admin/speakingurl.js',
         ], 'public/js/admin.js')
-            .version(['css/admin.css', 'js/admin.js', 'js/html5workaround.js'])
+    
+    mix
+            .version(['css/admin.css', 'js/admin.js', 'js/html5workaround.js', 'css/pace.css', 'js/pace.js'])
     ;
     
 });
