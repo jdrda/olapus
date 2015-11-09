@@ -28,7 +28,7 @@ class Image extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'alt', 'url', 'image', 'imagecategory_id'];
+    protected $fillable = ['name', 'description', 'alt', 'url', 'image', 'imagecategory_id', 'image_mime_type', 'image_extension', 'image_original_name'];
     
     /**
      * Columns to exclude from index

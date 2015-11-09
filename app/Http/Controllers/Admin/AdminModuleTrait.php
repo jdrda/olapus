@@ -17,204 +17,215 @@ use Illuminate\Support\Facades\View;
  * @author Uzivatel
  */
 trait AdminModuleTrait {
-    
+
     /**
      * Module name
      */
     protected $moduleName;
-    
+
     /**
      * Module basic path
      */
     protected $moduleBasicRoute;
-    
+
     /**
      * View basic path
      */
     protected $moduleBasicTemplatePath;
-    
+
     /**
      * Model Class
      */
     protected $modelClass;
-    
+
     /**
      * Rows to paginate
      * 
      * @var type 
      */
     protected $paginateRows = NULL;
-    
-   
-    
+
     /**
      * Constructor
      */
     public function __construct() {
-        
+
         /**
          * Pagination handle
          */
-        if($this->paginateRows == NULL){
-            
+        if ($this->paginateRows == NULL) {
+
             $this->paginateRows = env('ADMIN_PAGINATE', 10);
         }
-        
+
         /**
          * Get module name
          */
         $this->moduleName = str_replace('Controller', '', class_basename(__CLASS__));
-        
-        $this->modelClass = '\\App\\'.$this->moduleName;
-        
+
+        $this->modelClass = '\\App\\' . $this->moduleName;
+
         /**
          * Set variables
          */
-        $this->moduleBasicRoute = 'admin.'.lcfirst($this->moduleName);
-        $this->moduleBasicTemplatePath = 'admin.modules.'.strtolower($this->moduleName);
-        
+        $this->moduleBasicRoute = 'admin.' . lcfirst($this->moduleName);
+        $this->moduleBasicTemplatePath = 'admin.modules.' . strtolower($this->moduleName);
+
         /**
          * Global templates
          */
         View::share('moduleBasicRoute', $this->moduleBasicRoute);
         View::share('moduleBasicTemplatePath', $this->moduleBasicTemplatePath);
-        
+
         /**
          * Module name for blade
          */
         $temp = explode('.', $this->moduleBasicRoute);
-        View::share('moduleNameBlade', $temp[0]."_module_".$temp[1]);
+        View::share('moduleNameBlade', $temp[0] . "_module_" . $temp[1]);
     }
-    
+
     /**
      * Get pagination rows
      */
-    public function getRowsToPaginate(){
-        
-        if($this->paginateRows == NULL) {
-            
+    public function getRowsToPaginate() {
+
+        if ($this->paginateRows == NULL) {
+
             return env('ADMIN_PAGINATE', 10);
         }
     }
-    
+
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Exception  $e
+     * @return \Illuminate\Http\Response
+     */
+    /*public function render($request, Exception $e) {
+        if ($e instanceof CustomException) {
+            
+            return response()->view('errors.custom', [], 500);
+        }
+
+        return parent::render($request, $e);
+    }*/
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         /**
          * Handle saved settings
          */
         $redirectRoute = resetSaveIndexParameters($this->moduleBasicRoute);
-        if($redirectRoute !== FALSE){
-            
+        if ($redirectRoute !== FALSE) {
+
             return redirect($redirectRoute);
         }
-        
+
         /**
          * Get the rows
          */
         $modelClass = $this->modelClass;
-        $arResults = $modelClass::where( function($query) {
-                $query->fulltextAllColumns();
-        })->orderByColumns()->exclude()->paginate($this->getRowsToPaginate());
-        
+        $arResults = $modelClass::where(function($query) {
+                    $query->fulltextAllColumns();
+                })->relationships()->orderByColumns()->exclude()->paginate($this->getRowsToPaginate());
+
 
         /**
          * Return page
          */
-        return view($this->moduleBasicTemplatePath.'.index', ['results' => $arResults]);
+        return view($this->moduleBasicTemplatePath . '.index', ['results' => $arResults]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         /**
          * Return page
          */
         return view($this->moduleBasicTemplatePath . '.create_edit');
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
+
         /**
          * Validate input
          */
         $this->validate($request, $this->arValidationArray);
-        
+
         /**
          * Create row
          */
         $inputsToSave = array();
-        foreach ($this->arValidationArray as $name => $value){
-            $inputsToSave[$name] = $request[$name];
+        foreach ($this->arValidationArray as $name => $value) {
+
+            $inputsToSave[$name] = $request->$name;
         }
         $modelClass = $this->modelClass;
         $modelClass::create($inputsToSave);
-        
+
         /**
          * Redirect to index
          */
         return redirect(route($this->moduleBasicRoute . '.index'));
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $modelClass = $this->modelClass;
-        
+
         /**
          * Get the row
          */
         $arResults = $modelClass::find($id);
-        
+
         /**
          * Row does not exist - redirect
          */
-        if($arResults == FALSE){
-            
+        if ($arResults == FALSE) {
+
             return redirect(route($this->moduleBasicRoute . '.index'))->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
         }
-        
+
         /**
          * Set the put method for update
          */
         $arResults['_method'] = 'PUT';
-        
-       /**
+
+        /**
          * Return page
-         */    
+         */
         return view($this->moduleBasicTemplatePath . '.create_edit', ['results' => $arResults]);
     }
-    
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -222,68 +233,74 @@ trait AdminModuleTrait {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         /**
          * Change the validation array
          */
-        foreach ($this->arValidationArrayUpdateChange as $name => $value){
-            $this->arValidationArray[$name] = $this->arValidationArray[$value].','.$id;
+        foreach ($this->arValidationArrayUpdateChange as $name => $value) {
+            $this->arValidationArray[$name] = $value . ',' . $id;
         }
+
         /**
          * Validate input
          */
-        $this->validate($this->arValidationArray);
-        
+        $this->validate($request, $this->arValidationArray);
+
         /**
          * Get the row
          */
         $modelClass = $this->modelClass;
         $arResults = $modelClass::find($id);
-        
+
         /**
          * Row does not exist - redirect
          */
-        if($arResults == FALSE){
-            
+        if ($arResults == FALSE) {
+
             return redirect(route($this->moduleBasicRoute . '.index'))->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
         }
-        
+
         /**
          * Set updated values
          */
-        $arResults->name = $request['name'];
-        $arResults->description = $request['description'];
-        $arResults->color = $request['color'];
-        
+        foreach ($this->arValidationArray as $name => $value) {
+
+            /**
+             * Empty exception
+             */
+            if (empty($value) == FALSE) {
+                $inputsToSave[$name] = $request->$name;
+            }
+        }
+
         /**
          * Save the changes
          */
         $arResults->save();
-        
+
         /**
          * Return to index
          */
         return redirect(route($this->moduleBasicRoute . '.index'));
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         /**
          * Delete the setting
          */
         $modelClass = $this->modelClass;
         $modelClass::destroy($id);
-        
+
         /**
          * Redirect to index
          */
         return redirect(route($this->moduleBasicRoute . '.index'));
     }
+
 }

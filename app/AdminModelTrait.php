@@ -49,4 +49,14 @@ trait AdminModelTrait {
     {
         return $query->select( array_diff(Schema::getColumnListing($this->table), $this->excludedFromIndex) );
     }
+    
+    /**
+     * Process relationships
+     * 
+     * @param type $query
+     */
+    public function scopeRelationships($query){
+        
+        return $query;
+    }
 }

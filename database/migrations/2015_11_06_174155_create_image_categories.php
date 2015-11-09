@@ -37,7 +37,7 @@ class CreateImageCategories extends Migration
      */
     public function down()
     {
-        Schema::drop('image_category');
+        Schema::drop('imagecategory');
         Schema::drop('image_imagecategory');
     }
 }

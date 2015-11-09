@@ -49,8 +49,8 @@
                             <input type="hidden" name="_method" value="{{ $results->_method }}">
                             @endif
                             <div class="form-group has-feedback">
-                                <label for='name'>{{ trans($moduleNameBlade . '.fields.image') }} *</label>
-                                <input type="file" name="image" class="form-control">
+                                <label for='name'>{{ trans($moduleNameBlade . '.fields.image') }} @if(isset($results->_method) == FALSE) * @endif</label>
+                                <input type="file" name="image" class="form-control" @if(isset($results->_method) == FALSE) required @endif>
                                 <span class="fa fa-image form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='value'>{{ trans($moduleNameBlade . '.fields.url') }}</label>
-                                <input type="text" name="url" id='url' class="form-control" value="{{ $results->value or old('url') }}">
+                                <input type="text" name="url" id='url' class="form-control" value="{{ $results->url or old('url') }}">
                                 <span class="fa fa-anchor form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
@@ -91,18 +91,25 @@
 
 @section('foot')
 @parent
-
+@if(isset($results->_method) == FALSE)
 <script>
 $(function() {
 
     // Automatic slugify
     var lastValue = '';
+    var urlChanged = false;
+    
     setInterval(function() {
-        if ($("#name").val() != lastValue) {
+        if ($("#name").val() != lastValue && urlChanged == false) {
             lastValue = $("#name").val();
             $('#url').val(getSlug($("#name").val()));
         }
     }, 500);
+    
+    $('#url').keydown(function(){
+        urlChanged = true;
+    })
 });
 </script>
+@endif
 @endsection

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Image;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\App;
 
 class ImageController extends Controller
 {
@@ -17,17 +19,17 @@ class ImageController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function getImage($strURL)
-    {
+    public function getImage(Request $request)
+    {  
         
-        $objArticle = \App\ArticlesPublic::where('url', $strURL)->first();
+        $image = Image::where(['url' => $request->imageName, 'image_extension' => $request->imageExtension])->first();
         
-        if(!$objArticle){
+        if(!$image){
             App::abort(404);
         }
         
-        $response = Response::make($objArticle->image, 200);
-        $response->header('Content-Type', 'image/jpeg');
+        $response = Response::make($image->image, 200);
+        $response->header('Content-Type', $image->image_mime_type);
         return $response;
     }
 }

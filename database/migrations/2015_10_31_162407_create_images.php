@@ -21,6 +21,9 @@ class CreateImages extends Migration
                         $table->string('url', 255)->unique();
                         $table->integer('imagecategory_id')->unsigned()->index()->default(1);
                         $table->binary('image');
+                        $table->string('image_mime_type', 255);
+                        $table->string('image_extension', 255)->index();
+                        $table->string('image_original_name', 255);
 			$table->timestamps();
                         $table->softDeletes();
 		});

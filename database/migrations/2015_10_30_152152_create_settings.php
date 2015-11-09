@@ -16,7 +16,7 @@ class CreateSettings extends Migration
 		{
 			$table->increments('id');
 			$table->string('name', 255)->unique();
-                        $table->string('value', 255);
+                        $table->string('value', 255)->index();
                         $table->string('description', 255);
 			$table->timestamps();
                         $table->softDeletes();
