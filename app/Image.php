@@ -31,6 +31,13 @@ class Image extends Model
     protected $fillable = ['name', 'description', 'alt', 'url', 'image', 'imagecategory_id'];
     
     /**
+     * Columns to exclude from index
+     * 
+     * @var type 
+     */
+    protected $excludedFromIndex = ['image'];
+    
+    /**
      * Fields to search in fulltext mode
      * 
      * @var array

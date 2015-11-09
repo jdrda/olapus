@@ -8,6 +8,8 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Schema;
+
 /**
  * Description of AdminModelTrait
  *
@@ -21,7 +23,7 @@ trait AdminModelTrait {
      * @param query $query
      * @param string $word
      */
-    public function scopeAllColumns($query){
+    public function scopeFulltextAllColumns($query){
   
         return virtualFulltextSearchColumns($query, request('search'), $this->fulltextFields);
     }
@@ -34,5 +36,17 @@ trait AdminModelTrait {
     public function scopeOrderByColumns($query){
         
         return orderByColumns($query, $this->defaultOrderBy);
+    }
+   
+    /**
+     * Exclude columns
+     * 
+     * @param type $query
+     * @param type $value
+     * @return type
+     */
+    public function scopeExclude($query) 
+    {
+        return $query->select( array_diff(Schema::getColumnListing($this->table), $this->excludedFromIndex) );
     }
 }

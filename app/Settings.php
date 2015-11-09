@@ -31,6 +31,13 @@ class Settings extends Model
     protected $fillable = ['name', 'value', 'description'];
     
     /**
+     * Columns to exclude from index
+     * 
+     * @var type 
+     */
+    protected $excludedFromIndex = [];
+    
+    /**
      * Fields to search in fulltext mode
      * 
      * @var array

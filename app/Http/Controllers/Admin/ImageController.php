@@ -25,29 +25,11 @@ class ImageController extends Controller
                     'url' => 'required|max:255|unique:image,url'];
     
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Get pagination rows
      */
-    public function index()
-    {  
-        /**
-         * Handle saved settings
-         */
-        if(($redirectRoute = resetSaveIndexParameters('admin.image')) !== FALSE){
-            
-            return redirect($redirectRoute);
-        }
+    public function getRowsToPaginate(){
         
-        /**
-         * Get the rows
-         */
-        $arResults = Image::allColumns(@$request->search)->orderByColumns()->paginate(env('ADMIN_MEDIA_PAGINATE', 10));
-        
-        
-        /**
-         * Return page
-         */
-        return view('admin.modules.image.index', ['results' => $arResults]);
+        return env('ADMIN_MEDIA_PAGINATE', 10);
     }
+    
 }

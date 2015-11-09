@@ -68,8 +68,10 @@
         Google+</a>
     </div>-->
     <!-- /Social networks login NOT SUPPORTED YET -->
-
-    <a href="#">{{ trans('login.lost_password') }}</a>
+    
+    <!-- Lost Password NOT SUPPORTED YET -->
+    <!--<a href="#">{{ trans('login.lost_password') }}</a>-->
+    <!-- /Lost Password NOT SUPPORTED YET -->
     <!-- Registration NOT SUPPORTED YET -->
     <!--<br>
     <a href="register.html" class="text-center">Register a new membership</a>-->

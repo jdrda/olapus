@@ -39,9 +39,26 @@ trait AdminModuleTrait {
     protected $modelClass;
     
     /**
+     * Rows to paginate
+     * 
+     * @var type 
+     */
+    protected $paginateRows = NULL;
+    
+   
+    
+    /**
      * Constructor
      */
     public function __construct() {
+        
+        /**
+         * Pagination handle
+         */
+        if($this->paginateRows == NULL){
+            
+            $this->paginateRows = env('ADMIN_PAGINATE', 10);
+        }
         
         /**
          * Get module name
@@ -70,6 +87,17 @@ trait AdminModuleTrait {
     }
     
     /**
+     * Get pagination rows
+     */
+    public function getRowsToPaginate(){
+        
+        if($this->paginateRows == NULL) {
+            
+            return env('ADMIN_PAGINATE', 10);
+        }
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -90,8 +118,8 @@ trait AdminModuleTrait {
          */
         $modelClass = $this->modelClass;
         $arResults = $modelClass::where( function($query) {
-                $query->allColumns();
-        })->orderByColumns()->paginate(env('ADMIN_PAGINATE', 10));
+                $query->fulltextAllColumns();
+        })->orderByColumns()->exclude()->paginate($this->getRowsToPaginate());
         
 
         /**

@@ -47,6 +47,13 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = ['password', 'remember_token'];
     
     /**
+     * Columns to exclude from index
+     * 
+     * @var type 
+     */
+    protected $excludedFromIndex = ['password'];
+    
+    /**
      * Fields to search in fulltext mode
      * 
      * @var array

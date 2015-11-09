@@ -28,7 +28,7 @@ Route::get('home', ['as' => 'home', function () {
 /**
  * Admin
  */
-Route::group(['prefix' => env('APP_ADMIN_URL'), 'middleware' => 'auth'], function () {
+Route::group(['prefix' => env('APP_ADMIN_URL', 'admin'), 'middleware' => 'auth'], function () {
     
     /**
      * Main dashboard
@@ -97,6 +97,14 @@ Route::group(['prefix' => 'auth'], function () {
         'as' => 'authLogout', 'uses' => 'Auth\AuthController@getLogout'
     ]);
 });
+
+/**
+ * Images
+ */
+Route::get('/' . env('APP_IMAGE_URL', 'images').'/{imageName}.{imageSufix}', [
+    'as' => 'image', 'uses' => 'Image@getImage'
+]);
+
 
 /**
  * Custom routes

@@ -29,6 +29,13 @@ class ImageCategory extends Model
      * @var array
      */
     protected $fillable = ['name', 'description', 'color'];
+    
+    /**
+     * Columns to exclude from index
+     * 
+     * @var type 
+     */
+    protected $excludedFromIndex = [];
 
     /**
      * Fields to search in fulltext mode
