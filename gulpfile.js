@@ -124,7 +124,8 @@ elixir(function(mix) {
         'admin/font-awesome.css',
         'admin/ionicons.css',
         'admin/AdminLTE.css',
-        'admin/skins/_all-skins.css'
+        'admin/skins/_all-skins.css',
+        'admin/olapus.css',
         ], 'public/css/admin.css')
             .scripts([
         'admin/jquery.js',
@@ -133,6 +134,7 @@ elixir(function(mix) {
         'admin/fastclick.js',
         'admin/app.js',
         'admin/speakingurl.js',
+        'admin/squarethis.js',
         ], 'public/js/admin.js')
     
     mix

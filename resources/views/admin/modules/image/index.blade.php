@@ -48,7 +48,7 @@
             <!-- /.box-header -->
 
             <!-- Data table -->
-            <div class="box-body no-padding">
+            <div class="box-body">
                 
                 <div class='row'>
                     <div class='col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4'>
@@ -67,28 +67,39 @@
                         </tr>
                     </tbody>
                 </table>
-                @foreach ($results as $result)
+                <div class='row'>
+                    &nbsp;
+                </div>
+
+
                 <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <img src="{{ route('images/') }}" alt="...">
-                            <div class="caption">
-                                <h3>{{ $result->name }}</h3>
-                                <p><small>{{ $result->url }}</small></p>
-                                <p>{{ $result->description }}</p>
-                                <p>
-                                    <a href="{{ route($moduleBasicRoute . '.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
-                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><i class="fa fa-remove"></i> {{ trans('admin.delete') }}</button>
-                                </p>
+                    @foreach ($results as $result)            
+                    <div class="col-xs-6 col-sm-3 col-md-2">
+                        <div class="panel panel-{{ $result->imagecategories()->first()->color }}">
+                            <div class="panel-heading" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ $result->name }}</div>
+                            <div class="panel-body image-square row-xs-flex-center">
+                                <a href="#" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><img src="{{ route('getImage', ['imageName' => $result->url, 'imageExtension' => $result->image_extension]) }}" alt="{{ $result->name }}" class="img-responsive"></a>  
+                            </div>
+                            <div class="panel-footer text-center">
+                                <div class="btn-group">
+                                    
+                                    <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#"><i class="fa fa-link"></i> Get URL</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="{{ route($moduleBasicRoute . '.edit', $result->id) }}"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a></li>
+                                        <li><a href="#" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><i class="fa fa-remove"></i> {{ trans('admin.delete') }}</a></li>
+                                    </ul>
+                                </div>                  
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
 
-                    </tbody>
-                    
-                </table>
+
                 
                 <hr>
                 <div class="row">
@@ -107,5 +118,15 @@
 
 @section('foot')
 
+@include('admin/modules/image_detail_modals');
+
 @parent
+
+<script>
+
+$( document ).ready(function() {
+    squareThis('.image-square');
+});
+</script>
+
 @endsection

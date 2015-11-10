@@ -28,7 +28,9 @@ class Image extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'alt', 'url', 'image', 'imagecategory_id', 'image_mime_type', 'image_extension', 'image_original_name'];
+    protected $fillable = ['name', 'description', 'alt', 'url', 'image', 
+        'imagecategory_id', 'image_mime_type', 'image_extension', 
+        'image_original_name', 'image_size', 'image_width', 'image_height'];
     
     /**
      * Columns to exclude from index
@@ -78,8 +80,18 @@ class Image extends Model
      * 
      * @return type
      */
-    public function imageCategory(){
+    public function imagecategories(){
         
-        return $this->belongsTo('App\ImageCategory');
+        return $this->belongsTo('App\ImageCategory', 'imagecategory_id');
+    }
+    
+    /**
+     * Process relationships
+     * 
+     * @param type $query
+     */
+    public function scopeRelationships($query){
+        
+        return $query->with('imagecategories');
     }
 }

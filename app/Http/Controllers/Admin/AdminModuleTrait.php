@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Route;
 
 /**
  * Description of AdminModuleTrait
@@ -44,6 +45,13 @@ trait AdminModuleTrait {
      * @var type 
      */
     protected $paginateRows = NULL;
+    
+    /**
+     * View variables to inject
+     * 
+     * @var array
+     */
+    protected $viewVariables = array();
 
     /**
      * Constructor
@@ -82,6 +90,7 @@ trait AdminModuleTrait {
          */
         $temp = explode('.', $this->moduleBasicRoute);
         View::share('moduleNameBlade', $temp[0] . "_module_" . $temp[1]);
+        
     }
 
     /**
@@ -93,6 +102,13 @@ trait AdminModuleTrait {
 
             return env('ADMIN_PAGINATE', 10);
         }
+    }
+    
+    /**
+     * Associate relationships to other table
+     */
+    public function associateRelationships($object, Request $request){
+        
     }
 
     /**
@@ -133,12 +149,11 @@ trait AdminModuleTrait {
         $arResults = $modelClass::where(function($query) {
                     $query->fulltextAllColumns();
                 })->relationships()->orderByColumns()->exclude()->paginate($this->getRowsToPaginate());
-
-
+   
         /**
          * Return page
          */
-        return view($this->moduleBasicTemplatePath . '.index', ['results' => $arResults]);
+        return view($this->moduleBasicTemplatePath . '.index', array_merge(['results' => $arResults]));
     }
 
     /**
@@ -147,6 +162,7 @@ trait AdminModuleTrait {
      * @return \Illuminate\Http\Response
      */
     public function create() {
+        
         /**
          * Return page
          */
@@ -172,10 +188,15 @@ trait AdminModuleTrait {
         $inputsToSave = array();
         foreach ($this->arValidationArray as $name => $value) {
 
-            $inputsToSave[$name] = $request->$name;
+            $inputsToSave[$name] = $request->input($name);
         }
         $modelClass = $this->modelClass;
-        $modelClass::create($inputsToSave);
+        $newRow = $modelClass::create($inputsToSave);
+        
+        /**
+         * Associate relationships
+         */
+        $this->associateRelationships($newRow, $request);
 
         /**
          * Redirect to index
@@ -245,7 +266,7 @@ trait AdminModuleTrait {
          * Validate input
          */
         $this->validate($request, $this->arValidationArray);
-
+        
         /**
          * Get the row
          */
@@ -268,15 +289,20 @@ trait AdminModuleTrait {
             /**
              * Empty exception
              */
-            if (empty($value) == FALSE) {
-                $inputsToSave[$name] = $request->$name;
+            if (empty($request->input($name)) == FALSE) {
+                $arResults->$name = $request->input($name);
             }
         }
-
+        
         /**
          * Save the changes
          */
         $arResults->save();
+        
+        /**
+         * Associate relationships
+         */
+        $this->associateRelationships($arResults, $request);
 
         /**
          * Return to index

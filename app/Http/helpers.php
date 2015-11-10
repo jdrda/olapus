@@ -9,8 +9,8 @@
  * @return type
  */
 function virtualFulltextSearchColumns($query, $word, $fields) {
-    
-  
+
+
     if (isset($word) && strlen($word) > 0) {
 
         $first = TRUE;
@@ -33,24 +33,21 @@ function virtualFulltextSearchColumns($query, $word, $fields) {
             if (isset($fieldAttributes['sufix']) == FALSE) {
                 $fieldAttributes['sufix'] = '';
             }
-            
+
             /**
              * Query builder
              */
             if ($first == TRUE) {
-                
-               
-              
+
+
+
                 $query->where($fieldName, $fieldAttributes['operator'], $fieldAttributes['prefix'] . $word
                         . $fieldAttributes['sufix']);
 
                 $first = FALSE;
-            } 
-            else {
+            } else {
                 $query->orWhere($fieldName, $fieldAttributes['operator'], $fieldAttributes['prefix'] . $word
                         . $fieldAttributes['sufix']);
-                
-                
             }
         }
     }
@@ -66,12 +63,11 @@ function virtualFulltextSearchColumns($query, $word, $fields) {
  * @return type
  */
 function orderByColumns($query, $orderBy) {
-    
+
     if (Request::has('orderbycolumn') == TRUE && Request::has('orderbytype') == TRUE) {
 
         $query->orderBy(Request::input('orderbycolumn'), Request::input('orderbytype'));
-    } 
-    else {
+    } else {
         foreach ($orderBy as $orderByColumn => $orderByType) {
             $query->orderBy($orderByColumn, $orderByType);
         }
@@ -80,68 +76,98 @@ function orderByColumns($query, $orderBy) {
     return $query;
 }
 
-function resetSaveIndexParameters($module, $possibleParameters = ['search', 'orderbycolumn', 'orderbytype']){
-    
+function resetSaveIndexParameters($module, $possibleParameters = ['search', 'orderbycolumn', 'orderbytype']) {
+
     /**
      * Get common parameters
      */
     $allParameters = Request::all();
-    
+
     /**
      * Parse existing parameters
      */
-    foreach ($allParameters as $parameter => $value){
-        
+    foreach ($allParameters as $parameter => $value) {
+
         $cacheKey = implode('.', [$module, Auth::user()->id, $parameter]);
-        
+
         /**
          * Reset
          */
-        if(empty($value) == TRUE){
-            
+        if (empty($value) == TRUE) {
+
             Cache::forget($cacheKey);
             unset($allParameters[$parameter]);
         }
         /**
          * Save
-         */
-        else{
-        
+         */ else {
+
             Cache::forever($cacheKey, $value);
         }
     }
-    
+
     /**
      * Get new from cache
      */
-    foreach($possibleParameters as $parameter => $value){
-        
+    foreach ($possibleParameters as $parameter => $value) {
+
         $cacheKey = implode('.', [$module, Auth::user()->id, $value]);
-        
+
         $allParameters[$value] = Cache::get($cacheKey);
     }
-    
+
     /**
      * Sort parameters
      */
     asort($allParameters);
-    
+
     /**
      * Redirect ?
      */
-    $newRoute = trim(route($module.'.index', $allParameters), "?");
+    $newRoute = trim(route($module . '.index', $allParameters), "?");
     $oldRoute = Request::fullUrl();
-    
+
     /**
      * Routes are the same, everything is OK
      */
-    if(array_intersect(Request::input(), $allParameters) == Request::input()){
+    if (array_intersect(Request::input(), $allParameters) == Request::input()) {
         return FALSE;
     }
     /**
      * Routes are different, return new route for redirect
-     */
-    else{
-       return($newRoute);
+     */ else {
+        return($newRoute);
     }
+}
+
+/**
+ * Format byte size
+ */
+function formatByteSize($bytes) {
+    if ($bytes >= 1073741824) {
+        $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+    } elseif ($bytes >= 1048576) {
+        $bytes = number_format($bytes / 1048576, 2) . ' MB';
+    } elseif ($bytes >= 1024) {
+        $bytes = number_format($bytes / 1024, 2) . ' KB';
+    } elseif ($bytes > 1) {
+        $bytes = $bytes . ' b';
+    } elseif ($bytes == 1) {
+        $bytes = $bytes . ' b';
+    } else {
+        $bytes = '0 b';
+    }
+
+    return $bytes;
+}
+
+/**
+ * Get method name from route action without namespace
+ * 
+ * @param type $routeAction
+ */
+function getRouteMethod(){
+    
+    $method = explode('@', \Illuminate\Routing\Route::getCurrentRoute()->getActionName());
+    return  end ($method);
 }

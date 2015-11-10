@@ -29,6 +29,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'media.addparameters' => \App\Http\Middleware\MediaAddParameters::class,
+        'media.add.parameters' => \App\Http\Middleware\MediaAddParameters::class,
+        'add.lookup.tables' => \App\Http\Middleware\AddLookupTables::class,
     ];
 }
