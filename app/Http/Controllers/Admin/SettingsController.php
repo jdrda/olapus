@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-
 class SettingsController extends AdminModuleController
 {
     
@@ -11,9 +9,9 @@ class SettingsController extends AdminModuleController
      * Validation rules
      */
     protected $arValidationArray = [
-                    'name' => 'required|max:255|unique:settings',
-                    'value' => 'max:255',
-                    'description' => 'max:255'];
+                    'name' => 'required|max:255|unique:slider',
+                    'description' => 'max:255',
+                    'cycle_interval' => 'required|integer|min:1'];
     
     protected $arValidationArrayUpdateChange = [
                     'name' => 'required|max:255|unique:settings,name'];

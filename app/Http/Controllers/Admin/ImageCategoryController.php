@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-
-class ImageCategoryController extends Controller
+class ImageCategoryController extends AdminModuleController
 {
     use AdminModuleTrait;
     
