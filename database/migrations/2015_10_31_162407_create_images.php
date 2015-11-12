@@ -16,17 +16,17 @@ class CreateImages extends Migration
 		{
 			$table->increments('id');
 			$table->string('name', 255);
-                        $table->string('description', 255);
-                        $table->string('alt', 255);
+                        $table->string('description', 255)->nullable();
+                        $table->string('alt', 255)->nullable();
                         $table->string('url', 255)->unique();
                         $table->integer('imagecategory_id')->unsigned()->index()->default(1);
                         $table->binary('image');
-                        $table->string('image_mime_type', 255);
-                        $table->string('image_extension', 255)->index();
-                        $table->string('image_original_name', 255);
-                        $table->integer('image_size')->unsigned();
-                        $table->integer('image_width')->unsigned();
-                        $table->integer('image_height')->unsigned();
+                        $table->string('image_mime_type', 255)->nullable();
+                        $table->string('image_extension', 255)->index()->nullable();
+                        $table->string('image_original_name', 255)->nullable();
+                        $table->integer('image_size')->unsigned()->default(0);
+                        $table->integer('image_width')->unsigned()->default(0);;
+                        $table->integer('image_height')->unsigned()->default(0);
 			$table->timestamps();
                         $table->softDeletes();
 		});

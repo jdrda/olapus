@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSettings extends Migration
+class CreateSliders extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateSettings extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function(Blueprint $table)
+         Schema::create('slider', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('name', 255)->unique();
-                        $table->string('value', 255)->index()->nullable();
                         $table->string('description', 255)->nullable();
+                        $table->integer('cycle_interval')->index()->unsigned()->default(5000);
 			$table->timestamps();
                         $table->softDeletes();
 		});
@@ -30,6 +30,6 @@ class CreateSettings extends Migration
      */
     public function down()
     {
-        Schema::drop('settings');
+        Schema::drop('slider');
     }
 }

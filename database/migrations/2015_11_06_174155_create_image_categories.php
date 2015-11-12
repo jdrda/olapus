@@ -15,8 +15,8 @@ class CreateImageCategories extends Migration
         Schema::create('imagecategory', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->string('description');
-            $table->string('color');
+            $table->string('description')->nullable();
+            $table->string('color')->default('default');
             $table->timestamps();
             $table->softDeletes();
         });
