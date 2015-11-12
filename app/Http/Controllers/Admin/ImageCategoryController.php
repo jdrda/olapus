@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 class ImageCategoryController extends AdminModuleController
 {
-    use AdminModuleTrait;
     
     /**
      * Validation rules

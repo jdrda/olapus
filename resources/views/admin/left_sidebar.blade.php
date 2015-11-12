@@ -50,8 +50,8 @@
         <li class="treeview @yield('menu-class-sliders')">
           <a href="#"><i class="fa fa-sliders"></i> <span>{{ trans('admin.menu_group_sliders') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li class="@yield('menu-class-sliders')"><a href="{{ route('admin.slider.index') }}"><i class="fa fa-sliders"></i> Sliders</a></li>
-            <li class="@yield('menu-class-sliders')"><a href="{{ route('admin.slide.index') }}"><i class="fa fa-slideshare"></i> Slides</a></li>
+            <li class="@yield('menu-class-slider')"><a href="{{ route('admin.slider.index') }}"><i class="fa fa-sliders"></i> Sliders</a></li>
+            <li class="@yield('menu-class-slide')"><a href="{{ route('admin.slide.index') }}"><i class="fa fa-slideshare"></i> Slides</a></li>
           </ul>
         </li>
         <li class="treeview @yield('menu-class-media')">
