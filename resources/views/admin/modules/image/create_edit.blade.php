@@ -50,8 +50,15 @@
                             @endif
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans($moduleNameBlade . '.fields.image') }} @if(isset($results->_method) == FALSE) * @endif</label>
-                                <input type="file" name="image" class="form-control" @if(isset($results->_method) == FALSE) required @endif>
-                                <span class="fa fa-image form-control-feedback"></span>
+                                @if(isset($results))<div class="input-group"> @endif
+                                    <input type="file" name="image" class="form-control" @if(isset($results->_method) == FALSE) required @endif>
+                                    <span class="fa fa-image form-control-feedback"></span>
+                                    @if(isset($results))
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#imageDetailModal"><span class='fa fa-hand-pointer-o'></span> {{ trans('admin.show') }}</button>
+                                    </div>
+                                    @endif
+                                @if(isset($results))</div> @endif
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }} *</label>
@@ -73,6 +80,14 @@
                                 <input type="text" name="description" class="form-control" value="{{ $results->description or old('description') }}">
                                 <span class="fa fa-align-left form-control-feedback"></span>
                             </div>
+                            <div class="form-group">
+                                <label for='color'>{{ trans('admin_module_image.fields.category') }} * </label>
+                                <select name="imagecategory_id" class='form-control select2'>                      
+                                    @foreach (request('ImageCategory') as $imagecategory) 
+                                    <option value="{{ $imagecategory->id }}" @if(isset($results) == TRUE and $results->imagecategory_id == $imagecategory->id)selected @endif>{{ $imagecategory->name }}</option>                                 
+                                    @endforeach
+                                </select> 
+                            </div>
                             
                             <div class="form-group text-right">
                                 <button type='submit' name='submit' class='btn btn-primary btn-flat'>{{ trans('admin.save') }}</button>
@@ -91,9 +106,36 @@
 
 @section('foot')
 @parent
-@if(isset($results->_method) == FALSE)
+
+@if(isset($results))
+<div class='example-modal'>
+    <div class='modal modal-default fade' id='imageDetailModal' tabindex='-1'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <button type='button' class='close' data-dismiss='modal' aria-label='{{ trans('close') }}'>
+                        <span aria-hidden='true'>×</span></button>
+                    <h4 class='modal-title'>{{ $results->name }}</h4>
+                </div>
+                <div class='modal-body text-center'>
+                    <img src="{{ route('getImage', ['imageName' => $results->url, 'imageExtension' => $results->image_extension]) }}" alt="{{ $results->name }}" class="img-responsive">
+                </div>
+                <div class='modal-footer'>
+                   
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</div>
+@endif
+
+@if(isset($results->method) ==  FALSE)
 <script>
 $(function() {
+    
 
     // Automatic slugify
     var lastValue = '';

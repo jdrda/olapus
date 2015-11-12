@@ -26,6 +26,7 @@ class AddLookupTables
             
             $request->merge([$model => $modelWithNamespace::orderBy('name', 'asc')->get()]);
         }
+  
         
         return $next($request);
        

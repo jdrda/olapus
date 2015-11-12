@@ -20,6 +20,7 @@ return [
     'delete' => 'Delete',
     'close' => 'Close',
     'search' => 'Search',
+    'show' => 'Show',
     'delete_row' => 'Delete the row #',
     'delete_row_confirmation' => 'Are you sure you want to delete row #',
     'actions' => 'Actions',

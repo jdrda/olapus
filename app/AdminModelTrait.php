@@ -18,6 +18,16 @@ use Illuminate\Support\Facades\Schema;
 trait AdminModelTrait {
     
     /**
+     * Workaround to get table name
+     * 
+     * @return type
+     */
+    public static function getTableName()
+    {
+        return with(new static)->getTable();
+    }
+    
+    /**
      * Scope for fulltext search
      * 
      * @param query $query
@@ -45,9 +55,26 @@ trait AdminModelTrait {
      * @param type $value
      * @return type
      */
-    public function scopeExclude($query) 
+    public function scopeExcludeFromIndex($query) 
     {
         return $query->select( array_diff(Schema::getColumnListing($this->table), $this->excludedFromIndex) );
+    }
+    
+    /**
+     * Exclude from find
+     * 
+     * @param type $query
+     * @param type $value
+     * @return type
+     */
+    public function scopeExcludeFromFind($query) 
+    {
+        if(isset($this->excludedFromFind) == TRUE && is_array($this->excludedFromFind) == TRUE){
+            return $query->select( array_diff(Schema::getColumnListing($this->table), $this->excludedFromFind) );
+        }
+        else{
+            return $query;
+        }
     }
     
     /**

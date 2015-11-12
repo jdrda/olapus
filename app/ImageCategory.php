@@ -70,6 +70,6 @@ class ImageCategory extends Model
      */
     public function image(){
         
-        return $this->hasMany('App\Image');
+        return $this->hasMany('App\Image', 'imagecategory_id');
     }
 }

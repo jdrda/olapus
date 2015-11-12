@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Image;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 
 class ImageController extends Controller
 {
@@ -21,8 +22,25 @@ class ImageController extends Controller
      */
     public function getImage(Request $request)
     {  
+        /**
+         * Check the cache
+         */
+        $cacheKey = $request->imageName.":".$request->imageExtension;
         
-        $image = Image::where(['url' => $request->imageName, 'image_extension' => $request->imageExtension])->first();
+        /**
+         * File cached
+         */
+        if (Cache::has($cacheKey)) {
+            $image = Cache::get($cacheKey);
+        }
+        /**
+         * File not cached
+         */
+        else{
+
+            $image = Image::where(['url' => $request->imageName, 'image_extension' => $request->imageExtension])->first();
+            Cache::forever($cacheKey, $image);
+        }
         
         if(!$image){
             App::abort(404);

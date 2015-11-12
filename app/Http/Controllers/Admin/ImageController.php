@@ -7,13 +7,22 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Image;
 use App\ImageCategory;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Cache;
 
-class ImageController extends Controller
+class ImageController extends AdminModuleController
 {
-    use AdminModuleTrait {
-        AdminModuleTrait::__construct as private __traitConstruct;
+   
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        parent::__construct();
+        
+        $this->middleware('media.add.parameters', ['only' => ['store','update']]);
+        $this->middleware('add.lookup.tables:ImageCategory', ['only' => ['create','edit']]);
     }
-    
+   
     /**
      * Validation rules
      */
@@ -34,16 +43,30 @@ class ImageController extends Controller
     protected $arValidationArrayUpdateChange = [
                     'url' => 'required|max:255|unique:image,url',
                     'image' => 'max:4000000',
-   ];
-    
-    
+    ];
     
     /**
      * Get pagination rows
      */
     public function getRowsToPaginate(){
         
-        return env('ADMIN_MEDIA_PAGINATE', 10);
+        return env('ADMIN_MEDIA_PAGINATE', 12);
+    }
+    
+    /**
+     * Reset cache
+     */
+    public function resetCache($object) {
+        
+        $cacheKey = $object->url.":".$object->image_extension;
+        
+        /**
+         * File cached
+         */
+        if (Cache::has($cacheKey)) {
+
+            $image = Cache::forget($cacheKey);
+        }
     }
     
     /**
@@ -59,6 +82,7 @@ class ImageController extends Controller
         ]);
 
         if ($validator->fails()) {
+
             
             $object->imagecategories()->associate(1);
         }
@@ -68,6 +92,7 @@ class ImageController extends Controller
              * Find category or save default
              */
             try{
+                
                 $imageCategory = ImageCategory::findOrFail($request->input('imagecategory_id'));
                 $object->imagecategories()->associate($imageCategory);
 
@@ -79,14 +104,5 @@ class ImageController extends Controller
         
     }
     
-    /**
-     * Constructor
-     */
-    public function __construct() {
-        $this->__traitConstruct();
-        
-        $this->middleware('media.add.parameters', ['only' => ['store','update']]);
-        $this->middleware('add.lookup.tables:ImageCategory', ['only' => ['create','edit']]);
-        
-    }
+    
 }

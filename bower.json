@@ -31,6 +31,7 @@
     "font-awesome": "~4.4.0",
     "Ionicons": "ionicons#~2.0.1",
     "speakingurl": "~7.0.0",
-    "PACE": "pace#~1.0.2"
+    "PACE": "pace#~1.0.2",
+    "select2": "~4.0.0"
   }
 }

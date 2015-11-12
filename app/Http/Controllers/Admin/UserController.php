@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class UserController extends AdminModuleController
 {
-    use AdminModuleTrait;
     
     /**
      * Validation rules

@@ -171,3 +171,13 @@ function getRouteMethod(){
     $method = explode('@', \Illuminate\Routing\Route::getCurrentRoute()->getActionName());
     return  end ($method);
 }
+
+/**
+ * Exclude columns from table
+ * 
+ * @param type $table
+ * @param type $columns
+ */
+function excludeColumns($table, $columns = array()){
+    return array_diff(Schema::getColumnListing($table), $columns);
+}

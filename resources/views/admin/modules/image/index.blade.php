@@ -58,12 +58,34 @@
                 <table class="table table-hover table-responsive">
                     <tbody>
                         <tr>
-                            <th>{{ trans('admin_module_image.fields.id') }}</th>
-                            <th>{{ trans('admin_module_image.fields.name') }}</th>
-                            <th class="hidden-xs">{{ trans('admin_module_image.fields.url') }}</th>
-                            <th class="hidden-xs hidden-sm">{{ trans('admin_module_image.fields.description') }}</th>
-                            <th class="hidden-xs hidden-sm">{{ trans('admin_module_image.fields.updated_at') }}</th>
-                            <th class="text-right">{{ trans('admin.actions') }}</th>
+                            <th>
+                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'id' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . 'index', ['search' => request('search'), 'orderbycolumn' => 'id', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'id', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans($moduleNameBlade . '.fields.id') }}
+                                    @if(Request::has('orderbycolumn'))
+                                        @if(request('orderbycolumn') == 'id')
+                                        <i class='fa fa-sort-numeric-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
+                                        @endif
+                                    @else
+                                    <i class='fa fa-sort-numeric-desc'></i>
+                                    @endif
+                                </a>
+                            </th>
+                            <th>
+                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'name' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'name', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'name', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans($moduleNameBlade . '.fields.name') }}
+                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'name')
+                                    <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
+                                    @endif
+                                </a>
+                            </th>
+                            <th class="hidden-xs hidden-sm">
+                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at' and request('orderbytype') == 'asc'){{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans($moduleNameBlade . '.fields.updated_at') }}
+                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at')
+                                    <i class='fa fa-sort-numeric-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
+                                    @endif
+                                </a>
+                            </th>
                         </tr>
                     </tbody>
                 </table>
@@ -78,16 +100,17 @@
                         <div class="panel panel-{{ $result->imagecategories()->first()->color }}">
                             <div class="panel-heading" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ $result->name }}</div>
                             <div class="panel-body image-square row-xs-flex-center">
-                                <a href="#" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><img src="{{ route('getImage', ['imageName' => $result->url, 'imageExtension' => $result->image_extension]) }}" alt="{{ $result->name }}" class="img-responsive"></a>  
+                                <a href="#" data-toggle="modal" data-target="#imageDetailModal{{ $result->id }}"><img src="{{ route('getImage', ['imageName' => $result->url, 'imageExtension' => $result->image_extension]) }}" alt="{{ $result->name }}" class="img-responsive"></a>  
                             </div>
                             <div class="panel-footer text-center">
                                 <div class="btn-group">
                                     
                                     <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Actions <span class="caret"></span>
+                                        {{ trans('admin_module_image.action') }} <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#"><i class="fa fa-link"></i> Get URL</a></li>
+                                        <li><a href="#" data-toggle="modal" data-target="#imageURLModal{{ $result->id }}"><i class="fa fa-link"></i> {{ trans('admin_module_image.get_url') }}</a></li>
+                                        <li><a href="#" data-toggle="modal" data-target="#imageDetailModal{{ $result->id }}"><i class="fa fa-info-circle"></i> {{ trans('admin_module_image.get_info') }}</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="{{ route($moduleBasicRoute . '.edit', $result->id) }}"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a></li>
                                         <li><a href="#" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><i class="fa fa-remove"></i> {{ trans('admin.delete') }}</a></li>
@@ -119,6 +142,8 @@
 @section('foot')
 
 @include('admin/modules/image_detail_modals');
+@include('admin/modules/image_url_modals');
+@include('admin/modules/delete_modals');
 
 @parent
 
@@ -126,6 +151,10 @@
 
 $( document ).ready(function() {
     squareThis('.image-square');
+
+    $('.url_modal').on('shown.bs.modal', function () {
+        $(this).add('input').select();
+    });
 });
 </script>
 

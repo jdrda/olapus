@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
-class SettingsController extends Controller
+class SettingsController extends AdminModuleController
 {
-    use AdminModuleTrait;
     
     /**
      * Validation rules

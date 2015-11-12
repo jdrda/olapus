@@ -40,6 +40,13 @@ class Image extends Model
     protected $excludedFromIndex = ['image'];
     
     /**
+     * Hidden from custom find
+     * 
+     * @var type 
+     */
+    protected  $excludedFromFind = ['image'];
+    
+    /**
      * Fields to search in fulltext mode
      * 
      * @var array

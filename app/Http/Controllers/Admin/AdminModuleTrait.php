@@ -52,6 +52,12 @@ trait AdminModuleTrait {
      * @var array
      */
     protected $viewVariables = array();
+    
+    /**
+     * Hidden fields for action
+     * @var type 
+     */
+    protected $hiddenFieldsOnAction = array();
 
     /**
      * Constructor
@@ -148,7 +154,7 @@ trait AdminModuleTrait {
         $modelClass = $this->modelClass;
         $arResults = $modelClass::where(function($query) {
                     $query->fulltextAllColumns();
-                })->relationships()->orderByColumns()->exclude()->paginate($this->getRowsToPaginate());
+                })->relationships()->orderByColumns()->excludeFromIndex()->paginate($this->getRowsToPaginate());
    
         /**
          * Return page
@@ -216,12 +222,13 @@ trait AdminModuleTrait {
         /**
          * Get the row
          */
-        $arResults = $modelClass::find($id);
-
+        $arResults = $modelClass::where('id', $id)->relationships()->excludeFromFind()->get();
+        $arResults = $arResults[0];
+    
         /**
          * Row does not exist - redirect
          */
-        if ($arResults == FALSE) {
+        if (count($arResults) == 0) {
 
             return redirect(route($this->moduleBasicRoute . '.index'))->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
         }

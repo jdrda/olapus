@@ -111,9 +111,17 @@ elixir(function(mix) {
             .styles([
                 'admin/pace-theme-flash.css',
                 ], 'public/css/pace.css')
-                    .scripts([
+            .scripts([
                 'admin/pace.js'
                 ], 'public/js/pace.js')
+                
+    /**
+     * Select2
+     */
+    mix
+            .copy("bower_components/select2/dist/css/select2.css", "resources/assets/css/admin")
+            .copy("bower_components/select2/dist/js/select2.full.js", "resources/assets/js/admin")
+            .copy("bower_components/select2/dist/js/i18n", "public/js/i18n")
     
     /**
      * Admin main styles and scripts
@@ -123,18 +131,20 @@ elixir(function(mix) {
         'admin/bootstrap.css',
         'admin/font-awesome.css',
         'admin/ionicons.css',
+        'admin/select2.css',
         'admin/AdminLTE.css',
         'admin/skins/_all-skins.css',
-        'admin/olapus.css',
+        'admin/olapus.css', 
         ], 'public/css/admin.css')
             .scripts([
         'admin/jquery.js',
         'admin/bootstrap.js',
         'admin/jquery.slimscroll.js',
         'admin/fastclick.js',
-        'admin/app.js',
         'admin/speakingurl.js',
         'admin/squarethis.js',
+        'admin/select2.full.js',
+        'admin/app.js',
         ], 'public/js/admin.js')
     
     mix
