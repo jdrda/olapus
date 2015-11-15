@@ -161,8 +161,9 @@ class AdminModuleController extends Controller{
         $modelClass = $this->modelClass;
         $arResults = $modelClass::where(function($query) {
                     $query->fulltextAllColumns();
-                })->relationships()->orderByColumns()->excludeFromIndex()->paginate($this->getRowsToPaginate());
-   
+                })->relationships()->orderByColumns()->excludeFromIndex()
+                        ->externalTablesFilter()->paginate($this->getRowsToPaginate());
+                
         /**
          * Return page
          */
@@ -254,7 +255,7 @@ class AdminModuleController extends Controller{
          * Set the put method for update
          */
         $arResults['_method'] = 'PUT';
-
+        
         /**
          * Return page
          */

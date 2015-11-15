@@ -39,8 +39,6 @@ function virtualFulltextSearchColumns($query, $word, $fields) {
              */
             if ($first == TRUE) {
 
-
-
                 $query->where($fieldName, $fieldAttributes['operator'], $fieldAttributes['prefix'] . $word
                         . $fieldAttributes['sufix']);
 
@@ -76,7 +74,14 @@ function orderByColumns($query, $orderBy) {
     return $query;
 }
 
-function resetSaveIndexParameters($module, $possibleParameters = ['search', 'orderbycolumn', 'orderbytype']) {
+/**
+ * Reset or save index parameters
+ * 
+ * @param type $module
+ * @param type $possibleParameters
+ * @return boolean
+ */
+function resetSaveIndexParameters($module, $possibleParameters = ['search', 'orderbycolumn', 'orderbytype', 'relation']) {
 
     /**
      * Get common parameters
@@ -119,7 +124,8 @@ function resetSaveIndexParameters($module, $possibleParameters = ['search', 'ord
     /**
      * Sort parameters
      */
-    asort($allParameters);
+    ksort($allParameters);
+    ksort($possibleParameters);
 
     /**
      * Redirect ?
@@ -130,12 +136,13 @@ function resetSaveIndexParameters($module, $possibleParameters = ['search', 'ord
     /**
      * Routes are the same, everything is OK
      */
-    if (array_intersect(Request::input(), $allParameters) == Request::input()) {
+    if ($newRoute == $oldRoute) {
         return FALSE;
     }
     /**
      * Routes are different, return new route for redirect
-     */ else {
+     */ 
+    else {
         return($newRoute);
     }
 }

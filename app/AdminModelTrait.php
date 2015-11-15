@@ -9,6 +9,7 @@
 namespace App;
 
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Request;
 
 /**
  * Description of AdminModelTrait
@@ -83,6 +84,40 @@ trait AdminModelTrait {
      * @param type $query
      */
     public function scopeRelationships($query){
+        
+        return $query;
+    }
+    
+    /**
+     * External table filter
+     */
+    public function scopeExternalTablesFilter($query){
+        
+        if(Request::input('relation')){
+            
+            $allTables = [];
+            
+            $relations = explode(',', Request::input('relation'));
+            
+            foreach ($relations as $relation){
+                
+                $keyvalue = explode(':', $relation);
+                
+                $key = trim($keyvalue[0]);
+                $value = trim($keyvalue[1]);
+                
+                $allTables[$key] = $value;
+                
+                if(is_numeric($value) == TRUE){
+                    
+                    $query->where(strtolower($key)."_id", '=', $value);
+                }
+            }
+            
+             request()->merge(['external_tables_filter' => $allTables]);
+        }
+        
+       
         
         return $query;
     }

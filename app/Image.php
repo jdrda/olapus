@@ -93,6 +93,16 @@ class Image extends Model
     }
     
     /**
+     * Slide link
+     * 
+     * @return type
+     */
+    public function slides(){
+        
+        return $this->hasMany('App\Slide', 'image_id');
+    }
+    
+    /**
      * Process relationships
      * 
      * @param type $query
@@ -100,5 +110,15 @@ class Image extends Model
     public function scopeRelationships($query){
         
         return $query->with('imagecategories');
+    }
+    
+    /**
+     * Hide fields
+     * 
+     * @param type $array
+     */
+    public function hide($array = []){
+        
+        $this->hidden = ['image'];
     }
 }

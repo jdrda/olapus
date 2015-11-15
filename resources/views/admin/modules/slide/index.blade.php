@@ -2,17 +2,14 @@
 
 @section('page-name', trans($moduleNameBlade . '.name') )
 
-@section('page-icon', 'fa fa-user')
+@section('page-icon', 'fa fa-slideshare')
 
 @section('page-description', trans($moduleNameBlade . '.description'))
 
 @section('delete_confirmation_text', trans($moduleNameBlade . '.delete_row_confirmation'))
 
-@section('menu-class-administration', 'active')
-@section('menu-class-user', 'active')
-
-{{-- Order by --}}
-
+@section('menu-class-sliders', 'active')
+@section('menu-class-slide', 'active')
 
 @section('content')
 <div class="row">
@@ -52,16 +49,16 @@
 
             <!-- Data table -->
             <div class="box-body no-padding">
-
+                
                 <div class='row'>
                     <div class='col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4'>
-                        @include('admin.errors')
+                    @include('admin.errors')
                     </div>
                 </div>
                 <table class="table table-hover table-responsive">
                     <tbody>
                         <tr>
-                            <th>
+                           <th>
                                 <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'id' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'id', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'id', 'orderbytype' => 'asc']) }}@endif">
                                     {{ trans($moduleNameBlade . '.fields.id') }}
                                     @if(Request::has('orderbycolumn'))
@@ -82,20 +79,42 @@
                                 </a>
                             </th>
                             <th class="hidden-xs">
-                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'email' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'email', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'email', 'orderbytype' => 'asc']) }}@endif">
-                                    {{ trans($moduleNameBlade . '.fields.email') }}
-                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'email')
+                                <form action="{{ route($moduleBasicRoute . '.index') }}" method="get" id='sliderForm'>
+                                    <select name='relation' id='slider_id' class='form-control input-sm'>
+                                        <option value=''>{{ trans($moduleNameBlade . '.fields.slider') }} ...</option>
+                                        @foreach (request('Slider') as $slider)
+                                        <option value='slider:{{ $slider->id }}' @if(request('external_tables_filter')['slider'] == $slider->id) selected @endif>{{ $slider->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </form>
+                                
+                            </th>
+                            <th class="hidden-xs hidden-sm hidden-md">
+                                 <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'description' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'description', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'description', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans($moduleNameBlade . '.fields.description') }}
+                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'description')
                                     <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
                                     @endif
                                 </a>
+                                
                             </th>
                             <th class="hidden-xs hidden-sm">
-                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at' and request('orderbytype') == 'asc'){{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'asc']) }}@endif">
-                                    {{ trans($moduleNameBlade . '.fields.updated_at') }}
-                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at')
-                                    <i class='fa fa-sort-numeric-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
+                                 <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'position' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'position', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'position', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans($moduleNameBlade . '.fields.position') }}
+                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'position')
+                                    <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
                                     @endif
                                 </a>
+                                
+                            </th>
+                            <th class="hidden-xs hidden-sm">
+                                 <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans($moduleNameBlade . '.fields.updated_at') }}
+                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at')
+                                    <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
+                                    @endif
+                                </a>
+                                
                             </th>
                             <th class="text-right">
                                 {{ trans('admin.actions') }}
@@ -105,23 +124,24 @@
                         <tr>
                             <td>{{ $result->id }}</td>
                             <td>{{ $result->name }}</td>
-                            <td class="hidden-xs">{{ $result->email }}</td>
+                            <td class="hidden-xs">{{ $result->sliders->name }}</td>
+                            <td class="hidden-xs hidden-sm hidden-md">{{ $result->description }}</td>
+                            <td class="hidden-xs hidden-sm">{{ $result->position }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format')) }}</td>
                             <td class="text-right">
                                 <a href="{{ route($moduleBasicRoute . '.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
-                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><i class="fa fa-remove"></i> {{ trans('admin.delete') }}</button>
                             </td>
                         </tr>
                         @endforeach
 
                     </tbody>
-
+                    
                 </table>
-
+                
                 <hr>
                 <div class="row">
                     <div class="col-xs-12 text-center"> 
-                        {!! $results->appends(Request::all())->render() !!}
+                        {!! $results->render() !!}
                     </div>
                 </div>
             </div>
@@ -135,7 +155,12 @@
 
 @section('foot')
 
-@include('admin/modules/delete_modals');
-
 @parent
+<script>
+$(function() {
+    $('#slider_id').on('change', function() {
+        $('#sliderForm').submit();
+      });
+});
+</script>
 @endsection

@@ -69,7 +69,7 @@ class Slider extends Model
      * 
      * @return type
      */
-    public function slide(){
+    public function slides(){
         
         return $this->hasMany('App\Slide', 'slider_id');
     }

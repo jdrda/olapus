@@ -23,6 +23,7 @@ return [
     'show' => 'Show',
     'delete_row' => 'Delete the row #',
     'delete_row_confirmation' => 'Are you sure you want to delete row #',
+    'select_image' => 'Select image',
     'actions' => 'Actions',
     'copyright' => 'Copyright',
     'all_rights_reserved' => 'All rights reserved',

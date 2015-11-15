@@ -2,19 +2,19 @@
 
 @section('page-name', trans($moduleNameBlade . '.name') )
 
-@section('page-icon', 'fa fa-image')
+@section('page-icon', 'fa fa-slideshare')
 
 @section('page-description', trans($moduleNameBlade . '.description'))
 
-@section('menu-class-media', 'active')
-@section('menu-class-image', 'active')
+@section('menu-class-sliders', 'active')
+@section('menu-class-slide', 'active')
 
 @section('content')
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                 <h3 class="box-title">
+                <h3 class="box-title">
                     {{ trans($moduleNameBlade . '.name') }}
                 </h3>
 
@@ -43,48 +43,56 @@
                         @include('admin.errors')
 
                         <!-- Form -->
-                        <form action="@if(isset($results->_method)){{ route($moduleBasicRoute . '.update', $results->id) }}@else{{ route($moduleBasicRoute . '.store') }}@endif" method="post" enctype="multipart/form-data">
+                        <form action="@if(isset($results->_method)){{ route($moduleBasicRoute . '.update', $results->id) }}@else{{ route($moduleBasicRoute . '.store') }}@endif" method="post">
                             {!! csrf_field() !!}
                             @if(isset($results->_method))
                             <input type="hidden" name="_method" value="{{ $results->_method }}">
                             @endif
                             <div class="form-group has-feedback">
-                                <label for='name'>{{ trans($moduleNameBlade . '.fields.image') }} @if(isset($results->_method) == FALSE) * @endif</label>
-                                @if(isset($results))<div class="input-group"> @endif
-                                    <input type="file" name="image" class="form-control" @if(isset($results->_method) == FALSE) required @endif>
-                                    <span class="fa fa-image form-control-feedback"></span>
-                                    @if(isset($results))
+                                <label for='image_name'>{{ trans($moduleNameBlade . '.fields.image') }} *</label>
+                                <div class="input-group">
+                                     @if(isset($results->images->id))
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#imageDetailModal"><span class='fa fa-hand-pointer-o'></span> {{ trans('admin.show') }}</button>
                                     </div>
                                     @endif
-                                @if(isset($results))</div> @endif
+                                    <input type="text" name="image_name" id="image_name" class="form-control" readonly placeholder="No image selected" value='{{ $results->images->name or '' }}'>
+                                    <input type="hidden" name="image_id" id="image_id">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#imageSelectModal"><span class="fa fa-th-large"></span> Select image</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }} *</label>
-                                <input type="text" name="name" id="name" class="form-control" value="{{ $results->name or old('name') }}" required>
+                                <input type="text" name="name" class="form-control" value="{{ $results->name or old('name') }}" required>
                                 <span class="fa fa-key form-control-feedback"></span>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label for='alt'>{{ trans($moduleNameBlade . '.fields.alt') }}</label>
-                                <input type="text" name="alt" class="form-control" value="{{ $results->alt or old('alt') }}">
-                                <span class="fa fa-code form-control-feedback"></span>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label for='value'>{{ trans($moduleNameBlade . '.fields.url') }}</label>
-                                <input type="text" name="url" id='url' class="form-control" value="{{ $results->url or old('url') }}">
-                                <span class="fa fa-anchor form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='description'>{{ trans($moduleNameBlade . '.fields.description') }}</label>
                                 <input type="text" name="description" class="form-control" value="{{ $results->description or old('description') }}">
                                 <span class="fa fa-align-left form-control-feedback"></span>
                             </div>
+                            <div class="form-group has-feedback">
+                                <label for='caption'>{{ trans($moduleNameBlade . '.fields.caption') }}</label>
+                                <input type="text" name="caption" class="form-control" value="{{ $results->caption or old('caption') }}">
+                                <span class="fa fa-header form-control-feedback"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label for='text'>{{ trans($moduleNameBlade . '.fields.text') }}</label>
+                                <input type="text" name="text" class="form-control" value="{{ $results->text or old('text') }}">
+                                <span class="fa fa-indent form-control-feedback"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label for='text'>{{ trans($moduleNameBlade . '.fields.position') }} *</label>
+                                <input type="number" step='1' name="position" class="form-control" value="{{ $results->position or old('text') or 1 }}">
+                                <span class="fa fa-sort-amount-asc form-control-feedback"></span>
+                            </div>
                             <div class="form-group">
-                                <label for='color'>{{ trans($moduleNameBlade . '.fields.category') }} * </label>
-                                <select name="imagecategory_id" class='form-control select2'>                      
-                                    @foreach (request('ImageCategory') as $imagecategory) 
-                                    <option value="{{ $imagecategory->id }}" @if(isset($results) == TRUE and $results->imagecategory_id == $imagecategory->id)selected @endif>{{ $imagecategory->name }}</option>                                 
+                                <label for='color'>{{ trans($moduleNameBlade . '.fields.slider') }} * </label>
+                                <select name="slider_id" class='form-control select2'>                      
+                                    @foreach (request('Slider') as $slider) 
+                                    <option value="{{ $slider->id }}" @if(isset($results) == TRUE and $results->slider_id == $slider->id)selected @endif>{{ $slider->name }}</option>                                 
                                     @endforeach
                                 </select> 
                             </div>
@@ -105,9 +113,10 @@
 @endsection
 
 @section('foot')
-@parent
 
-@if(isset($results))
+@include('admin/modules/image_select_modal')
+
+@if(isset($results->images->id))
 <div class='example-modal'>
     <div class='modal modal-default fade' id='imageDetailModal' tabindex='-1'>
         <div class='modal-dialog'>
@@ -115,10 +124,10 @@
                 <div class='modal-header'>
                     <button type='button' class='close' data-dismiss='modal' aria-label='{{ trans('close') }}'>
                         <span aria-hidden='true'>×</span></button>
-                    <h4 class='modal-title'>{{ $results->name }}</h4>
+                    <h4 class='modal-title'>{{ $results->images->name }}</h4>
                 </div>
                 <div class='modal-body text-center'>
-                    <img src="{{ route('getImage', ['imageName' => $results->url, 'imageExtension' => $results->image_extension]) }}" alt="{{ $results->name }}" class="img-responsive">
+                    <img src="{{ route('getImage', ['imageName' => $results->images->url, 'imageExtension' => $results->images->image_extension]) }}" alt="{{ $results->images->name }}" class="img-responsive">
                 </div>
                 <div class='modal-footer'>
                    
@@ -131,31 +140,24 @@
     <!-- /.modal -->
 </div>
 @endif
+
+@parent
+
 <script>
     $(function() {
         $('select').select2();
+        
+        // Select an image
+        $('.thumbnail-select a').click( function(){
+            
+            name = $(this).closest('div').find('.thumbnail_name').val();
+            id = $(this).closest('div').find('.thumbnail_id').val();
+            $('#image_id').val(id);
+            $('#image_name').val(name);
+            $('#imageSelectModal').modal('toggle');
+        });
     });
-</script>
-@if(isset($results->method) ==  FALSE)
-<script>
-$(function() {
     
+</script>
 
-    // Automatic slugify
-    var lastValue = '';
-    var urlChanged = false;
-    
-    setInterval(function() {
-        if ($("#name").val() != lastValue && urlChanged == false) {
-            lastValue = $("#name").val();
-            $('#url').val(getSlug($("#name").val()));
-        }
-    }, 500);
-    
-    $('#url').keydown(function(){
-        urlChanged = true;
-    })
-});
-</script>
-@endif
 @endsection

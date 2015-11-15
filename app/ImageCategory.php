@@ -68,7 +68,7 @@ class ImageCategory extends Model
      * 
      * @return type
      */
-    public function image(){
+    public function images(){
         
         return $this->hasMany('App\Image', 'imagecategory_id');
     }
