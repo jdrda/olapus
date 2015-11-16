@@ -140,7 +140,6 @@
 <script>
 $(function() {
     
-
     // Automatic slugify
     var lastValue = '';
     var urlChanged = false;

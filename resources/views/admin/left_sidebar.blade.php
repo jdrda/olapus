@@ -43,7 +43,7 @@
           <a href="#"><i class="fa fa-newspaper-o"></i> <span>{{ trans('admin.menu_group_articles') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
             <li class="@yield('menu-class-article')"><a href="{{ route('admin.article.index') }}"><i class="fa fa-newspaper-o"></i> <span>Articles</span></a></li>
-            <li class="@yield('menu-class-category')"><a href="{{ route('admin.articleCategory.index') }}"><i class="fa fa-clone"></i>Categories</a></li>
+            <li class="@yield('menu-class-articlecategory')"><a href="{{ route('admin.articleCategory.index') }}"><i class="fa fa-clone"></i>Categories</a></li>
           </ul>
         </li>
         

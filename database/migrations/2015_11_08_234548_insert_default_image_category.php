@@ -18,7 +18,7 @@ class InsertDefaultImageCategory extends Migration
                                 array(
                                     'name' => 'Default',
                                     'description' => 'Default category',
-                                    'color' => ('default'),
+                                    'color' => 'default',
                                     'created_at' => Carbon\Carbon::now(),
                                     'updated_at' => Carbon\Carbon::now(),
                                     'deleted_at' => NULL

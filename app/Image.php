@@ -103,6 +103,16 @@ class Image extends Model
     }
     
     /**
+     * Article category
+     * 
+     * @return type
+     */
+    public function articlecategories(){
+        
+        return $this->hasMany('App\ArticleCategory', 'image_id');
+    }
+    
+    /**
      * Process relationships
      * 
      * @param type $query

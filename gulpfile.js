@@ -124,6 +124,13 @@ elixir(function(mix) {
             .copy("bower_components/select2/dist/js/i18n", "public/js/i18n")
     
     /**
+     * Tiny MCE
+     */
+    mix
+            .copy("bower_components/tinymce", "public/js/admin/tinymce")
+            .copy("bower_components/solire.tinymce-i18n/langs", "public/js/admin/tinymce/langs")
+    
+    /**
      * Admin main styles and scripts
      */
     mix

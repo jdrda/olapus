@@ -81,7 +81,7 @@ class Slide extends Model
      */
     public function images(){
         
-        return $this->belongsTo('App\Image', 'image_id')->select('name', 'description', 
+        return $this->belongsTo('App\Image', 'image_id')->select('id', 'name', 'description', 
                 'alt', 'url', 'imagecategory_id', 'image_mime_type', 'image_extension', 
                 'image_original_name', 'image_size', 'image_width', 'image_height',
                 'created_at', 'updated_at', 'deleted_at');

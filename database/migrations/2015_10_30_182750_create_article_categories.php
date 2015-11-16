@@ -12,18 +12,17 @@ class CreateArticleCategories extends Migration
      */
     public function up()
     {
-        Schema::create('article_category', function(Blueprint $table)
+        Schema::create('articlecategory', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('name', 255)->unique();
-                        $table->string('color', 255);
-                        $table->string('meta_description', 255);
-                        $table->string('meta_keywords', 255);
-			$table->text('text');
+                        $table->string('color', 255)->index()->default('default');
+                        $table->string('meta_title', 255)->nullable();
+                        $table->string('meta_description', 255)->nullable();
+                        $table->string('meta_keywords', 255)->nullable();
+			$table->text('text')->nullable();
                         $table->string('url', 255)->unique();
-                        $table->binary('image');
-                        $table->integer('article_id')->unsigned();
-                        $table->foreign('article_id')->references('id')->on('article');
+                        $table->integer('image_id')->unsigned()->index()->nullable();
 			$table->timestamps();
                         $table->softDeletes();
 		});
@@ -36,6 +35,6 @@ class CreateArticleCategories extends Migration
      */
     public function down()
     {
-        Schema::drop('article_category');
+        Schema::drop('articlecategory');
     }
 }

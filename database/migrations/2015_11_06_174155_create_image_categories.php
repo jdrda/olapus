@@ -16,7 +16,7 @@ class CreateImageCategories extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('description')->nullable();
-            $table->string('color')->default('default');
+            $table->string('color')->index()->default('default');
             $table->timestamps();
             $table->softDeletes();
         });

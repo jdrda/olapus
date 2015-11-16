@@ -255,7 +255,7 @@ class AdminModuleController extends Controller{
          * Set the put method for update
          */
         $arResults['_method'] = 'PUT';
-        
+    
         /**
          * Return page
          */

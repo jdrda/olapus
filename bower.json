@@ -32,6 +32,9 @@
     "Ionicons": "ionicons#~2.0.1",
     "speakingurl": "~7.0.0",
     "PACE": "pace#~1.0.2",
-    "select2": "~4.0.0"
+    "select2": "~4.0.0",
+    "ckeditor": "~4.5.5",
+    "bootstrap3-wysihtml5-bower": "~0.3.3",
+    "tinymce": "tinymce-dist#~4.2.8"
   }
 }
