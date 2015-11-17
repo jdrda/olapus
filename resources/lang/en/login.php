@@ -18,5 +18,6 @@ return [
     'lost_password' => 'I forgot my password',
     'error' => 'Error',
     'problems_with_input' => 'There were some problems with your input',
+    'remeber_me' => 'Remember me',
 
 ];

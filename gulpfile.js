@@ -131,6 +131,13 @@ elixir(function(mix) {
             .copy("bower_components/solire.tinymce-i18n/langs", "public/js/admin/tinymce/langs")
     
     /**
+     * iCheck
+     */
+    mix
+            .copy("bower_components/iCheck/skins", "public/css/admin/iCheck/skins")
+            .copy("bower_components/iCheck/icheck.js", "resources/assets/js/admin")
+    
+    /**
      * Admin main styles and scripts
      */
     mix
@@ -151,6 +158,7 @@ elixir(function(mix) {
         'admin/speakingurl.js',
         'admin/squarethis.js',
         'admin/select2.full.js',
+        'admin/icheck.js',
         'admin/app.js',
         ], 'public/js/admin.js')
     

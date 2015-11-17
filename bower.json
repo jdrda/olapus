@@ -35,6 +35,7 @@
     "select2": "~4.0.0",
     "ckeditor": "~4.5.5",
     "bootstrap3-wysihtml5-bower": "~0.3.3",
-    "tinymce": "tinymce-dist#~4.2.8"
+    "tinymce": "tinymce-dist#~4.2.8",
+    "iCheck": "icheck#~1.0.2"
   }
 }

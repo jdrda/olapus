@@ -37,6 +37,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+        $this->redirectAfterLogout = env('APP_ADMIN_URL', 'admin');
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 

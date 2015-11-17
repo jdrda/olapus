@@ -9,6 +9,7 @@
   
   <!-- CSS styles -->
   <link rel="stylesheet" href="{{ asset(elixir('css/admin.css')) }}">
+  <link rel="stylesheet" href="{{ asset('css/admin/iCheck/skins/square/blue.css') }}">
   <!-- CSS styles -->
   
   @section('html5_workaround')
@@ -44,13 +45,13 @@
          
       <div class="row">
         <div class="col-xs-8">
-          <!-- Remember me NOT SUPPORTED YET --> 
-          <!--<div class="checkbox icheck">
+          <!-- Remember me --> 
+          <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> Remember Me
+              <input type="checkbox" name="remember"> {{ trans('login.remeber_me') }}
             </label>
-          </div>-->
-          <!-- /Remember me NOT SUPPORTED YET -->
+          </div>
+          <!-- /Remember me -->
         </div>
         <div class="col-xs-4">
           <button type="submit" class="btn btn-primary btn-block btn-flat">{{ trans('login.sign_in') }}</button>
@@ -84,6 +85,15 @@
 
 <!-- JS Scripts -->
 <script src="{{ asset(elixir('js/admin.js')) }}"></script>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
+    });
+  });
+</script>
 <!-- /JS Scripts -->
 
 </body>
