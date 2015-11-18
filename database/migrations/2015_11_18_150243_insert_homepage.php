@@ -12,7 +12,17 @@ class InsertHomepage extends Migration
      */
     public function up()
     {
-        //
+        // Insert admin user
+        DB::table('page')->insert(
+                        array(
+                                array(
+                                    'name' => 'Homepage',
+                                    'url' => '',
+                                    'created_at' => Carbon\Carbon::now(),
+                                    'updated_at' => Carbon\Carbon::now(),
+                                    'deleted_at' => NULL
+                                    ),                             
+                        ));
     }
 
     /**
@@ -22,6 +32,6 @@ class InsertHomepage extends Migration
      */
     public function down()
     {
-        //
+        DB::table('page')->delete();
     }
 }

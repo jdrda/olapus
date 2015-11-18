@@ -20,14 +20,6 @@ class CreateImageCategories extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-        
-        /**
-         * Pivot table to images
-         */
-        Schema::create('image_imagecategory', function (Blueprint $table) {
-            $table->integer('image_id')->unsigned()->index();
-            $table->integer('imagecategory_id')->unsigned()->index();
-        });
     }
 
     /**
@@ -38,6 +30,5 @@ class CreateImageCategories extends Migration
     public function down()
     {
         Schema::drop('imagecategory');
-        Schema::drop('image_imagecategory');
     }
 }

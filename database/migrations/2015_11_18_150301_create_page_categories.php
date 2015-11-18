@@ -12,9 +12,13 @@ class CreatePageCategories extends Migration
      */
     public function up()
     {
-        Schema::create('page', function (Blueprint $table) {
+        Schema::create('pagecategory', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name')->unique();
+            $table->string('description')->nullable();
+            $table->string('class')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,6 +29,6 @@ class CreatePageCategories extends Migration
      */
     public function down()
     {
-        Schema::drop('page');
+        Schema::drop('pagecategory');
     }
 }

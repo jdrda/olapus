@@ -11,7 +11,7 @@ return [
     |
     */
     
-    'name' => 'Image Category',
+    'name' => 'Image categories',
     'description' => 'Manage image categories pictures',
     'delete_row_confirmation' => 'Are you sure you want to delete category',
     'fields' => [

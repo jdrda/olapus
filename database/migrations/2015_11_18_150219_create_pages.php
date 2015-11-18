@@ -27,6 +27,13 @@ class CreatePages extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+        
+        Schema::create('page_pagecategory', function(Blueprint $table)
+		{
+			$table->integer('page_id')->unsigned();
+                        $table->integer('pagecategory_id')->unsigned();
+                        $table->primary(['page_id', 'pagecategory_id']);
+                });
     }
 
     /**
@@ -37,5 +44,6 @@ class CreatePages extends Migration
     public function down()
     {
         Schema::drop('page');
+        Schema::drop('page_pagecategory');
     }
 }
