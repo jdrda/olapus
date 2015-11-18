@@ -17,7 +17,7 @@ class InsertHomepage extends Migration
                         array(
                                 array(
                                     'name' => 'Homepage',
-                                    'url' => '',
+                                    'url' => '/',
                                     'created_at' => Carbon\Carbon::now(),
                                     'updated_at' => Carbon\Carbon::now(),
                                     'deleted_at' => NULL

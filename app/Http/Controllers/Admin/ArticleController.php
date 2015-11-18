@@ -3,9 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\ArticleCategory;
-use App\Image;
-use App\User;
 use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends AdminModuleController {
@@ -93,7 +90,13 @@ class ArticleController extends AdminModuleController {
         /**
          * Validate article category ID, if failed set to default
          */
+        
+        
         if($request->has('articlecategory_id')){
+            
+            $validIDs = [];
+            
+            
             foreach ($request->input('articlecategory_id') as $articlecategory_id) {
 
                 $arrayForValidator = ['articlecategory_id' =>  $articlecategory_id];
@@ -109,9 +112,14 @@ class ArticleController extends AdminModuleController {
                      */
                 } else {
 
-                    $object->articlecategories()->attach($articlecategory_id);
+                    $validIDs[] = $articlecategory_id;
                 }
             }
+            
+            /**
+             * Sync all to pivot
+             */
+            $object->articlecategories()->sync($validIDs);
         }
     }
     

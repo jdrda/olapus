@@ -202,7 +202,7 @@
 @endif
 @parent
 
-@if(isset($results->method) ==  FALSE)
+@if(isset($results->_method) ==  FALSE)
 <script>
 $(function() {
     

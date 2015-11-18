@@ -136,7 +136,7 @@
         $('select').select2();
     });
 </script>
-@if(isset($results->method) ==  FALSE)
+@if(isset($results->_method) ==  FALSE)
 <script>
 $(function() {
     

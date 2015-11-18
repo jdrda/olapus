@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\ImageCategory;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Cache;
 

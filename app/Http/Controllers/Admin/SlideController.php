@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Slider;
-use App\Image;
 use Illuminate\Support\Facades\Validator;
 
 

@@ -113,6 +113,16 @@ class Image extends Model
     }
     
     /**
+     * Article category
+     * 
+     * @return type
+     */
+    public function pages(){
+        
+        return $this->hasMany('App\Page', 'image_id');
+    }
+    
+    /**
      * Process relationships
      * 
      * @param type $query

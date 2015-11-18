@@ -2,15 +2,15 @@
 
 @section('page-name', trans($moduleNameBlade . '.name') )
 
-@section('page-icon', 'fa fa-newspaper-o')
+@section('page-icon', 'fa fa-sticky-note-o')
 
 @section('page-description', trans($moduleNameBlade . '.description'))
 
 @section('delete_confirmation_text', trans($moduleNameBlade . '.delete_row_confirmation'))
 
 
-@section('menu-class-articles', 'active')
-@section('menu-class-article', 'active')
+@section('menu-class-pages', 'active')
+@section('menu-class-page', 'active')
 
 @section('content')
 <div class="row">
@@ -61,11 +61,11 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for='articlecategory_id[]'>{{ trans($moduleNameBlade . '.fields.articlecategory') }} * </label>
-                                <select name="articlecategory_id[]" class='form-control' multiple="multiple" id='articlecategories'>                      
-                                @if(isset($results->articlecategories))
-                                    @foreach ($results->articlecategories as $articlecategory) 
-                                    <option value="{{ $articlecategory->id }}" selected>{{ $articlecategory->name }}</option>                                 
+                                <label for='pagecategory_id[]'>{{ trans($moduleNameBlade . '.fields.pagecategory') }} * </label>
+                                <select name="pagecategory_id[]" class='form-control' multiple="multiple" id='pagecategories'>                      
+                                @if(isset($results->pagecategories))
+                                    @foreach ($results->pagecategories as $pagecategory) 
+                                    <option value="{{ $pagecategory->id }}" selected>{{ $pagecategory->name }}</option>                                 
                                     @endforeach
                                 @endif
                                 </select> 
@@ -187,7 +187,7 @@
 @endif
 @parent
 
-@if(isset($results->_method) ==  FALSE)
+@if(isset($results->_method) == FALSE)
 <script>
 $(function() {
     
@@ -232,10 +232,10 @@ tinymce.init({
         
         $('select').not('#articlecategories').select2();
         
-        $('#articlecategories').select2({
+        $('#pagecategories').select2({
            data: [
-                @foreach (request('ArticleCategory') as $articlecategory) 
-                { id: {{ $articlecategory->id }}, text: '{{ $articlecategory->name }}' },
+                @foreach (request('PageCategory') as $pagecategory) 
+                { id: {{ $pagecategory->id }}, text: '{{ $pagecategory->name }}' },
                 @endforeach
            ] 
         });
