@@ -96,6 +96,18 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('logout', [
         'as' => 'authLogout', 'uses' => 'Auth\AuthController@getLogout'
     ]);
+    Route::get('password/email', [
+        'as' => 'authPasswordEmailGet', 'uses' => 'Auth\PasswordController@getEmail'
+    ]);
+    Route::post('password/email', [
+        'as' => 'authPasswordEmailPost', 'uses' => 'Auth\PasswordController@postEmail'
+    ]);
+    Route::get('password/reset/{token}', [
+        'as' => 'authPasswordGetReset', 'uses' => 'Auth\PasswordController@getReset'
+    ]);
+    Route::get('password/reset', [
+        'as' => 'authPasswordPostReset', 'uses' => 'Auth\PasswordController@postReset'
+    ]);
 });
 
 /**

@@ -75,28 +75,17 @@ class ImageController extends AdminModuleController
          * Validate category ID, if failed set to default
          */
         $validator = Validator::make($request->all(), [
-            'imagecategory_id' => 'required|integer|min:1',
+            'imagecategory_id' => 'required|integer|min:1|exists:imagecategory,id',
         ]);
 
         if ($validator->fails()) {
 
-            
             $object->imagecategories()->associate(1);
         }
         else{
-        
-            /**
-             * Find category or save default
-             */
-            try{
-                
-                $imageCategory = ImageCategory::findOrFail($request->input('imagecategory_id'));
-                $object->imagecategories()->associate($imageCategory);
 
-            } catch (Exception $ex) {
+            $object->imagecategories()->associate($request->input('imagecategory_id'));
 
-                $object->imagecategories()->associate(1);
-            }
         }
         
     }

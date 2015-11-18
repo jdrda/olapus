@@ -118,6 +118,13 @@ class AdminModuleController extends Controller{
     }
     
     /**
+     * Associate relationships to other table, where ID if objectmust be present
+     */
+    public function associateRelationshipsWithID($object, Request $request){
+        
+    }
+    
+    /**
      * Reset cache 
      */
     public function resetCache($object){
@@ -212,15 +219,21 @@ class AdminModuleController extends Controller{
             $object->{$name} = $request->input($name);
         }
         
-        //$newRow = $modelClass::create($inputsToSave);
-        
         /**
          * Associate relationships
          */
         $this->associateRelationships($object, $request);
         
+        /**
+         * Save main object
+         */
         $object->save();
-
+        
+        /**
+         * Associate relatinships with ID
+         */
+        $this->associateRelationshipsWithID($object, $request);
+        
         /**
          * Redirect to index
          */
@@ -333,6 +346,11 @@ class AdminModuleController extends Controller{
          * Save the changes
          */
         $arResults->save();
+        
+        /**
+         * Associate relatinships with ID
+         */
+        $this->associateRelationshipsWithID($arResults, $request);
 
         /**
          * Return to index

@@ -11,16 +11,24 @@ return [
     |
     */
     
-    'name' => 'Settings',
-    'description' => 'Various settings for system',
-    'delete_row_confirmation' => 'Are you sure you want to delete setting called',
+    'name' => 'Articles',
+    'description' => 'Articles management',
+    'delete_row_confirmation' => 'Are you sure you want to delete article called',
     'fields' => [
         'id' => 'ID',
         'name' => 'Name',
-        'value' => 'Value',
-        'description' => 'Description',
+        'author_name' => 'Author name',
+        'meta_title' => 'META title',
+        'meta_description' => 'META description',
+        'meta_keywords' => 'META keywords',
+        'text' => 'Text',
+        'url' => 'URL',
+        'image' => 'Image',
+        'author' => 'Author',
+        'articlecategory' => 'Category',
         'created_at' => 'Create at',
         'updated_at' => 'Update at',
         'deleted_at' => 'Deleted at',
+        'published_at' => 'Published at',
     ]
 ];

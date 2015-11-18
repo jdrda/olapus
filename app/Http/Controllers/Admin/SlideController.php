@@ -36,7 +36,7 @@ class SlideController extends AdminModuleController
                     'name' => 'required|max:255|unique:slide',
                     'description' => 'max:255',
                     'caption' => 'max:255',
-                    'text' => 'max:1024',
+                    'text' => 'max:1000000',
                     'position' => 'required|integer',
         
     ];
@@ -53,35 +53,23 @@ class SlideController extends AdminModuleController
          * Validate slider ID, if failed set to default
          */
         $validator = Validator::make($request->all(), [
-            'slider_id' => 'required|integer|min:1',
+            'slider_id' => 'required|integer|min:1|exists:slider,id',
         ]);
 
         if ($validator->fails()) {
 
-            
             $object->sliders()->associate(1);
         }
         else{
-        
-            /**
-             * Find category or save default
-             */
-            try{
-                
-                $slider = Slider::findOrFail($request->input('slider_id'));
-                $object->sliders()->associate($slider);
 
-            } catch (Exception $ex) {
-
-                $object->sliders()->associate(1);
-            }
+            $object->sliders()->associate($request->input('slider_id'));
         }
         
         /**
          * Validate image ID, if failed set to default
          */
         $validator = Validator::make($request->all(), [
-            'image_id' => 'required|integer|min:1',
+            'image_id' => 'required|integer|min:1|exists:image,id',
         ]);
 
         if ($validator->fails()) {
@@ -89,19 +77,9 @@ class SlideController extends AdminModuleController
             // nothing to do
         }
         else{
-        
-            /**
-             * Find category or save default
-             */
-            try{
-                
-                $image = Image::findOrFail($request->input('image_id'));
-                $object->images()->associate($image);
 
-            } catch (Exception $ex) {
+            $object->images()->associate($request->input('image_id'));
 
-                // nothing to do
-            }
         }
         
     }

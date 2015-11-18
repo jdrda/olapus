@@ -78,4 +78,14 @@ class User extends Model implements AuthenticatableContract,
     protected $defaultOrderBy = [
       'id' => 'desc'  
     ];
+    
+    /**
+     * Articles link
+     * 
+     * @return type
+     */
+    public function articles(){
+        
+        return $this->hasMany('App\Article', 'user_id');
+    }
 }

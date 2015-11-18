@@ -32,5 +32,6 @@ class Kernel extends HttpKernel
         'media.add.parameters' => \App\Http\Middleware\MediaAddParameters::class,
         'media.image.select' => \App\Http\Middleware\MediaImageSelect::class,
         'add.lookup.tables' => \App\Http\Middleware\AddLookupTables::class,
+        'add.published.at' => \App\Http\Middleware\AddPublishedAt::class,
     ];
 }

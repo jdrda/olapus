@@ -89,7 +89,7 @@ class ArticleCategory extends Model
      */
     public function articles(){
         
-        return $this->belongsToMany('App\Article', 'article_articlecategory', 'articlecategory_id');
+        return $this->belongsToMany('App\Article', 'article_articlecategory', 'articlecategory_id', 'article_id');
     }
     
     /**
@@ -99,6 +99,6 @@ class ArticleCategory extends Model
      */
     public function scopeRelationships($query){
         
-        return $query->with('images');
+        return $query->with('images', 'articles');
     }
 }

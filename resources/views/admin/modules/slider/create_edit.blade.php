@@ -65,8 +65,9 @@
                             </div>
                             
                             <div class="form-group text-right">
-                                                               
+                                @if(isset($results->_method))                               
                                 <a href='{{ route('admin.slide.index', ['relation' => 'slider:' . $results->id ]) }}' name='show_slides' class='btn btn-warning btn-flat'>{{ trans('admin_module_slider.show_slides') }}</a>
+                                @endif
                                 <button type='submit' name='submit' class='btn btn-primary btn-flat'>{{ trans('admin.save') }}</button>
                             </div>
                         </form>
