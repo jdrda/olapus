@@ -14,6 +14,7 @@ return [
     'name' => 'Articles',
     'description' => 'Articles management',
     'delete_row_confirmation' => 'Are you sure you want to delete article called',
+    'publish' => 'Publish',
     'fields' => [
         'id' => 'ID',
         'name' => 'Name',

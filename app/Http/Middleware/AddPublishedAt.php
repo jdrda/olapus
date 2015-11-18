@@ -15,12 +15,13 @@ class AddPublishedAt
      */
     public function handle($request, Closure $next)
     {
+ 
         if($request->has('published')){
             
             $request->merge(['published_at' => \Carbon\Carbon::now()]);
         }
         else{
-            
+
             $request->merge(['published_at' => NULL]);
         }
         

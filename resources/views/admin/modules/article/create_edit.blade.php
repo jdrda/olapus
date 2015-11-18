@@ -143,6 +143,7 @@
                     <div class='row'>
                         <div class='col-xs-12'>
                              <div class="form-group text-right">
+                                 <button type='submit' name='published' class='btn btn-warning btn-flat' value="1">{{ trans($moduleNameBlade . '.publish') }}</button>
                                 <button type='submit' name='submit' class='btn btn-primary btn-flat'>{{ trans('admin.save') }}</button>
                             </div>
                         </div>

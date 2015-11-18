@@ -99,6 +99,14 @@
                                 </a>
                             </th>
                             <th class="hidden-xs hidden-sm">
+                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'published_at' and request('orderbytype') == 'asc'){{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'published_at', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'published_at', 'orderbytype' => 'asc']) }}@endif">
+                                    {{ trans($moduleNameBlade . '.fields.published_at') }}
+                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'published_at')
+                                    <i class='fa fa-sort-numeric-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
+                                    @endif
+                                </a>
+                            </th>
+                            <th class="hidden-xs hidden-sm">
                                 <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at' and request('orderbytype') == 'asc'){{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'asc']) }}@endif">
                                     {{ trans($moduleNameBlade . '.fields.updated_at') }}
                                     @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at')
@@ -114,9 +122,10 @@
                         <tr>
                             <td>{{ $result->id }}</td>
                             <td>{{ $result->name }}</td>
-                            <td class="hidden-xs"><span class="label label-{{ $result->color }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
-                            <td class="hidden-xs">{{ $result->url }}</td>
-                            <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format')) }}</td>
+                            <td class="hidden-xs">{{ $result->meta_title }}</td>
+                            <td class="hidden-xs hidden-sm">{{ $result->url }}</td>
+                            <td class="hidden-xs hidden-sm">@if(empty($result->published_at) == FALSE){{ $result->published_at->format(trans('locale.date_format')) }}@endif</td>
+                            <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format'))}}</td>
                             <td class="text-right">
                                 <a href="{{ route($moduleBasicRoute . '.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
                                 <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><i class="fa fa-remove"></i> {{ trans('admin.delete') }}</button>

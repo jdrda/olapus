@@ -38,33 +38,27 @@ Route::group(['prefix' => env('APP_ADMIN_URL', 'admin'), 'middleware' => 'auth']
     ]);
     
     /**
-     * Articles
+     * Articles and categories
      */
-    Route::resource('article', 'Admin\ArticleController');
+    Route::resource('page', 'Admin\PageController');
+    Route::resource('pageCategory', 'Admin\PageCategoryController');
     
     /**
-     * Category
+     * Articles and categories
      */
+    Route::resource('article', 'Admin\ArticleController');
     Route::resource('articleCategory', 'Admin\ArticleCategoryController');
     
     /**
-     * Slides
+     * Sliders and slides
      */
+    Route::resource('slider', 'Admin\SliderController');
     Route::resource('slide', 'Admin\SlideController');
     
     /**
-     * Sliders
-     */
-    Route::resource('slider', 'Admin\SliderController');
-    
-    /**
-     * Images
+     * Images and categories
      */
     Route::resource('image', 'Admin\ImageController', ['middleware' => ['media.addparameters']]);
-    
-    /**
-     * Image categories
-     */
     Route::resource('imageCategory', 'Admin\ImageCategoryController');
     
     /**

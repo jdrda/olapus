@@ -335,13 +335,16 @@ class AdminModuleController extends Controller{
             if (empty($request->input($name)) == FALSE) {
                 $arResults->$name = $request->input($name);
             }
+            else{
+                $arResults->$name = NULL;
+            }
         }
         
         /**
          * Associate relationships
          */
         $this->associateRelationships($arResults, $request);
-        
+
         /**
          * Save the changes
          */

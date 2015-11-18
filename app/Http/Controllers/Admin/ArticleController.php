@@ -21,7 +21,7 @@ class ArticleController extends AdminModuleController {
          */
         $this->middleware('add.lookup.tables:User', ['only' => ['create', 'edit']]);
         $this->middleware('add.lookup.tables:ArticleCategory', ['only' => ['create', 'edit']]);
-        $this->middleware('add.published.at', ['only' => ['create', 'edit']]);
+        $this->middleware('add.published.at', ['only' => ['store', 'update']]);
 
         /**
          * Other tables
@@ -40,7 +40,7 @@ class ArticleController extends AdminModuleController {
         'text' => 'max:1000000',
         'url' => 'required|max:255|unique:article',
         'author_name' => 'max:255',
-        'published_at' => 'timestamp',
+        'published_at' => 'date',
     ];
     protected $arValidationArrayUpdateChange = [
         'name' => 'required|max:255|unique:article,name',
