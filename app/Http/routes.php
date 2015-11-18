@@ -99,7 +99,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('password/reset/{token}', [
         'as' => 'authPasswordGetReset', 'uses' => 'Auth\PasswordController@getReset'
     ]);
-    Route::get('password/reset', [
+    Route::post('password/reset', [
         'as' => 'authPasswordPostReset', 'uses' => 'Auth\PasswordController@postReset'
     ]);
 });

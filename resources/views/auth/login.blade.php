@@ -70,9 +70,9 @@
     </div>-->
     <!-- /Social networks login NOT SUPPORTED YET -->
     
-    <!-- Lost Password NOT SUPPORTED YET-->
-    <!-- <a href="{{ route('authPasswordEmailGet') }}">{{ trans('login.lost_password') }}</a> -->
-    <!-- /Lost Password NOT SUPPORTED YET -->
+    <!-- Lost Password -->
+    <a href="{{ route('authPasswordEmailGet') }}">{{ trans('login.lost_password') }}</a>
+    <!-- /Lost Password -->
     <!-- Registration NOT SUPPORTED YET -->
     <!--<br>
     <a href="register.html" class="text-center">Register a new membership</a>-->

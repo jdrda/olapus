@@ -14,7 +14,10 @@ return [
     */
     
     'headline' => 'Enter your e-mail to reset the password',
+    'enter_new_password' => 'Enter new password',
     'email' => 'E-mail',
+    'password' => 'Password',
+    'confirm_password' => 'Confirm password',
     'reset_password' => 'Reset password',
     'password' => 'Passwords must be at least six characters and match the confirmation.',
     'reset' => 'Your password has been reset!',
