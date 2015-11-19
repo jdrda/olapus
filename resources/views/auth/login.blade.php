@@ -41,8 +41,13 @@
         <input type="password" name="password" class="form-control" placeholder="{{ trans('login.password') }}" id="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-     
-         
+      
+      @if(env('RECAPTCHA_ENABLED') == 1)
+      <div class='form-group text-center'>
+      {!! Recaptcha::render() !!}
+      </div>
+      @endif
+      
       <div class="row">
         <div class="col-xs-8">
           <!-- Remember me --> 

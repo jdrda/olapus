@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use \Illuminate\Http\Request;
 
 class PasswordController extends Controller
 {
@@ -29,4 +30,29 @@ class PasswordController extends Controller
     {
         $this->middleware('guest');
     }
+    
+    public function prePostEmail(Request $request){
+        
+        /**
+         * Add recaptcha
+         */
+        if(env('RECAPTCHA_ENABLED') == 1){
+            $this->validate($request, ['g-recaptcha-response' => 'required|recaptcha']);
+        }
+        
+        return $this->postEmail($request);
+    }
+    
+    public function prePostReset(Request $request){
+        
+        /**
+         * Add recaptcha
+         */
+        if(env('RECAPTCHA_ENABLED') == 1){
+            $this->validate($request, ['g-recaptcha-response' => 'required|recaptcha']);
+        }
+        
+        return $this->postReset($request);
+    }
+    
 }

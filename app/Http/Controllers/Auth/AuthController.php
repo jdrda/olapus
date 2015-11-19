@@ -7,6 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use \Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -70,4 +71,18 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+    
+    public function prePostLogin(Request $request) {
+        
+        /**
+         * Add recaptcha
+         */
+        if(env('RECAPTCHA_ENABLED') == 1){
+            $this->validate($request, ['g-recaptcha-response' => 'required|recaptcha']);
+        }
+        
+        return $this->postLogin($request);
+    }
+    
+    
 }

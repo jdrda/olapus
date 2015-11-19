@@ -85,7 +85,7 @@ Route::group(['prefix' => 'auth'], function () {
         'as' => 'authGetLogin', 'uses' => 'Auth\AuthController@getLogin'
     ]);
     Route::post('login', [
-        'as' => 'authPostLogin', 'uses' => 'Auth\AuthController@postLogin'
+        'as' => 'authPostLogin', 'uses' => 'Auth\AuthController@prePostLogin'
     ]);
     Route::get('logout', [
         'as' => 'authLogout', 'uses' => 'Auth\AuthController@getLogout'
@@ -94,13 +94,13 @@ Route::group(['prefix' => 'auth'], function () {
         'as' => 'authPasswordEmailGet', 'uses' => 'Auth\PasswordController@getEmail'
     ]);
     Route::post('password/email', [
-        'as' => 'authPasswordEmailPost', 'uses' => 'Auth\PasswordController@postEmail'
+        'as' => 'authPasswordEmailPost', 'uses' => 'Auth\PasswordController@prePostEmail'
     ]);
     Route::get('password/reset/{token}', [
         'as' => 'authPasswordGetReset', 'uses' => 'Auth\PasswordController@getReset'
     ]);
     Route::post('password/reset', [
-        'as' => 'authPasswordPostReset', 'uses' => 'Auth\PasswordController@postReset'
+        'as' => 'authPasswordPostReset', 'uses' => 'Auth\PasswordController@prePostReset'
     ]);
 });
 

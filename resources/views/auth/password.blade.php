@@ -37,6 +37,12 @@
         <input type="email" name="email" class="form-control" placeholder="{{ trans('passwords.email') }}" value="{{ old('email') }}">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
+      
+      @if(env('RECAPTCHA_ENABLED') == 1)
+      <div class='form-group text-center'>
+      {!! Recaptcha::render() !!}
+      </div>
+      @endif
      
          
       <div class="row">
