@@ -13,5 +13,9 @@ return [
     
     'name' => 'Dashboard',
     'description' => 'Basic screen for administration',
-
+    'analytics' => [
+        'visitors' => 'Visitors',
+        'pageviews' => 'Pageviews',
+        'days' => 'days'
+    ],
 ];

@@ -1,1 +1,1 @@
-Click here to reset your password: {{ route('authPasswordGetReset', $token) }}
+{{ trans('passwords.email.click_here') }}: {{ route('authPasswordGetReset', $token) }}

@@ -1,6 +1,6 @@
 {
     "name": "Olapus",
-    "version": "0.0.1",
+    "version": "0.1.1",
     "description": "Simple out of box solution for easy administering of any website.",
     "keywords": ["laravel", "cms"],
     "license": "MIT",
@@ -20,7 +20,8 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "greggilbert/recaptcha": "dev-master"
+        "greggilbert/recaptcha": "dev-master",
+        "spatie/laravel-analytics": "^1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

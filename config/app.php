@@ -12,7 +12,7 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-    'version' => '0.0.1',
+    'version' => '0.1.1',
 
     /*
     |--------------------------------------------------------------------------
@@ -161,7 +161,8 @@ return [
         /**
          * Custom providers
          */
-        Greggilbert\Recaptcha\RecaptchaServiceProvider::class
+        Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
+        'Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider'
 
     ],
 
@@ -212,7 +213,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         
-        'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class
+        'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
+        'LaravelAnalytics' => 'Spatie\LaravelAnalytics\LaravelAnalyticsFacade',
 
     ],
 
