@@ -11,16 +11,16 @@ return [
     |
     */
     
-    'name' => 'Settings',
-    'description' => 'Various settings for system',
-    'delete_row_confirmation' => 'Are you sure you want to delete setting called',
+    'name' => 'Nastavení',
+    'description' => 'Různá nastavení pro systém',
+    'delete_row_confirmation' => 'Jste si jisti, že chcete odstranit nastavení nazvané',
     'fields' => [
         'id' => 'ID',
-        'name' => 'Name',
-        'value' => 'Value',
-        'description' => 'Description',
-        'created_at' => 'Create at',
-        'updated_at' => 'Update at',
-        'deleted_at' => 'Deleted at',
+        'name' => 'Název',
+        'value' => 'Hodnota',
+        'description' => 'Popis',
+        'created_at' => 'Vytvořeno',
+        'updated_at' => 'Aktualizováno',
+        'deleted_at' => 'Odstraněno',
     ]
 ];

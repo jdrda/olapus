@@ -14,8 +14,8 @@ return [
     */
 
     '404'                  => [
-        'title' => 'Not found',
-        'description' => 'The page you requested is not available'
+        'title' => 'Nenalezeno',
+        'description' => 'Požadovaná stránka není k dispozici'
     ],
     
 

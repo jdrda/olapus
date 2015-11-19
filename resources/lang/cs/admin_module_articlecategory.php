@@ -11,21 +11,21 @@ return [
     |
     */
     
-    'name' => 'Article categories',
-    'description' => 'Manage article categories',
-    'delete_row_confirmation' => 'Are you sure you want to delete article category named',
+    'name' => 'Kategorie článků',
+    'description' => 'Správa kategorií článku',
+    'delete_row_confirmation' => 'Jste si jisti, že chcete odstranit kategorie článku s názvem',
     'fields' => [
         'id' => 'ID',
-        'name' => 'Name',
-        'meta_title' => 'META title',
-        'meta_description' => 'META description',
-        'meta_keywords' => 'META keywords',
-        'image' => 'Image',
+        'name' => 'Název',
+        'meta_title' => 'META titulek',
+        'meta_description' => 'META popis',
+        'meta_keywords' => 'META klíčová slova',
+        'image' => 'Obrázek',
         'text' => 'Text',
-        'color' => 'Color',
+        'color' => 'Barva',
         'url' => 'URL',
-        'created_at' => 'Create at',
-        'updated_at' => 'Update at',
-        'deleted_at' => 'Deleted at',
+        'created_at' => 'Vytvořeno',
+        'updated_at' => 'Aktualizováno',
+        'deleted_at' => 'Odstraněno',
     ]
 ];

@@ -11,17 +11,17 @@ return [
     |
     */
     
-    'name' => 'Users',
-    'description' => 'Users management',
-    'delete_row_confirmation' => 'Are you sure you want to delete user',
+    'name' => 'Uživatelé',
+    'description' => 'Správa uživatelů',
+    'delete_row_confirmation' => 'Jste si jisti že chcete odstranit uživatele',
     'fields' => [
         'id' => 'ID',
-        'name' => 'Name',
+        'name' => 'Jméno',
         'email' => 'E-mail',
-        'password' => 'Password',
-        'password_again' => 'Password again',
-        'created_at' => 'Create at',
-        'updated_at' => 'Update at',
-        'deleted_at' => 'Deleted at',
+        'password' => 'Heslo',
+        'password_again' => 'Heslo znovu',
+        'created_at' => 'Vytvořeno',
+        'updated_at' => 'Aktualizováno',
+        'deleted_at' => 'Odstraněno',
     ]
 ];

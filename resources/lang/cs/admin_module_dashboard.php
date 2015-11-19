@@ -11,11 +11,11 @@ return [
     |
     */
     
-    'name' => 'Dashboard',
-    'description' => 'Basic screen for administration',
+    'name' => 'Nástěnka',
+    'description' => 'Základní obrazovka pro správu',
     'analytics' => [
-        'visitors' => 'Visitors',
-        'pageviews' => 'Pageviews',
-        'days' => 'days'
+        'visitors' => 'Návštěvníků',
+        'pageviews' => 'Shlédnutí',
+        'days' => 'dní'
     ],
 ];

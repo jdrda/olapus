@@ -11,13 +11,13 @@ return [
     |
     */
     
-    'headline' => 'Sign in to start your session',
+    'headline' => 'Přihlašte se',
     'email' => 'E-mail',
-    'password' => 'Password',
-    'sign_in' => 'Sign In',
-    'lost_password' => 'I forgot my password',
-    'error' => 'Error',
-    'problems_with_input' => 'There were some problems with your input',
-    'remeber_me' => 'Remember me',
+    'password' => 'Heslo',
+    'sign_in' => 'Přihlásit se',
+    'lost_password' => 'Zapomenuté heslo',
+    'error' => 'Chyba',
+    'problems_with_input' => 'Vyskytly se problémy se vstupními daty',
+    'remeber_me' => 'Neodhlašovat',
 
 ];

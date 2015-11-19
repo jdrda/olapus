@@ -13,19 +13,19 @@ return [
     |
     */
     
-    'headline' => 'Enter your e-mail to reset the password',
-    'enter_new_password' => 'Enter new password',
+    'headline' => 'Zadejte svůj e-mail k resetování hesla',
+    'enter_new_password' => 'Zadejte nové heslo',
     'email' => 'E-mail',
-    'password' => 'Password',
-    'confirm_password' => 'Confirm password',
-    'reset_password' => 'Reset password',
+    'password' => 'Heslo',
+    'confirm_password' => 'Potvrdit heslo',
+    'reset_password' => 'Resetovat heslo',
     'email' => [
-        'click_here' => 'Click here to reset your password',
+        'click_here' => 'Klikněte zde pro resetování vašeho hesla',
     ],
-    'password' => 'Passwords must be at least six characters and match the confirmation.',
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have e-mailed your password reset link!',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that e-mail address.",
+    'password' => 'Heslo',
+    'reset' => 'Vaše heslo bylo resetováno!',
+    'sent' => 'Poslali jsme vám odkaz pro obnovení hesla na e-mail!',
+    'token' => 'Požadavek pro obnovení hesla není platný.',
+    'user' => "Nelze najít uživatele s touto e-mailovou adresou.",
 
 ];

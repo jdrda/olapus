@@ -11,20 +11,20 @@ return [
     |
     */
     
-    'name' => 'Slides',
-    'description' => 'Slides management',
-    'delete_row_confirmation' => 'Are you sure you want to delete slide called',
+    'name' => 'Snímky',
+    'description' => 'Správa snímků',
+    'delete_row_confirmation' => 'Jste si jisti, že chcete odstranit snímek s názvem',
     'fields' => [
         'id' => 'ID',
-        'name' => 'Name',
-        'description' => 'Description',
-        'caption' => 'Caption',
-        'position' => 'Position',
+        'name' => 'Název',
+        'description' => 'Popis',
+        'caption' => 'Titulek',
+        'position' => 'Pozice',
         'text' => 'Text',
         'slider' => 'Slider',
-        'image' => 'Image',
-        'created_at' => 'Create at',
-        'updated_at' => 'Update at',
-        'deleted_at' => 'Deleted at',
+        'image' => 'Obrázek',
+        'created_at' => 'Vytvořeno v',
+        'updated_at' => 'Aktualizováno',
+        'deleted_at' => 'Odstraněno',
     ],
 ];

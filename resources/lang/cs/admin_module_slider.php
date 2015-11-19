@@ -11,17 +11,17 @@ return [
     |
     */
     
-    'name' => 'Sliders',
-    'description' => 'Sliders management',
-    'delete_row_confirmation' => 'Are you sure you want to delete slider called',
+    'name' => 'Slidery',
+    'description' => 'Správa sliderů',
+    'delete_row_confirmation' => 'Jste si jisti, že chcete odstranit slider s názvem',
     'fields' => [
         'id' => 'ID',
-        'name' => 'Name',
-        'description' => 'Description',
-        'cycle_interval' => 'Cycle interval [ms]',
-        'created_at' => 'Create at',
-        'updated_at' => 'Update at',
-        'deleted_at' => 'Deleted at',
+        'name' => 'Název',
+        'description' => 'Popis',
+        'cycle_interval' => 'Interval změny [ms]',
+        'created_at' => 'Vytvořeno v',
+        'updated_at' => 'Aktualizováno',
+        'deleted_at' => 'Odstraněno',
     ],
-    'show_slides' => 'Show slides',
+    'show_slides' => 'Zobrazit snímky',
 ];
