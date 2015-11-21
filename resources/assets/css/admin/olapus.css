@@ -8,24 +8,51 @@ and open the template in the editor.
     Author     : Uzivatel
 */
 .row-xs-flex-center {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display:flex;
     align-items:center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
 }
 @media ( min-width:768px ) {
     .row-sm-flex-center {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
         display:flex;
         align-items:center;
+        -webkit-align-items: center;
+        justify-content: center;
+        -webkit-justify-content: center;
     }
 }
 @media ( min-width: 992px ) {
     .row-md-flex-center {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
         display:flex;
         align-items:center;
+        -webkit-align-items: center;
+        justify-content: center;
+        -webkit-justify-content: center;
     }
 }
 @media ( min-width: 1200px ) {
     .row-lg-flex-center {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
         display:flex;
         align-items:center;
+        -webkit-align-items: center;
+        justify-content: center;
     }
 }

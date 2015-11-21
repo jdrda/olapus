@@ -58,6 +58,13 @@ class AdminModuleController extends Controller{
      * @var type 
      */
     protected $hiddenFieldsOnAction = array();
+    
+   /**
+    * Binary fields to exclude from update
+    * 
+    * @var type 
+    */
+    protected $binaryFields = array();
 
     /**
      * Constructor
@@ -95,7 +102,7 @@ class AdminModuleController extends Controller{
          * Module name for blade
          */
         $temp = explode('.', $this->moduleBasicRoute);
-        View::share('moduleNameBlade', $temp[0] . "_module_" . $temp[1]);
+        View::share('moduleNameBlade', strtolower($temp[0] . "_module_" . $temp[1]));
         
     }
 
@@ -170,6 +177,7 @@ class AdminModuleController extends Controller{
                     $query->fulltextAllColumns();
                 })->relationships()->orderByColumns()->excludeFromIndex()
                         ->externalTablesFilter()->paginate($this->getRowsToPaginate());
+                
                 
         /**
          * Return page
@@ -297,6 +305,7 @@ class AdminModuleController extends Controller{
          * Change the validation array
          */
         foreach ($this->arValidationArrayUpdateChange as $name => $value) {
+            
             $this->arValidationArray[$name] = $value . ',' . $id;
         }
 
@@ -328,16 +337,29 @@ class AdminModuleController extends Controller{
          * Set updated values
          */
         foreach ($this->arValidationArray as $name => $value) {
-
+            
             /**
-             * Empty exception
+             * Binary fields will not be updated if empty
              */
-            if (empty($request->input($name)) == FALSE) {
-                $arResults->$name = $request->input($name);
+            if(in_array($name, $this->binaryFields)){
+ 
+                if($request->has($name)){
+                    $this->arValidationArray[$name] = $value . ',' . $id;
+                }
             }
             else{
-                $arResults->$name = NULL;
+                /**
+                * Empty exception
+                */
+               if (empty($request->input($name)) == FALSE) {
+                   $arResults->$name = $request->input($name);
+               }
+               else{
+                   $arResults->$name = NULL;
+               }
             }
+
+            
         }
         
         /**

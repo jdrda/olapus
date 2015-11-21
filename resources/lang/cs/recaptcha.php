@@ -4,13 +4,13 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    |Locale Language Lines
+    | Recaptcha Language Lines
     |--------------------------------------------------------------------------
     |
-    | The following language lines are used for login page
+    | 
     |
     */
     
-    'date_format' => 'd.m.Y H:i:s',
+    'validation' => 'Špatně jste vyplnili ověření, jestli jste člověk'
 
 ];

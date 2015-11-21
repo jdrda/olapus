@@ -98,9 +98,9 @@
                     @foreach ($results as $result)            
                     <div class="col-xs-6 col-sm-3 col-md-2">
                         <div class="panel panel-{{ $result->imagecategories()->first()->color }}">
-                            <div class="panel-heading" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ $result->name }}</div>
-                            <div class="panel-body image-square row-xs-flex-center">
-                                <a href="#" data-toggle="modal" data-target="#imageDetailModal{{ $result->id }}"><img src="{{ route('getImage', ['imageName' => $result->url, 'imageExtension' => $result->image_extension]) }}" alt="{{ $result->name }}" class="img-responsive"></a>  
+                            <div class="panel-heading" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis" data-toggle="tooltip" data-placement="top" title="{{ $result->name }}">{{ $result->name }}</div>
+                            <div class="panel-body image-square row-xs-flex-center text-center">
+                                <a href="#" data-toggle="modal" data-target="#imageDetailModal{{ $result->id }}"><img src="{{ route('getImage', ['imageName' => $result->url, 'imageExtension' => $result->image_extension]) }}" alt="{{ $result->name }}" class="img-responsive" style="margin: 0 auto; float: none;"></a>  
                             </div>
                             <div class="panel-footer text-center">
                                 <div class="btn-group">
@@ -150,7 +150,10 @@
 <script>
 
 $( document ).ready(function() {
+    
     squareThis('.image-square');
+    
+    $(".image-square img").css({ "max-height": $(".image-square").height() + 'px' });
 
     $('.url_modal').on('shown.bs.modal', function () {
         $(this).add('input').select();

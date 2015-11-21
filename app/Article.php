@@ -50,16 +50,6 @@ class Article extends Model
             'prefix' => '%',
             'sufix' => '%'
         ],
-        'meta_title' => [
-            'operator' => 'LIKE',
-            'prefix' => '%',
-            'sufix' => '%'
-        ],
-         'url' => [
-            'operator' => 'LIKE',
-            'prefix' => '%',
-            'sufix' => '%'
-        ],
     ];
     
     /**
@@ -109,6 +99,6 @@ class Article extends Model
      */
     public function scopeRelationships($query){
         
-        return $query->with('images', 'articlecategories', 'users');
+        return $query->with('images', 'images.imagecategories', 'articlecategories', 'users');
     }
 }

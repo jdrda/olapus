@@ -84,12 +84,7 @@
                                 </a>
                             </th>
                             <th class="hidden-xs">
-                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'meta_title' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'meta_title', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'meta_title', 'orderbytype' => 'asc']) }}@endif">
-                                    {{ trans($moduleNameBlade . '.fields.meta_title') }}
-                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'meta_title')
-                                    <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
-                                    @endif
-                                </a>
+                               {{ trans($moduleNameBlade . '.fields.pagecategory') }}
                             </th>
                            <th class="hidden-xs hidden-sm">
                                 <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'url' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'url', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'url', 'orderbytype' => 'asc']) }}@endif">
@@ -123,7 +118,11 @@
                         <tr>
                             <td>{{ $result->id }}</td>
                             <td>{{ $result->name }}</td>
-                            <td class="hidden-xs">{{ $result->meta_title }}</td>
+                            <td class="hidden-xs">
+                                @foreach($result['pagecategories'] as $pagecategory)
+                                <span class="label label-{{ $pagecategory->color }}">{{ $pagecategory->name }}</span>
+                                @endforeach
+                            </td>
                             <td class="hidden-xs hidden-sm">{{ $result->url }}</td>
                             <td class="hidden-xs hidden-sm">@if(empty($result->published_at) == FALSE){{ $result->published_at->format(trans('locale.date_format')) }}@endif</td>
                             <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format'))}}</td>

@@ -71,6 +71,16 @@ class Slider extends Model
      */
     public function slides(){
         
-        return $this->hasMany('App\Slide', 'slider_id');
+        return $this->hasMany('App\Slide', 'slider_id')->orderBy('position', 'asc');
+    }
+    
+    /**
+     * Process relationships
+     * 
+     * @param type $query
+     */
+    public function scopeRelationships($query){
+        
+        return $query->with('slides', 'slides.images', 'slides.images', 'slides.images.imagecategories');
     }
 }

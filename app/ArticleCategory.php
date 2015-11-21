@@ -99,6 +99,6 @@ class ArticleCategory extends Model
      */
     public function scopeRelationships($query){
         
-        return $query->with('images', 'articles');
+        return $query->with('images', 'images.imagecategories', 'articles');
     }
 }

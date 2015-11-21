@@ -13,12 +13,11 @@
                         @foreach(request('other_tables')['Image'] as $image)
                     
                         <div class="col-xs-3 col-sm-3 col-md-2">
-                            <div class="caption">
-                                <small>{{ $image->name }}</small>
-                            </div>
-                            <div class="thumbnail thumbnail-select">
+                            <div class="caption" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis" data-toggle="tooltip" data-placement="top" title="{{ $image->name }}"><small>{{ $image->name }}</small></div>
+                            
+                            <div class="thumbnail thumbnail-select" style="height: 100px;">
                                 <a href='#'>
-                                    <img src="{{ route('getImage', ['imageName' => $image->url, 'imageExtension' => $image->image_extension]) }}" alt="{{ $image->name }}"> 
+                                    <img src="{{ route('getImage', ['imageName' => $image->url, 'imageExtension' => $image->image_extension]) }}" alt="{{ $image->name }}" style="max-height: 80px;"> 
                                 </a>
                                 <input type='hidden' class='thumbnail_id' value='{{ $image->id }}'>
                                 <input type='hidden' class='thumbnail_name' value='{{ $image->name }}'>

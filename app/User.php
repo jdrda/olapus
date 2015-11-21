@@ -88,4 +88,14 @@ class User extends Model implements AuthenticatableContract,
         
         return $this->hasMany('App\Article', 'user_id');
     }
+    
+    /**
+     * Process relationships
+     * 
+     * @param type $query
+     */
+    public function scopeRelationships($query){
+        
+        return $query->with('articles');
+    }
 }

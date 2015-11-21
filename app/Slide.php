@@ -94,6 +94,6 @@ class Slide extends Model
      */
     public function scopeRelationships($query){
         
-        return $query->with('images', 'sliders');
+        return $query->with('images', 'images.imagecategories', 'sliders');
     }
 }

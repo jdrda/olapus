@@ -50,11 +50,6 @@ class Page extends Model
             'prefix' => '%',
             'sufix' => '%'
         ],
-        'meta_title' => [
-            'operator' => 'LIKE',
-            'prefix' => '%',
-            'sufix' => '%'
-        ],
          'url' => [
             'operator' => 'LIKE',
             'prefix' => '%',
@@ -109,6 +104,6 @@ class Page extends Model
      */
     public function scopeRelationships($query){
         
-        return $query->with('images', 'pagecategories', 'users');
+        return $query->with('images', 'images.imagecategories', 'pagecategories', 'users');
     }
 }

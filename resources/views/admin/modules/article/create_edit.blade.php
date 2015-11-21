@@ -115,8 +115,8 @@
                                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#imageDetailModal"><span class='fa fa-hand-pointer-o'></span> {{ trans('admin.show') }}</button>
                                     </div>
                                     @endif
-                                    <input type="text" name="image_name" id="image_name" class="form-control" readonly placeholder="No image selected" value='{{ $results->images->name or '' }}'>
-                                    <input type="hidden" name="image_id" id="image_id">
+                                     <input type="text" name="image_name" id="image_name" class="form-control" readonly placeholder="No image selected" value='{{ $results->images->name or '' }}'>
+                                    <input type="hidden" name="image_id" id="image_id" value='{{ $results->images->id or '' }}'>
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#imageSelectModal"><span class="fa fa-th-large"></span> Select image</button>
                                     </div>
@@ -222,6 +222,7 @@ tinymce.init({
     ],
     toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
     toolbar2: "print preview media | forecolor backcolor",
+    entity_encoding : "raw",
     image_advtab: true,
     language: '{{ env('TINYMCE_LOCALIZATION') }}',
 });
@@ -235,13 +236,11 @@ tinymce.init({
         $('#articlecategories').select2({
            data: [
                 @foreach (request('ArticleCategory') as $articlecategory) 
-                { id: {{ $articlecategory->id }}, text: '{{ $articlecategory->name }}' },
+                { id: {{ $articlecategory->id }}, text: '{!! $articlecategory->name !!}' },
                 @endforeach
            ] 
         });
-        
-      
-        
+ 
         // Select an image
         $('.thumbnail-select a').click( function(){
             

@@ -41,6 +41,9 @@ class ImageController extends AdminModuleController
                     'image' => 'max:4000000',
     ];
     
+    protected $binaryFields = ['image', 'image_mime_type', 'image_extension', 
+        'image_original_name', 'image_size', 'image_width', 'image_height'];
+    
     /**
      * Get pagination rows
      */

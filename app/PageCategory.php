@@ -77,4 +77,14 @@ class PageCategory extends Model
         
         return $this->belongsToMany('App\Page', 'page_pagecategory', 'page_id', 'pagecategory_id');
     }
+    
+    /**
+     * Process relationships
+     * 
+     * @param type $query
+     */
+    public function scopeRelationships($query){
+        
+        return $query->with('pages');
+    }
 }

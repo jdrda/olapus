@@ -131,8 +131,8 @@
                                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#imageDetailModal"><span class='fa fa-hand-pointer-o'></span> {{ trans('admin.show') }}</button>
                                     </div>
                                     @endif
-                                    <input type="text" name="image_name" id="image_name" class="form-control" readonly placeholder="No image selected" value='{{ $results->images->name or '' }}'>
-                                    <input type="hidden" name="image_id" id="image_id">
+                                     <input type="text" name="image_name" id="image_name" class="form-control" readonly placeholder="No image selected" value='{{ $results->images->name or '' }}'>
+                                    <input type="hidden" name="image_id" id="image_id" value='{{ $results->images->id or '' }}'>
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#imageSelectModal"><span class="fa fa-th-large"></span> Select image</button>
                                     </div>
@@ -229,6 +229,7 @@ $(function() {
 tinymce.init({
     selector: ".html",
     theme: "modern",
+    entity_encoding : "raw",
     plugins: [
         "advlist autolink lists link image charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars code fullscreen",

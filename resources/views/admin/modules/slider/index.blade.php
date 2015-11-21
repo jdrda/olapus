@@ -113,8 +113,8 @@
                         <tr>
                             <td>{{ $result->id }}</td>
                             <td>{{ $result->name }}</td>
-                            <td class="hidden-xs">{{ $result->value }}</td>
-                            <td class="hidden-xs hidden-sm">{{ $result->description }}</td>
+                            <td class="hidden-xs">{{ $result->description }}</td>
+                            <td class="hidden-xs hidden-sm">{{ $result->cycle_interval }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format')) }}</td>
                             <td class="text-right">
                                 <a href="{{ route($moduleBasicRoute . '.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>

@@ -94,7 +94,12 @@ class DashboardController extends Controller
      */
     public function getPercentDifference($lastValue, $thisValue, $round = 2){
         
-        return round((($thisValue / ($lastValue / 100)) - 100), $round);
+        if($thisValue > 0 && $lastValue > 0){
+            return @round((($thisValue / ($lastValue / 100)) - 100), $round);
+        }
+        else{
+            return 0;
+        }
     }
     
     /**
