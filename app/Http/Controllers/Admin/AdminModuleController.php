@@ -105,6 +105,13 @@ class AdminModuleController extends Controller{
         View::share('moduleNameBlade', strtolower($temp[0] . "_module_" . $temp[1]));
         
     }
+    
+    /**
+     * Save media to storage
+     */
+    public function saveMediaToStorage($object, $request, $update = FALSE){
+        
+    }
 
     /**
      * Get pagination rows
@@ -236,6 +243,11 @@ class AdminModuleController extends Controller{
          * Save main object
          */
         $object->save();
+        
+        /**
+         * Save media to storage
+         */
+        $this->saveMediaToStorage($object, $request);
         
         /**
          * Associate relatinships with ID

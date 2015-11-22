@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends AdminModuleController
 {
@@ -44,6 +45,7 @@ class ImageController extends AdminModuleController
     protected $binaryFields = ['image', 'image_mime_type', 'image_extension', 
         'image_original_name', 'image_size', 'image_width', 'image_height'];
     
+            
     /**
      * Get pagination rows
      */
@@ -92,4 +94,22 @@ class ImageController extends AdminModuleController
         
     }
     
+    /**
+     * Save media to storage
+     * 
+     * @param type $object
+     * @param type $update
+     */
+    public function saveMediaToStorage($object, $request, $update = FALSE) {
+        
+        if(env('APP_IMAGE_LOCATION', 'storage') == 'storage'){
+            
+            $filename = getStorageFilename(env('APP_IMAGE_STORAGE_DIRECTORY', 'images'), $object->id);
+            
+            if($update == FALSE || ($update == TRUE && $request->has('image')) ){
+                
+                Storage::put($filename, file_get_contents($request->image));
+            }
+        }
+    }
 }

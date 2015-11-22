@@ -188,3 +188,17 @@ function getRouteMethod(){
 function excludeColumns($table, $columns = array()){
     return array_diff(Schema::getColumnListing($table), $columns);
 }
+
+/**
+ * Get structured name for storage
+ * 
+ * @param type $directory
+ * @param type $id
+ * @return type
+ */
+function getStorageFilename($directory, $id){
+    
+    $numberedDirectory = implode('/', str_split($id));
+
+    return $filename = $directory . "/" . $numberedDirectory . "/" . $id . ".data";
+}

@@ -29,8 +29,7 @@ class MediaAddParameters
                         $name.'_mime_type' => $request->file($name)->getMimeType(),
                         $name.'_original_extension' => $request->file($name)->getClientOriginalExtension(),
                         $name.'_original_name' => $request->file($name)->getClientOriginalName(),
-                        $name.'_extension' => pathinfo($request->file($name)->getClientOriginalName(), PATHINFO_EXTENSION),                        
-                        $name => file_get_contents($request->file($name)->getRealPath()),
+                        $name.'_extension' => pathinfo($request->file($name)->getClientOriginalName(), PATHINFO_EXTENSION),
                         $name.'_size' => filesize($request->file($name)->getRealPath()),
             ]);
             
@@ -44,6 +43,22 @@ class MediaAddParameters
                         $name.'_width' => $width,
                         $name.'_height' => $height,
                 ]);
+                
+                /**
+                 * Save to DB or storage?
+                 */
+                if(env('APP_IMAGE_LOCATION', 'storage') == 'database'){
+                    $request->merge(
+                    [
+                        $name => file_get_contents($request->file($name)->getRealPath())
+                    ]);
+                }
+                else{
+                    $request->merge(
+                    [
+                        $name => $request->file($name)->getRealPath()
+                    ]);
+                }
             }
         }
 
