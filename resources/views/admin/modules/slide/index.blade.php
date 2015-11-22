@@ -8,7 +8,7 @@
 
 @section('delete_confirmation_text', trans($moduleNameBlade . '.delete_row_confirmation'))
 
-@section('menu-class-sliders', 'active')
+@section('menu-class-components', 'active')
 @section('menu-class-slide', 'active')
 
 @section('content')

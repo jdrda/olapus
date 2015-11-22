@@ -40,24 +40,18 @@
         <!-- Optionally, you can add icons to the links -->
         <li class="@yield('menu-class-dashboard')"><a href="{{ route('admin.dashboard.index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         
-        <li class="treeview @yield('menu-class-pages')">
-          <a href="#"><i class="fa fa-sticky-note-o"></i> <span>{{ trans('admin.menu_group_pages') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <li class="treeview @yield('menu-class-publishing')">
+          <a href="#"><i class="fa fa-book"></i> <span>{{ trans('admin.menu_group_publishing') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
             <li class="@yield('menu-class-page')"><a href="{{ route('admin.page.index') }}"><i class="fa fa-sticky-note-o"></i> {{ trans('admin_module_page.name') }}</a></li>
             <li class="@yield('menu-class-pagecategory')"><a href="{{ route('admin.pageCategory.index') }}"><i class="fa fa-object-group"></i> {{ trans('admin_module_pagecategory.name') }}</a></li>
-          </ul>
-        </li>
-        
-        <li class="treeview @yield('menu-class-articles')">
-          <a href="#"><i class="fa fa-newspaper-o"></i> <span>{{ trans('admin.menu_group_articles') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
             <li class="@yield('menu-class-article')"><a href="{{ route('admin.article.index') }}"><i class="fa fa-newspaper-o"></i> {{ trans('admin_module_article.name') }}</a></li>
             <li class="@yield('menu-class-articlecategory')"><a href="{{ route('admin.articleCategory.index') }}"><i class="fa fa-clone"></i> {{ trans('admin_module_articlecategory.name') }}</a></li>
           </ul>
         </li>
         
-        <li class="treeview @yield('menu-class-sliders')">
-          <a href="#"><i class="fa fa-sliders"></i> <span>{{ trans('admin.menu_group_sliders') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <li class="treeview @yield('menu-class-components')">
+          <a href="#"><i class="fa fa-cubes"></i> <span>{{ trans('admin.menu_group_components') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
             <li class="@yield('menu-class-slider')"><a href="{{ route('admin.slider.index') }}"><i class="fa fa-sliders"></i> {{ trans('admin_module_slider.name') }}</a></li>
             <li class="@yield('menu-class-slide')"><a href="{{ route('admin.slide.index') }}"><i class="fa fa-slideshare"></i> {{ trans('admin_module_slide.name') }}</a></li>

@@ -6,7 +6,7 @@
 
 @section('page-description', trans($moduleNameBlade . '.description'))
 
-@section('menu-class-sliders', 'active')
+@section('menu-class-components', 'active')
 @section('menu-class-slider', 'active')
 
 @section('content')

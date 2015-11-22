@@ -28,9 +28,8 @@ return [
     'copyright' => 'Copyright',
     'all_rights_reserved' => 'All rights reserved',
     'developed_on' => 'Developed on',
-    'menu_group_pages' => 'Pages',
-    'menu_group_articles' => 'Articles',
-    'menu_group_sliders' => 'Sliders',
+    'menu_group_publishing' => 'Publishing',
+    'menu_group_components' => 'Components',
     'menu_group_media' => 'Media',
     'menu_group_administration' => 'Administration',
     

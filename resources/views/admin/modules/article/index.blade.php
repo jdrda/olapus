@@ -9,7 +9,7 @@
 @section('delete_confirmation_text', trans($moduleNameBlade . '.delete_row_confirmation'))
 
 
-@section('menu-class-articles', 'active')
+@section('menu-class-publishing', 'active')
 @section('menu-class-article', 'active')
 
 {{-- Order by --}}
