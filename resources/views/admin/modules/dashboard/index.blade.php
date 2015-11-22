@@ -15,7 +15,7 @@
       google.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['{{ trans('admin_module_dashboard.analytics.day') }}', '{{ trans('admin_module_dashboard.analytics.visitors') }}', '{{ trans('admin_module_dashboard.analytics.pageviews') }}'],
+          ['{{ trans('admin_module_dashboard.analytics.day') }}', '{!! trans('admin_module_dashboard.analytics.visitors') !!}', '{!! trans('admin_module_dashboard.analytics.pageviews') !!}'],
           
             @foreach($statistics['ga']['visitors_pageviews_chart'] as $object)
           ['{{ $object['date']->format(trans("locale.date_format_without_year")) }}',  {{ $object['visitors'] }},      {{ $object['pageViews'] }}],
