@@ -11,6 +11,6 @@ return [
     |
     */
     
-    'validation' => 'Špatně jste vyplnili ověření, jestli jste člověk'
+    'validation' => 'Ověřte prosím, že jste člověk, kliknutím dle instrukcí!'
 
 ];

@@ -11,6 +11,6 @@ return [
     |
     */
     
-    'date_format' => 'd.m.Y H:i:s',
+    'date_format' => DATE_RFC850,
 
 ];

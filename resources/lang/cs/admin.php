@@ -28,9 +28,8 @@ return [
     'copyright' => 'Copyright',
     'all_rights_reserved' => 'Všechna práva vyhrazena',
     'developed_on' => 'Vyvinuto na',
-    'menu_group_pages' => 'Stránky',
-    'menu_group_articles' => 'Články',
-    'menu_group_sliders' => 'Slidery',
+    'menu_group_publishing' => 'Publikování',
+    'menu_group_components' => 'Komponenty',
     'menu_group_media' => 'Média',
     'menu_group_administration' => 'Správa',
     
