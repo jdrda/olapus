@@ -8,6 +8,32 @@
 
 @section('menu-class-dashboard', 'active')
 
+@section('google_charts')
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['{{ trans('admin_module_dashboard.analytics.day') }}', '{{ trans('admin_module_dashboard.analytics.visitors') }}', '{{ trans('admin_module_dashboard.analytics.pageviews') }}'],
+          
+            @foreach($statistics['ga']['visitors_pageviews_chart'] as $object)
+          ['{{ $object['date']->format(trans("locale.date_format_without_year")) }}',  {{ $object['visitors'] }},      {{ $object['pageViews'] }}],
+          @endforeach
+          
+        ]);
+
+        var options = {
+          vAxis: {minValue: 0},
+          legend: {position: 'top', maxLines: 3},
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart30days'));
+        chart.draw(data, options);
+      }
+    </script>
+@endsection
+
 @section('content')
 
 @if(env('ANALYTICS_ENABLED') == 1)
@@ -72,6 +98,58 @@
         <!-- /.info-box -->
     </div>
     <!-- /.col -->
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">{{ trans('admin_module_dashboard.analytics.top_referers') }} - 30 {{ trans('admin_module_dashboard.analytics.days') }}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-responsive table-borderless table-condensed table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-left">
+                                {{ trans('admin_module_dashboard.analytics.url') }}
+                            </th>
+                            <th class="text-right">
+                                {{ trans('admin_module_dashboard.analytics.pageviews') }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($statistics['ga']['top_referers'] as $referer)
+                        <tr>
+                            <td>
+                                {{ $referer['url'] }}
+                            </td>
+                            <td class='text-right'>
+                                {{ $referer['pageViews'] }}
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+            
+          </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">{{ trans('admin_module_dashboard.analytics.visits_and_pageviews') }} - 30 {{ trans('admin_module_dashboard.analytics.days') }}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div id='chart30days'></div>
+            </div>
+            <!-- /.box-body -->
+            
+          </div>
+    </div>
 </div>
 @endif
 @endsection

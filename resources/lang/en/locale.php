@@ -12,5 +12,5 @@ return [
     */
     
     'date_format' => DATE_RFC850,
-
+    'date_format_without_year' => 'm-d',
 ];

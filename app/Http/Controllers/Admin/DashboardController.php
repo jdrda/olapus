@@ -149,6 +149,17 @@ class DashboardController extends Controller
        $visitorsPercentThisMonth = $this->getPercentDifference($visitorsLastMonth, $visitorsThisMonth);
        $pageviewsPercentThisMonth = $this->getPercentDifference($pageviewsLastMonth, $pageviewsThisMonth);
        
+       /**
+        * Refefers
+        * 
+        */
+       $topReferers = \LaravelAnalytics::getTopReferrers($numberOfDays = 30, $maxResults = 10);
+       
+       /**
+        * Visitors and pageviews for 30 days
+        */
+       $visitorsPageviewsChart = \LaravelAnalytics::getVisitorsAndPageViews(30);
+       
        $ga = [
            'visitors_this_week' => $visitorsThisWeek,
            'visitors_last_week' => $visitorsLastWeek,
@@ -163,6 +174,9 @@ class DashboardController extends Controller
            'pageviews_this_month' => $pageviewsThisMonth,
            'pageviews_last_month' => $pageviewsLastMonth,
            'pageviews_percent_this_month' => $pageviewsPercentThisMonth,
+           
+           'top_referers' => $topReferers,
+           'visitors_pageviews_chart' => $visitorsPageviewsChart
         ];
        
        return $ga;

@@ -16,6 +16,10 @@ return [
     'analytics' => [
         'visitors' => 'Visitors',
         'pageviews' => 'Pageviews',
-        'days' => 'days'
+        'days' => 'days',
+        'day' => 'Day',
+        'top_referers' => 'Top referers',
+        'url' => 'URL',
+        'visits_and_pageviews' => 'Visits and pageviews',
     ],
 ];

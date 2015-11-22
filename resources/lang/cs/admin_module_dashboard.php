@@ -16,6 +16,10 @@ return [
     'analytics' => [
         'visitors' => 'Návštěvníků',
         'pageviews' => 'Shlédnutí',
-        'days' => 'dní'
+        'days' => 'dní',
+        'day' => 'Datum',
+        'top_referers' => 'Odkazující stránky',
+        'url' => 'URL',
+        'visits_and_pageviews' => 'Návštěvy a zobrazení stránek',
     ],
 ];
