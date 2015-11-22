@@ -21,7 +21,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "greggilbert/recaptcha": "dev-master",
-        "spatie/laravel-analytics": "^1.2"
+        "spatie/laravel-analytics": "^1.2",
+        "graham-campbell/htmlmin": "^4.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
