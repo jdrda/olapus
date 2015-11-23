@@ -352,12 +352,14 @@ class AdminModuleController extends Controller{
             
             /**
              * Binary fields will not be updated if empty
+             * 
+             * @todo Delete
              */
             if(in_array($name, $this->binaryFields)){
  
-                if($request->has($name)){
+                /**if($request->has($name)){
                     $this->arValidationArray[$name] = $value . ',' . $id;
-                }
+                }**/
             }
             else{
                 /**
@@ -378,6 +380,11 @@ class AdminModuleController extends Controller{
          * Associate relationships
          */
         $this->associateRelationships($arResults, $request);
+        
+        /**
+         * Save media to storage
+         */
+        $this->saveMediaToStorage($arResults, $request, TRUE);
 
         /**
          * Save the changes

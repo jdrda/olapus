@@ -59,14 +59,14 @@ class ImageController extends AdminModuleController
      */
     public function resetCache($object) {
         
-        $cacheKey = $object->url.":".$object->image_extension;
+        $cacheKeyMeta = request('imageName').":".request('imageExtension');
         
         /**
          * File cached
          */
-        if (Cache::has($cacheKey)) {
+        if (Cache::has($cacheKeyMeta)) {
 
-            $image = Cache::forget($cacheKey);
+           Cache::forget($cacheKeyMeta);
         }
     }
     
@@ -101,15 +101,18 @@ class ImageController extends AdminModuleController
      * @param type $update
      */
     public function saveMediaToStorage($object, $request, $update = FALSE) {
-        
-        if(env('APP_IMAGE_LOCATION', 'storage') == 'storage'){
+
+        $filename = getStorageFilename(env('APP_IMAGE_STORAGE_DIRECTORY', 'images'), $object->id);
+
+        if ($update == FALSE || ($update == TRUE && $request->has('image'))) {
             
-            $filename = getStorageFilename(env('APP_IMAGE_STORAGE_DIRECTORY', 'images'), $object->id);
+          
+            $resource = fopen($request->image, 'r');
+
+            Storage::put($filename, $resource);
             
-            if($update == FALSE || ($update == TRUE && $request->has('image')) ){
-                
-                Storage::put($filename, file_get_contents($request->image));
-            }
+            fclose($resource);
         }
     }
+
 }

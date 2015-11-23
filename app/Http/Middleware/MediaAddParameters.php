@@ -47,18 +47,18 @@ class MediaAddParameters
                 /**
                  * Save to DB or storage?
                  */
-                if(env('APP_IMAGE_LOCATION', 'storage') == 'database'){
+                /*if(env('APP_IMAGE_LOCATION', 'storage') == 'database'){
                     $request->merge(
                     [
                         $name => file_get_contents($request->file($name)->getRealPath())
                     ]);
                 }
-                else{
+                else{*/
                     $request->merge(
                     [
                         $name => $request->file($name)->getRealPath()
                     ]);
-                }
+                /*}*/
             }
         }
 

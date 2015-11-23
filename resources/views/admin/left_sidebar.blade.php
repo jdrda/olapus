@@ -75,6 +75,11 @@
       <!-- /.sidebar-menu -->
       @show
       
+      <div class="row" style="color: #ffffff;">
+          Memory usage: {{ memory_get_peak_usage() }}
+      </div>
+      
+      
     </section>
     <!-- /.sidebar -->
   </aside>

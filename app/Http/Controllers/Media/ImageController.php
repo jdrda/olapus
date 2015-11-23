@@ -25,40 +25,59 @@ class ImageController extends Controller
         /**
          * Check the cache
          */
-        $cacheKey = $request->imageName.":".$request->imageExtension;
+        $cacheKey = 'image:' . $request->imageName . ':' . $request->imageExtension;
         
         /**
          * File cached
          */
         if (Cache::has($cacheKey)) {
-            $image = Cache::get($cacheKey);
+            
+            $imageMeta = Cache::get($cacheKey);
         }
         /**
          * File not cached
          */
         else{
-
-            $image = Image::where(['url' => $request->imageName, 'image_extension' => $request->imageExtension])->first();
+            
+            $imageMeta = @Image::where(['url' => $request->imageName, 'image_extension' => $request->imageExtension])->first(['image_mime_type', 'image_size', 'id']);
             
             /**
-             * Add binary data from storage
+             * File does not exist
              */
-            if(env('APP_IMAGE_LOCATION', 'storage') == 'storage'){
-                
-                $filename = getStorageFilename(env('APP_IMAGE_STORAGE_DIRECTORY', 'images'), $image->id);
-                
-                $image->image = Storage::get($filename);
+            if(empty($imageMeta) == TRUE){
+                App::abort(404);
             }
             
-            Cache::forever($cacheKey, $image);
+            /**
+             * Save meta information to cache
+             */
+            Cache::forever($cacheKey, $imageMeta);
         }
         
-        if(!$image){
-            App::abort(404);
-        }
+        /**
+         * Get filename
+         */
+        $filename = getStorageFilename(env('APP_IMAGE_STORAGE_DIRECTORY', 'images'), $imageMeta->id);
         
-        $response = Response::make($image->image, 200);
-        $response->header('Content-Type', $image->image_mime_type);
-        return $response;
+        /**
+         * Prepare stream
+         */
+        $stream = Storage::readStream($filename);
+        
+        /**
+         * File headers
+         */
+        $headers = array(
+            'Content-Type' => $imageMeta->image_mime_type,
+            'Content-Transfer-Encoding' => 'binary',
+            'Content-Length' => $imageMeta->size,
+        );
+        
+        /**
+         * Stream to browser
+         */
+        return Response::stream(function() use ($stream, $imageMeta) {
+                    fpassthru($stream);
+                }, 200, $headers);
     }
 }
