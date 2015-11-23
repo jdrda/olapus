@@ -37,47 +37,25 @@
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">{{ strtoupper(trans('admin.menu_header')) }}</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="@yield('menu-class-dashboard')"><a href="{{ route('admin.dashboard.index') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         
-        <li class="treeview @yield('menu-class-publishing')">
-          <a href="#"><i class="fa fa-book"></i> <span>{{ trans('admin.menu_group_publishing') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
-            <li class="@yield('menu-class-page')"><a href="{{ route('admin.page.index') }}"><i class="fa fa-sticky-note-o"></i> {{ trans('admin_module_page.name') }}</a></li>
-            <li class="@yield('menu-class-pagecategory')"><a href="{{ route('admin.pageCategory.index') }}"><i class="fa fa-object-group"></i> {{ trans('admin_module_pagecategory.name') }}</a></li>
-            <li class="@yield('menu-class-article')"><a href="{{ route('admin.article.index') }}"><i class="fa fa-newspaper-o"></i> {{ trans('admin_module_article.name') }}</a></li>
-            <li class="@yield('menu-class-articlecategory')"><a href="{{ route('admin.articleCategory.index') }}"><i class="fa fa-clone"></i> {{ trans('admin_module_articlecategory.name') }}</a></li>
-          </ul>
-        </li>
+        @foreach (config('admin.menu') as $item)
+            @if(empty($item['items']))
+            <li class="@yield($item['class'])"><a href="{{ route($item['route']) }}"><i class="{{ $item['icon'] }}"></i> <span>{{ trans($item['name']) }}</span></a></li>
+            @else
+            <li class="treeview @yield($item['class'])">
+                <a href="#"><i class="{{ $item['icon'] }}"></i> <span>{{ trans($item['name']) }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    @foreach($item['items'] as $subitem)
+                    <li class="@yield($subitem['class'])"><a href="{{ route($subitem['route']) }}"><i class="{{ $subitem['icon'] }}"></i> {{ trans($subitem['name']) }}</a></li>
+                    @endforeach
+                </ul>
+            </li>
+            @endif
+        @endforeach
         
-        <li class="treeview @yield('menu-class-components')">
-          <a href="#"><i class="fa fa-cubes"></i> <span>{{ trans('admin.menu_group_components') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
-            <li class="@yield('menu-class-slider')"><a href="{{ route('admin.slider.index') }}"><i class="fa fa-sliders"></i> {{ trans('admin_module_slider.name') }}</a></li>
-            <li class="@yield('menu-class-slide')"><a href="{{ route('admin.slide.index') }}"><i class="fa fa-slideshare"></i> {{ trans('admin_module_slide.name') }}</a></li>
-          </ul>
-        </li>
-        <li class="treeview @yield('menu-class-media')">
-          <a href="#"><i class="fa fa-camera-retro"></i> <span>{{ trans('admin.menu_group_media') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
-            <li class="@yield('menu-class-image')"><a href="{{ route('admin.image.index') }}"><i class="fa fa-image"></i> {{ trans('admin_module_image.name') }}</a></li>
-            <li class="@yield('menu-class-imagecategory')"><a href="{{ route('admin.imageCategory.index') }}"><i class="fa fa-file-image-o"></i> {{ trans('admin_module_imagecategory.name') }}</a></li>
-          </ul>
-        </li>
-        <li class="treeview @yield('menu-class-administration')">
-          <a href="#"><i class="fa fa-gears"></i> <span>{{ trans('admin.menu_group_administration') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
-            <li class="@yield('menu-class-settings')"><a href="{{ route('admin.settings.index') }}"><i class="fa fa-gear"></i> {{ trans('admin_module_settings.name') }}</a></li>
-            <li class="@yield('menu-class-user')"><a href="{{ route('admin.user.index') }}"><i class="fa fa-user"></i> {{ trans('admin_module_user.name') }}</a></li>
-          </ul>
-        </li>
       </ul>
       <!-- /.sidebar-menu -->
       @show
-      
-      <div class="row" style="color: #ffffff;">
-          Memory usage: {{ memory_get_peak_usage() }}
-      </div>
       
       
     </section>
