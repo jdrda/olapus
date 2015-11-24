@@ -85,7 +85,7 @@
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='text'>{{ trans($moduleNameBlade . '.fields.position') }} *</label>
-                                <input type="number" step='1' name="position" class="form-control" value="{{ $results->position or old('text') or 1 }}">
+                                <input type="number" step='1' name="position" class="form-control" value="{{ $results->position or old('position')}}">
                                 <span class="fa fa-sort-amount-asc form-control-feedback"></span>
                             </div>
                             <div class="form-group">
@@ -146,6 +146,11 @@
 <script>
     $(function() {
         $('select').select2();
+        
+        // Lazy load of images
+        $('#imageSelectModal').on("shown.bs.modal", function () {
+                $("img.lazy").lazyload();
+        });
         
         // Select an image
         $('.thumbnail-select a').click( function(){

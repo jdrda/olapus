@@ -18,7 +18,7 @@
             <div class="box-header">
                 <h3 class="box-title">
                     {{ trans($moduleNameBlade . '.name') }}
-                    <small>(total rows {{ $results->count() }} of {{ $results->total() }}, showing page {{ $results->currentPage() }} of {{ $results->lastPage() }})</small>
+                    <small>({{ trans('admin.total_rows') }} {{ $results->count() }} {{ trans('admin.of') }} {{ $results->total() }}, {{ trans('admin.showing_page') }} {{ $results->currentPage() }} {{ trans('admin.of') }} {{ $results->lastPage() }})</small>
                 </h3>
 
 

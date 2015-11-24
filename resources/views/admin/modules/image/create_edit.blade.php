@@ -118,7 +118,7 @@
                     <h4 class='modal-title'>{{ $results->name }}</h4>
                 </div>
                 <div class='modal-body text-center'>
-                    <img src="{{ route('getImage', ['imageName' => $results->url, 'imageExtension' => $results->image_extension]) }}" alt="{{ $results->name }}" class="img-responsive">
+                    <img src="{{ route('getImage', ['imageName' => $results->url, 'imageExtension' => $results->image_extension]) }}" alt="{{ $results->name }}" class="img-responsive img-index">
                 </div>
                 <div class='modal-footer'>
                    

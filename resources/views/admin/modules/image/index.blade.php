@@ -17,8 +17,8 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">
-                    {{ trans('admin_module_image.name') }}
-                    <small>(total rows {{ $results->count() }} of {{ $results->total() }}, showing page {{ $results->currentPage() }} of {{ $results->lastPage() }})</small>
+                    {{ trans($moduleNameBlade . '.name') }}
+                    <small>({{ trans('admin.total_rows') }} {{ $results->count() }} {{ trans('admin.of') }} {{ $results->total() }}, {{ trans('admin.showing_page') }} {{ $results->currentPage() }} {{ trans('admin.of') }} {{ $results->lastPage() }})</small>
                 </h3>
 
 
@@ -78,6 +78,17 @@
                                     @endif
                                 </a>
                             </th>
+                            <th class="hidden-xs">
+                                <form action="{{ route($moduleBasicRoute . '.index') }}" method="get" id='imageCategoryForm'>
+                                    <select name='relation' id='imagecategory_id' class='input-sm'>
+                                        <option value=''>{{ trans($moduleNameBlade . '.fields.category') }} ...</option>
+                                        @foreach (request('ImageCategory') as $imageCategory)
+                                        <option value='imageCategory:{{ $imageCategory->id }}' @if(request('external_tables_filter')['imageCategory'] == $imageCategory->id) selected @endif>{{ $imageCategory->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </form>
+                                
+                            </th>
                             <th class="hidden-xs hidden-sm">
                                 <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at' and request('orderbytype') == 'asc'){{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'asc']) }}@endif">
                                     {{ trans($moduleNameBlade . '.fields.updated_at') }}
@@ -100,7 +111,9 @@
                         <div class="panel panel-{{ $result->imagecategories()->first()->color }}">
                             <div class="panel-heading" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis" data-toggle="tooltip" data-placement="top" title="{{ $result->name }}">{{ $result->name }}</div>
                             <div class="panel-body image-square row-xs-flex-center text-center">
-                                <a href="#" data-toggle="modal" data-target="#imageDetailModal{{ $result->id }}"><img src="{{ route('getImage', ['imageName' => $result->url, 'imageExtension' => $result->image_extension]) }}" alt="{{ $result->name }}" class="img-responsive" style="margin: 0 auto; float: none;"></a>  
+                                <a href="#" data-toggle="modal" data-target="#imageDetailModal{{ $result->id }}">
+                                    <img data-original="{{ route('getImage', ['imageName' => $result->url, 'imageExtension' => $result->image_extension]) }}" alt="{{ $result->name }}" class="img-responsive lazy" style="margin: 0 auto; float: none;"  data-toggle="tooltip" data-placement="bottom" title="{{ $result->imagecategories->name }}">
+                                </a>  
                             </div>
                             <div class="panel-footer text-center">
                                 <div class="btn-group">
@@ -151,12 +164,23 @@
 
 $( document ).ready(function() {
     
+    // image containers must be squares
     squareThis('.image-square');
     
     $(".image-square img").css({ "max-height": $(".image-square").height() + 'px' });
 
+    // lazyload images
+    $("img.lazy").lazyload({
+        effect : "fadeIn"
+    });
+
     $('.url_modal').on('shown.bs.modal', function () {
         $(this).add('input').select();
+    });
+    
+    // Category filter
+    $('#imagecategory_id').on('change', function() {
+        $('#imageCategoryForm').submit();
     });
 });
 </script>

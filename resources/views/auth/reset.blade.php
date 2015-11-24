@@ -22,8 +22,11 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <div class="login-logo">
-      <a href="{{ route('authPostLogin') }}"><b>Admin</b>{{ env('APP_NAME') }}</a>
+  <div class="login-logo row-xs-flex-center">
+      <a href="http://finley.cz/" target="_blank">
+          <!--<b>Admin</b>{{ env('APP_NAME') }} -->
+          <img src="{{ asset('img/finley-logo.png') }}" alt="Finley" class="img-responsive">
+      </a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -51,7 +54,7 @@
       </div>
       
       @if(env('RECAPTCHA_ENABLED') == 1)
-      <div class='form-group text-center'>
+      <div class='form-group'>
       {!! Recaptcha::render() !!}
       </div>
       @endif

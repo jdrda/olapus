@@ -56,3 +56,7 @@ and open the template in the editor.
         justify-content: center;
     }
 }
+
+.login-box {
+    margin-top: 10px !important;
+}

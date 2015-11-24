@@ -18,7 +18,7 @@
             <div class="box-header">
                 <h3 class="box-title">
                     {{ trans($moduleNameBlade . '.name') }}
-                    <small>(total rows {{ $results->count() }} of {{ $results->total() }}, showing page {{ $results->currentPage() }} of {{ $results->lastPage() }})</small>
+                    <small>({{ trans('admin.total_rows') }} {{ $results->count() }} {{ trans('admin.of') }} {{ $results->total() }}, {{ trans('admin.showing_page') }} {{ $results->currentPage() }} {{ trans('admin.of') }} {{ $results->lastPage() }})</small>
                 </h3>
 
 
@@ -129,6 +129,7 @@
                             <td class="hidden-xs hidden-sm">{{ $result->position }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format')) }}</td>
                             <td class="text-right">
+                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><i class="fa fa-remove"></i> {{ trans('admin.delete') }}</button>
                                 <a href="{{ route($moduleBasicRoute . '.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
                             </td>
                         </tr>
@@ -154,7 +155,7 @@
 @endsection
 
 @section('foot')
-
+@include('admin/modules/delete_modals');
 @parent
 <script>
 $(function() {

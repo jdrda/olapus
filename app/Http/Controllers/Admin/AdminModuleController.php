@@ -65,6 +65,13 @@ class AdminModuleController extends Controller{
     * @var type 
     */
     protected $binaryFields = array();
+    
+    /**
+     * Custom view
+     * 
+     * @var type 
+     */
+    protected $customView = NULL;
 
     /**
      * Constructor
@@ -84,6 +91,10 @@ class AdminModuleController extends Controller{
          */
         $temp = explode("\\", str_replace('Controller', '', get_called_class()));
         $this->moduleName = trim(last($temp));
+        
+        /**
+         * Model
+         */
         $this->modelClass = '\\App\\' . $this->moduleName;
 
         /**
@@ -103,7 +114,7 @@ class AdminModuleController extends Controller{
          */
         $temp = explode('.', $this->moduleBasicRoute);
         View::share('moduleNameBlade', strtolower($temp[0] . "_module_" . $temp[1]));
-        
+
     }
     
     /**
@@ -167,7 +178,7 @@ class AdminModuleController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-
+        
         /**
          * Handle saved settings
          */
@@ -185,12 +196,20 @@ class AdminModuleController extends Controller{
                     $query->fulltextAllColumns();
                 })->relationships()->orderByColumns()->excludeFromIndex()
                         ->externalTablesFilter()->paginate($this->getRowsToPaginate());
-                
+        /**
+         * Choose the view
+         */
+        if(empty($this->customView['index']) == TRUE){
+            $view = $this->moduleBasicTemplatePath . '.index';
+        }
+        else{
+            $view = $this->customView;
+        }     
                 
         /**
          * Return page
          */
-        return view($this->moduleBasicTemplatePath . '.index', array_merge(['results' => $arResults]));
+        return view($view, array_merge(['results' => $arResults]));
     }
 
     /**
@@ -201,9 +220,19 @@ class AdminModuleController extends Controller{
     public function create() {
         
         /**
+         * Choose the view
+         */
+        if(empty($this->customView['index']) == TRUE){
+            $view = $this->moduleBasicTemplatePath . '.create_edit';
+        }
+        else{
+            $view = $this->customView;
+        }
+        
+        /**
          * Return page
          */
-        return view($this->moduleBasicTemplatePath . '.create_edit');
+        return view($view);
     }
 
     /**
@@ -289,11 +318,21 @@ class AdminModuleController extends Controller{
          * Set the put method for update
          */
         $arResults['_method'] = 'PUT';
+        
+        /**
+         * Choose the view
+         */
+        if(empty($this->customView['index']) == TRUE){
+            $view = $this->moduleBasicTemplatePath . '.create_edit';
+        }
+        else{
+            $view = $this->customView;
+        }
     
         /**
          * Return page
          */
-        return view($this->moduleBasicTemplatePath . '.create_edit', ['results' => $arResults]);
+        return view($view, ['results' => $arResults]);
     }
 
     /**

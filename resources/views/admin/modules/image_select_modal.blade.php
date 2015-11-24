@@ -17,7 +17,7 @@
                             
                             <div class="thumbnail thumbnail-select" style="height: 100px;">
                                 <a href='#'>
-                                    <img src="{{ route('getImage', ['imageName' => $image->url, 'imageExtension' => $image->image_extension]) }}" alt="{{ $image->name }}" style="max-height: 80px;"> 
+                                    <img data-original="{{ route('getImage', ['imageName' => $image->url, 'imageExtension' => $image->image_extension]) }}" alt="{{ $image->name }}" class="lazy" style="max-height: 80px;"> 
                                 </a>
                                 <input type='hidden' class='thumbnail_id' value='{{ $image->id }}'>
                                 <input type='hidden' class='thumbnail_name' value='{{ $image->name }}'>

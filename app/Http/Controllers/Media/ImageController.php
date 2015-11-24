@@ -68,9 +68,11 @@ class ImageController extends Controller
          * File headers
          */
         $headers = array(
-            'Content-Type' => $imageMeta->image_mime_type,
+            'Content-Description'       => 'File Transfer',
+            'Content-Type'              => $imageMeta->image_mime_type,
             'Content-Transfer-Encoding' => 'binary',
-            'Content-Length' => $imageMeta->size,
+            'Content-Length'            => $imageMeta->size,
+            'Pragma'                    => 'public',
         );
         
         /**

@@ -19,13 +19,6 @@ Route::get('/', ['as' => 'root', function () {
 }]);
 
 /**
- * Laravel default home redirection to admin
- */
-Route::get('home', ['as' => 'home', function () {
-        return Redirect::route('admin.dashboard.index');
-}]);
-
-/**
  * Admin
  */
 Route::group(['prefix' => env('APP_ADMIN_URL', 'admin'), 'middleware' => 'auth'], function () {

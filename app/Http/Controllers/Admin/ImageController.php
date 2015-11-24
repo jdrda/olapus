@@ -17,7 +17,7 @@ class ImageController extends AdminModuleController
         parent::__construct();
         
         $this->middleware('media.add.parameters', ['only' => ['store','update']]);
-        $this->middleware('add.lookup.tables:ImageCategory', ['only' => ['create','edit']]);
+        $this->middleware('add.lookup.tables:ImageCategory', ['only' => ['index','create','edit']]);
     }
    
     /**
