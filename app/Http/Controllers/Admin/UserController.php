@@ -13,11 +13,8 @@ class UserController extends AdminModuleController
      */
     protected $arValidationArray = [
         'name' => 'required|max:255',
-        'email' => 'required|email|max:255|unique:users',
+        'email' => 'required|email|max:255|unique:users,email',
         'password' => 'required|confirmed|min:6'];
-    
-    protected $arValidationArrayUpdateChange = [
-                    'email' => 'required|max:255|unique:users,email'];
     
 
     /**

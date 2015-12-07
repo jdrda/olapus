@@ -122,6 +122,7 @@ class AdminModuleController extends Controller{
      */
     public function saveMediaToStorage($object, $request, $update = FALSE){
         
+        return FALSE;
     }
 
     /**
@@ -179,6 +180,7 @@ class AdminModuleController extends Controller{
      */
     public function index(Request $request) {
         
+
         /**
          * Handle saved settings
          */
@@ -204,8 +206,8 @@ class AdminModuleController extends Controller{
         }
         else{
             $view = $this->customView;
-        }     
-                
+        } 
+        
         /**
          * Return page
          */
@@ -242,6 +244,15 @@ class AdminModuleController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+
+        /**
+         * Change the validation array
+         */
+        foreach ($this->arValidationArray as $name => $value) {
+            if(strpos($this->arValidationArray[$name], 'unique') > 0){
+                $this->arValidationArray[$name] = $value . ',NULL,id,deleted_at,NULL';
+            }
+        }
 
         /**
          * Validate input
@@ -353,12 +364,15 @@ class AdminModuleController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        
         /**
          * Change the validation array
          */
-        foreach ($this->arValidationArrayUpdateChange as $name => $value) {
+        foreach ($this->arValidationArray as $name => $value) {
             
-            $this->arValidationArray[$name] = $value . ',' . $id;
+            if(strpos($this->arValidationArray[$name], 'unique') > 0){
+                $this->arValidationArray[$name] = $value . ','.$id.',id,deleted_at,NULL';
+            }
         }
 
         /**
@@ -424,7 +438,19 @@ class AdminModuleController extends Controller{
         /**
          * Save media to storage
          */
-        $this->saveMediaToStorage($arResults, $request, TRUE);
+        if($this->saveMediaToStorage($arResults, $request, TRUE) == TRUE){
+            
+            // Update binary fields
+            foreach ($this->binaryFields as $name => $value) {
+                
+                if (empty($request->$value) == FALSE) {
+                   $arResults->$value = $request->$value;
+                }
+                else{
+                    $arResults->$value = NULL;
+                }
+            }
+        }
 
         /**
          * Save the changes

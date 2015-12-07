@@ -31,15 +31,12 @@ class SlideController extends AdminModuleController
      * Validation rules
      */
     protected $arValidationArray = [
-                    'name' => 'required|max:255|unique:slide',
+                    'name' => 'required|max:255|unique:slide,name',
                     'description' => 'max:255',
                     'caption' => 'max:255',
                     'text' => 'max:1000000',
                     'position' => 'required|integer',
         
-    ];
-    protected $arValidationArrayUpdateChange = [
-                    'name' => 'required|max:255|unique:slide,name',
     ];
     
     /**

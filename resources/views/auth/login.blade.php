@@ -24,8 +24,7 @@
 <div class="login-box">
   <div class="login-logo row-xs-flex-center">
       <a href="http://finley.cz/" target="_blank">
-          <!--<b>Admin</b>{{ env('APP_NAME') }} -->
-          <img src="{{ asset('img/finley-logo.png') }}" alt="Finley" class="img-responsive">
+          <b>Admin</b>{{ env('APP_NAME') }}
       </a>
   </div>
   <!-- /.login-logo -->

@@ -30,18 +30,14 @@ class ArticleController extends AdminModuleController {
      * Validation rules
      */
     protected $arValidationArray = [
-        'name' => 'required|max:255|unique:article',
+        'name' => 'required|max:255|unique:article,name',
         'meta_title' => 'max:255',
         'meta_description' => 'max:255',
         'meta_keywords' => 'max:255',
         'text' => 'max:1000000',
-        'url' => 'required|max:255|unique:article',
+        'url' => 'required|max:255|unique:article,url',
         'author_name' => 'max:255',
         'published_at' => 'date',
-    ];
-    protected $arValidationArrayUpdateChange = [
-        'name' => 'required|max:255|unique:article,name',
-        'url' => 'required|max:255|unique:article,url',
     ];
 
     /**

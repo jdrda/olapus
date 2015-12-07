@@ -85,7 +85,7 @@
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='text'>{{ trans($moduleNameBlade . '.fields.position') }} *</label>
-                                <input type="number" step='1' name="position" class="form-control" value="{{ $results->position or old('position')}}">
+                                <input type="number" step='1' name="position" class="form-control" value="{{ isset($results->position) ? $results->position : ((old('position') !== NULL) ? old('position') : '1') }}" required>
                                 <span class="fa fa-sort-amount-asc form-control-feedback"></span>
                             </div>
                             <div class="form-group">

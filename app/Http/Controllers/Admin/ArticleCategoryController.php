@@ -23,18 +23,13 @@ class ArticleCategoryController extends AdminModuleController {
      * Validation rules
      */
     protected $arValidationArray = [
-        'name' => 'required|max:255|unique:articlecategory',
+        'name' => 'required|max:255|unique:articlecategory,name',
         'meta_title' => 'max:255',
         'meta_description' => 'max:255',
         'meta_keywords' => 'max:255',
-        'url' => 'required|max:255|unique:articlecategory',
+        'url' => 'required|max:255|unique:articlecategory,url',
         'text' => 'max:1000000',
         'color' => 'required|max:255'];
-    protected $arValidationArrayUpdateChange = [
-        'name' => 'required|max:255|unique:articlecategory,name',
-        'url' => 'required|max:255|unique:articlecategory,url',
-    ];
-
     /**
      * Associate relationships to other table
      */

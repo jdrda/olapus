@@ -27,21 +27,18 @@ class ImageController extends AdminModuleController
                     'name' => 'required|max:255',
                     'description' => 'max:255',
                     'alt' => 'max:255',
-                    'url' => 'max:255|unique:image',
+                    'url' => 'max:255|unique:image,url',
                     'image_mime_type' => 'max:255',
                     'image_extension' => 'max:255',
                     'image_original_name' => 'max:255',
                     'image_size' => 'integer',
                     'image_width' => 'integer',
                     'image_height' => 'integer',
-                    'image' => 'required|max:4000000',
+                    'image_etag' => 'max:255',
+                    'image' => 'max:255',
         
     ];
-    protected $arValidationArrayUpdateChange = [
-                    'url' => 'required|max:255|unique:image,url',
-                    'image' => 'max:4000000',
-    ];
-    
+   
     protected $binaryFields = ['image', 'image_mime_type', 'image_extension', 
         'image_original_name', 'image_size', 'image_width', 'image_height'];
     
@@ -59,14 +56,14 @@ class ImageController extends AdminModuleController
      */
     public function resetCache($object) {
         
-        $cacheKeyMeta = request('imageName').":".request('imageExtension');
+        $cacheKey = 'image:' . $object->url . ':' . $object->image_extension;
         
         /**
          * File cached
          */
-        if (Cache::has($cacheKeyMeta)) {
+        if (Cache::has($cacheKey)) {
 
-           Cache::forget($cacheKeyMeta);
+           Cache::forget($cacheKey);
         }
     }
     
@@ -112,7 +109,14 @@ class ImageController extends AdminModuleController
             Storage::put($filename, $resource);
             
             fclose($resource);
+            
+            /**
+             * Update meta information
+             */
+            return TRUE;
         }
+        
+        return FALSE;
     }
 
 }
