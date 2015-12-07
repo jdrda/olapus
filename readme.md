@@ -8,12 +8,12 @@ If you are just IT end-user, and want to use Olapus, please contact me at enduse
 
 ## Translations
 Please help me with your native language at:
-(https://crowdin.com/project/olapus)
+[Crowdin translate system](https://crowdin.com/project/olapus)
 
 If your language is not enabled, please write me at translations@olapus.com
 
 ## Documentation for developers
-Essetial documentation is at (https://github.com/jdrda/olapus/wiki)
+Essetial documentation is at [Olapus Wiki at Github](https://github.com/jdrda/olapus/wiki)
 
 ## Modules
 
