@@ -12,6 +12,9 @@ Please help me with your native language at:
 
 If your language is not enabled, please write me at translations@olapus.com
 
+## Documentation for developers
+Essetial documentation is at (https://github.com/jdrda/olapus/wiki)
+
 ## Modules
 
 ### Released
