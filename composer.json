@@ -21,9 +21,9 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "greggilbert/recaptcha": "dev-master",
-        "spatie/laravel-analytics": "^1.2",
-        "graham-campbell/htmlmin": "^4.2",
-        "doctrine/dbal": "^2.5"
+        "spatie/laravel-analytics": "dev-master",
+        "graham-campbell/htmlmin": "dev-master",
+        "doctrine/dbal": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
