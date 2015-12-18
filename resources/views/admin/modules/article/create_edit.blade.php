@@ -233,6 +233,11 @@ tinymce.init({
         
         $('select').not('#articlecategories').select2();
         
+        // Lazy load of images
+        $('#imageSelectModal').on("shown.bs.modal", function () {
+                $("img.lazy").lazyload();
+        });
+        
         $('#articlecategories').select2({
            data: [
                 @foreach (request('ArticleCategory') as $articlecategory) 

@@ -2,15 +2,15 @@
 
 @section('page-name', trans($moduleNameBlade . '.name') )
 
-@section('page-icon', 'fa fa-clone')
+@section('page-icon', 'fa fa-bullhorn')
 
 @section('page-description', trans($moduleNameBlade . '.description'))
 
 @section('delete_confirmation_text', trans($moduleNameBlade . '.delete_row_confirmation'))
 
 
-@section('menu-class-publishing', 'active')
-@section('menu-class-articlecategory', 'active')
+@section('menu-class-advertising', 'active')
+@section('menu-class-advert', 'active')
 
 @section('content')
 <div class="row">
@@ -51,114 +51,94 @@
                             @include('admin.errors')
                         </div>
                     </div>
-                    <div class='row'>
-                        <div class='col-xs-12 col-sm-6'>
-                            
+     
+                            <div class="row">
+                                
+                            <div class="col-xs-12 col-sm-6">    
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }} *</label>
                                 <input type="text" name="name" id="name" class="form-control" value="{{ $results->name or old('name') }}" required>
                                 <span class="fa fa-key form-control-feedback"></span>
                             </div>
-
-                           
-
-                            <div class="form-group">
-                                <label for='color'>{{ trans($moduleNameBlade . '.fields.color') }} *</label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="color" value="danger" required=""@if (isset($results) and $results->color == 'danger') checked @endif>
-                                               <span class='label label-danger'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="color" value="success"@if (isset($results) and $results->color == 'success') checked @endif>
-                                               <span class='label label-success'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="color" value="primary"@if (isset($results) and $results->color == 'primary') checked @endif>
-                                               <span class='label label-primary'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="color" value="warning"@if (isset($results) and $results->color == 'warning') checked @endif>
-                                               <span class='label label-warning'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="color" value="info"@if (isset($results) and $results->color == 'info') checked @endif>
-                                               <span class='label label-info'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="color" value="default"@if (isset($results)) @if($results->color == 'default'){{ 'checked' }}@endif @else{{ 'checked' }}@endif>
-                                               <span class='label label-default'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    </label>
-                                </div>
-                            </div>
                             
-                            
-
-                            <!-- /Form -->
-                        </div>
-                        <div class='col-xs-12 col-sm-6'>
-
                             <div class="form-group has-feedback">
-                                <label for='meta_title'>{{ trans($moduleNameBlade . '.fields.meta_title') }}</label>
-                                <input type="text" name="meta_title" class="form-control" value="{{ $results->meta_title or old('meta_title') }}">
+                                <label for='name'>{{ trans($moduleNameBlade . '.fields.caption') }}</label>
+                                <input type="text" name="caption" id="name" class="form-control" value="{{ $results->caption or old('caption') }}">
                                 <span class="fa fa-header form-control-feedback"></span>
                             </div>
+                            
+                            
                             <div class="form-group has-feedback">
-                                <label for='meta_description'>{{ trans($moduleNameBlade . '.fields.meta_description') }}</label>
-                                <input type="text" name="meta_description" class="form-control"value="{{ $results->meta_description or old('meta_description') }}">
-                                <span class="fa fa-pencil-square-o form-control-feedback"></span>
+                                <label for='advertlocation_id[]'>{{ trans($moduleNameBlade . '.fields.advertlocation') }} * </label>
+                                <select name="advertlocation_id[]" class='form-control' multiple="multiple" id='advertlocations'>                      
+                                @if(isset($results->advertlocations))
+                                    @foreach ($results->advertlocations as $advertlocation) 
+                                    <option value="{{ $advertlocation->id }}" selected>{{ $advertlocation->name }}</option>                                 
+                                    @endforeach
+                                @endif
+                                </select>
+                                <span class="fa fa-building-o form-control-feedback"></span>
                             </div>
-                            <div class="form-group has-feedback">
-                                <label for='meta_keywords'>{{ trans($moduleNameBlade . '.fields.meta_keywords') }}</label>
-                                <input type="text" name="meta_keywords" class="form-control"value="{{ $results->meta_keywords or old('meta_keywords') }}">
-                                <span class="fa fa-flag form-control-feedback"></span>
                             </div>
+                                
+                            <div class="col-xs-12 col-sm-6">
+                            
                             <div class="form-group has-feedback">
-                                <label for='image_name'>{{ trans($moduleNameBlade . '.fields.image') }} *</label>
+                                <label for='name'>{{ trans($moduleNameBlade . '.fields.link_url') }}</label>
+                                <input type="text" name="link_url" id="name" class="form-control" value="{{ $results->link_url or old('link_url') }}">
+                                <span class="fa fa-link form-control-feedback"></span>
+                            </div>
+                            
+                            <div class="form-group has-feedback">
+                                <label for='name'>{{ trans($moduleNameBlade . '.fields.link_title') }}</label>
+                                <input type="text" name="link_title" id="name" class="form-control" value="{{ $results->link_title or old('link_title') }}">
+                                <span class="fa fa-external-link form-control-feedback"></span>
+                            </div>
+                            
+                            <div class="form-group has-feedback">
+                                <label for='text'>{{ trans($moduleNameBlade . '.fields.position') }} *</label>
+                                <input type="number" step='1' name="position" class="form-control" value="{{ isset($results->position) ? $results->position : ((old('position') !== NULL) ? old('position') : '1') }}" required>
+                                <span class="fa fa-sort-amount-asc form-control-feedback"></span>
+                            </div>
+                                
+                            <div class="form-group has-feedback">
+                                <label for='image_name'>{{ trans($moduleNameBlade . '.fields.image') }}</label>
                                 <div class="input-group">
                                      @if(isset($results->images->id))
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#imageDetailModal"><span class='fa fa-hand-pointer-o'></span> {{ trans('admin.show') }}</button>
                                     </div>
                                     @endif
-                                     <input type="text" name="image_name" id="image_name" class="form-control" readonly placeholder="No image selected" value='{{ $results->images->name or '' }}'>
+                                    <input type="text" name="image_name" id="image_name" class="form-control" readonly placeholder="No image selected" value='{{ $results->images->name or '' }}'>
                                     <input type="hidden" name="image_id" id="image_id" value='{{ $results->images->id or '' }}'>
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#imageSelectModal"><span class="fa fa-th-large"></span> Select image</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group has-feedback">
-                                <label for='value'>{{ trans($moduleNameBlade . '.fields.url') }} *</label>
-                                <input type="text" name="url" id='url' class="form-control" value="{{ $results->url or old('url') }}" required>
-                                <span class="fa fa-anchor form-control-feedback"></span>
-                            </div>
+
+                            
+
+                         
 
                             <!-- /Form -->
                         </div>
-                    </div>
-                     <div class='row'>
-                        <div class='col-xs-12'>
-                            <div class="form-group has-feedback">
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group has-feedback">
                                 <label for='color'>{{ trans($moduleNameBlade . '.fields.text') }}</label>
                                 <textarea name='text' class='form-control html' rows="10">{!! $results->text or '' !!}</textarea>
                                 <span class="fa fa-align-left form-control-feedback"></span>
                             </div>
-                        </div>
-                    </div>
+                                </div>
+                            </div>
+                       
+                                       
                     <div class='row'>
                         <div class='col-xs-12'>
                              <div class="form-group text-right">
+                                 
                                 <button type='submit' name='submit' class='btn btn-primary btn-flat'>{{ trans('admin.save') }}</button>
                             </div>
                         </div>
@@ -202,34 +182,11 @@
 @endif
 @parent
 
-@if(isset($results->_method) ==  FALSE)
-<script>
-$(function() {
-    
-    // Automatic slugify
-    var lastValue = '';
-    var urlChanged = false;
-    
-    setInterval(function() {
-        if ($("#name").val() != lastValue && urlChanged == false) {
-            lastValue = $("#name").val();
-            $('#url').val(getSlug($("#name").val()));
-        }
-    }, 500);
-    
-    $('#url').keydown(function(){
-        urlChanged = true;
-    })
-});
-</script>
-@endif
-
 <script type="text/javascript" src="{{ asset('js/admin/tinymce/tinymce.min.js') }}"></script>
 <script type="text/javascript">
 tinymce.init({
     selector: ".html",
     theme: "modern",
-    entity_encoding : "raw",
     plugins: [
         "advlist autolink lists link image charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars code fullscreen",
@@ -238,6 +195,7 @@ tinymce.init({
     ],
     toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
     toolbar2: "print preview media | forecolor backcolor",
+    entity_encoding : "raw",
     image_advtab: true,
     language: '{{ env('TINYMCE_LOCALIZATION') }}',
 });
@@ -245,12 +203,22 @@ tinymce.init({
 
 <script>
     $(function() {
-      
-      // Lazy load of images
+        
+        $('select').not('#advertlocations').select2();
+        
+        // Lazy load of images
         $('#imageSelectModal').on("shown.bs.modal", function () {
                 $("img.lazy").lazyload();
         });
         
+        $('#advertlocations').select2({
+           data: [
+                @foreach (request('AdvertLocation') as $advertlocation) 
+                { id: {{ $advertlocation->id }}, text: '{!! $advertlocation->name !!}' },
+                @endforeach
+           ] 
+        });
+ 
         // Select an image
         $('.thumbnail-select a').click( function(){
             

@@ -21,6 +21,7 @@ return [
     'close' => 'Close',
     'search' => 'Search',
     'show' => 'Show',
+    'play' => 'Play',
     'delete_row' => 'Delete the row #',
     'delete_row_confirmation' => 'Are you sure you want to delete row #',
     'select_image' => 'Select image',
@@ -34,6 +35,7 @@ return [
     'menu_group_publishing' => 'Publishing',
     'menu_group_components' => 'Components',
     'menu_group_media' => 'Media',
+    'menu_group_advertising' => 'Advertising',
     'menu_group_administration' => 'Administration',
     
 ];
