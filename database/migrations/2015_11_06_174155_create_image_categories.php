@@ -14,7 +14,7 @@ class CreateImageCategories extends Migration
     {
         Schema::create('imagecategory', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name')->index();
             $table->string('description')->nullable();
             $table->string('color')->index()->default('default');
             $table->timestamps();

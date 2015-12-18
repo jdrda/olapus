@@ -15,11 +15,11 @@ class CreateAdverts extends Migration
         Schema::create('advert', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name', 255)->index();
-                        $table->string('caption', 255)->nullable();
+			$table->string('name')->index();
+                        $table->string('caption')->nullable();
 			$table->text('text')->nullable();
-                        $table->string('link_url', 255)->nullable();
-                        $table->string('link_title', 255)->nullable();
+                        $table->string('link_url')->nullable();
+                        $table->string('link_title')->nullable();
                         $table->integer('image_id')->unsigned()->index()->nullable();
                         $table->integer('position')->index();
 			$table->timestamps();

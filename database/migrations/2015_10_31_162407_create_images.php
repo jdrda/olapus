@@ -15,15 +15,15 @@ class CreateImages extends Migration
          Schema::create('image', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name', 255);
-                        $table->string('description', 255)->nullable();
-                        $table->string('alt', 255)->nullable();
-                        $table->string('url', 255)->unique();
+			$table->string('name');
+                        $table->string('description')->nullable();
+                        $table->string('alt')->nullable();
+                        $table->string('url')->index();
                         $table->integer('imagecategory_id')->unsigned()->index()->default(1);
-                        $table->string('image', 255)->nullable();
-                        $table->string('image_mime_type', 255)->index()->nullable();
-                        $table->string('image_extension', 255)->index()->nullable();
-                        $table->string('image_original_name', 255)->nullable();
+                        $table->string('image')->nullable();
+                        $table->string('image_mime_type')->index()->nullable();
+                        $table->string('image_extension')->index()->nullable();
+                        $table->string('image_original_name')->nullable();
                         $table->integer('image_size')->unsigned()->default(0);
                         $table->integer('image_width')->unsigned()->default(0);;
                         $table->integer('image_height')->unsigned()->default(0);

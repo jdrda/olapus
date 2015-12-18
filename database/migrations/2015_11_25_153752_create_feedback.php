@@ -15,8 +15,8 @@ class CreateFeedback extends Migration
          Schema::create('feedback', function (Blueprint $table) 
                 {
 			$table->increments('id');
-			$table->string('name', 255)->unique();
-                        $table->string('description', 255)->nullable();
+			$table->string('name')->index();
+                        $table->string('description')->nullable();
                         $table->integer('position')->index()->default(1);
                         $table->integer('image_id')->index()->unsigned()->nullable();
 			$table->timestamps();

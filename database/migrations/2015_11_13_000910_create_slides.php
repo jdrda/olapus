@@ -15,10 +15,10 @@ class CreateSlides extends Migration
         Schema::create('slide', function (Blueprint $table) 
                 {
 			$table->increments('id');
-			$table->string('name', 255)->unique();
-                        $table->string('description', 255)->nullable();
-                        $table->string('caption', 255)->nullable();
-                        $table->string('text', 1024)->nullable();
+			$table->string('name')->index();
+                        $table->string('description')->nullable();
+                        $table->string('caption')->nullable();
+                        $table->string('text')->nullable();
                         $table->integer('position')->index()->default(1);
                         $table->integer('slider_id')->index()->unsigned()->default(1);
                         $table->integer('image_id')->index()->unsigned()->nullable();

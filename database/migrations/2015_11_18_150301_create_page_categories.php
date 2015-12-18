@@ -14,7 +14,7 @@ class CreatePageCategories extends Migration
     {
         Schema::create('pagecategory', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name')->index();
             $table->string('description')->nullable();
             $table->string('class')->nullable();
             $table->timestamps();

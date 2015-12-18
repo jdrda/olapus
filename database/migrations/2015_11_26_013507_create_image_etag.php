@@ -24,6 +24,8 @@ class CreateImageEtag extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('image', function ($table) {
+            $table->dropColumn('image_etag');
+        });
     }
 }

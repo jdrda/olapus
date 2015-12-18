@@ -15,13 +15,13 @@ class CreateArticles extends Migration
         Schema::create('article', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name', 255)->unique();
-                        $table->string('meta_title', 255)->nullable();
-                        $table->string('meta_description', 255)->nullable();
-                        $table->string('meta_keywords', 255)->nullable();
+			$table->string('name')->index();
+                        $table->string('meta_title')->nullable();
+                        $table->string('meta_description')->nullable();
+                        $table->string('meta_keywords')->nullable();
 			$table->text('text')->nullable();
-                        $table->string('url', 255)->unique();
-                        $table->string('author_name', 255)->nullable();
+                        $table->string('url')->index();
+                        $table->string('author_name')->nullable();
                         $table->integer('image_id')->unsigned()->index()->nullable();
                         $table->integer('user_id')->unsigned()->index()->default(1);
                         $table->timestamp('published_at')->nullable();
