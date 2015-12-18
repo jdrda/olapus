@@ -16,11 +16,12 @@ class InsertDefaultArticleCategory extends Migration
         DB::table('articlecategory')->insert(
                         array(
                                 array(
-                                    'name' => 'Default',
-                                    'color' => 'default',
-                                    'meta_title' => 'Default category',
-                                    'meta_description' => 'Default category',
-                                    'meta_keywords' => 'Default category',
+                                    'id' => 1,
+                                    'name' => 'General',
+                                    'color' => 'general',
+                                    'meta_title' => 'General category',
+                                    'meta_description' => 'General category',
+                                    'meta_keywords' => 'General category',
                                     'url' => 'default',
                                     'created_at' => Carbon\Carbon::now(),
                                     'updated_at' => Carbon\Carbon::now(),
@@ -36,6 +37,6 @@ class InsertDefaultArticleCategory extends Migration
      */
     public function down()
     {
-         DB::table('articlecategory')->delete();
+         DB::table('articlecategory')->where('id', 1)->delete();
     }
 }

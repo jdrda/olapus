@@ -25,7 +25,7 @@ return [
         'name'  => 'admin.menu_group_publishing',
         'class' => 'menu-class-publishing',
         'route' => null,
-        'icon'  => 'fa fa-dashboard',
+        'icon'  => 'fa fa-newspaper-o',
         'items' => [
             
             /**
@@ -67,10 +67,57 @@ return [
                 'route' => 'admin.articleCategory.index',
                 'icon'  => 'fa fa-clone',
             ],
+            
+            /**
+             * Feedback category
+             */
+            'feedback' => [
+                'name'  => 'admin_module_feedback.name',
+                'class' => 'menu-class-feedback',
+                'route' => 'admin.feedback.index',
+                'icon'  => 'fa fa-commenting-o',
+            ],
         ],
     ],
     /**
      * /Group Publishing
+     */
+    
+    /**
+     * Group Media
+     */
+    'media' => [
+        'name'  => 'admin.menu_group_media',
+        'class' => 'menu-class-media',
+        'route' => null,
+        'icon'  => 'fa fa-camera-retro',
+        'items' => [
+            
+            /**
+             * Item Image
+             */
+            'image' => [
+                'name'  => 'admin_module_image.name',
+                'class' => 'menu-class-image',
+                'route' => 'admin.image.index',
+                'icon'  => 'fa fa-image',
+            ],
+            
+            /**
+             * Item Image category
+             */
+            'imageCategory' => [
+                'name'  => 'admin_module_imagecategory.name',
+                'class' => 'menu-class-imagecategory',
+                'route' => 'admin.imageCategory.index',
+                'icon'  => 'fa fa-file-image-o',
+            ],
+            
+            
+        ],
+    ],
+    /**
+     * /Group Media
      */
     
     /**
@@ -107,44 +154,45 @@ return [
         ],
     ],
     /**
-     * /Group Publishing
+     * /Group Components
      */
     
+    
     /**
-     * Group Media
+     * Group Advertising
      */
-    'media' => [
-        'name'  => 'admin.menu_group_media',
-        'class' => 'menu-class-media',
+    'advertising' => [
+        'name'  => 'admin.menu_group_advertising',
+        'class' => 'menu-class-advertising',
         'route' => null,
-        'icon'  => 'fa fa-camera-retro',
+        'icon'  => 'fa fa-bullhorn',
         'items' => [
             
             /**
-             * Item Image
+             * Item Advert location
              */
-            'image' => [
-                'name'  => 'admin_module_image.name',
-                'class' => 'menu-class-image',
-                'route' => 'admin.image.index',
-                'icon'  => 'fa fa-image',
+            'advert' => [
+                'name'  => 'admin_module_advert.name',
+                'class' => 'menu-class-advert',
+                'route' => 'admin.advert.index',
+                'icon'  => 'fa fa-bullhorn',
             ],
             
             /**
-             * Item Image category
+             * Item Advert location
              */
-            'imageCategory' => [
-                'name'  => 'admin_module_imageCategory.name',
-                'class' => 'menu-class-imagecategory',
-                'route' => 'admin.imageCategory.index',
-                'icon'  => 'fa fa-file-image-o',
+            'advertLocation' => [
+                'name'  => 'admin_module_advertlocation.name',
+                'class' => 'menu-class-advertlocation',
+                'route' => 'admin.advertLocation.index',
+                'icon'  => 'fa fa-building-o',
             ],
             
             
         ],
     ],
     /**
-     * /Group Media
+     * /Group Advertising
      */
     
     /**

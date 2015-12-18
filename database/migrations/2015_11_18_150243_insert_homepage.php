@@ -16,10 +16,15 @@ class InsertHomepage extends Migration
         DB::table('page')->insert(
                         array(
                                 array(
+                                    'id' => 1,
                                     'name' => 'Homepage',
                                     'url' => '/',
+                                    'meta_title' => 'Homepage',
+                                    'meta_keywords' => 'Homepage',
+                                    'meta_description' => 'Homepage',
                                     'created_at' => Carbon\Carbon::now(),
                                     'updated_at' => Carbon\Carbon::now(),
+                                    'published_at' => Carbon\Carbon::now(),
                                     'deleted_at' => NULL
                                     ),                             
                         ));

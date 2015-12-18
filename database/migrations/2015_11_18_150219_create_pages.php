@@ -32,7 +32,7 @@ class CreatePages extends Migration
 		{
 			$table->integer('page_id')->unsigned();
                         $table->integer('pagecategory_id')->unsigned();
-                        $table->primary(['page_id', 'pagecategory_id']);
+                        $table->index(['page_id', 'pagecategory_id']);
                 });
     }
 

@@ -202,3 +202,23 @@ function getStorageFilename($directory, $id){
 
     return $filename = $directory . "/" . $numberedDirectory . "/" . $id . ".data";
 }
+
+/**
+ * Get all Font awesome icon classes
+ */
+function getFontAwesomeIcons(){
+    
+    $rawFile = file(base_path() . "/bower_components/font-awesome/scss/_icons.scss");
+    $icons = array();
+    
+    foreach ($rawFile as $row){
+        
+        if(preg_match('/content: \$fa-var-(.*)\;/', $row, $matches) == TRUE){
+            
+            $icons[] = "fa-".$matches[1];
+        }
+        
+    }
+    
+    return $icons;
+}

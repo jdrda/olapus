@@ -16,6 +16,7 @@ class InsertDefaultImageCategory extends Migration
         DB::table('imagecategory')->insert(
                         array(
                                 array(
+                                    'id' => 1,
                                     'name' => 'Default',
                                     'description' => 'Default category',
                                     'color' => 'default',
@@ -33,6 +34,6 @@ class InsertDefaultImageCategory extends Migration
      */
     public function down()
     {
-        DB::table('imagecategory')->delete();
+        DB::table('imagecategory')->where('id', 1)->delete();
     }
 }

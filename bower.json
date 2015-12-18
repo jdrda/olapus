@@ -24,18 +24,18 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
-    "bootstrap": "~3.3.5",
-    "html5shiv": "~3.7.3",
-    "respond": "~1.4.2",
-    "font-awesome": "~4.4.0",
-    "Ionicons": "ionicons#~2.0.1",
-    "speakingurl": "~7.0.0",
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "html5shiv": "latest",
+    "respond": "latest",
+    "font-awesome": "latest",
+    "Ionicons": "ionicons#latest",
+    "speakingurl": "latest",
     "PACE": "pace#~1.0.2",
-    "select2": "~4.0.0",
-    "ckeditor": "~4.5.5",
-    "bootstrap3-wysihtml5-bower": "~0.3.3",
-    "tinymce": "tinymce-dist#~4.2.8",
-    "iCheck": "icheck#~1.0.2"
+    "select2": "latest",
+    "ckeditor": "latest",
+    "bootstrap3-wysihtml5-bower": "latest",
+    "tinymce": "latest",
+    "iCheck": "latest" 
   }
 }

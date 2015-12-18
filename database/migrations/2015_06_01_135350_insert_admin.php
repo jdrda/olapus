@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class InsertAdmin extends Migration
@@ -16,6 +15,16 @@ class InsertAdmin extends Migration
         DB::table('users')->insert(
                         array(
                                 array(
+                                    'id' => 1,
+                                    'name' => 'system',
+                                    'email' => 'system@system.com',
+                                    'password' => Hash::make('iueywa8087awe0hfg'),
+                                    'created_at' => Carbon\Carbon::now(),
+                                    'updated_at' => Carbon\Carbon::now(),
+                                    'deleted_at' => NULL
+                                    ),  
+                                array(
+                                    'id' => 2,
                                     'name' => 'admin',
                                     'email' => 'admin@admin.com',
                                     'password' => Hash::make('admin'),
@@ -33,6 +42,7 @@ class InsertAdmin extends Migration
      */
     public function down()
     {
-        DB::table('users')->delete();
+        DB::table('users')->where('id', 1)->delete();
+        DB::table('users')->where('id', 2)->delete();
     }
 }

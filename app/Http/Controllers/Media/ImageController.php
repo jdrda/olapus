@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 
 class ImageController extends Controller
 {
@@ -39,7 +41,7 @@ class ImageController extends Controller
          */
         else{
             
-            $imageMeta = @Image::where(['url' => $request->imageName, 'image_extension' => $request->imageExtension])->first(['image_mime_type', 'image_size', 'id']);
+            $imageMeta = @Image::where(['url' => $request->imageName, 'image_extension' => $request->imageExtension])->first(['image_mime_type', 'image_size', 'id', 'updated_at', 'image_etag']);
             
             /**
              * File does not exist
@@ -64,6 +66,8 @@ class ImageController extends Controller
          */
         $stream = Storage::readStream($filename);
         
+        $expires = Carbon::createFromTimestamp(time()+3600)->toDateTimeString();
+      
         /**
          * File headers
          */
@@ -71,15 +75,31 @@ class ImageController extends Controller
             'Content-Description'       => 'File Transfer',
             'Content-Type'              => $imageMeta->image_mime_type,
             'Content-Transfer-Encoding' => 'binary',
-            'Content-Length'            => $imageMeta->size,
+            //'Content-Length'            => File::size(storage_path()."/app/".$filename),
             'Pragma'                    => 'public',
+            'Expires'                   => Carbon::createFromTimestamp(time()+3600)->toRfc2822String(),
+            'Last-Modified'             => $imageMeta->updated_at->toRfc2822String(),
+            'Etag'                      => $imageMeta->image_etag,
         );
         
+        /**
+         * Response code
+         */
+        if(@$_SERVER['HTTP_IF_NONE_MATCH'] == $imageMeta->image_etag 
+                || @$_SERVER['HTTP_IF_MODIFIED_SINCE'] == $imageMeta->updated_at->toRfc2822String()){
+            
+            $responseCode = 304;
+        }
+        else{
+            
+            $responseCode = 200;
+        }
+
         /**
          * Stream to browser
          */
         return Response::stream(function() use ($stream, $imageMeta) {
                     fpassthru($stream);
-                }, 200, $headers);
+                }, $responseCode, $headers);
     }
 }

@@ -43,6 +43,11 @@ Route::group(['prefix' => env('APP_ADMIN_URL', 'admin'), 'middleware' => 'auth']
     Route::resource('articleCategory', 'Admin\ArticleCategoryController');
     
     /**
+     * Feedback
+     */
+    Route::resource('feedback', 'Admin\FeedbackController');
+    
+    /**
      * Sliders and slides
      */
     Route::resource('slider', 'Admin\SliderController');
@@ -53,6 +58,12 @@ Route::group(['prefix' => env('APP_ADMIN_URL', 'admin'), 'middleware' => 'auth']
      */
     Route::resource('image', 'Admin\ImageController', ['middleware' => ['media.addparameters']]);
     Route::resource('imageCategory', 'Admin\ImageCategoryController');
+    
+     /**
+     * Advertising
+     */
+    Route::resource('advert', 'Admin\AdvertController');
+    Route::resource('advertLocation', 'Admin\AdvertLocationController');
     
     /**
      * Settings

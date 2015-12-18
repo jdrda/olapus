@@ -16,6 +16,7 @@ class InsertDefaultSlider extends Migration
         DB::table('slider')->insert(
                         array(
                                 array(
+                                    'id' => 1,
                                     'name' => 'Default',
                                     'created_at' => Carbon\Carbon::now(),
                                     'updated_at' => Carbon\Carbon::now(),
@@ -31,6 +32,6 @@ class InsertDefaultSlider extends Migration
      */
     public function down()
     {
-        DB::table('imagecategory')->delete();
+        DB::table('slider')->where('id', 1)->delete();
     }
 }
