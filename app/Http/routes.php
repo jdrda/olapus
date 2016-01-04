@@ -48,6 +48,11 @@ Route::group(['prefix' => env('APP_ADMIN_URL', 'admin'), 'middleware' => 'auth']
     Route::resource('feedback', 'Admin\FeedbackController');
     
     /**
+     * Comment
+     */
+    Route::resource('comment', 'Admin\CommentController');
+    
+    /**
      * Sliders and slides
      */
     Route::resource('slider', 'Admin\SliderController');

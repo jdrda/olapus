@@ -77,6 +77,16 @@ return [
                 'route' => 'admin.feedback.index',
                 'icon'  => 'fa fa-commenting-o',
             ],
+            
+            /**
+             * Comments
+             */
+            /*'comment' => [
+                'name'  => 'admin_module_comment.name',
+                'class' => 'menu-class-comment',
+                'route' => 'admin.comment.index',
+                'icon'  => 'fa fa-comments-o',
+            ],*/
         ],
     ],
     /**

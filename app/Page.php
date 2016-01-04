@@ -88,6 +88,16 @@ class Page extends Model
     }
     
     /**
+     * Comments
+     * 
+     * @return type
+     */
+    public function comments(){
+        
+        return $this->hasMany('App\Comment', 'page_id');
+    }
+    
+    /**
      * Users link
      * 
      * @return type

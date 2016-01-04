@@ -25,12 +25,12 @@ Essetial documentation is at [Olapus Wiki at Github](https://github.com/jdrda/ol
 * Images with categories
 * Settings
 * Users
-
-### Alpha testing
 * Comments
 * Testimonials
-* Sounds
 * Advert blocks
+
+### Alpha testing
+* Sounds
 
 ## Security Vulnerabilities
 

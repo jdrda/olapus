@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Article extends Model
+class Comment extends Model
 {
      use SoftDeletes, AdminModelTrait;
     
@@ -14,22 +14,22 @@ class Article extends Model
      *
      * @var string
      */
-    protected $table = 'article';
+    protected $table = 'comment';
     
     /**
      * The attributes that should be mutated to dates.
      *
      * @var array
      */
-    protected $dates = ['created_at', 'updated_at', 'deleted_at', 'published_at'];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
     
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'author_name', 'meta_title', 'meta_description', 
-        'meta_keywords', 'text', 'url', 'image_id', 'user_id', 'published_at'];
+    protected $fillable = ['name', 'headline', 'text', 'email', 
+        'url', 'approved', 'commentstatus_id', 'page_id', 'article_id'];
     
     /**
      * Columns to exclude from index
@@ -50,6 +50,17 @@ class Article extends Model
             'prefix' => '%',
             'sufix' => '%'
         ],
+        'headline' => [
+            'operator' => 'LIKE',
+            'prefix' => '%',
+            'sufix' => '%'
+        ],
+        'email' => [
+            'operator' => 'LIKE',
+            'prefix' => '%',
+            'sufix' => '%'
+        ],
+        
     ];
     
     /**
@@ -60,16 +71,13 @@ class Article extends Model
     ];
     
     /**
-     * Image link
+     * Comment statuses link
      * 
      * @return type
      */
-    public function images(){
+    public function commentstatuses(){
         
-        return $this->belongsTo('App\Image', 'image_id')->select('id', 'name', 'description', 
-                'alt', 'url', 'imagecategory_id', 'image_mime_type', 'image_extension', 
-                'image_original_name', 'image_size', 'image_width', 'image_height',
-                'created_at', 'updated_at', 'deleted_at');
+         return $this->belongsTo('App\CommentStatus', 'commentstatus_id');
     }
     
     /**
@@ -77,29 +85,19 @@ class Article extends Model
      * 
      * @return type
      */
-    public function articlecategories(){
+    public function articles(){
         
-        return $this->belongsToMany('App\ArticleCategory', 'article_articlecategory', 'article_id', 'articlecategory_id');
+        return $this->belongsTo('App\Article', 'article_id');
     }
     
     /**
-     * Articles link
+     * Pages link
      * 
      * @return type
      */
-    public function comments(){
+    public function pages(){
         
-         return $this->hasMany('App\Comment', 'article_id');
-    }
-    
-    /**
-     * Users link
-     * 
-     * @return type
-     */
-    public function users(){
-        
-        return $this->belongsTo('App\User', 'user_id');
+         return $this->belongsTo('App\Page', 'page_id');
     }
     
     /**
@@ -109,6 +107,6 @@ class Article extends Model
      */
     public function scopeRelationships($query){
         
-        return $query->with('images', 'images.imagecategories', 'articlecategories', 'users', 'comments');
+        return $query->with('articles', 'pages');
     }
 }
