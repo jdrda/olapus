@@ -20,7 +20,6 @@ class CreateComments extends Migration
 			$table->text('text')->nullable();
                         $table->string('email')->index()->nullable();
                         $table->string('url')->nullable();
-                        $table->boolean('approved')->index()->default(false);
                         $table->integer('article_id')->unsigned()->index()->nullable();
                         $table->integer('page_id')->unsigned()->index()->nullable();
                         $table->integer('commentstatus_id')->unsigned()->index()->default(1);

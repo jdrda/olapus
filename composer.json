@@ -23,7 +23,8 @@
         "greggilbert/recaptcha": "dev-master",
         "spatie/laravel-analytics": "dev-master",
         "graham-campbell/htmlmin": "dev-master",
-        "doctrine/dbal": "dev-master"
+        "doctrine/dbal": "dev-master",
+        "laravolt/avatar": "^1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

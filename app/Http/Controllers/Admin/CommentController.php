@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Comment;
+use Illuminate\Support\Facades\Redirect;
 
 class CommentController extends AdminModuleController {
     
@@ -44,8 +46,22 @@ class CommentController extends AdminModuleController {
         ]);
 
         if ($validator->fails()) {
-
-            $object->commentstatuses()->associate(1);
+            
+            /**
+             * Auto approve ?
+             */
+            if(env('AUTO_APPROVE_COMMENTS', 0) == 1){
+                
+                $object->commentstatuses()->associate(2);
+            }
+            
+            /**
+             * Manual approve
+             */
+            else{
+                $object->commentstatuses()->associate(1);
+            }
+            
         }
         else{
 
@@ -56,13 +72,13 @@ class CommentController extends AdminModuleController {
          * Validate article ID, if failed set to actual authorized article
          */
         $validator = Validator::make($request->all(), [
-                    'article_id' => 'required|integer|min:1|exists:articles,id',
+                    'article_id' => 'required|integer|min:1|exists:article,id',
         ]);
         
 
         if ($validator->fails()) {
 
-            $object->articles()->associate(Auth::article()->id);
+            // nothing
             
         } else {
 
@@ -73,19 +89,97 @@ class CommentController extends AdminModuleController {
          * Validate page ID, if failed set to actual authorized page
          */
         $validator = Validator::make($request->all(), [
-                    'page_id' => 'required|integer|min:1|exists:pages,id',
+                    'page_id' => 'required|integer|min:1|exists:page,id',
         ]);
         
 
         if ($validator->fails()) {
 
-            $object->pages()->associate(Auth::page()->id);
+            // nothing
             
         } else {
 
             $object->pages()->associate($request->input('page_id'));
         }
 
+       
+    }
+    
+    /**
+     * Approve
+     * 
+     * @param type $id
+     */
+    public function approve($id, Request $request){
+        
+        $request->merge(array('id' => $id));
+        
+        /**
+         * Validate comment ID
+         */
+        $validator = Validator::make($request->all(), [
+                    'id' => 'required|integer|min:1|exists:comment,id',
+        ]);
+        
+        /**
+         * Failed - redirect to index
+         */
+        if ($validator->fails()) {
+            
+            // nothing
+            
+        } 
+        
+        /**
+         * OK, validate
+         */
+        else {
+            
+            $object = Comment::find(1);
+            $object->commentstatus_id = 2;
+            $object->save();
+        }
+        
+         return Redirect::back();
+       
+    }
+    
+    /**
+     * SPAM
+     * 
+     * @param type $id
+     */
+    public function spam($id, Request $request){
+        
+        $request->merge(array('id' => $id));
+        
+        /**
+         * Validate comment ID
+         */
+        $validator = Validator::make($request->all(), [
+                    'id' => 'required|integer|min:1|exists:comment,id',
+        ]);
+        
+        /**
+         * Failed - redirect to index
+         */
+        if ($validator->fails()) {
+            
+            // nothing
+            
+        } 
+        
+        /**
+         * OK, validate
+         */
+        else {
+            
+            $object = Comment::find(1);
+            $object->commentstatus_id = 4;
+            $object->save();
+        }
+        
+         return Redirect::back();
        
     }
 

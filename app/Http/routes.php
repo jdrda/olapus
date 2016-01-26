@@ -51,6 +51,12 @@ Route::group(['prefix' => env('APP_ADMIN_URL', 'admin'), 'middleware' => 'auth']
      * Comment
      */
     Route::resource('comment', 'Admin\CommentController');
+    Route::get('comment/{id}/approve', [
+        'as' => 'admin.comment.approve', 'uses' => 'Admin\CommentController@approve'
+    ]);
+    Route::get('comment/{id}/spam', [
+        'as' => 'admin.comment.spam', 'uses' => 'Admin\CommentController@spam'
+    ]);
     
     /**
      * Sliders and slides

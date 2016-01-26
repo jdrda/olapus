@@ -107,6 +107,6 @@ class Comment extends Model
      */
     public function scopeRelationships($query){
         
-        return $query->with('articles', 'pages');
+        return $query->with('articles', 'pages', 'commentstatuses');
     }
 }

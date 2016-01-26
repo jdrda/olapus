@@ -134,12 +134,14 @@
                             <td>
                                 <span class="label label-{{ $result->commentstatuses->color }}">{{ $result->commentstatuses->name }}</span>
                             </td>
-                            <td class="hidden-xs">{{ $result->pages->name }}</td>
-                            <td class="hidden-xs">{{ $result->articles->name }}</td>
+                            <td class="hidden-xs">{{ $result->pages->name or '' }}</td>
+                            <td class="hidden-xs">{{ $result->articles->name or '' }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->name }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->email }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format'))}}</td>
                             <td class="text-right">
+                                <a href="{{ route($moduleBasicRoute . '.approve', $result->id) }}" class="btn btn-success btn-xs"><i class="fa fa-thumbs-up"></i> {{ trans('admin.approve') }}</a>
+                                <a href="{{ route($moduleBasicRoute . '.spam', $result->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-bomb"></i> {{ trans('admin.spam') }}</a>
                                 <a href="{{ route($moduleBasicRoute . '.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
                                 <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><i class="fa fa-remove"></i> {{ trans('admin.delete') }}</button>
                             </td>

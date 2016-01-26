@@ -22,6 +22,8 @@ return [
     'search' => 'Search',
     'show' => 'Show',
     'play' => 'Play',
+    'approve' => 'Approve',
+    'spam' => 'SPAM',
     'delete_row' => 'Delete the row #',
     'delete_row_confirmation' => 'Are you sure you want to delete row #',
     'select_image' => 'Select image',
