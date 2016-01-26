@@ -24,6 +24,7 @@
     "tests"
   ],
   "dependencies": {
+    "adminlte" : "latest",
     "jquery": "latest",
     "bootstrap": "latest",
     "html5shiv": "latest",

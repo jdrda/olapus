@@ -21,6 +21,9 @@ return [
     'close' => 'Zavřít',
     'search' => 'Hledat',
     'show' => 'Zobrazit',
+    'play' => 'Přehrát',
+    'approve' => 'Schválit',
+    'spam' => 'SPAM',
     'delete_row' => 'Odstranit řádek č.',
     'delete_row_confirmation' => 'Opravdu chcete odstranit řádek č.',
     'select_image' => 'Vybrat obrázek',
@@ -34,6 +37,7 @@ return [
     'menu_group_publishing' => 'Publikování',
     'menu_group_components' => 'Komponenty',
     'menu_group_media' => 'Média',
+    'menu_group_advertising' => 'Reklama',
     'menu_group_administration' => 'Správa',
     
 ];
