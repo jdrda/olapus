@@ -42,7 +42,7 @@ Route::group(['prefix' => env('APP_ADMIN_URL', 'admin'), 'as' => 'admin.', 'midd
         'update' => 'page.update',
         'destroy' => 'page.destroy'
         ]]);
-    Route::resource('pageCategoryCategory', 'Admin\PageCategoryController', ['names' => [
+    Route::resource('pageCategory', 'Admin\PageCategoryController', ['names' => [
         'index' => 'pageCategory.index',
         'create' => 'pageCategory.create',
         'store' => 'pageCategory.store',
