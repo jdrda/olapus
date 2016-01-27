@@ -21,19 +21,19 @@ Route::get('/', ['as' => 'root', function () {
 /**
  * Admin
  */
-Route::group(['prefix' => env('APP_ADMIN_URL', 'admin'), 'middleware' => 'auth'], function () {
+Route::group(['prefix' => env('APP_ADMIN_URL', 'admina'), 'as' => 'admin.', 'middleware' => 'auth'], function () {
     
     /**
      * Main dashboard
      */
     Route::get('/', [
-        'as' => 'admin.dashboard.index', 'uses' => 'Admin\DashboardController@index'
+        'as' => 'dashboard.index', 'uses' => 'Admin\DashboardController@index'
     ]);
     
     /**
      * Articles and categories
      */
-    Route::resource('page', 'Admin\PageController');
+    Route::resource('page', 'Admin\PageController', ['names' => ['index' => 'page.index', 'create' => 'page.create', 'page.store' => 'page.store', 'show' => 'page.show', 'edit' => 'page.edit', 'update' => 'page.update', 'destroy' => 'page.destroy']]);
     Route::resource('pageCategory', 'Admin\PageCategoryController');
     
     /**

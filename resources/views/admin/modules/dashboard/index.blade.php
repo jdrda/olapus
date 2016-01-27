@@ -9,6 +9,7 @@
 @section('menu-class-dashboard', 'active')
 
 @section('google_charts')
+@if(env('ANALYTICS_ENABLED', 0) == 1)
  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
@@ -32,11 +33,12 @@
         chart.draw(data, options);
       }
     </script>
+@endif
 @endsection
 
 @section('content')
 
-@if(env('ANALYTICS_ENABLED') == 1)
+@if(env('ANALYTICS_ENABLED', 0) == 1)
 <div class="row">
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="info-box">
