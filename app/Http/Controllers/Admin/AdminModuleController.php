@@ -416,14 +416,27 @@ class AdminModuleController extends Controller{
                 }**/
             }
             else{
+                
                 /**
                 * Empty exception
                 */
                if (empty($request->input($name)) == FALSE) {
                    $arResults->$name = $request->input($name);
                }
+               
                else{
-                   $arResults->$name = NULL;
+                   
+                   /**
+                    * Numeric zero ?
+                    */
+                   if(@is_numeric($request->input($name)) == TRUE){
+                       
+                      $arResults->$name = $request->input($name);
+                   }
+                   
+                   else{
+                    $arResults->$name = NULL;
+                   }
                }
             }
 
