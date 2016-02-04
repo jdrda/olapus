@@ -37,6 +37,7 @@
     "ckeditor": "latest",
     "bootstrap3-wysihtml5-bower": "latest",
     "tinymce": "latest",
-    "iCheck": "latest" 
+    "iCheck": "latest",
+    "jquery_lazyload" : "latest"
   }
 }
