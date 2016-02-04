@@ -12,7 +12,7 @@
                 <div class='modal-body text-center'>
                     <div class="row">
                         <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-                            <input type="text" name="url" class="form-control" value="{{ route('getImage', $result->url) }}{{ $result->image_extension }}">
+                            <input type="text" name="url" class="form-control" value="{{ route('getImage', ['imageName' => $result->url, 'imageExtension' => $result->image_extension]) }}">
                         </div>
                     </div>
                 </div>
