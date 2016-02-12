@@ -55,7 +55,7 @@ elixir(function (mix) {
      * jquery.SlimScroll
      */
     mix
-            .copy("bower_components/slimScroll/jquery.slimscroll.js",
+            .copy("bower_components/jQuery-slimScroll/jquery.slimscroll.js",
                     "resources/assets/js/admin");
 
 
