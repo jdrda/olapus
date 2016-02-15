@@ -175,7 +175,7 @@ class CommentController extends AdminModuleController {
          */
         else {
             
-            $object = Comment::find(1);
+            $object = Comment::find($id);
             $object->commentstatus_id = 4;
             $object->save();
         }
