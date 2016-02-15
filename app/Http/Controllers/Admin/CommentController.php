@@ -31,6 +31,7 @@ class CommentController extends AdminModuleController {
         'text' => 'max:1000',
         'url' => 'max:255',
         'email' => 'max:255',
+        'rating' => 'integer|max:1|min:-1|required'
     ];
 
     /**
@@ -135,7 +136,7 @@ class CommentController extends AdminModuleController {
          */
         else {
             
-            $object = Comment::find(1);
+            $object = Comment::find($id);
             $object->commentstatus_id = 2;
             $object->save();
         }
