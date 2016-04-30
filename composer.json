@@ -30,7 +30,7 @@
         "mockery/mockery": "dev-master",
         "phpunit/phpunit": "~4.0",
         "symfony/css-selector": "dev-master",
-        "symfony/dom-crawler": "2.8.*|3.0.*"
+        "symfony/dom-crawler": "dev-master"
     },
     "autoload": {
         "classmap": [

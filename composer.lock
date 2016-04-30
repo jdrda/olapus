@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5651a68623432b2cdfe510bba35ce433",
-    "content-hash": "a262135b53dc504400b54402c9a004d4",
+    "hash": "b216fd1a99c0caf80908a2df5f7b8fe6",
+    "content-hash": "5a2d56764ee7c042b53ae16ef99c0e27",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -3853,16 +3853,16 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v3.0.4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "18a06d7a9af41718c20764a674a0ebba3bc40d1f"
+                "reference": "46e42db28cb4ab7a2749cd3dae117867c3cead70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/18a06d7a9af41718c20764a674a0ebba3bc40d1f",
-                "reference": "18a06d7a9af41718c20764a674a0ebba3bc40d1f",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/46e42db28cb4ab7a2749cd3dae117867c3cead70",
+                "reference": "46e42db28cb4ab7a2749cd3dae117867c3cead70",
                 "shasum": ""
             },
             "require": {
@@ -3878,7 +3878,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.1-dev"
                 }
             },
             "autoload": {
@@ -3905,7 +3905,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-23 13:23:25"
+            "time": "2016-04-12 18:27:47"
         },
         {
             "name": "symfony/yaml",
@@ -3967,7 +3967,8 @@
         "laravolt/avatar": 20,
         "fzaninotto/faker": 20,
         "mockery/mockery": 20,
-        "symfony/css-selector": 20
+        "symfony/css-selector": 20,
+        "symfony/dom-crawler": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
