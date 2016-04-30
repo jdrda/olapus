@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ebe458ad04f63f83539f328c3639b075",
-    "content-hash": "5f55b7f9f78d9268d7cd754b066d5a74",
+    "hash": "7302a3f49e2d8a3afd2abcbdf44ae2f9",
+    "content-hash": "e1776f4ba2f72b5ac3ba853b6cc171a5",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2787,16 +2787,16 @@
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.6.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123"
+                "reference": "123a68ff806be726d92e7db49eed3f36c881f099"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/44f9a286a04b80c76a4e5fb7aad8bb539b920123",
-                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/123a68ff806be726d92e7db49eed3f36c881f099",
+                "reference": "123a68ff806be726d92e7db49eed3f36c881f099",
                 "shasum": ""
             },
             "require": {
@@ -2809,7 +2809,9 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": []
+                "branch-alias": {
+                    "dev-master": "1.6.x-dev"
+                }
             },
             "autoload": {
                 "psr-4": {
@@ -2831,7 +2833,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2016-04-29 12:21:54"
+            "time": "2016-04-29 12:42:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -3959,7 +3961,8 @@
         "spatie/laravel-analytics": 20,
         "graham-campbell/htmlmin": 20,
         "doctrine/dbal": 20,
-        "laravolt/avatar": 20
+        "laravolt/avatar": 20,
+        "fzaninotto/faker": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
