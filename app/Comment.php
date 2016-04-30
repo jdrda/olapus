@@ -1,4 +1,16 @@
 <?php
+/**
+ * Comment module model
+ * 
+ * Model for module Comment
+ * 
+ * @category Model
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App;
 
@@ -34,7 +46,7 @@ class Comment extends Model
     /**
      * Columns to exclude from index
      * 
-     * @var type 
+     * @var array 
      */
     protected $excludedFromIndex = [];
 
@@ -65,6 +77,8 @@ class Comment extends Model
     
     /**
      * Default order by
+     * 
+     * @type array
      */
     protected $defaultOrderBy = [
       'id' => 'desc'  
@@ -73,7 +87,7 @@ class Comment extends Model
     /**
      * Comment statuses link
      * 
-     * @return type
+     * @return object
      */
     public function commentstatuses(){
         
@@ -83,7 +97,7 @@ class Comment extends Model
     /**
      * Articles link
      * 
-     * @return type
+     * @return object
      */
     public function articles(){
         
@@ -93,7 +107,7 @@ class Comment extends Model
     /**
      * Pages link
      * 
-     * @return type
+     * @return object
      */
     public function pages(){
         
@@ -103,7 +117,8 @@ class Comment extends Model
     /**
      * Process relationships
      * 
-     * @param type $query
+     * @param query $query
+     * @return query
      */
     public function scopeRelationships($query){
         

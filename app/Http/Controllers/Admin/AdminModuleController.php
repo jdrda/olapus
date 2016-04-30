@@ -1,9 +1,15 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Admin module controller
+ * 
+ * Basic parent controller for admin functions
+ * 
+ * @category Controller
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
  */
 
 namespace App\Http\Controllers\Admin;
@@ -12,37 +18,40 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Controller;
 
-/**
- * Description of AdminModuleTrait
- *
- * @author Uzivatel
- */
 class AdminModuleController extends Controller{
 
     /**
      * Module name
+     * 
+     * @var string 
      */
     protected $moduleName;
 
     /**
      * Module basic path
+     * 
+     * @var string
      */
     protected $moduleBasicRoute;
 
     /**
      * View basic path
+     * 
+     * @var string
      */
     protected $moduleBasicTemplatePath;
 
     /**
      * Model Class
+     * 
+     * @var string
      */
     protected $modelClass;
 
     /**
      * Rows to paginate
      * 
-     * @var type 
+     * @var integer 
      */
     protected $paginateRows = NULL;
     
@@ -55,21 +64,22 @@ class AdminModuleController extends Controller{
     
     /**
      * Hidden fields for action
-     * @var type 
+     * 
+     * @var array 
      */
     protected $hiddenFieldsOnAction = array();
     
    /**
     * Binary fields to exclude from update
     * 
-    * @var type 
+    * @var array 
     */
     protected $binaryFields = array();
     
     /**
      * Custom view
      * 
-     * @var type 
+     * @var string 
      */
     protected $customView = NULL;
 
@@ -93,18 +103,18 @@ class AdminModuleController extends Controller{
         $this->moduleName = trim(last($temp));
         
         /**
-         * Model
+         * Get model full name
          */
         $this->modelClass = '\\App\\' . $this->moduleName;
 
         /**
-         * Set variables
+         * Set basic variables
          */
         $this->moduleBasicRoute = 'admin.' . lcfirst($this->moduleName);
         $this->moduleBasicTemplatePath = 'admin.modules.' . strtolower($this->moduleName);
 
         /**
-         * Global templates
+         * Global template variables
          */
         View::share('moduleBasicRoute', $this->moduleBasicRoute);
         View::share('moduleBasicTemplatePath', $this->moduleBasicTemplatePath);
@@ -119,14 +129,21 @@ class AdminModuleController extends Controller{
     
     /**
      * Save media to storage
+     * 
+     * @param object $object
+     * @param Request $request
+     * @param boolean $update
+     * @return boolean
      */
     public function saveMediaToStorage($object, $request, $update = FALSE){
         
         return FALSE;
     }
-
+    
     /**
-     * Get pagination rows
+     * Get number of pagination rows
+     * 
+     * @return integer
      */
     public function getRowsToPaginate() {
 
@@ -138,45 +155,38 @@ class AdminModuleController extends Controller{
     
     /**
      * Associate relationships to other table
+     * 
+     * @param object $object
+     * @param Request $request
      */
     public function associateRelationships($object, Request $request){
         
     }
     
     /**
-     * Associate relationships to other table, where ID if objectmust be present
+     * Associate relationships to other table, where ID if object must be present
+     * 
+     * @param object $object
+     * @param Request $request
      */
     public function associateRelationshipsWithID($object, Request $request){
         
     }
-    
+
     /**
      * Reset cache 
+     * 
+     * @param object $object
      */
     public function resetCache($object){
         
     }
 
     /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
-     * @return \Illuminate\Http\Response
-     */
-    /*public function render($request, Exception $e) {
-        if ($e instanceof CustomException) {
-            
-            return response()->view('errors.custom', [], 500);
-        }
-
-        return parent::render($request, $e);
-    }*/
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Display a listing of the resource
+     * 
+     * @param Request $request
+     * @return Response
      */
     public function index(Request $request) {
         
@@ -198,6 +208,7 @@ class AdminModuleController extends Controller{
                     $query->fulltextAllColumns();
                 })->relationships()->orderByColumns()->excludeFromIndex()
                         ->externalTablesFilter()->paginate($this->getRowsToPaginate());
+                
         /**
          * Choose the view
          */
@@ -217,7 +228,7 @@ class AdminModuleController extends Controller{
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create() {
         
@@ -240,8 +251,8 @@ class AdminModuleController extends Controller{
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return Response
      */
     public function store(Request $request) {
 
@@ -305,7 +316,7 @@ class AdminModuleController extends Controller{
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id) {
         
@@ -350,18 +361,19 @@ class AdminModuleController extends Controller{
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
+     * @todo Write general show function
      */
     public function show($id) {
-        //
+       
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id) {
         
@@ -411,13 +423,15 @@ class AdminModuleController extends Controller{
              */
             if(in_array($name, $this->binaryFields)){
  
-                /**if($request->has($name)){
+                /**
+                 * @todo Check this function
+                 * if($request->has($name)){
                     $this->arValidationArray[$name] = $value . ',' . $id;
                 }**/
             }
             else{
                 
-                /**
+               /**
                 * Empty exception
                 */
                if (empty($request->input($name)) == FALSE) {
@@ -485,7 +499,7 @@ class AdminModuleController extends Controller{
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id) {
         /**

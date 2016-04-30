@@ -1,5 +1,16 @@
 <?php
-
+/**
+ * Article category module model
+ * 
+ * Model for module Article category
+ * 
+ * @category Model
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -34,7 +45,7 @@ class ArticleCategory extends Model
     /**
      * Columns to exclude from index
      * 
-     * @var type 
+     * @var array 
      */
     protected $excludedFromIndex = ['image'];
 
@@ -64,6 +75,8 @@ class ArticleCategory extends Model
     
     /**
      * Default order by
+     * 
+     * @var array
      */
     protected $defaultOrderBy = [
       'name' => 'asc'  
@@ -72,7 +85,7 @@ class ArticleCategory extends Model
     /**
      * Image link
      * 
-     * @return type
+     * @return object
      */
     public function images(){
         
@@ -85,7 +98,7 @@ class ArticleCategory extends Model
     /**
      * Articles link
      * 
-     * @return type
+     * @return object
      */
     public function articles(){
         
@@ -95,7 +108,8 @@ class ArticleCategory extends Model
     /**
      * Process relationships
      * 
-     * @param type $query
+     * @param query $query
+     * @return query
      */
     public function scopeRelationships($query){
         

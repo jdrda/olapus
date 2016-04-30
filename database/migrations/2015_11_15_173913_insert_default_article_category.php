@@ -1,4 +1,16 @@
 <?php
+/**
+ * Insert default article category migration
+ * 
+ * Creates default category in module Article category
+ * 
+ * @category Migration
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -12,7 +24,7 @@ class InsertDefaultArticleCategory extends Migration
      */
     public function up()
     {
-         // Insert admin user
+        
         DB::table('articlecategory')->insert(
                         array(
                                 array(

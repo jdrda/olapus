@@ -1,5 +1,16 @@
 <?php
-
+/**
+ * Image module model
+ * 
+ * Model for module Image
+ * 
+ * @category Model
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -35,14 +46,14 @@ class Image extends Model
     /**
      * Columns to exclude from index
      * 
-     * @var type 
+     * @var array 
      */
     protected $excludedFromIndex = ['image'];
     
     /**
      * Hidden from custom find
      * 
-     * @var type 
+     * @var arrat 
      */
     protected  $excludedFromFind = ['image'];
     
@@ -77,6 +88,8 @@ class Image extends Model
     
     /**
      * Default order by
+     * 
+     * @type array
      */
     protected $defaultOrderBy = [
       'id' => 'desc'  
@@ -85,7 +98,7 @@ class Image extends Model
     /**
      * Image category link
      * 
-     * @return type
+     * @return object
      */
     public function imagecategories(){
         
@@ -95,7 +108,7 @@ class Image extends Model
     /**
      * Slide link
      * 
-     * @return type
+     * @return object
      */
     public function slides(){
         
@@ -105,7 +118,7 @@ class Image extends Model
     /**
      * Article category
      * 
-     * @return type
+     * @return object
      */
     public function articlecategories(){
         
@@ -115,7 +128,7 @@ class Image extends Model
     /**
      * Article category
      * 
-     * @return type
+     * @return object
      */
     public function pages(){
         
@@ -125,7 +138,8 @@ class Image extends Model
     /**
      * Process relationships
      * 
-     * @param type $query
+     * @param query $query
+     * @return query
      */
     public function scopeRelationships($query){
         
@@ -135,7 +149,7 @@ class Image extends Model
     /**
      * Hide fields
      * 
-     * @param type $array
+     * @param array $array
      */
     public function hide($array = []){
         

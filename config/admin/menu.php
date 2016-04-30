@@ -1,7 +1,15 @@
 <?php
-
-/*
+/**
  * Left menu configuration
+ * 
+ * Configuration array for admin left menu
+ * 
+ * @category Configuration
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
  */
 
 return [
@@ -204,6 +212,44 @@ return [
     /**
      * /Group Advertising
      */
+    
+    /**
+     * Group E-commerce
+     */
+    'ecommerce' => [
+        'name'  => 'admin.menu_group_ecommerce',
+        'class' => 'menu-class-ecommerce',
+        'route' => null,
+        'icon'  => 'fa fa-shopping-cart',
+        'items' => [
+            
+            
+            /**
+             * Product categories
+             */
+            'productCategory' => [
+                'name'  => 'admin_module_productcategory.name',
+                'class' => 'menu-class-productcategory',
+                'route' => 'admin.productCategory.index',
+                'icon'  => 'fa fa-cubes',
+            ],
+            
+            /**
+             * Products
+             */
+            'product' => [
+                'name'  => 'admin_module_product.name',
+                'class' => 'menu-class-product',
+                'route' => 'admin.product.index',
+                'icon'  => 'fa fa-cube',
+            ],
+            
+        ],
+    ],
+    /**
+     * /Group E-commerce
+     */
+
     
     /**
      * Group Administration

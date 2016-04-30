@@ -1,4 +1,16 @@
 <?php
+/**
+ * Page module model
+ * 
+ * Model for module Page
+ * 
+ * @category Model
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App;
 
@@ -34,7 +46,7 @@ class Page extends Model
     /**
      * Columns to exclude from index
      * 
-     * @var type 
+     * @var array 
      */
     protected $excludedFromIndex = [];
 
@@ -59,6 +71,8 @@ class Page extends Model
     
     /**
      * Default order by
+     * 
+     * @var array
      */
     protected $defaultOrderBy = [
       'id' => 'desc'  
@@ -67,7 +81,7 @@ class Page extends Model
     /**
      * Image link
      * 
-     * @return type
+     * @return object
      */
     public function images(){
         
@@ -80,7 +94,7 @@ class Page extends Model
     /**
      * Page categories link
      * 
-     * @return type
+     * @return object
      */
     public function pagecategories(){
         
@@ -90,7 +104,7 @@ class Page extends Model
     /**
      * Comments
      * 
-     * @return type
+     * @return object
      */
     public function comments(){
         
@@ -100,7 +114,7 @@ class Page extends Model
     /**
      * Users link
      * 
-     * @return type
+     * @return object
      */
     public function users(){
         
@@ -110,7 +124,8 @@ class Page extends Model
     /**
      * Process relationships
      * 
-     * @param type $query
+     * @param query $query
+     * @return query
      */
     public function scopeRelationships($query){
         

@@ -1,4 +1,16 @@
 <?php
+/**
+ * Comment module controller
+ * 
+ * Controller for module Comment
+ * 
+ * @category Controller
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App\Http\Controllers\Admin;
 
@@ -11,6 +23,8 @@ class CommentController extends AdminModuleController {
     
     /**
      * Constructor
+     * 
+     * @param Request $request
      */
     public function __construct(Request $request) {
         parent::__construct();
@@ -19,11 +33,12 @@ class CommentController extends AdminModuleController {
          * Add lookup tables
          */
         $this->middleware('add.lookup.tables:CommentStatus', ['only' => ['index','create','edit']]);
-
     }
 
     /**
      * Validation rules
+     * 
+     * @var array
      */
     protected $arValidationArray = [
         'name' => 'max:255',
@@ -36,6 +51,9 @@ class CommentController extends AdminModuleController {
 
     /**
      * Associate relationships to other table
+     * 
+     * @param object $object
+     * @param Request $request
      */
     public function associateRelationships($object, Request $request) {
         
@@ -46,6 +64,11 @@ class CommentController extends AdminModuleController {
             'commentstatus_id' => 'required|integer|min:1|exists:commentstatus,id',
         ]);
 
+        /**
+         * Validator fails - try to set the valid comment id
+         * 
+         * @todo Solve this another way
+         */
         if ($validator->fails()) {
             
             /**
@@ -76,12 +99,17 @@ class CommentController extends AdminModuleController {
                     'article_id' => 'required|integer|min:1|exists:article,id',
         ]);
         
-
+        /**
+         * Validator fails - nothing to do
+         */
         if ($validator->fails()) {
-
-            // nothing
             
-        } else {
+        } 
+        
+        /**
+         * Validator OK - save it
+         */
+        else {
 
             $object->articles()->associate($request->input('article_id'));
         }
@@ -93,26 +121,37 @@ class CommentController extends AdminModuleController {
                     'page_id' => 'required|integer|min:1|exists:page,id',
         ]);
         
-
+        /**
+         * Validator fails - nothing to do
+         */
         if ($validator->fails()) {
 
             // nothing
             
-        } else {
+        } 
+        
+        /**
+         * Validator OK - save it
+         */
+        else {
 
             $object->pages()->associate($request->input('page_id'));
         }
 
-       
     }
     
     /**
-     * Approve
+     * Approve comment
      * 
-     * @param type $id
+     * @param integer $id
+     * @param Request $request
+     * @return Response
      */
     public function approve($id, Request $request){
         
+        /**
+         * Add ID to request
+         */
         $request->merge(array('id' => $id));
         
         /**
@@ -126,9 +165,7 @@ class CommentController extends AdminModuleController {
          * Failed - redirect to index
          */
         if ($validator->fails()) {
-            
-            // nothing
-            
+             
         } 
         
         /**
@@ -144,14 +181,19 @@ class CommentController extends AdminModuleController {
          return Redirect::back();
        
     }
-    
+
     /**
-     * SPAM
+     * Mark as SPAM
      * 
-     * @param type $id
+     * @param integer $id
+     * @param Request $request
+     * @return Response
      */
     public function spam($id, Request $request){
         
+        /**
+         * Add ID to request
+         */
         $request->merge(array('id' => $id));
         
         /**
@@ -165,9 +207,7 @@ class CommentController extends AdminModuleController {
          * Failed - redirect to index
          */
         if ($validator->fails()) {
-            
-            // nothing
-            
+       
         } 
         
         /**
@@ -181,7 +221,5 @@ class CommentController extends AdminModuleController {
         }
         
          return Redirect::back();
-       
     }
-
 }

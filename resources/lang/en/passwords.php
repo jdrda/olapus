@@ -1,18 +1,19 @@
 <?php
+/**
+ * Password reminder language file - English
+ * 
+ * Language translation for elements in password reminder in English language
+ * 
+ * @category Languages
+ * @subpackage Frontend
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reminder Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are the default lines which match reasons
-    | that are given by the password broker for a password update attempt
-    | has failed, such as for an invalid token or invalid new password.
-    |
-    */
-    
     'headline' => 'Enter your e-mail to reset the password',
     'enter_new_password' => 'Enter new password',
     'email' => 'E-mail',

@@ -1,4 +1,16 @@
 <?php
+/**
+ * User module model
+ * 
+ * Model for module User
+ * 
+ * @category Model
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App;
 
@@ -10,7 +22,6 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Request;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -49,7 +60,7 @@ class User extends Model implements AuthenticatableContract,
     /**
      * Columns to exclude from index
      * 
-     * @var type 
+     * @var array 
      */
     protected $excludedFromIndex = ['password'];
     
@@ -74,6 +85,8 @@ class User extends Model implements AuthenticatableContract,
     
     /**
      * Default order by
+     * 
+     * @var array
      */
     protected $defaultOrderBy = [
       'id' => 'desc'  
@@ -82,7 +95,7 @@ class User extends Model implements AuthenticatableContract,
     /**
      * Articles link
      * 
-     * @return type
+     * @return object
      */
     public function articles(){
         
@@ -92,7 +105,8 @@ class User extends Model implements AuthenticatableContract,
     /**
      * Process relationships
      * 
-     * @param type $query
+     * @param query $query
+     * @return query
      */
     public function scopeRelationships($query){
         

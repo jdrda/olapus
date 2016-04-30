@@ -1,4 +1,16 @@
 <?php
+/**
+ * Image module controller
+ * 
+ * Controller for module Image
+ * 
+ * @category Controller
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App\Http\Controllers\Admin;
 
@@ -39,12 +51,18 @@ class ImageController extends AdminModuleController
         
     ];
    
+    /**
+     * Binary fields
+     * 
+     * @var array 
+     */
     protected $binaryFields = ['image', 'image_mime_type', 'image_extension', 
         'image_original_name', 'image_size', 'image_width', 'image_height'];
-    
             
     /**
-     * Get pagination rows
+     * Get number of pagination rows
+     * 
+     * @return integer
      */
     public function getRowsToPaginate(){
         
@@ -52,7 +70,9 @@ class ImageController extends AdminModuleController
     }
     
     /**
-     * Reset cache
+     * Reset cache 
+     * 
+     * @param object $object
      */
     public function resetCache($object) {
         
@@ -69,6 +89,9 @@ class ImageController extends AdminModuleController
     
     /**
      * Associate relationships to other table
+     * 
+     * @param object $object
+     * @param Request $request
      */
     public function associateRelationships($object, Request $request){
         
@@ -78,32 +101,44 @@ class ImageController extends AdminModuleController
         $validator = Validator::make($request->all(), [
             'imagecategory_id' => 'required|integer|min:1|exists:imagecategory,id',
         ]);
-
+        
+        /**
+         * Validator fails - set category to default
+         */
         if ($validator->fails()) {
 
             $object->imagecategories()->associate(1);
         }
+        
+        /**
+         * Validator OK - save it
+         */
         else{
 
             $object->imagecategories()->associate($request->input('imagecategory_id'));
-
-        }
-        
+        } 
     }
     
     /**
      * Save media to storage
      * 
-     * @param type $object
-     * @param type $update
+     * @param object $object
+     * @param Request $request
+     * @param boolean $update
+     * @return boolean
      */
     public function saveMediaToStorage($object, $request, $update = FALSE) {
 
+        /**
+         * Get filename
+         */
         $filename = getStorageFilename(env('APP_IMAGE_STORAGE_DIRECTORY', 'images'), $object->id);
-
+        
+        /*
+         * Check if requested and then save
+         */
         if ($update == FALSE || ($update == TRUE && $request->has('image'))) {
             
-          
             $resource = fopen($request->image, 'r');
 
             Storage::put($filename, $resource);
@@ -118,5 +153,4 @@ class ImageController extends AdminModuleController
         
         return FALSE;
     }
-
 }

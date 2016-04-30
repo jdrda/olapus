@@ -1,9 +1,15 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Admin model trait
+ * 
+ * Basic admin model functions
+ * 
+ * @category Model
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
  */
 
 namespace App;
@@ -11,17 +17,12 @@ namespace App;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Request;
 
-/**
- * Description of AdminModelTrait
- *
- * @author Uzivatel
- */
 trait AdminModelTrait {
     
     /**
      * Workaround to get table name
      * 
-     * @return type
+     * @return string
      */
     public static function getTableName()
     {
@@ -32,7 +33,7 @@ trait AdminModelTrait {
      * Scope for fulltext search
      * 
      * @param query $query
-     * @param string $word
+     * @return query
      */
     public function scopeFulltextAllColumns($query){
   
@@ -42,7 +43,8 @@ trait AdminModelTrait {
     /**
      * Order by
      * 
-     * @param type $query
+     * @param query $query
+     * @return query
      */
     public function scopeOrderByColumns($query){
         
@@ -52,9 +54,8 @@ trait AdminModelTrait {
     /**
      * Exclude columns
      * 
-     * @param type $query
-     * @param type $value
-     * @return type
+     * @param query $query
+     * @return query
      */
     public function scopeExcludeFromIndex($query) 
     {
@@ -64,9 +65,8 @@ trait AdminModelTrait {
     /**
      * Exclude from find
      * 
-     * @param type $query
-     * @param type $value
-     * @return type
+     * @param query $query
+     * @return query
      */
     public function scopeExcludeFromFind($query) 
     {
@@ -82,6 +82,7 @@ trait AdminModelTrait {
      * Process relationships
      * 
      * @param type $query
+     * @return query
      */
     public function scopeRelationships($query){
         
@@ -90,6 +91,9 @@ trait AdminModelTrait {
     
     /**
      * External table filter
+     * 
+     * @param query $query
+     * @return query
      */
     public function scopeExternalTablesFilter($query){
         
@@ -116,8 +120,6 @@ trait AdminModelTrait {
             
              request()->merge(['external_tables_filter' => $allTables]);
         }
-        
-       
         
         return $query;
     }

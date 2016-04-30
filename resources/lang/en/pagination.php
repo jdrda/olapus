@@ -1,17 +1,18 @@
 <?php
+/**
+ * Pagination language file - English
+ * 
+ * Language translation for elements in pagination in English language
+ * 
+ * @category Languages
+ * @subpackage General
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Pagination Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used by the paginator library to build
-    | the simple pagination links. You are free to change them to anything
-    | you want to customize your views to better match your application.
-    |
-    */
 
     'previous' => '&laquo; Previous',
     'next'     => 'Next &raquo;',

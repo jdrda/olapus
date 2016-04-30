@@ -1,4 +1,16 @@
 <?php
+/**
+ * Comment status controller
+ * 
+ * Model for module Comment status
+ * 
+ * @category Model
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App;
 
@@ -33,7 +45,7 @@ class CommentStatus extends Model
     /**
      * Columns to exclude from index
      * 
-     * @var type 
+     * @var array 
      */
     protected $excludedFromIndex = [];
 
@@ -54,6 +66,8 @@ class CommentStatus extends Model
     
     /**
      * Default order by
+     * 
+     * @var array
      */
     protected $defaultOrderBy = [
       'name' => 'asc'  
@@ -62,7 +76,7 @@ class CommentStatus extends Model
     /**
      * Image link
      * 
-     * @return type
+     * @return object
      */
     public function comments(){
         
@@ -72,7 +86,8 @@ class CommentStatus extends Model
     /**
      * Process relationships
      * 
-     * @param type $query
+     * @param query $query
+     * @return query
      */
     public function scopeRelationships($query){
         

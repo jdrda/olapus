@@ -1,4 +1,16 @@
 <?php
+/**
+ * Page module controller
+ * 
+ * Controller for module Page
+ * 
+ * @category Controller
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App\Http\Controllers\Admin;
 
@@ -9,6 +21,8 @@ class PageController extends AdminModuleController {
 
     /**
      * Constructor
+     * 
+     * @var Request $request
      */
     public function __construct(Request $request) {
         parent::__construct();
@@ -28,6 +42,8 @@ class PageController extends AdminModuleController {
 
     /**
      * Validation rules
+     * 
+     * @var array
      */
     protected $arValidationArray = [
         'name' => 'required|max:255|unique:page,name',
@@ -42,6 +58,9 @@ class PageController extends AdminModuleController {
 
     /**
      * Associate relationships to other table
+     * 
+     * @param object $object
+     * @param Request $request
      */
     public function associateRelationships($object, Request $request) {
 
@@ -52,12 +71,19 @@ class PageController extends AdminModuleController {
                     'user_id' => 'required|integer|min:1|exists:users,id',
         ]);
         
-
+        /**
+         * Validator fails - add actual authorized user
+         */
         if ($validator->fails()) {
 
             $object->users()->associate(Auth::user()->id);
             
-        } else {
+        } 
+        
+        /**
+         * Validator OK - save it
+         */
+        else {
 
             $object->users()->associate($request->input('user_id'));
         }
@@ -69,17 +95,28 @@ class PageController extends AdminModuleController {
                     'image_id' => 'integer|min:1|exists:image,id',
         ]);
 
+        /**
+         * Validator fails - nothing to do
+         */
         if ($validator->fails()) {
 
-            // nothing to do
-        } else {
+           
+        } 
+        
+        /**
+         * Validator OK - save it
+         */
+        else {
 
             $object->images()->associate($request->input('image_id'));
         }
     }
     
     /**
-     * Associate relationships to other table with ID
+     * Associate relationships to other table, where ID if object must be present
+     * 
+     * @param object $object
+     * @param Request $request
      */
     public function associateRelationshipsWithID($object, Request $request) {
         
@@ -89,6 +126,9 @@ class PageController extends AdminModuleController {
         if($request->has('pagecategory_id')){
             $validIDs = [];
             
+            /**
+             * For each category
+             */
             foreach ($request->input('pagecategory_id') as $pagecategory_id) {
 
                 $arrayForValidator = ['pagecategory_id' =>  $pagecategory_id];
@@ -97,21 +137,26 @@ class PageController extends AdminModuleController {
                             'pagecategory_id' => 'required|integer|min:1|exists:pagecategory,id',
                 ]);
 
+                /**
+                 * Validator fails - nothing to do
+                 */
                 if ($validator->fails()) {
 
-                    /**
-                     * Nothing to do
-                     */
-                } else {
+                } 
+                
+                /**
+                 * Validator OK - save it
+                 */
+                else {
 
                     $validIDs[] = $pagecategory_id;
-                    
                 }
             }
             
+            /**
+             * Sync to pivot
+             */
             $object->pagecategories()->sync($validIDs);
         }
     }
-    
-
 }

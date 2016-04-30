@@ -1,4 +1,16 @@
 <?php
+/**
+ * Insert admin migration
+ * 
+ * Creates default user - admin in module User
+ * 
+ * @category Migration
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 use Illuminate\Database\Migrations\Migration;
 

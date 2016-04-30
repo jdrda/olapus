@@ -1,4 +1,16 @@
 <?php
+/**
+ * Article category module controller
+ * 
+ * Controller for module Article category
+ * 
+ * @category Controller
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App\Http\Controllers\Admin;
 
@@ -9,6 +21,8 @@ class ArticleCategoryController extends AdminModuleController {
 
     /**
      * Constructor
+     * 
+     * @param Request $request
      */
     public function __construct(Request $request) {
         parent::__construct();
@@ -21,6 +35,8 @@ class ArticleCategoryController extends AdminModuleController {
 
     /**
      * Validation rules
+     * 
+     * @var array
      */
     protected $arValidationArray = [
         'name' => 'required|max:255|unique:articlecategory,name',
@@ -30,8 +46,12 @@ class ArticleCategoryController extends AdminModuleController {
         'url' => 'required|max:255|unique:articlecategory,url',
         'text' => 'max:1000000',
         'color' => 'required|max:255'];
+    
     /**
      * Associate relationships to other table
+     * 
+     * @param object $object
+     * @param Request $request
      */
     public function associateRelationships($object, Request $request) {
 
@@ -42,11 +62,18 @@ class ArticleCategoryController extends AdminModuleController {
                     'image_id' => 'required|integer|min:1|exists:image,id',
         ]);
 
+        /**
+         * Validator fails - nothing to do
+         */
         if ($validator->fails()) {
 
             // nothing to do
-        } else {
-
+        } 
+        
+        /**
+         * Validator OK - save it
+         */
+        else {
 
             $object->images()->associate($request->input('image_id'));
         }

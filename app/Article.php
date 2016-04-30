@@ -1,4 +1,16 @@
 <?php
+/**
+ * Article module model
+ * 
+ * Model for module Article
+ * 
+ * @category Model
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App;
 
@@ -34,7 +46,7 @@ class Article extends Model
     /**
      * Columns to exclude from index
      * 
-     * @var type 
+     * @var array 
      */
     protected $excludedFromIndex = [];
 
@@ -54,6 +66,8 @@ class Article extends Model
     
     /**
      * Default order by
+     * 
+     * @var array
      */
     protected $defaultOrderBy = [
       'id' => 'desc'  
@@ -62,7 +76,7 @@ class Article extends Model
     /**
      * Image link
      * 
-     * @return type
+     * @return object
      */
     public function images(){
         
@@ -75,7 +89,7 @@ class Article extends Model
     /**
      * Articles link
      * 
-     * @return type
+     * @return object
      */
     public function articlecategories(){
         
@@ -85,7 +99,7 @@ class Article extends Model
     /**
      * Articles link
      * 
-     * @return type
+     * @return object
      */
     public function comments(){
         
@@ -95,7 +109,7 @@ class Article extends Model
     /**
      * Users link
      * 
-     * @return type
+     * @return object
      */
     public function users(){
         
@@ -105,7 +119,8 @@ class Article extends Model
     /**
      * Process relationships
      * 
-     * @param type $query
+     * @param query $query
+     * @return query
      */
     public function scopeRelationships($query){
         

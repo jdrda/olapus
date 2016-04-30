@@ -1,4 +1,16 @@
 <?php
+/**
+ * Media controller
+ * 
+ * Basic controller for media functions
+ * 
+ * @category Controller
+ * @subpackage Media
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App\Http\Controllers\Media;
 
@@ -11,17 +23,16 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\File;
 
 class ImageController extends Controller
 {
    
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
+   /**
+    * Get image from storage
+    * 
+    * @param Request $request
+    * @return file
+    */
     public function getImage(Request $request)
     {  
         /**
@@ -36,11 +47,15 @@ class ImageController extends Controller
             
             $imageMeta = Cache::get($cacheKey);
         }
+        
         /**
          * File not cached
          */
         else{
             
+            /**
+             * Get META information
+             */
             $imageMeta = @Image::where(['url' => $request->imageName, 'image_extension' => $request->imageExtension])->first(['image_mime_type', 'image_size', 'id', 'updated_at', 'image_etag']);
             
             /**
@@ -66,6 +81,9 @@ class ImageController extends Controller
          */
         $stream = Storage::readStream($filename);
         
+        /**
+         * Cache expiration
+         */
         $expires = Carbon::createFromTimestamp(time()+3600)->toDateTimeString();
       
         /**
@@ -83,13 +101,17 @@ class ImageController extends Controller
         );
         
         /**
-         * Response code
+         * Response code cached
          */
         if(@$_SERVER['HTTP_IF_NONE_MATCH'] == $imageMeta->image_etag 
                 || @$_SERVER['HTTP_IF_MODIFIED_SINCE'] == $imageMeta->updated_at->toRfc2822String()){
             
             $responseCode = 304;
         }
+        
+        /**
+         * Response code not cached, but OK
+         */
         else{
             
             $responseCode = 200;

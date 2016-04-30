@@ -1,4 +1,16 @@
 <?php
+/**
+ * Settings module model
+ * 
+ * Model for module Settings
+ * 
+ * @category Model
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App;
 
@@ -33,7 +45,7 @@ class Settings extends Model
     /**
      * Columns to exclude from index
      * 
-     * @var type 
+     * @var array 
      */
     protected $excludedFromIndex = [];
     
@@ -63,6 +75,8 @@ class Settings extends Model
     
     /**
      * Default order by
+     * 
+     * @var array
      */
     protected $defaultOrderBy = [
       'name' => 'asc'  

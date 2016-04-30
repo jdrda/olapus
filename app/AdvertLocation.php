@@ -1,4 +1,16 @@
 <?php
+/**
+ * Advert location module model
+ * 
+ * Model for module Advert location
+ * 
+ * @category Model
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App;
 
@@ -33,7 +45,7 @@ class AdvertLocation extends Model
     /**
      * Columns to exclude from index
      * 
-     * @var type 
+     * @var array 
      */
     protected $excludedFromIndex = [];
 
@@ -58,6 +70,8 @@ class AdvertLocation extends Model
     
     /**
      * Default order by
+     * 
+     * @var array
      */
     protected $defaultOrderBy = [
       'name' => 'asc'  
@@ -66,7 +80,7 @@ class AdvertLocation extends Model
     /**
      * Image link
      * 
-     * @return type
+     * @return object
      */
     public function adverts(){
         
@@ -77,6 +91,7 @@ class AdvertLocation extends Model
      * Process relationships
      * 
      * @param type $query
+     * @return object
      */
     public function scopeRelationships($query){
         

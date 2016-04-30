@@ -1,16 +1,19 @@
 <?php
+/**
+ * Module admin Slide language file - Czech
+ * 
+ * Language translation for elements in admin module Slide in Czech language
+ * 
+ * @category Languages
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Admin Users Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used for login page
-    |
-    */
-    
     'name' => 'Snímky',
     'description' => 'Správa snímků',
     'delete_row_confirmation' => 'Jste si jisti, že chcete odstranit snímek s názvem',

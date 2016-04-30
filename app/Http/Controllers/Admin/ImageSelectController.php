@@ -1,4 +1,18 @@
 <?php
+/**
+ * Image select module controller
+ * 
+ * Controller is not active
+ * 
+ * @category Controller
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ * 
+ * @todo Decide if delete
+ */
 
 namespace App\Http\Controllers\Admin;
 

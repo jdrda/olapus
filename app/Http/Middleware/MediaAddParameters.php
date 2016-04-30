@@ -1,4 +1,16 @@
 <?php
+/**
+ * Media add parameters
+ * 
+ * Adds variable parameters to media files
+ * 
+ * @category Middleware
+ * @subpackage General
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App\Http\Middleware;
 
@@ -11,10 +23,10 @@ use Illuminate\Support\Str;
 class MediaAddParameters {
 
     /**
-     * Handle an incoming request.
+     * Main function
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param Request $request
+     * @param Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next) {
@@ -33,8 +45,6 @@ class MediaAddParameters {
                         $name . '_etag' => sha1_file($request->file($name)->getRealPath()),
             ]);
 
-
-
             /**
              * Images
              */
@@ -48,6 +58,8 @@ class MediaAddParameters {
 
                 /**
                  * Save to DB or storage?
+                 * 
+                 * @todo Decide if delete
                  */
                 /* if(env('APP_IMAGE_LOCATION', 'storage') == 'database'){
                   $request->merge(
@@ -62,11 +74,8 @@ class MediaAddParameters {
                 ]);
                 /* } */
             }
-
-            
         }
 
         return $next($request);
     }
-
 }

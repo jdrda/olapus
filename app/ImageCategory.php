@@ -1,4 +1,16 @@
 <?php
+/**
+ * Image category module model
+ * 
+ * Model for module Image category
+ * 
+ * @category Model
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App;
 
@@ -33,7 +45,7 @@ class ImageCategory extends Model
     /**
      * Columns to exclude from index
      * 
-     * @var type 
+     * @var array 
      */
     protected $excludedFromIndex = [];
 
@@ -58,6 +70,8 @@ class ImageCategory extends Model
     
     /**
      * Default order by
+     * 
+     * @var array
      */
     protected $defaultOrderBy = [
       'name' => 'asc'  
@@ -66,7 +80,7 @@ class ImageCategory extends Model
     /**
      * Image link
      * 
-     * @return type
+     * @return object
      */
     public function images(){
         
@@ -76,7 +90,8 @@ class ImageCategory extends Model
     /**
      * Process relationships
      * 
-     * @param type $query
+     * @param query $query@
+     * @return query
      */
     public function scopeRelationships($query){
         

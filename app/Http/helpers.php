@@ -1,15 +1,26 @@
 <?php
+/**
+ * Helpers
+ * 
+ * Basic parent controller for admin functions
+ * 
+ * @category Helper
+ * @subpackage General
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 /**
  * Search columns like fulltext do
  * 
- * @param type $query
- * @param type $word
- * @param type $fields
- * @return type
+ * @param Query $query
+ * @param string $word
+ * @param array $fields
+ * @return Query
  */
 function virtualFulltextSearchColumns($query, $word, $fields) {
-
 
     if (isset($word) && strlen($word) > 0) {
 
@@ -56,9 +67,9 @@ function virtualFulltextSearchColumns($query, $word, $fields) {
 /**
  * Order by columns based on parameters
  * 
- * @param type $query
- * @param type $orderBy
- * @return type
+ * @param Query $query
+ * @param string $orderBy
+ * @return Query
  */
 function orderByColumns($query, $orderBy) {
 
@@ -77,8 +88,8 @@ function orderByColumns($query, $orderBy) {
 /**
  * Reset or save index parameters
  * 
- * @param type $module
- * @param type $possibleParameters
+ * @param string $module
+ * @param array $possibleParameters
  * @return boolean
  */
 function resetSaveIndexParameters($module, $possibleParameters = ['search', 'orderbycolumn', 'orderbytype', 'relation']) {
@@ -148,7 +159,10 @@ function resetSaveIndexParameters($module, $possibleParameters = ['search', 'ord
 }
 
 /**
- * Format byte size
+ * Format exact bytesize
+ *  
+ * @param integer $bytes
+ * @return string
  */
 function formatByteSize($bytes) {
     if ($bytes >= 1073741824) {
@@ -171,7 +185,7 @@ function formatByteSize($bytes) {
 /**
  * Get method name from route action without namespace
  * 
- * @param type $routeAction
+ * @return string
  */
 function getRouteMethod(){
     
@@ -182,8 +196,8 @@ function getRouteMethod(){
 /**
  * Exclude columns from table
  * 
- * @param type $table
- * @param type $columns
+ * @param string $table
+ * @param array $columns
  */
 function excludeColumns($table, $columns = array()){
     return array_diff(Schema::getColumnListing($table), $columns);
@@ -192,9 +206,9 @@ function excludeColumns($table, $columns = array()){
 /**
  * Get structured name for storage
  * 
- * @param type $directory
- * @param type $id
- * @return type
+ * @param string $directory
+ * @param integer $id
+ * @return string
  */
 function getStorageFilename($directory, $id){
     
@@ -205,6 +219,8 @@ function getStorageFilename($directory, $id){
 
 /**
  * Get all Font awesome icon classes
+ * 
+ * @return array
  */
 function getFontAwesomeIcons(){
     

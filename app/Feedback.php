@@ -1,4 +1,16 @@
 <?php
+/**
+ * Feedback module model
+ * 
+ * Model for module Feedback
+ * 
+ * @category Model
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App;
 
@@ -33,7 +45,7 @@ class Feedback extends Model
     /**
      * Columns to exclude from index
      * 
-     * @var type 
+     * @var array 
      */
     protected $excludedFromIndex = ['image'];
     
@@ -59,16 +71,17 @@ class Feedback extends Model
     
     /**
      * Default order by
+     * 
+     * @var array
      */
     protected $defaultOrderBy = [
       'id' => 'desc'  
     ];
    
-    
     /**
      * Image link
      * 
-     * @return type
+     * @return object
      */
     public function images(){
         
@@ -81,7 +94,8 @@ class Feedback extends Model
     /**
      * Process relationships
      * 
-     * @param type $query
+     * @param query $query
+     * @return query
      */
     public function scopeRelationships($query){
         

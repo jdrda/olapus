@@ -1,4 +1,16 @@
 <?php
+/**
+ * Advert module model
+ * 
+ * Model for module Advert
+ * 
+ * @category Model
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App;
 
@@ -7,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Advert extends Model
 {
-     use SoftDeletes, AdminModelTrait;
+    use SoftDeletes, AdminModelTrait;
     
     /**
      * The database table used by the model.
@@ -34,7 +46,7 @@ class Advert extends Model
     /**
      * Columns to exclude from index
      * 
-     * @var type 
+     * @var array 
      */
     protected $excludedFromIndex = [];
 
@@ -60,6 +72,8 @@ class Advert extends Model
     
     /**
      * Default order by
+     *
+     * @var array
      */
     protected $defaultOrderBy = [
       'id' => 'desc'  
@@ -68,7 +82,7 @@ class Advert extends Model
     /**
      * Image link
      * 
-     * @return type
+     * @return object
      */
     public function images(){
         
@@ -81,7 +95,7 @@ class Advert extends Model
     /**
      * Advert location link
      * 
-     * @return type
+     * @return object
      */
     public function advertlocations(){
         
@@ -92,6 +106,7 @@ class Advert extends Model
      * Process relationships
      * 
      * @param type $query
+     * @return object
      */
     public function scopeRelationships($query){
         

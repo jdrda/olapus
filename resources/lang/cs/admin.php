@@ -1,15 +1,18 @@
 <?php
+/**
+ * General admin language file - Czech
+ * 
+ * Language translation for general elements in admin interface in Czech language
+ * 
+ * @category Languages
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | General Admin Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used for login page
-    |
-    */
     
     'toggle_navigation' => 'Přepnout navigaci',
     'home' => 'Domů',

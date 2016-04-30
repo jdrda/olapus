@@ -1,15 +1,18 @@
 <?php
+/**
+ * Module admin Advert location language file - English
+ * 
+ * Language translation for elements in admin module Advert location in English language
+ * 
+ * @category Languages
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Admin Images Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used for login page
-    |
-    */
     
     'name' => 'Locations',
     'description' => 'Manage locations for adverts',

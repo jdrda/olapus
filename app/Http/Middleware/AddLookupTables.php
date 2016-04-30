@@ -1,4 +1,16 @@
 <?php
+/**
+ * Add loopkup tables
+ * 
+ * Adds lookup tables in controller
+ * 
+ * @category Middleware
+ * @subpackage General
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App\Http\Middleware;
 
@@ -9,16 +21,15 @@ class AddLookupTables
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param Request $request
+     * @param Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next, $models)
     {
         /**
-         * Workaround instead of variadic function for PHP < 5.6
+         * Get lookup table data and insert into request
          */
-       
         for($a = 2; $a < func_num_args(); $a++){
             
             $model = func_get_arg($a);
@@ -27,8 +38,6 @@ class AddLookupTables
             $request->merge([$model => $modelWithNamespace::orderBy('name', 'asc')->get()]);
         }
   
-        
-        return $next($request);
-       
+        return $next($request);     
     }
 }

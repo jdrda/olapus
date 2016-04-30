@@ -1,4 +1,17 @@
 <?php
+/**
+ * User module controller
+ * 
+ * Controller for module User
+ * 
+ * @category Controller
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
+
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
@@ -10,18 +23,19 @@ class UserController extends AdminModuleController
     
     /**
      * Validation rules
+     * 
+     * @var array
      */
     protected $arValidationArray = [
         'name' => 'required|max:255',
         'email' => 'required|email|max:255|unique:users,email',
         'password' => 'required|confirmed|min:6'];
-    
 
     /**
-     * Store a newly created resource in storage.
+     * Store function override
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -54,11 +68,11 @@ class UserController extends AdminModuleController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update function override
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  integer  $id
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -106,5 +120,4 @@ class UserController extends AdminModuleController
          */
         return redirect(route($this->moduleBasicRoute . '.index'));
     }
-
 }

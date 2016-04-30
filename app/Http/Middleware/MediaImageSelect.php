@@ -1,20 +1,30 @@
 <?php
+/**
+ * Media image select
+ * 
+ * Adds images to request for selection
+ * 
+ * @category Middleware
+ * @subpackage General
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App\Http\Middleware;
 
 use Closure;
 
-/**
- * Adding media parameters
- */
 class MediaImageSelect
 {
 
     /**
-     * Handle an incoming request.
+     * Main function
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param Request $request
+     * @param Closure $next
+     * @param array $models
      * @return mixed
      */
     public function handle($request, Closure $next, $models = ['Image'])

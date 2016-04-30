@@ -1,4 +1,16 @@
 <?php
+/**
+ * Article module controller
+ * 
+ * Controller for module Article
+ * 
+ * @category Controller
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App\Http\Controllers\Admin;
 
@@ -8,7 +20,9 @@ use Illuminate\Support\Facades\Validator;
 class ArticleController extends AdminModuleController {
 
     /**
-     * Constructor
+     * Contructor
+     * 
+     * @param Request $request
      */
     public function __construct(Request $request) {
         parent::__construct();
@@ -28,6 +42,8 @@ class ArticleController extends AdminModuleController {
 
     /**
      * Validation rules
+     * 
+     * @var array
      */
     protected $arValidationArray = [
         'name' => 'required|max:255|unique:article,name',
@@ -42,6 +58,9 @@ class ArticleController extends AdminModuleController {
 
     /**
      * Associate relationships to other table
+     * 
+     * @param object $object
+     * @param Request $request
      */
     public function associateRelationships($object, Request $request) {
 
@@ -52,12 +71,17 @@ class ArticleController extends AdminModuleController {
                     'user_id' => 'required|integer|min:1|exists:users,id',
         ]);
         
-
+        /**
+         * Validator fails - save current logged in user
+         */
         if ($validator->fails()) {
 
-            $object->users()->associate(Auth::user()->id);
-            
-        } else {
+            $object->users()->associate(Auth::user()->id);   
+        } 
+        /**
+         * Validator OK - save it
+         */
+        else {
 
             $object->users()->associate($request->input('user_id'));
         }
@@ -68,31 +92,37 @@ class ArticleController extends AdminModuleController {
         $validator = Validator::make($request->all(), [
                     'image_id' => 'integer|min:1|exists:image,id',
         ]);
-
+        
+        /**
+         * Validator fails - nothing to do
+         */
         if ($validator->fails()) {
 
-            // nothing to do
-        } else {
+        } 
+        /**
+         * Validator OK - save it
+         */
+        else {
 
             $object->images()->associate($request->input('image_id'));
         }
     }
     
     /**
-     * Associate relationships to other table with ID
+     * Associate relationships to other table, where ID if object must be present
+     * 
+     * @param object $object
+     * @param Request $request
      */
     public function associateRelationshipsWithID($object, Request $request) {
         
         /**
          * Validate article category ID, if failed set to default
          */
-        
-        
         if($request->has('articlecategory_id')){
             
             $validIDs = [];
-            
-            
+
             foreach ($request->input('articlecategory_id') as $articlecategory_id) {
 
                 $arrayForValidator = ['articlecategory_id' =>  $articlecategory_id];
@@ -100,13 +130,17 @@ class ArticleController extends AdminModuleController {
                 $validator = Validator::make($arrayForValidator, [
                             'articlecategory_id' => 'required|integer|min:1|exists:articlecategory,id',
                 ]);
-
+                
+                /**
+                 * Validator fails - nothing to do
+                 */
                 if ($validator->fails()) {
 
-                    /**
-                     * Nothing to do
-                     */
-                } else {
+                } 
+                
+                /**
+                 * Validator OK - save it
+                 */ else {
 
                     $validIDs[] = $articlecategory_id;
                 }
@@ -118,6 +152,4 @@ class ArticleController extends AdminModuleController {
             $object->articlecategories()->sync($validIDs);
         }
     }
-    
-
 }

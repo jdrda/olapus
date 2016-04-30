@@ -1,4 +1,16 @@
 <?php
+/**
+ * Advert module controller
+ * 
+ * Controller for module Advert
+ * 
+ * @category Controller
+ * @subpackage Admin
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 namespace App\Http\Controllers\Admin;
 
@@ -9,6 +21,8 @@ class AdvertController extends AdminModuleController {
 
     /**
      * Constructor
+     * 
+     * @param Request $request
      */
     public function __construct(Request $request) {
         parent::__construct();
@@ -26,6 +40,8 @@ class AdvertController extends AdminModuleController {
 
     /**
      * Validation rules
+     * 
+     * @var array
      */
     protected $arValidationArray = [
         'name' => 'required|max:255|unique:article,name',
@@ -38,6 +54,9 @@ class AdvertController extends AdminModuleController {
 
     /**
      * Associate relationships to other table
+     * 
+     * @param object $object
+     * @param Request $request
      */
     public function associateRelationships($object, Request $request) {
 
@@ -47,18 +66,29 @@ class AdvertController extends AdminModuleController {
         $validator = Validator::make($request->all(), [
                     'image_id' => 'integer|min:1|exists:image,id',
         ]);
-
+        
+        /**
+         * Validator fails - nothing to do
+         */
         if ($validator->fails()) {
 
-            // nothing to do
-        } else {
+            
+        }
+        
+        /**
+         * Validator OK - save it
+         */
+        else {
 
             $object->images()->associate($request->input('image_id'));
         }
     }
     
     /**
-     * Associate relationships to other table with ID
+     * Associate relationships to other table, where ID if object must be present
+     * 
+     * @param object $object
+     * @param Request $request
      */
     public function associateRelationshipsWithID($object, Request $request) {
         
@@ -68,8 +98,7 @@ class AdvertController extends AdminModuleController {
         if($request->has('advertlocation_id')){
             
             $validIDs = [];
-            
-            
+
             foreach ($request->input('advertlocation_id') as $advertlocation_id) {
 
                 $arrayForValidator = ['advertlocation_id' =>  $advertlocation_id];
@@ -77,13 +106,18 @@ class AdvertController extends AdminModuleController {
                 $validator = Validator::make($arrayForValidator, [
                             'advertlocation_id' => 'required|integer|min:1|exists:advertlocation,id',
                 ]);
-
+                
+                /**
+                 * Validator fails - nothing to do
+                 */
                 if ($validator->fails()) {
 
-                    /**
-                     * Nothing to do
-                     */
-                } else {
+                }
+                
+                /**
+                 * Validator OK - save it
+                 */
+                else {
 
                     $validIDs[] = $advertlocation_id;
                 }
@@ -94,7 +128,5 @@ class AdvertController extends AdminModuleController {
              */
             $object->advertlocations()->sync($validIDs);
         }
-    }
-    
-
+    } 
 }

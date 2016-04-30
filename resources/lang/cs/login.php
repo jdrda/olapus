@@ -1,15 +1,18 @@
 <?php
+/**
+ * Login language file - Czech
+ * 
+ * Language translation for elements in login in Czech language
+ * 
+ * @category Languages
+ * @subpackage Frontend
+ * @package Olapus
+ * @author Jan Drda <jdrda@outlook.com>
+ * @copyright Jan Drda
+ * @license https://opensource.org/licenses/MIT MIT
+ */
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Login Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used for login page
-    |
-    */
     
     'headline' => 'Přihlašte se',
     'email' => 'E-mail',
