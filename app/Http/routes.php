@@ -175,6 +175,28 @@ Route::group(['prefix' => env('APP_ADMIN_URL', 'admin'), 'as' => 'admin.', 'midd
         ]]);
     
     /**
+     * Products and categories
+     */
+    Route::resource('productCategory', 'Admin\ProductCategoryController', ['names' => [
+        'index' => 'productCategory.index',
+        'create' => 'productCategory.create',
+        'store' => 'productCategory.store',
+        'show' => 'productCategory.show',
+        'edit' => 'productCategory.edit',
+        'update' => 'productCategory.update',
+        'destroy' => 'productCategory.destroy'
+        ]]);
+    Route::resource('product', 'Admin\ProductController', ['names' => [
+        'index' => 'product.index',
+        'create' => 'product.create',
+        'store' => 'product.store',
+        'show' => 'product.show',
+        'edit' => 'product.edit',
+        'update' => 'product.update',
+        'destroy' => 'product.destroy'
+        ]]);
+    
+    /**
      * Settings
      */
     Route::resource('settings', 'Admin\SettingsController', [
