@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "71e5e83cf2ecd77adb6f59c3bdfe360d",
-    "content-hash": "b8c82ccba18ad00a19c7e4c5b2186f93",
+    "hash": "5651a68623432b2cdfe510bba35ce433",
+    "content-hash": "a262135b53dc504400b54402c9a004d4",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -3800,16 +3800,16 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v3.0.4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "65e764f404685f2dc20c057e889b3ad04b2e2db0"
+                "reference": "e17f386efef7258ac671c24e727673abd086b0cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/65e764f404685f2dc20c057e889b3ad04b2e2db0",
-                "reference": "65e764f404685f2dc20c057e889b3ad04b2e2db0",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/e17f386efef7258ac671c24e727673abd086b0cf",
+                "reference": "e17f386efef7258ac671c24e727673abd086b0cf",
                 "shasum": ""
             },
             "require": {
@@ -3818,7 +3818,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.1-dev"
                 }
             },
             "autoload": {
@@ -3849,7 +3849,7 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:55:57"
+            "time": "2016-03-04 07:56:56"
         },
         {
             "name": "symfony/dom-crawler",
@@ -3966,7 +3966,8 @@
         "doctrine/dbal": 20,
         "laravolt/avatar": 20,
         "fzaninotto/faker": 20,
-        "mockery/mockery": 20
+        "mockery/mockery": 20,
+        "symfony/css-selector": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

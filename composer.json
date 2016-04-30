@@ -14,8 +14,7 @@
         }
     ],
     "support": {
-        "email": "support@olapus.com",
-        "irc": "irc://irc.freenode.org/composer"
+        "email": "support@olapus.com"
     },
     "require": {
         "php": ">=5.5.9",
@@ -30,7 +29,7 @@
         "fzaninotto/faker": "dev-master",
         "mockery/mockery": "dev-master",
         "phpunit/phpunit": "~4.0",
-        "symfony/css-selector": "2.8.*|3.0.*",
+        "symfony/css-selector": "dev-master",
         "symfony/dom-crawler": "2.8.*|3.0.*"
     },
     "autoload": {
