@@ -561,7 +561,7 @@ define("tinymce/tableplugin/TableGrid", [
 		}
 
 		function insertRow(before) {
-			var posY, cell, lastCell, x, rowElm, newRow, newCell, otherCell, rowSpan;
+			var posY, cell, lastCell, x, rowElm, newRow, newCell, otherCell, rowSpan, spanValue;
 
 			// Find first/last row
 			each(grid, function(row, y) {
@@ -588,13 +588,14 @@ define("tinymce/tableplugin/TableGrid", [
 				return;
 			}
 
-			for (x = 0; x < grid[0].length; x++) {
+			for (x = 0, spanValue = 0; x < grid[0].length; x += spanValue) {
 				// Cell not found could be because of an invalid table structure
 				if (!grid[posY][x]) {
 					continue;
 				}
 
 				cell = grid[posY][x].elm;
+				spanValue = getSpanVal(cell, 'colspan');
 
 				if (cell != lastCell) {
 					if (!before) {
@@ -961,13 +962,15 @@ define("tinymce/tableplugin/TableGrid", [
 				maxX = endX;
 				maxY = endY;
 
+				// This logic tried to expand the selection to always be a rectangle
 				// Expand startX
-				for (y = startY; y <= maxY; y++) {
+				/*for (y = startY; y <= maxY; y++) {
 					cell = grid[y][startX];
 
 					if (!cell.real) {
-						if (startX - (cell.colspan - 1) < startX) {
-							startX -= cell.colspan - 1;
+						newX = startX - (cell.colspan - 1);
+						if (newX < startX && newX >= 0) {
+							startX = newX;
 						}
 					}
 				}
@@ -977,11 +980,12 @@ define("tinymce/tableplugin/TableGrid", [
 					cell = grid[startY][x];
 
 					if (!cell.real) {
-						if (startY - (cell.rowspan - 1) < startY) {
-							startY -= cell.rowspan - 1;
+						newY = startY - (cell.rowspan - 1);
+						if (newY < startY && newY >= 0) {
+							startY = newY;
 						}
 					}
-				}
+				}*/
 
 				// Find max X, Y
 				for (y = startY; y <= endY; y++) {
@@ -1507,7 +1511,7 @@ define("tinymce/tableplugin/CellSelection", [
 	"tinymce/dom/TreeWalker",
 	"tinymce/util/Tools"
 ], function(TableGrid, TreeWalker, Tools) {
-	return function(editor) {
+	return function(editor, selectionChange) {
 		var dom = editor.dom, tableGrid, startCell, startTable, lastMouseOverTarget, hasCellSelection = true, resizing;
 
 		function clear(force) {
@@ -1519,6 +1523,11 @@ define("tinymce/tableplugin/CellSelection", [
 				hasCellSelection = false;
 			}
 		}
+
+		var endSelection = function () {
+			startCell = tableGrid = startTable = lastMouseOverTarget = null;
+			selectionChange(false);
+		};
 
 		function isCellInTable(table, cell) {
 			if (!table || !cell) {
@@ -1553,6 +1562,8 @@ define("tinymce/tableplugin/CellSelection", [
 				if (startCell === currentCell && !hasCellSelection) {
 					return;
 				}
+
+				selectionChange(true);
 
 				if (isCellInTable(startTable, currentCell)) {
 					e.preventDefault();
@@ -1668,13 +1679,13 @@ define("tinymce/tableplugin/CellSelection", [
 				}
 
 				editor.nodeChanged();
-				startCell = tableGrid = startTable = lastMouseOverTarget = null;
+				endSelection();
 			}
 		});
 
 		editor.on('KeyUp Drop SetContent', function(e) {
 			clear(e.type == 'setcontent');
-			startCell = tableGrid = startTable = lastMouseOverTarget = null;
+			endSelection();
 			resizing = false;
 		});
 
@@ -3424,6 +3435,8 @@ define("tinymce/tableplugin/ResizeBars", [
 				var initialTop = editor.dom.getPos(target).y;
 				editor.dom.setAttrib(target, RESIZE_BAR_ROW_DATA_INITIAL_TOP_ATTRIBUTE, initialTop);
 				setupRowDrag(target);
+			} else {
+				clearBars();
 			}
 		}
 
@@ -3851,7 +3864,11 @@ define("tinymce/tableplugin/Plugin", [
 		self.quirks = new Quirks(editor);
 
 		editor.on('Init', function() {
-			self.cellSelection = new CellSelection(editor);
+			self.cellSelection = new CellSelection(editor, function (selecting) {
+				if (selecting) {
+					resizeBars.clearBars();
+				}
+			});
 			self.resizeBars = resizeBars;
 		});
 

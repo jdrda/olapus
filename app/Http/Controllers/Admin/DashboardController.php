@@ -66,6 +66,8 @@ class DashboardController extends Controller {
      * @return Response
      */
     public function index() {
+        
+     
         /**
          * Get Google Analytics values if enabled
          */

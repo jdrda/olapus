@@ -47,7 +47,6 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "php -r \"if(file_exists('app/Http/routesCustom.php') == FALSE) copy('app/Http/routesCustom-example.php', 'app/Http/routesCustom.php');\"",
             "php artisan clear-compiled",
             "php artisan optimize"
         ],
