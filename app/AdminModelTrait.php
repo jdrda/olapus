@@ -37,7 +37,7 @@ trait AdminModelTrait {
      */
     public function scopeFulltextAllColumns($query){
   
-        return virtualFulltextSearchColumns($query, request('search'), $this->fulltextFields);
+        return Helpers::virtualFulltextSearchColumns($query, request('search'), $this->fulltextFields);
     }
     
     /**
@@ -48,7 +48,7 @@ trait AdminModelTrait {
      */
     public function scopeOrderByColumns($query){
         
-        return orderByColumns($query, $this->defaultOrderBy);
+        return Helpers::orderByColumns($query, $this->defaultOrderBy);
     }
    
     /**

@@ -8,7 +8,7 @@
     @section('copyright')
     <strong>{{ trans('admin.copyright') }} &copy; {{ date('Y') }} <a href="{{ env('VENDOR_COMPANY_NAME') }}">{{ env('VENDOR_COMPANY_NAME') }}</a>.</strong> {{ trans('admin.all_rights_reserved') }}. {{ trans('admin.developed_on') }} <a href="https://www.olapus.com?version={{ config('app.version') }}" rel="nofollow" target="_blank">Olapus</a>. 
     @if(env('APP_DEBUG') == true)
-    | <small>Used memory: {{ formatByteSize(memory_get_peak_usage()) }}</small>
+    | <small>Used memory: {{ \App\Helpers::formatByteSize(memory_get_peak_usage()) }}</small>
     @endif
     @show
   </footer>

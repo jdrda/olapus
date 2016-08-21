@@ -14,6 +14,7 @@
 
 namespace App\Http\Controllers\Media;
 
+use App\Helpers;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -74,7 +75,7 @@ class ImageController extends Controller
         /**
          * Get filename
          */
-        $filename = getStorageFilename(env('APP_IMAGE_STORAGE_DIRECTORY', 'images'), $imageMeta->id);
+        $filename = Helpers::getStorageFilename(env('APP_IMAGE_STORAGE_DIRECTORY', 'images'), $imageMeta->id);
         
         /**
          * Prepare stream

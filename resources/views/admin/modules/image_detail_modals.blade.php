@@ -48,7 +48,7 @@
                                     {{ trans('admin_module_image.detail_modal.size') }}
                                 </th>
                                 <td>
-                                    {{ formatByteSize($result->image_size) }}
+                                    {{ \App\Helpers::formatByteSize($result->image_size) }}
                                 </td>
                             </tr>
 

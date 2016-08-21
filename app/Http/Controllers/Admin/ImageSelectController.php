@@ -17,6 +17,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ImageSelectController extends AdminModuleController
 {

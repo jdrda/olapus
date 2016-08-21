@@ -14,6 +14,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Controller;
@@ -194,7 +195,7 @@ class AdminModuleController extends Controller{
         /**
          * Handle saved settings
          */
-        $redirectRoute = resetSaveIndexParameters($this->moduleBasicRoute);
+        $redirectRoute = Helpers::resetSaveIndexParameters($this->moduleBasicRoute);
         if ($redirectRoute !== FALSE) {
 
             return redirect($redirectRoute);

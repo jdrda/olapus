@@ -175,7 +175,7 @@ return [
          * Custom providers
          */
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
-        Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
+        Spatie\Analytics\AnalyticsServiceProvider::class,
         GrahamCampbell\HTMLMin\HTMLMinServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laravolt\Avatar\ServiceProvider::class
@@ -227,7 +227,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
-        'LaravelAnalytics' => Spatie\LaravelAnalytics\LaravelAnalyticsFacade::class,
+        'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
         'HTMLMin' => GrahamCampbell\HTMLMin\Facades\HTMLMin::class,
         'Avatar'    => Laravolt\Avatar\Facade::class
 

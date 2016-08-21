@@ -1,5 +1,5 @@
 {
-    "name": "Olapus",
+    "name": "olapus",
     "version": "0.2.1",
     "description": "Simple out of box solution for easy administering of any website.",
     "keywords": ["laravel", "cms"],

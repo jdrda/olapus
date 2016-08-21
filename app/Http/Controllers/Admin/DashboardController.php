@@ -18,6 +18,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
+use Spatie\Analytics;
 
 class DashboardController extends Controller {
 
@@ -98,7 +99,7 @@ class DashboardController extends Controller {
         /**
          * Get the data
          */
-        $data = \LaravelAnalytics::getVisitorsAndPageViews($days);
+        $data =  \Analytics::getVisitorsAndPageViews($days);
 
         /**
          * Calculate total
@@ -180,12 +181,12 @@ class DashboardController extends Controller {
          * Refefers
          * 
          */
-        $topReferers = \LaravelAnalytics::getTopReferrers($numberOfDays = 30, $maxResults = 10);
+        $topReferers = \Analytics::getTopReferrers($numberOfDays = 30, $maxResults = 10);
 
         /**
          * Visitors and pageviews for 30 days
          */
-        $visitorsPageviewsChart = \LaravelAnalytics::getVisitorsAndPageViews(30);
+        $visitorsPageviewsChart = \Analytics::getVisitorsAndPageViews(30);
 
         $ga = [
             'visitors_this_week' => $visitorsThisWeek,

@@ -14,6 +14,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Cache;
@@ -132,7 +133,7 @@ class ImageController extends AdminModuleController
         /**
          * Get filename
          */
-        $filename = getStorageFilename(env('APP_IMAGE_STORAGE_DIRECTORY', 'images'), $object->id);
+        $filename = Helpers::getStorageFilename(env('APP_IMAGE_STORAGE_DIRECTORY', 'images'), $object->id);
         
         /*
          * Check if requested and then save
