@@ -152,6 +152,10 @@ class AdminModuleController extends Controller{
 
             return env('ADMIN_PAGINATE', 10);
         }
+        else{
+
+            return $this->paginateRows;
+        }
     }
     
     /**
