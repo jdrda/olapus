@@ -15,7 +15,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Str;
 
 /**
  * Adding media parameters

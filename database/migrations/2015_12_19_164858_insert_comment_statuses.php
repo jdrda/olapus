@@ -12,7 +12,6 @@
  * @license https://opensource.org/licenses/MIT MIT
  */
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class InsertCommentStatuses extends Migration

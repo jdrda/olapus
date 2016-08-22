@@ -81,11 +81,7 @@ class ImageController extends Controller
          * Prepare stream
          */
         $stream = Storage::readStream($filename);
-        
-        /**
-         * Cache expiration
-         */
-        $expires = Carbon::createFromTimestamp(time()+3600)->toDateTimeString();
+
       
         /**
          * File headers
@@ -94,7 +90,6 @@ class ImageController extends Controller
             'Content-Description'       => 'File Transfer',
             'Content-Type'              => $imageMeta->image_mime_type,
             'Content-Transfer-Encoding' => 'binary',
-            //'Content-Length'            => File::size(storage_path()."/app/".$filename),
             'Pragma'                    => 'public',
             'Expires'                   => Carbon::createFromTimestamp(time()+3600)->toRfc2822String(),
             'Last-Modified'             => $imageMeta->updated_at->toRfc2822String(),
@@ -121,7 +116,7 @@ class ImageController extends Controller
         /**
          * Stream to browser
          */
-        return Response::stream(function() use ($stream, $imageMeta) {
+        return Response::stream(function() use ($stream) {
                     fpassthru($stream);
                 }, $responseCode, $headers);
     }

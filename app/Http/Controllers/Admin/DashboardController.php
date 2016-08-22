@@ -181,7 +181,7 @@ class DashboardController extends Controller {
          * Refefers
          * 
          */
-        $topReferers = \Analytics::getTopReferrers($numberOfDays = 30, $maxResults = 10);
+        $topReferers = \Analytics::getTopReferrers(30, 10);
 
         /**
          * Visitors and pageviews for 30 days

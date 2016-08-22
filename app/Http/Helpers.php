@@ -14,6 +14,11 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Schema;
+
 class Helpers
 {
 
@@ -224,7 +229,9 @@ class Helpers
 
         $numberedDirectory = implode('/', str_split($id));
 
-        return $filename = $directory . "/" . $numberedDirectory . "/" . $id . ".data";
+        $filename = $directory . "/" . $numberedDirectory . "/" . $id . ".data";
+
+        return $filename;
     }
 
     /**

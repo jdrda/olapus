@@ -280,10 +280,8 @@ class AdminModuleController extends Controller{
         /**
          * Create row
          */
-        $inputsToSave = array();
         foreach ($this->arValidationArray as $name => $value) {
 
-            //$inputsToSave[$name] = $request->input($name);
             $object->{$name} = $request->input($name);
         }
         

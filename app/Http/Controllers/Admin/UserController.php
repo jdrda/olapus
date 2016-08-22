@@ -47,14 +47,6 @@ class UserController extends AdminModuleController
         /**
          * Create row
          */
-        $inputsToSave = array();
-        foreach ($this->arValidationArray as $name => $value){
-            $inputsToSave[$name] = $request[$name];
-        }
-        
-        /**
-         * Create row
-         */
         User::create([
             'name' => $request['name'],
             'email' => $request['email'],

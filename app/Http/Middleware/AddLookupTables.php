@@ -25,12 +25,13 @@ class AddLookupTables
      * @param Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $models)
+    public function handle($request, Closure $next)
     {
         /**
          * Get lookup table data and insert into request
          */
-        for($a = 2; $a < func_num_args(); $a++){
+        $intArgs = func_num_args();
+        for($a = 2; $a < $intArgs; $a++){
             
             $model = func_get_arg($a);
             $modelWithNamespace = 'App\\'.$model;
