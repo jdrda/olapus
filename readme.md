@@ -1,4 +1,4 @@
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/48424ffb-e195-45da-852d-118f300ae6f2/big.png)](https://insight.sensiolabs.com/projects/48424ffb-e195-45da-852d-118f300ae6f2)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/48424ffb-e195-45da-852d-118f300ae6f2/big.png)](https://insight.sensiolabs.com/projects/48424ffb-e195-45da-852d-118f300ae6f2) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jdrda/olapus/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jdrda/olapus/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/jdrda/olapus/badges/build.png?b=master)](https://scrutinizer-ci.com/g/jdrda/olapus/build-status/master)
 ## Olapus - Open LAravel PUblishing System
 
 Simple Laravel app blueprint for easy administration. 
