@@ -1,6 +1,5 @@
 {
     "name": "jdrda/olapus",
-    "version": "0.2.1",
     "description": "Simple out of box solution for easy administering of any website.",
     "keywords": ["laravel", "cms"],
     "license": "MIT",
@@ -19,18 +18,18 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "greggilbert/recaptcha": "dev-master",
-        "spatie/laravel-analytics": "dev-master",
-        "graham-campbell/htmlmin": "dev-master",
-        "doctrine/dbal": "dev-master",
-        "laravolt/avatar": "dev-master"
+        "greggilbert/recaptcha": ">=2.1.1",
+        "spatie/laravel-analytics": ">=2.2.0",
+        "graham-campbell/htmlmin": ">=4.3.0",
+        "doctrine/dbal": ">=2.5.4",
+        "laravolt/avatar": ">=1.8.0"
     },
     "require-dev": {
-        "fzaninotto/faker": "dev-master",
-        "mockery/mockery": "dev-master",
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
-        "symfony/css-selector": "dev-master",
-        "symfony/dom-crawler": "dev-master"
+        "symfony/css-selector": "2.8.*|3.0.*",
+        "symfony/dom-crawler": "2.8.*|3.0.*"
     },
     "autoload": {
         "classmap": [

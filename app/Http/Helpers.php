@@ -212,7 +212,7 @@ class Helpers
      * @param string $table
      * @param array $columns
      */
-    function excludeColumns($table, $columns = array())
+    public function excludeColumns($table, $columns = array())
     {
         return array_diff(Schema::getColumnListing($table), $columns);
     }
