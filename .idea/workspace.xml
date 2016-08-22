@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7c09efe-bdf6-4007-825d-95bc4e3f3fff" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Helpers.php" afterPath="$PROJECT_DIR$/app/Http/Helpers.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
     </list>
     <ignored path="Olapus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,11 +24,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/composer.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-187">
-              <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+            <state relative-caret-position="17">
+              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bower.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bower.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -73,8 +81,8 @@
         <option value="$PROJECT_DIR$/nbproject/.gitignore" />
         <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/app/Http/Helpers.php" />
-        <option value="$PROJECT_DIR$/bower.json" />
         <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/bower.json" />
       </list>
     </option>
   </component>
@@ -253,12 +261,12 @@
       <workItem from="1470744917638" duration="16000" />
       <workItem from="1470744960148" duration="14000" />
       <workItem from="1470745000138" duration="2049000" />
-      <workItem from="1471822146403" duration="3651000" />
+      <workItem from="1471822146403" duration="4008000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6743000" />
+    <option name="totallyTimeSpent" value="7100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1374" height="736" extended-state="0" />
@@ -617,18 +625,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bower.json">
+    <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$PROJECT_DIR$/bower.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+        <state relative-caret-position="17">
+          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
           <folding />
         </state>
       </provider>
