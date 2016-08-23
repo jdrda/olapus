@@ -25,10 +25,10 @@ class Helpers
     /**
      * Search columns like fulltext do
      *
-     * @param Query $query
+     * @param \Illuminate\Database\Query $query
      * @param string $word
      * @param array $fields
-     * @return Query
+     * @return \Illuminate\Database\Query
      */
     public static function virtualFulltextSearchColumns($query, $word, $fields)
     {

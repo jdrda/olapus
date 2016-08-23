@@ -10,8 +10,6 @@
  * @author Jan Drda <jdrda@outlook.com>
  * @copyright Jan Drda
  * @license https://opensource.org/licenses/MIT MIT
- * 
- * @todo Complete controller
  */
 
 namespace App\Http\Controllers\Frontend;

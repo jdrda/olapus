@@ -57,7 +57,7 @@ class ImageController extends Controller
             /**
              * Get META information
              */
-            $imageMeta = @Image::where(['url' => $request->imageName, 'image_extension' => $request->imageExtension])->first(['image_mime_type', 'image_size', 'id', 'updated_at', 'image_etag']);
+            $imageMeta = Image::where(['url' => $request->imageName, 'image_extension' => $request->imageExtension])->first(['image_mime_type', 'image_size', 'id', 'updated_at', 'image_etag']);
             
             /**
              * File does not exist
@@ -99,8 +99,8 @@ class ImageController extends Controller
         /**
          * Response code cached
          */
-        if(@$_SERVER['HTTP_IF_NONE_MATCH'] == $imageMeta->image_etag 
-                || @$_SERVER['HTTP_IF_MODIFIED_SINCE'] == $imageMeta->updated_at->toRfc2822String()){
+        if( (isset($_SERVER['HTTP_IF_NONE_MATCH']) && $_SERVER['HTTP_IF_NONE_MATCH'] == $imageMeta->image_etag)
+                || (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && @$_SERVER['HTTP_IF_MODIFIED_SINCE'] == $imageMeta->updated_at->toRfc2822String()) ){
             
             $responseCode = 304;
         }

@@ -365,7 +365,6 @@ class AdminModuleController extends Controller{
      *
      * @param  int  $id
      * @return Response
-     * @todo Write general show function
      */
     public function show($id) {
        
@@ -421,16 +420,10 @@ class AdminModuleController extends Controller{
             
             /**
              * Binary fields will not be updated if empty
-             * 
-             * @todo Delete
+             *
              */
             if(in_array($name, $this->binaryFields)){
- 
-                /**
-                 * @todo Check this function
-                 * if($request->has($name)){
-                    $this->arValidationArray[$name] = $value . ',' . $id;
-                }**/
+
             }
             else{
                 
@@ -446,7 +439,7 @@ class AdminModuleController extends Controller{
                    /**
                     * Numeric zero ?
                     */
-                   if(@is_numeric($request->input($name)) == TRUE){
+                   if(isset($request->name) && is_numeric($request->input($name)) == TRUE){
                        
                       $arResults->$name = $request->input($name);
                    }

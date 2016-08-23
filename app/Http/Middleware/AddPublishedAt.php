@@ -21,7 +21,7 @@ class AddPublishedAt
     /**
      * Add published at for request where the field exists with NOW datetime
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      * @param Closure $next
      * @return mixed
      */

@@ -10,8 +10,7 @@
  * @author Jan Drda <jdrda@outlook.com>
  * @copyright Jan Drda
  * @license https://opensource.org/licenses/MIT MIT
- * 
- * @todo Add e-commerce dashboard
+ *
  */
 
 namespace App\Http\Controllers\Admin;
@@ -123,9 +122,13 @@ class DashboardController extends Controller {
      */
     public function getPercentDifference($lastValue, $thisValue, $round = 2) {
 
-        if ($thisValue > 0 && $lastValue > 0) {
-            return @round((($thisValue / ($lastValue / 100)) - 100), $round);
-        } else {
+        if ($thisValue > 0 && $lastValue > 0)
+        {
+            return round((($thisValue / ($lastValue / 100)) - 100), $round);
+
+        }
+        else {
+
             return 0;
         }
     }

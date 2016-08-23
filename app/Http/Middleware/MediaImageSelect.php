@@ -22,7 +22,7 @@ class MediaImageSelect
     /**
      * Main function
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      * @param Closure $next
      * @param array $models
      * @return mixed

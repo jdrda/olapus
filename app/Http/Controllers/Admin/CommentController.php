@@ -66,8 +66,7 @@ class CommentController extends AdminModuleController {
 
         /**
          * Validator fails - try to set the valid comment id
-         * 
-         * @todo Solve this another way
+         *
          */
         if ($validator->fails()) {
             

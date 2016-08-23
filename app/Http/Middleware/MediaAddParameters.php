@@ -24,7 +24,7 @@ class MediaAddParameters {
     /**
      * Main function
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      * @param Closure $next
      * @return mixed
      */
@@ -55,18 +55,7 @@ class MediaAddParameters {
                             $name . '_height' => $height,
                 ]);
 
-                /**
-                 * Save to DB or storage?
-                 * 
-                 * @todo Decide if delete
-                 */
-                /* if(env('APP_IMAGE_LOCATION', 'storage') == 'database'){
-                  $request->merge(
-                  [
-                  $name => file_get_contents($request->file($name)->getRealPath())
-                  ]);
-                  }
-                  else{ */
+
                 $request->merge(
                         [
                             $name => $request->file($name)->getRealPath()

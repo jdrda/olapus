@@ -16,6 +16,7 @@ namespace App;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Database\Query;
 
 trait AdminModelTrait {
     
@@ -31,9 +32,9 @@ trait AdminModelTrait {
     
     /**
      * Scope for fulltext search
-     * 
-     * @param query $query
-     * @return query
+     *
+     * @param \Illuminate\Database\Query $query
+     * @return \Illuminate\Database\Query
      */
     public function scopeFulltextAllColumns($query){
   
@@ -43,8 +44,8 @@ trait AdminModelTrait {
     /**
      * Order by
      * 
-     * @param query $query
-     * @return query
+     * @param \Illuminate\Database\Query $query
+     * @return \Illuminate\Database\Query
      */
     public function scopeOrderByColumns($query){
         
@@ -54,8 +55,8 @@ trait AdminModelTrait {
     /**
      * Exclude columns
      * 
-     * @param query $query
-     * @return query
+     * @param \Illuminate\Database\Query $query
+     * @return \Illuminate\Database\Query
      */
     public function scopeExcludeFromIndex($query) 
     {
@@ -65,8 +66,8 @@ trait AdminModelTrait {
     /**
      * Exclude from find
      * 
-     * @param query $query
-     * @return query
+     * @param \Illuminate\Database\Query $query
+     * @return \Illuminate\Database\Query
      */
     public function scopeExcludeFromFind($query) 
     {
@@ -81,8 +82,8 @@ trait AdminModelTrait {
     /**
      * Process relationships
      * 
-     * @param type $query
-     * @return query
+     * @param \Illuminate\Database\Query $query
+     * @return \Illuminate\Database\Query
      */
     public function scopeRelationships($query){
         
@@ -92,8 +93,8 @@ trait AdminModelTrait {
     /**
      * External table filter
      * 
-     * @param query $query
-     * @return query
+     * @param \Illuminate\Database\Query $query
+     * @return \Illuminate\Database\Query
      */
     public function scopeExternalTablesFilter($query){
         

@@ -10,8 +10,7 @@
  * @author Jan Drda <jdrda@outlook.com>
  * @copyright Jan Drda
  * @license https://opensource.org/licenses/MIT MIT
- * 
- * @todo Decide if delete
+ *
  */
 
 namespace App\Http\Controllers\Admin;

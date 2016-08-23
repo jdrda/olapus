@@ -1,0 +1,10 @@
+{
+  "sourcemaps": false,
+  "css": {
+    "cssnano": {
+      "pluginOptions": {
+        "removeAll": true
+      }
+    }
+  }
+}
