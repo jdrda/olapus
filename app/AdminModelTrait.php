@@ -16,6 +16,7 @@ namespace App;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 trait AdminModelTrait {
     
@@ -34,7 +35,7 @@ trait AdminModelTrait {
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeFulltextAllColumns($query){
+    public function scopeFulltextAllColumns(Builder $query){
   
         return Helpers::virtualFulltextSearchColumns($query, request('search'), $this->fulltextFields);
     }
@@ -44,7 +45,7 @@ trait AdminModelTrait {
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeOrderByColumns($query){
+    public function scopeOrderByColumns(Builder $query){
         
         return Helpers::orderByColumns($query, $this->defaultOrderBy);
     }
@@ -54,7 +55,7 @@ trait AdminModelTrait {
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeExcludeFromIndex($query) 
+    public function scopeExcludeFromIndex(Builder $query)
     {
         return $query->select( array_diff(Schema::getColumnListing($this->table), $this->excludedFromIndex) );
     }
@@ -64,7 +65,7 @@ trait AdminModelTrait {
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeExcludeFromFind($query) 
+    public function scopeExcludeFromFind(Builder $query)
     {
         if(isset($this->excludedFromFind) == TRUE && is_array($this->excludedFromFind) == TRUE){
             return $query->select( array_diff(Schema::getColumnListing($this->table), $this->excludedFromFind) );
@@ -79,7 +80,7 @@ trait AdminModelTrait {
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeRelationships($query){
+    public function scopeRelationships(Builder $query){
         
         return $query;
     }
@@ -89,7 +90,7 @@ trait AdminModelTrait {
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeExternalTablesFilter($query){
+    public function scopeExternalTablesFilter(Builder $query){
         
         if(Request::input('relation')){
             
