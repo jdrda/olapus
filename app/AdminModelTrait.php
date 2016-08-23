@@ -32,8 +32,7 @@ trait AdminModelTrait {
     /**
      * Scope for fulltext search
      *
-     * @param \Illuminate\Database\Query $query
-     * @return \Illuminate\Database\Query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeFulltextAllColumns($query){
   
@@ -42,9 +41,8 @@ trait AdminModelTrait {
     
     /**
      * Order by
-     * 
-     * @param \Illuminate\Database\Query $query
-     * @return \Illuminate\Database\Query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeOrderByColumns($query){
         
@@ -53,9 +51,8 @@ trait AdminModelTrait {
    
     /**
      * Exclude columns
-     * 
-     * @param \Illuminate\Database\Query $query
-     * @return \Illuminate\Database\Query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeExcludeFromIndex($query) 
     {
@@ -64,9 +61,8 @@ trait AdminModelTrait {
     
     /**
      * Exclude from find
-     * 
-     * @param \Illuminate\Database\Query $query
-     * @return \Illuminate\Database\Query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeExcludeFromFind($query) 
     {
@@ -80,9 +76,8 @@ trait AdminModelTrait {
     
     /**
      * Process relationships
-     * 
-     * @param \Illuminate\Database\Query $query
-     * @return \Illuminate\Database\Query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeRelationships($query){
         
@@ -91,9 +86,8 @@ trait AdminModelTrait {
     
     /**
      * External table filter
-     * 
-     * @param \Illuminate\Database\Query $query
-     * @return \Illuminate\Database\Query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeExternalTablesFilter($query){
         
