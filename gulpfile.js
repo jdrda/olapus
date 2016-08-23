@@ -135,8 +135,16 @@ elixir(function (mix) {
      * Tiny MCE
      */
     mix
-            .copy("bower_components/tinymce", "public/js/admin/tinymce")
+            .copy("bower_components/tinymce/langs", "public/js/admin/tinymce/langs")
+            .copy("bower_components/tinymce/plugins", "public/js/admin/tinymce/plugins")
+            .copy("bower_components/tinymce/skins", "public/js/admin/tinymce/skins")
+            .copy("bower_components/tinymce/themes", "public/js/admin/tinymce/themes")
             .copy("bower_components/solire.tinymce-i18n/langs", "public/js/admin/tinymce/langs")
+            .copy("bower_components/tinymce/*.js", "resources/assets/js/admin/tinymce")
+            .scripts("admin/tinymce/jquery.tinymce.js", "public/js/admin/tinymce/jquery.tinymce.min.js")
+            .scripts("admin/tinymce/tinymce.jquery.js", "public/js/admin/tinymce/tinymce.jquery.min.js")
+            .scripts("admin/tinymce/tinymce.js", "public/js/admin/tinymce/tinymce.min.js")
+
 
     /**
      * iCheck
