@@ -136,9 +136,9 @@ elixir(function (mix) {
      */
     mix
             .copy("bower_components/tinymce/langs", "public/js/admin/tinymce/langs")
-            .copy("bower_components/tinymce/plugins", "public/js/admin/tinymce/plugins")
+            .copy("bower_components/tinymce/plugins/**/*.min.js", "public/js/admin/tinymce/plugins")
             .copy("bower_components/tinymce/skins", "public/js/admin/tinymce/skins")
-            .copy("bower_components/tinymce/themes", "public/js/admin/tinymce/themes")
+            .copy("bower_components/tinymce/themes/**/*.min.js", "public/js/admin/tinymce/themes")
             .copy("bower_components/solire.tinymce-i18n/langs", "public/js/admin/tinymce/langs")
             .copy("bower_components/tinymce/*.js", "resources/assets/js/admin/tinymce")
             .scripts("admin/tinymce/jquery.tinymce.js", "public/js/admin/tinymce/jquery.tinymce.min.js")
