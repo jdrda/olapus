@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Eloquent\Builder;
 
 class Helpers
 {
@@ -25,12 +26,12 @@ class Helpers
     /**
      * Search columns like fulltext do
      *
-     * @param \Illuminate\Database\Query $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $word
      * @param array $fields
-     * @return \Illuminate\Database\Query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public static function virtualFulltextSearchColumns($query, $word, $fields)
+    public static function virtualFulltextSearchColumns(Builder $query, $word, $fields)
     {
 
         if (isset($word) && strlen($word) > 0) {
@@ -78,11 +79,11 @@ class Helpers
     /**
      * Order by columns based on parameters
      *
-     * @param Query $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string $orderBy
-     * @return Query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public static function orderByColumns($query, $orderBy)
+    public static function orderByColumns(Builder $query, $orderBy)
     {
 
         if (Request::has('orderbycolumn') == TRUE && Request::has('orderbytype') == TRUE) {

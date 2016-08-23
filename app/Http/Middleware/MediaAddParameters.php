@@ -15,6 +15,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 
 /**
  * Adding media parameters
@@ -28,7 +29,7 @@ class MediaAddParameters {
      * @param Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next) {
+    public function handle(Request $request, Closure $next) {
         foreach ($request->file() as $name => $value) {
 
             /**

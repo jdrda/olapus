@@ -18,6 +18,7 @@ use App\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Builder;
 
 class AdminModuleController extends Controller{
 
@@ -209,7 +210,7 @@ class AdminModuleController extends Controller{
          * Get the rows
          */
         $modelClass = $this->modelClass;
-        $arResults = $modelClass::where(function($query) {
+        $arResults = $modelClass::where(function(Builder $query) {
                     $query->fulltextAllColumns();
                 })->relationships()->orderByColumns()->excludeFromIndex()
                         ->externalTablesFilter()->paginate($this->getRowsToPaginate());

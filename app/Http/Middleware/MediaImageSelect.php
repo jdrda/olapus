@@ -15,6 +15,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 
 class MediaImageSelect
 {
@@ -27,7 +28,7 @@ class MediaImageSelect
      * @param array $models
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         $intArgs = func_num_args();
         for($a = 2; $a < $intArgs; $a++){
