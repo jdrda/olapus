@@ -100,7 +100,7 @@ class ImageController extends Controller
          * Response code cached
          */
         if( (isset($_SERVER['HTTP_IF_NONE_MATCH']) && $_SERVER['HTTP_IF_NONE_MATCH'] == $imageMeta->image_etag)
-                || (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && @$_SERVER['HTTP_IF_MODIFIED_SINCE'] == $imageMeta->updated_at->toRfc2822String()) ){
+                || (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && $_SERVER['HTTP_IF_MODIFIED_SINCE'] == $imageMeta->updated_at->toRfc2822String()) ){
             
             $responseCode = 304;
         }

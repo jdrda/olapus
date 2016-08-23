@@ -16,7 +16,6 @@ namespace App;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Database\Query;
 
 trait AdminModelTrait {
     
