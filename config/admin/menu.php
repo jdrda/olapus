@@ -216,28 +216,28 @@ return [
     /**
      * Group E-commerce
      */
-    'ecommerce' => [
+    /*'ecommerce' => [
         'name'  => 'admin.menu_group_ecommerce',
         'class' => 'menu-class-ecommerce',
         'route' => null,
         'icon'  => 'fa fa-shopping-cart',
-        'items' => [
+        'items' => [*/
             
             
             /**
              * Product categories
              */
-            'productCategory' => [
+            /*'productCategory' => [
                 'name'  => 'admin_module_productcategory.name',
                 'class' => 'menu-class-productcategory',
                 'route' => 'admin.productCategory.index',
                 'icon'  => 'fa fa-cubes',
-            ],
+            ],*/
             
             /**
              * Products
              */
-            'product' => [
+            /*'product' => [
                 'name'  => 'admin_module_product.name',
                 'class' => 'menu-class-product',
                 'route' => 'admin.product.index',
@@ -245,7 +245,7 @@ return [
             ],
             
         ],
-    ],
+    ],*/
     /**
      * /Group E-commerce
      */

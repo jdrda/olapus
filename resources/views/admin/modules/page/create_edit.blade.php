@@ -59,7 +59,7 @@
                                 <input type="text" name="name" id="name" class="form-control" value="{{ $results->name or old('name') }}" required>
                                 <span class="fa fa-key form-control-feedback"></span>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for='pagecategory_id[]'>{{ trans($moduleNameBlade . '.fields.pagecategory') }} * </label>
                                 <select name="pagecategory_id[]" class='form-control' multiple="multiple" id='pagecategories'>                      
@@ -76,17 +76,17 @@
                                 <input type="text" name="author_name" id="name" class="form-control" value="{{ $results->author_name or old('author_name') }}">
                                 <span class="fa fa-user form-control-feedback"></span>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for='color'>{{ trans($moduleNameBlade . '.fields.author') }} * </label>
-                                <select name="user_id" class='form-control select2'>                      
-                                    @foreach (request('User') as $user) 
-                                    <option value="{{ $user->id }}" @if(isset($results) == TRUE and $results->user_id == $user->id)selected @endif>{{ $user->name }}</option>                                 
+                                <select name="user_id" class='form-control select2'>
+                                    @foreach (request('User') as $user)
+                                    <option value="{{ $user->id }}" @if(isset($results) == TRUE and $results->user_id == $user->id)selected @endif>{{ $user->name }}</option>
                                     @endforeach
-                                </select> 
+                                </select>
                             </div>
 
-                         
+
 
                             <!-- /Form -->
                         </div>

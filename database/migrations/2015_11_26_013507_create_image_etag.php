@@ -13,7 +13,7 @@
  */
 
 use Illuminate\Database\Migrations\Migration;
-use Closure;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateImageEtag extends Migration
 {
@@ -24,7 +24,7 @@ class CreateImageEtag extends Migration
      */
     public function up()
     {
-        Schema::table('image', function (Closure $table) {
+        Schema::table('image', function (Blueprint $table) {
             $table->string('image_etag')->nullable()->index();
         });
     }
@@ -36,7 +36,7 @@ class CreateImageEtag extends Migration
      */
     public function down()
     {
-        Schema::table('image', function (Closure $table) {
+        Schema::table('image', function (Blueprint $table) {
             $table->dropColumn('image_etag');
         });
     }

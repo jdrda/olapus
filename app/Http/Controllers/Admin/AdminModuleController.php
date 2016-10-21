@@ -16,9 +16,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Transaction;
+use App\User;
 
 class AdminModuleController extends Controller{
 
@@ -77,6 +82,13 @@ class AdminModuleController extends Controller{
     * @var array 
     */
     protected $binaryFields = array();
+
+    /**
+     * Binary fields to exclude from update
+     *
+     * @var array
+     */
+    protected $dateTimeLocalFields = array();
     
     /**
      * Custom view
@@ -89,6 +101,12 @@ class AdminModuleController extends Controller{
      * Constructor
      */
     public function __construct() {
+
+        /**
+         * Check if user is active
+         */
+       /* print_r(Auth::user());
+        die;*/
 
         /**
          * Pagination handle
@@ -120,6 +138,7 @@ class AdminModuleController extends Controller{
          */
         View::share('moduleBasicRoute', $this->moduleBasicRoute);
         View::share('moduleBasicTemplatePath', $this->moduleBasicTemplatePath);
+        View::share('moduleName', $this->moduleName);
 
         /**
          * Module name for blade
@@ -127,6 +146,37 @@ class AdminModuleController extends Controller{
         $temp = explode('.', $this->moduleBasicRoute);
         View::share('moduleNameBlade', strtolower($temp[0] . "_module_" . $temp[1]));
 
+    }
+
+    /**
+     * Save transaction
+     *
+     * @param int $typeId
+     * @param string $text
+     * @param $userId
+     * @param $amount
+     */
+    protected function _saveTransation($status_id = 1, $user_id, $amount,
+                                       $campaign_id = null, $payment_id = null, $recommendation_id = null){
+
+        /**
+         * Save transaction
+         */
+        $transaction = new Transaction();
+        $transaction->transactionstatus_id = $status_id;
+        $transaction->user_id = $user_id;
+        $transaction->amount = $amount;
+        $transaction->campaign_id = $campaign_id;
+        $transaction->payment_id = $payment_id;
+        $transaction->recommendation_id = $recommendation_id;
+        $transaction->save();
+
+        /**
+         * Update user wallet
+         */
+        $user = User::find($user_id);
+        $user->wallet = $user->wallet + $amount;
+        $user->save();
     }
     
     /**
@@ -189,6 +239,16 @@ class AdminModuleController extends Controller{
     }
 
     /**
+     * Change ar result if necessary
+     *
+     * @param $arResult
+     * @return mixed
+     */
+    public function changeEditResultField($arResult){
+        return $arResult;
+    }
+
+    /**
      * Display a listing of the resource
      * 
      * @param Request $request
@@ -223,12 +283,13 @@ class AdminModuleController extends Controller{
         }
         else{
             $view = $this->customView;
-        } 
-        
+        }
+
+
         /**
          * Return page
          */
-        return view($view, array_merge(['results' => $arResults]));
+        return view($view, ['results' => $arResults]);
     }
 
     /**
@@ -287,9 +348,29 @@ class AdminModuleController extends Controller{
          */
         foreach ($this->arValidationArray as $name => $value) {
 
-            $object->{$name} = $request->input($name);
+            /**
+             * Datetime
+             */
+            if(in_array($name, $this->dateTimeLocalFields)){
+
+                $object->{$name} = str_replace('T', ' ', $request->input($name)). ':00';
+            }
+            else {
+
+                /**
+                 * Change to null if needed
+                 */
+                if(strlen($request->$name) < 1){
+                    $object->{$name} = null;
+                }
+                else {
+                    $object->{$name} = $request->input($name);
+                }
+            }
+
+
         }
-        
+
         /**
          * Associate relationships
          */
@@ -354,6 +435,8 @@ class AdminModuleController extends Controller{
         else{
             $view = $this->customView;
         }
+
+        $arResults = $this->changeEditResultField($arResults);
     
         /**
          * Return page
@@ -379,7 +462,9 @@ class AdminModuleController extends Controller{
      * @return Response
      */
     public function update(Request $request, $id) {
-        
+
+
+
         /**
          * Change the validation array
          */
@@ -432,7 +517,17 @@ class AdminModuleController extends Controller{
                 * Empty exception
                 */
                if (empty($request->input($name)) == FALSE) {
-                   $arResults->$name = $request->input($name);
+
+                   /**
+                    * Datetime
+                    */
+                   if(in_array($name, $this->dateTimeLocalFields)){
+
+                       $arResults->$name = str_replace('T', ' ', $request->input($name)). ':00';
+                   }
+                   else {
+                       $arResults->$name = $request->input($name);
+                   }
                }
                
                else{
@@ -498,6 +593,7 @@ class AdminModuleController extends Controller{
      * @param  int  $id
      * @return Response
      */
+
     public function destroy($id) {
         /**
          * Delete the setting

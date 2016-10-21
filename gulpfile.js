@@ -153,7 +153,14 @@ elixir(function (mix) {
      */
     mix
             .copy("bower_components/iCheck/skins", "public/css/admin/iCheck/skins")
-            .copy("bower_components/iCheck/icheck.js", "resources/assets/js/admin")
+            .copy("bower_components/iCheck/iCheck.js", "resources/assets/js/admin")
+
+    /**
+     * ie10 viewport bug workaround
+     */
+    mix
+        .copy("bower_components/ie10-viewport-bug-workaround/dist/ie10-viewport-bug-workaround.css", "resources/assets/css/admin")
+        .copy("bower_components/ie10-viewport-bug-workaround/dist/ie10-viewport-bug-workaround.js", "resources/assets/js/admin")
 
     /**
      * Admin main styles and scripts
@@ -166,6 +173,7 @@ elixir(function (mix) {
                 'admin/select2.css',
                 'admin/AdminLTE.css',
                 'admin/skins/_all-skins.css',
+                'admin/ie10-viewport-bug-workaround.css',
                 'admin/olapus.css',
             ], 'public/css/admin.css')
             .scripts([
@@ -176,8 +184,9 @@ elixir(function (mix) {
                 'admin/speakingurl.js',
                 'admin/squarethis.js',
                 'admin/select2.full.js',
-                'admin/icheck.js',
-                'admin/jquery.lazyload.js', 
+                'admin/iCheck.js',
+                'admin/jquery.lazyload.js',
+                'admin/ie10-viewport-bug-workaround.js',
                 'admin/app.js',
             ], 'public/js/admin.js')
 

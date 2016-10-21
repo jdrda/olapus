@@ -16,6 +16,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Spatie\Analytics;
 
@@ -58,6 +59,8 @@ class DashboardController extends Controller {
          */
         $temp = explode('.', $this->moduleBasicRoute);
         View::share('moduleNameBlade', $temp[0] . "_module_" . $temp[1]);
+
+
     }
 
     /**
@@ -66,7 +69,6 @@ class DashboardController extends Controller {
      * @return Response
      */
     public function index() {
-        
      
         /**
          * Get Google Analytics values if enabled

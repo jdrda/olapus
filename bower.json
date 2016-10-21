@@ -1,5 +1,5 @@
 {
-  "name": "jan-drda/olapus",
+  "name": "jandrda/olapus",
   "description": "Simple out of box solution for easy administering of any website.",
   "keywords": [
     "laravel",
@@ -40,6 +40,9 @@
     "iCheck": "latest",
     "jquery_lazyload" : "latest",
     "jQuery-slimScroll": "https://github.com/rochal/jQuery-slimScroll.git",
-    "fastclick" : "latest"
+    "fastclick" : "latest",
+    "hover": "latest",
+    "animate.css": "latest",
+    "ie10-viewport-bug-workaround": "latest"
   }
 }
