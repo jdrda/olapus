@@ -74,10 +74,10 @@ elixir(function (mix) {
      * Admin LTE
      */
     mix
-            .copy("bower_components/AdminLTE/dist/css/AdminLTE.css", "resources/assets/css/admin")
-            .copy("bower_components/AdminLTE/dist/css/skins/_all-skins.css", "resources/assets/css/admin/skins")
-            .copy("bower_components/AdminLTE/dist/img", "public/build/img")
-            .copy("bower_components/AdminLTE/dist/js/app.js", "resources/assets/js/admin");
+            .copy("bower_components/Adminlte/dist/css/AdminLTE.css", "resources/assets/css/admin")
+            .copy("bower_components/Adminlte/dist/css/skins/_all-skins.css", "resources/assets/css/admin/skins")
+            .copy("bower_components/Adminlte/dist/img", "public/build/img")
+            .copy("bower_components/Adminlte/dist/js/app.js", "resources/assets/js/admin");
 
     /**
      * HTML5 Shiv
@@ -153,7 +153,7 @@ elixir(function (mix) {
      */
     mix
             .copy("bower_components/iCheck/skins", "public/css/admin/iCheck/skins")
-            .copy("bower_components/iCheck/iCheck.js", "resources/assets/js/admin")
+            .copy("bower_components/iCheck/icheck.js", "resources/assets/js/admin")
 
     /**
      * ie10 viewport bug workaround
@@ -184,7 +184,7 @@ elixir(function (mix) {
                 'admin/speakingurl.js',
                 'admin/squarethis.js',
                 'admin/select2.full.js',
-                'admin/iCheck.js',
+                'admin/icheck.js',
                 'admin/jquery.lazyload.js',
                 'admin/ie10-viewport-bug-workaround.js',
                 'admin/app.js',
