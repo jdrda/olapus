@@ -35,7 +35,7 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-    'version' => '0.3.1',
+    'version' => '0.4.1',
 
     /*
     |--------------------------------------------------------------------------
