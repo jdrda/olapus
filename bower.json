@@ -26,6 +26,7 @@
   "dependencies": {
     "adminlte" : "latest",
     "jquery": "latest",
+    "jquery-migrate": "latest",
     "bootstrap": "latest",
     "html5shiv": "latest",
     "respond": "latest",

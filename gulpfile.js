@@ -29,6 +29,13 @@ elixir(function (mix) {
                     "resources/assets/js/admin");
 
     /**
+     * jQuery
+     */
+    mix
+        .copy("bower_components/jquery-migrate/jquery-migrate.js",
+            "resources/assets/js/admin");
+
+    /**
      * Bootstrap
      */
     mix
@@ -178,6 +185,7 @@ elixir(function (mix) {
             ], 'public/css/admin.css')
             .scripts([
                 'admin/jquery.js',
+                'admin/jquery-migrate.js',
                 'admin/bootstrap.js',
                 'admin/jquery.slimscroll.js',
                 'admin/fastclick.js',

@@ -14,7 +14,7 @@
                 </div>
                 <div class='modal-footer'>
                     <button type='button' class='btn btn-outline pull-left' data-dismiss='modal'>{{ trans('admin.close') }}</button>
-                    <form action="{{ route(str_replace(["/", env('APP_ADMIN_URL', 0)], [".", 'admin'], Route::getCurrentRoute()->getPath()).".destroy", $result->id) }}" method="post" role="form" class="form">
+                    <form action="{{ route(str_replace(["/", env('APP_ADMIN_URL', 0)], [".", 'admin'], Route::getCurrentRoute()->uri()).".destroy", $result->id) }}" method="post" role="form" class="form">
                         <input type="hidden" name="_method" value="delete">
                         {!! csrf_field() !!}
                         <button type='submit' class='btn btn-outline'>{{ trans('admin.delete') }}</button>

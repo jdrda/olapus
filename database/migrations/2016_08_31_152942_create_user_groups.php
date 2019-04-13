@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMenu extends Migration
+class CreateUserGroups extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +12,9 @@ class CreateMenu extends Migration
      */
     public function up()
     {
-        Schema::create('menu', function(Blueprint $table)
-        {
+        Schema::create('usergroup', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->index();
-            $table->boolean('active')->index()->default(true);
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +27,6 @@ class CreateMenu extends Migration
      */
     public function down()
     {
-        Schema::drop('menu');
+        Schema::drop('usergroup');
     }
 }

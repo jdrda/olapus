@@ -35,7 +35,7 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-    'version' => '0.2.1',
+    'version' => '0.3.1',
 
     /*
     |--------------------------------------------------------------------------
@@ -187,9 +187,10 @@ return [
         /**
          * Custom providers
          */
+	    //Laravel\Tinker\TinkerServiceProvider::class,
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
         Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
-        GrahamCampbell\HTMLMin\HTMLMinServiceProvider::class,
+        //GrahamCampbell\HTMLMin\HTMLMinServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laravolt\Avatar\ServiceProvider::class
 
@@ -243,7 +244,7 @@ return [
         
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
         'Analytics' => Spatie\LaravelAnalytics\LaravelAnalyticsFacade::class,
-        'HTMLMin' => GrahamCampbell\HTMLMin\Facades\HTMLMin::class,
+        //'HTMLMin' => GrahamCampbell\HTMLMin\Facades\HTMLMin::class,
         'Avatar'    => Laravolt\Avatar\Facade::class
 
     ],
