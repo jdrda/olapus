@@ -62,22 +62,22 @@
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }} *</label>
-                                <input type="text" name="name" id="name" class="form-control" value="{{ $results->name or old('name') }}" required>
+                                <input type="text" name="name" id="name" class="form-control" value="{{ $results->name ?? old('name') }}" required>
                                 <span class="fa fa-key form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='alt'>{{ trans($moduleNameBlade . '.fields.alt') }}</label>
-                                <input type="text" name="alt" class="form-control" value="{{ $results->alt or old('alt') }}">
+                                <input type="text" name="alt" class="form-control" value="{{ $results->alt ?? old('alt') }}">
                                 <span class="fa fa-code form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='value'>{{ trans($moduleNameBlade . '.fields.url') }}</label>
-                                <input type="text" name="url" id='url' class="form-control" value="{{ $results->url or old('url') }}">
+                                <input type="text" name="url" id='url' class="form-control" value="{{ $results->url ?? old('url') }}">
                                 <span class="fa fa-anchor form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='description'>{{ trans($moduleNameBlade . '.fields.description') }}</label>
-                                <input type="text" name="description" class="form-control" value="{{ $results->description or old('description') }}">
+                                <input type="text" name="description" class="form-control" value="{{ $results->description ?? old('description') }}">
                                 <span class="fa fa-align-left form-control-feedback"></span>
                             </div>
                             <div class="form-group">

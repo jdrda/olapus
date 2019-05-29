@@ -57,13 +57,13 @@
                             <div class="col-xs-12 col-sm-6">    
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }} *</label>
-                                <input type="text" name="name" id="name" class="form-control" value="{{ $results->name or old('name') }}" required>
+                                <input type="text" name="name" id="name" class="form-control" value="{{ $results->name ?? old('name') }}" required>
                                 <span class="fa fa-key form-control-feedback"></span>
                             </div>
                             
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans($moduleNameBlade . '.fields.caption') }}</label>
-                                <input type="text" name="caption" id="name" class="form-control" value="{{ $results->caption or old('caption') }}">
+                                <input type="text" name="caption" id="name" class="form-control" value="{{ $results->caption ?? old('caption') }}">
                                 <span class="fa fa-header form-control-feedback"></span>
                             </div>
                             
@@ -85,13 +85,13 @@
                             
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans($moduleNameBlade . '.fields.link_url') }}</label>
-                                <input type="text" name="link_url" id="name" class="form-control" value="{{ $results->link_url or old('link_url') }}">
+                                <input type="text" name="link_url" id="name" class="form-control" value="{{ $results->link_url ?? old('link_url') }}">
                                 <span class="fa fa-link form-control-feedback"></span>
                             </div>
                             
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans($moduleNameBlade . '.fields.link_title') }}</label>
-                                <input type="text" name="link_title" id="name" class="form-control" value="{{ $results->link_title or old('link_title') }}">
+                                <input type="text" name="link_title" id="name" class="form-control" value="{{ $results->link_title ?? old('link_title') }}">
                                 <span class="fa fa-external-link form-control-feedback"></span>
                             </div>
                             
@@ -109,8 +109,8 @@
                                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#imageDetailModal"><span class='fa fa-hand-pointer-o'></span> {{ trans('admin.show') }}</button>
                                     </div>
                                     @endif
-                                    <input type="text" name="image_name" id="image_name" class="form-control" readonly placeholder="No image selected" value='{{ $results->images->name or '' }}'>
-                                    <input type="hidden" name="image_id" id="image_id" value='{{ $results->images->id or '' }}'>
+                                    <input type="text" name="image_name" id="image_name" class="form-control" readonly placeholder="No image selected" value='{{ $results->images->name ?? '' }}'>
+                                    <input type="hidden" name="image_id" id="image_id" value='{{ $results->images->id ?? '' }}'>
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#imageSelectModal"><span class="fa fa-th-large"></span> Select image</button>
                                     </div>
@@ -128,7 +128,7 @@
                                 <div class="col-xs-12">
                                     <div class="form-group has-feedback">
                                 <label for='color'>{{ trans($moduleNameBlade . '.fields.text') }}</label>
-                                <textarea name='text' class='form-control html' rows="10">{!! $results->text or '' !!}</textarea>
+                                <textarea name='text' class='form-control html' rows="10">{!! $results->text ?? '' !!}</textarea>
                                 <span class="fa fa-align-left form-control-feedback"></span>
                             </div>
                                 </div>

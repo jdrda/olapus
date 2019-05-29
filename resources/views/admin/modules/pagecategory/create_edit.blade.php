@@ -53,17 +53,17 @@
                             @endif
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }} *</label>
-                                <input type="text" name="name" class="form-control" value="{{ $results->name or old('name') }}" required>
+                                <input type="text" name="name" class="form-control" value="{{ $results->name ?? old('name') }}" required>
                                 <span class="fa fa-key form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='description'>{{ trans($moduleNameBlade . '.fields.description') }}</label>
-                                <input type="text" name="description" class="form-control"value="{{ $results->description or old('description') }}">
+                                <input type="text" name="description" class="form-control"value="{{ $results->description ?? old('description') }}">
                                 <span class="fa fa-align-left form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='class'>{{ trans($moduleNameBlade . '.fields.class') }}</label>
-                                <input type="text" name="class" class="form-control"value="{{ $results->class or old('class') }}">
+                                <input type="text" name="class" class="form-control"value="{{ $results->class ?? old('class') }}">
                                 <span class="fa fa-html5 form-control-feedback"></span>
                             </div>
                             

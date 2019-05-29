@@ -58,7 +58,7 @@
 
                             <div class="form-group has-feedback">
                                 <label for='color'>{{ trans($moduleNameBlade . '.fields.text') }}</label>
-                                <textarea name='text' class='form-control html' rows="23">{!! $results->text or '' !!}</textarea>
+                                <textarea name='text' class='form-control html' rows="23">{!! $results->text ?? '' !!}</textarea>
                                 <span class="fa fa-align-left form-control-feedback"></span>
                             </div>
                     </div>
@@ -68,32 +68,32 @@
 
                         <div class="form-group has-feedback">
                             <label for='page'>{{ trans($moduleNameBlade . '.fields.page') }}</label>
-                            <input type="text" name="page" class="form-control" value="{{ $results->pages->name or '-' }}" disabled>
+                            <input type="text" name="page" class="form-control" value="{{ $results->pages->name ?? '-' }}" disabled>
                             <span class="fa fa-sticky-note-o form-control-feedback"></span>
                         </div>
                         <div class="form-group has-feedback">
                             <label for='article'>{{ trans($moduleNameBlade . '.fields.article') }}</label>
-                            <input type="text" name="article" class="form-control" value="{{ $results->articles->name or '-' }}" disabled>
+                            <input type="text" name="article" class="form-control" value="{{ $results->articles->name ?? '-' }}" disabled>
                             <span class="fa fa-newspaper-o form-control-feedback"></span>
                         </div>
                         <div class="form-group has-feedback">
                             <label for='headline'>{{ trans($moduleNameBlade . '.fields.headline') }} *</label>
-                            <input type="text" name="headline" class="form-control" value="{{ $results->headline or old('headline') }}">
+                            <input type="text" name="headline" class="form-control" value="{{ $results->headline ?? old('headline') }}">
                             <span class="fa fa-header form-control-feedback"></span>
                         </div>
                         <div class="form-group has-feedback">
                             <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }}</label>
-                            <input type="name" name="name" class="form-control" value="{{ $results->name or old('name') }}">
+                            <input type="name" name="name" class="form-control" value="{{ $results->name ?? old('name') }}">
                             <span class="fa fa-user form-control-feedback"></span>
                         </div>
                         <div class="form-group has-feedback">
                             <label for='email'>{{ trans($moduleNameBlade . '.fields.email') }}</label>
-                            <input type="email" name="email" class="form-control" value="{{ $results->email or old('email') }}">
+                            <input type="email" name="email" class="form-control" value="{{ $results->email ?? old('email') }}">
                             <span class="fa fa-envelope form-control-feedback"></span>
                         </div>
                         <div class="form-group has-feedback">
                             <label for='url'>{{ trans($moduleNameBlade . '.fields.url') }}</label>
-                            <input type="url" name="url" class="form-control" value="{{ $results->url or old('url') }}">
+                            <input type="url" name="url" class="form-control" value="{{ $results->url ?? old('url') }}">
                             <span class="fa fa-anchor form-control-feedback"></span>
                         </div>
                         <div class="form-group">

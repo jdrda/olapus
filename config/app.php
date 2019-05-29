@@ -11,7 +11,7 @@ return [
  | framework needs to place the application's name in a notification or
  | any other location as required by the application or its packages.
  */
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Olapus'),
     
     /*
     |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-    'version' => '0.4.1',
+    'version' => '0.5.1',
 
     /*
     |--------------------------------------------------------------------------

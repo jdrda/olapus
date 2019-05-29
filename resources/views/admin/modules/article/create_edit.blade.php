@@ -56,7 +56,7 @@
                             
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }} *</label>
-                                <input type="text" name="name" id="name" class="form-control" value="{{ $results->name or old('name') }}" required>
+                                <input type="text" name="name" id="name" class="form-control" value="{{ $results->name ?? old('name') }}" required>
                                 <span class="fa fa-key form-control-feedback"></span>
                             </div>
                             
@@ -73,7 +73,7 @@
 
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans($moduleNameBlade . '.fields.author_name') }}</label>
-                                <input type="text" name="author_name" id="name" class="form-control" value="{{ $results->author_name or old('author_name') }}">
+                                <input type="text" name="author_name" id="name" class="form-control" value="{{ $results->author_name ?? old('author_name') }}">
                                 <span class="fa fa-user form-control-feedback"></span>
                             </div>
                             
@@ -94,17 +94,17 @@
 
                             <div class="form-group has-feedback">
                                 <label for='meta_title'>{{ trans($moduleNameBlade . '.fields.meta_title') }}</label>
-                                <input type="text" name="meta_title" class="form-control" value="{{ $results->meta_title or old('meta_title') }}">
+                                <input type="text" name="meta_title" class="form-control" value="{{ $results->meta_title ?? old('meta_title') }}">
                                 <span class="fa fa-header form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='meta_description'>{{ trans($moduleNameBlade . '.fields.meta_description') }}</label>
-                                <input type="text" name="meta_description" class="form-control"value="{{ $results->meta_description or old('meta_description') }}">
+                                <input type="text" name="meta_description" class="form-control"value="{{ $results->meta_description ?? old('meta_description') }}">
                                 <span class="fa fa-pencil-square-o form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='meta_keywords'>{{ trans($moduleNameBlade . '.fields.meta_keywords') }}</label>
-                                <input type="text" name="meta_keywords" class="form-control"value="{{ $results->meta_keywords or old('meta_keywords') }}">
+                                <input type="text" name="meta_keywords" class="form-control"value="{{ $results->meta_keywords ?? old('meta_keywords') }}">
                                 <span class="fa fa-flag form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
@@ -115,8 +115,8 @@
                                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#imageDetailModal"><span class='fa fa-hand-pointer-o'></span> {{ trans('admin.show') }}</button>
                                     </div>
                                     @endif
-                                     <input type="text" name="image_name" id="image_name" class="form-control" readonly placeholder="No image selected" value='{{ $results->images->name or '' }}'>
-                                    <input type="hidden" name="image_id" id="image_id" value='{{ $results->images->id or '' }}'>
+                                     <input type="text" name="image_name" id="image_name" class="form-control" readonly placeholder="No image selected" value='{{ $results->images->name ?? '' }}'>
+                                    <input type="hidden" name="image_id" id="image_id" value='{{ $results->images->id ?? '' }}'>
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#imageSelectModal"><span class="fa fa-th-large"></span> Select image</button>
                                     </div>
@@ -124,7 +124,7 @@
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='value'>{{ trans($moduleNameBlade . '.fields.url') }} *</label>
-                                <input type="text" name="url" id='url' class="form-control" value="{{ $results->url or old('url') }}" required>
+                                <input type="text" name="url" id='url' class="form-control" value="{{ $results->url ?? old('url') }}" required>
                                 <span class="fa fa-anchor form-control-feedback"></span>
                             </div>
 
@@ -135,7 +135,7 @@
                         <div class='col-xs-12'>
                             <div class="form-group has-feedback">
                                 <label for='color'>{{ trans($moduleNameBlade . '.fields.text') }}</label>
-                                <textarea name='text' class='form-control html' rows="10">{!! $results->text or '' !!}</textarea>
+                                <textarea name='text' class='form-control html' rows="10">{!! $results->text ?? '' !!}</textarea>
                                 <span class="fa fa-align-left form-control-feedback"></span>
                             </div>
                         </div>

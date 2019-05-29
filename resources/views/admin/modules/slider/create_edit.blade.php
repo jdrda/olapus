@@ -50,17 +50,17 @@
                             @endif
                             <div class="form-group has-feedback">
                                 <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }} *</label>
-                                <input type="text" name="name" class="form-control" value="{{ $results->name or old('name') }}" required>
+                                <input type="text" name="name" class="form-control" value="{{ $results->name ?? old('name') }}" required>
                                 <span class="fa fa-key form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='description'>{{ trans($moduleNameBlade . '.fields.description') }}</label>
-                                <input type="text" name="description" class="form-control" value="{{ $results->description or old('description') }}">
+                                <input type="text" name="description" class="form-control" value="{{ $results->description ?? old('description') }}">
                                 <span class="fa fa-align-left form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for='cycle_interval'>{{ trans($moduleNameBlade . '.fields.cycle_interval') }}</label>
-                                <input type="number" min="1" name="cycle_interval" class="form-control" value="@if(isset($results->cycle_interval) or old('cycle_interval') != NULL){{ $results->cycle_interval or old('cycle_interval') }}@else{{ 5000 }}@endif">
+                                <input type="number" min="1" name="cycle_interval" class="form-control" value="@if(isset($results->cycle_interval) ?? old('cycle_interval') != NULL){{ $results->cycle_interval ?? old('cycle_interval') }}@else{{ 5000 }}@endif">
                                 <span class="fa fa-clock-o form-control-feedback"></span>
                             </div>
                             

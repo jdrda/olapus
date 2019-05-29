@@ -134,8 +134,8 @@
                             <td>
                                 <span class="label label-{{ $result->commentstatuses->color }}">{{ $result->commentstatuses->name }}</span>
                             </td>
-                            <td class="hidden-xs">{{ $result->pages->name or '' }}</td>
-                            <td class="hidden-xs">{{ $result->articles->name or '' }}</td>
+                            <td class="hidden-xs">{{ $result->pages->name ?? '' }}</td>
+                            <td class="hidden-xs">{{ $result->articles->name ?? '' }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->name }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->email }}</td>
                             <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format'))}}</td>

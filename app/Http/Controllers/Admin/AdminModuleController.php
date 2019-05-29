@@ -255,7 +255,6 @@ class AdminModuleController extends Controller{
      * @return Response
      */
     public function index(Request $request) {
-        
 
         /**
          * Handle saved settings
@@ -270,6 +269,8 @@ class AdminModuleController extends Controller{
          * Get the rows
          */
         $modelClass = $this->modelClass;
+
+
         $arResults = $modelClass::where(function(Builder $query) {
                     $query->fulltextAllColumns();
                 })->relationships()->orderByColumns()->excludeFromIndex()
@@ -336,7 +337,7 @@ class AdminModuleController extends Controller{
          * Validate input
          */
         $this->validate($request, $this->arValidationArray);
-        
+
         /**
          * Create new object
          */
@@ -410,13 +411,13 @@ class AdminModuleController extends Controller{
         /**
          * Get the row
          */
-        $arResults = $modelClass::where('id', $id)->relationships()->excludeFromFind()->get();
-        $arResults = $arResults[0];
-    
+        $arResults = $modelClass::where('id', $id)->relationships()->excludeFromFind()->first();
+
+
         /**
          * Row does not exist - redirect
          */
-        if (count($arResults) == 0) {
+        if (empty($arResults)) {
 
             return redirect(route($this->moduleBasicRoute . '.index'))->withInput()->withErrors(['edit' => trans('validation.row_not_exist')]);
         }
@@ -462,7 +463,6 @@ class AdminModuleController extends Controller{
      * @return Response
      */
     public function update(Request $request, $id) {
-
 
 
         /**
@@ -548,6 +548,7 @@ class AdminModuleController extends Controller{
 
             
         }
+
         
         /**
          * Associate relationships
