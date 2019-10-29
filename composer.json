@@ -16,26 +16,21 @@
         "email": "support@olapus.com"
     },
     "require": {
-        "php": "^7.1.3",
-        "fideloper/proxy": "^4.0",
-        "laravel/framework": "5.8.*",
+        "php": "^7.2",
+	"fideloper/proxy": "^4.0",
+        "laravel/framework": "^6.2",
         "laravel/tinker": "^1.0",
-        "doctrine/dbal": ">=2.5.4",
-        "greggilbert/recaptcha": ">=2.1.1",
-        "jan-drda/pure-php-xml-writer": "^0.2.2",
-        "laravolt/avatar": ">=1.8.0",
-        "psr/cache": "^1.0",
-        "spatie/laravel-analytics": "1.4.*"
+        "laravolt/avatar": "^3.0",
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "spatie/laravel-analytics": "^3.8",
+        "spatie/laravel-medialibrary": "^7.14"
     },
     "require-dev": {
-        "beyondcode/laravel-dump-server": "^1.0",
-        "filp/whoops": "^2.0",
+	"facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^7.5",
-        "symfony/dom-crawler": "^4.0",
-        "symfony/css-selector": "^4.0"
+        "phpunit/phpunit": "^8.0"
     },
     "autoload": {
         "classmap": [
@@ -58,15 +53,15 @@
         }
     },
     "scripts": {
+        "post-autoload-dump": [
+	    "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate"
-        ],
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover"
+            "@php artisan key:generate --ansi"
         ]
     },
     "config": {

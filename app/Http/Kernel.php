@@ -52,7 +52,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'media.add.parameters' => \App\Http\Middleware\MediaAddParameters::class,
         'media.image.select' => \App\Http\Middleware\MediaImageSelect::class,
         'add.lookup.tables' => \App\Http\Middleware\AddLookupTables::class,
         'add.published.at' => \App\Http\Middleware\AddPublishedAt::class,

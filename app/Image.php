@@ -15,10 +15,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Image extends Model
+class Image extends Model implements HasMedia
 {
-    use SoftDeletes, AdminModelTrait;
+    use SoftDeletes, AdminModelTrait, HasMediaTrait;
     
     /**
      * The database table used by the model.
@@ -39,23 +41,21 @@ class Image extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'alt', 'url', 'image', 
-        'imagecategory_id', 'image_mime_type', 'image_extension', 
-        'image_original_name', 'image_size', 'image_width', 'image_height'];
+    protected $fillable = ['name', 'description', 'alt', 'url'];
     
     /**
      * Columns to exclude from index
      * 
      * @var array 
      */
-    protected $excludedFromIndex = ['image'];
+    protected $excludedFromIndex = [];
     
     /**
      * Hidden from custom find
      * 
      * @var arrat 
      */
-    protected  $excludedFromFind = ['image'];
+    protected  $excludedFromFind = [];
     
     /**
      * Fields to search in fulltext mode

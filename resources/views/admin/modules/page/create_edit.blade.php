@@ -213,7 +213,7 @@ $(function() {
 <script type="text/javascript">
 tinymce.init({
     selector: ".html",
-    theme: "modern",
+    theme: "silver",
     entity_encoding : "raw",
     plugins: [
         "advlist autolink lists link image charmap print preview hr anchor pagebreak",

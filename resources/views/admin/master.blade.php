@@ -8,7 +8,7 @@ Admin master template
   @include('admin.head')
 </head>
 
-<body class="hold-transition @yield('body-skin', 'skin-blue') @yield('body-style', 'fixed') sidebar-mini">
+<body class="hold-transition @yield('body-skin', 'skin-blue') @yield('body-style', '') sidebar-mini">
 <div class="wrapper">
 
  

@@ -141,8 +141,7 @@ Route::group(['prefix' => env('APP_ADMIN_URL', 'admin'), 'as' => 'admin.', 'midd
     /**
      * Images and categories
      */
-    Route::resource('image', 'Admin\ImageController', ['middleware' => ['media.addparameters'],
-        'names' => [
+    Route::resource('image', 'Admin\ImageController', ['names' => [
         'index' => 'image.index',
         'create' => 'image.create',
         'store' => 'image.store',
@@ -260,7 +259,7 @@ Route::group(['middleware' => 'web'], function () {
 /**
  * Images
  */
-Route::get('/' . env('APP_IMAGE_URL', 'images').'/{imageName}.{imageExtension}', [
+Route::get('{imagePath}', [
     'as' => 'getImage', 'uses' => 'Media\ImageController@getImage'
 ]);
 

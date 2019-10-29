@@ -17,8 +17,6 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
 
 class ImageController extends AdminModuleController
 {
@@ -28,8 +26,7 @@ class ImageController extends AdminModuleController
      */
     public function __construct() {
         parent::__construct();
-        
-        $this->middleware('media.add.parameters', ['only' => ['store','update']]);
+
         $this->middleware('add.lookup.tables:ImageCategory', ['only' => ['index','create','edit']]);
     }
    
@@ -40,16 +37,7 @@ class ImageController extends AdminModuleController
                     'name' => 'required|max:255',
                     'description' => 'max:255',
                     'alt' => 'max:255',
-                    'url' => 'max:255|unique:image,url',
-                    'image_mime_type' => 'max:255',
-                    'image_extension' => 'max:255',
-                    'image_original_name' => 'max:255',
-                    'image_size' => 'integer',
-                    'image_width' => 'integer',
-                    'image_height' => 'integer',
-                    'image_etag' => 'max:255',
-                    'image' => 'max:255',
-        
+                    'url' => 'max:255|unique:image,url'
     ];
    
     /**
@@ -57,8 +45,7 @@ class ImageController extends AdminModuleController
      * 
      * @var array 
      */
-    protected $binaryFields = ['image', 'image_mime_type', 'image_extension', 
-        'image_original_name', 'image_size', 'image_width', 'image_height'];
+    protected $binaryFields = [];
             
     /**
      * Get number of pagination rows
@@ -68,24 +55,6 @@ class ImageController extends AdminModuleController
     public function getRowsToPaginate(){
         
         return env('ADMIN_MEDIA_PAGINATE', 12);
-    }
-    
-    /**
-     * Reset cache 
-     * 
-     * @param object $object
-     */
-    public function resetCache($object) {
-        
-        $cacheKey = 'image:' . $object->url . ':' . $object->image_extension;
-        
-        /**
-         * File cached
-         */
-        if (Cache::has($cacheKey)) {
-
-           Cache::forget($cacheKey);
-        }
     }
     
     /**
@@ -119,10 +88,10 @@ class ImageController extends AdminModuleController
             $object->imagecategories()->associate($request->input('imagecategory_id'));
         } 
     }
-    
+
     /**
      * Save media to storage
-     * 
+     *
      * @param object $object
      * @param Request $request
      * @param boolean $update
@@ -131,27 +100,28 @@ class ImageController extends AdminModuleController
     public function saveMediaToStorage($object, $request, $update = FALSE) {
 
         /**
-         * Get filename
-         */
-        $filename = Helpers::getStorageFilename(env('APP_IMAGE_STORAGE_DIRECTORY', 'images'), $object->id);
-        
-        /*
          * Check if requested and then save
          */
         if ($update == FALSE || ($update == TRUE && $request->has('image'))) {
-            
-            $resource = fopen($request->image, 'r');
 
-            Storage::put($filename, $resource);
-            
-            fclose($resource);
-            
+            /**
+             * Image has an url
+             */
+            if(strlen($request->input('url') > 5)){
+                $object->addMedia($request->file('image'))->toMediaCollection('images')
+                    ->usingName($request->input('url'));
+            }
+            else{
+                $object->addMedia($request->file('image'))->toMediaCollection('images');
+            }
+
             /**
              * Update meta information
              */
             return TRUE;
         }
-        
+
         return FALSE;
     }
+
 }

@@ -275,6 +275,17 @@ class AdminModuleController extends Controller{
                     $query->fulltextAllColumns();
                 })->relationships()->orderByColumns()->excludeFromIndex()
                         ->externalTablesFilter()->paginate($this->getRowsToPaginate());
+
+        /**
+         * Get media
+         */
+        if(method_exists($arResults, 'getMedia')){
+            $media = $arResults->getMedia();
+        }
+        else{
+            $media = null;
+        }
+        
                 
         /**
          * Choose the view
@@ -286,11 +297,10 @@ class AdminModuleController extends Controller{
             $view = $this->customView;
         }
 
-
         /**
          * Return page
          */
-        return view($view, ['results' => $arResults]);
+        return view($view, ['results' => $arResults, 'media' => $media]);
     }
 
     /**

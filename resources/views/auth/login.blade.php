@@ -46,7 +46,7 @@
       
       @if(env('RECAPTCHA_ENABLED') == 1)
       <div class='form-group text-center'>
-      {!! Recaptcha::render() !!}
+
       </div>
       @endif
       

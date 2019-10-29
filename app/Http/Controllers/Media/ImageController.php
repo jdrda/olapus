@@ -35,52 +35,28 @@ class ImageController extends Controller
     * @return file
     */
     public function getImage(Request $request)
-    {  
+    {
+
         /**
-         * Check the cache
+         * Get META information
          */
-        $cacheKey = 'image:' . $request->imageName . ':' . $request->imageExtension;
-        
+        $imageMeta = Image::where(['url' => $request->imageName])->first();
+
         /**
-         * File cached
+         * File does not exist
          */
-        if (Cache::has($cacheKey)) {
-            
-            $imageMeta = Cache::get($cacheKey);
+        if(empty($imageMeta) == TRUE){
+            App::abort(404);
         }
-        
-        /**
-         * File not cached
-         */
-        else{
-            
-            /**
-             * Get META information
-             */
-            $imageMeta = Image::where(['url' => $request->imageName, 'image_extension' => $request->imageExtension])->first(['image_mime_type', 'image_size', 'id', 'updated_at', 'image_etag']);
-            
-            /**
-             * File does not exist
-             */
-            if(empty($imageMeta) == TRUE){
-                App::abort(404);
-            }
-            
-            /**
-             * Save meta information to cache
-             */
-            Cache::forever($cacheKey, $imageMeta);
-        }
-        
-        /**
-         * Get filename
-         */
-        $filename = Helpers::getStorageFilename(env('APP_IMAGE_STORAGE_DIRECTORY', 'images'), $imageMeta->id);
-        
+
+        $mediaItems = $imageMeta->getMedia();
+        $fullPathOnDisk = $mediaItems[0]->getPath();
+
+
         /**
          * Prepare stream
          */
-        $stream = Storage::readStream($filename);
+        $stream = Storage::readStream($fullPathOnDisk);
 
       
         /**
@@ -88,12 +64,10 @@ class ImageController extends Controller
          */
         $headers = array(
             'Content-Description'       => 'File Transfer',
-            'Content-Type'              => $imageMeta->image_mime_type,
             'Content-Transfer-Encoding' => 'binary',
             'Pragma'                    => 'public',
             'Expires'                   => Carbon::createFromTimestamp(time()+3600)->toRfc2822String(),
-            'Last-Modified'             => $imageMeta->updated_at->toRfc2822String(),
-            'Etag'                      => $imageMeta->image_etag,
+            'Last-Modified'             => $imageMeta->updated_at->toRfc2822String()
         );
         
         /**

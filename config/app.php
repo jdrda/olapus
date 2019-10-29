@@ -187,11 +187,11 @@ return [
         /**
          * Custom providers
          */
-	    //Laravel\Tinker\TinkerServiceProvider::class,
-        Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
-        Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
+	    Laravel\Tinker\TinkerServiceProvider::class,
+        //Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
+        //Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
         //GrahamCampbell\HTMLMin\HTMLMinServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
+        //Intervention\Image\ImageServiceProvider::class,
         Laravolt\Avatar\ServiceProvider::class
 
     ],
@@ -243,7 +243,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
-        'Analytics' => Spatie\LaravelAnalytics\LaravelAnalyticsFacade::class,
+        //'Analytics' => Spatie\LaravelAnalytics\LaravelAnalyticsFacade::class,
         //'HTMLMin' => GrahamCampbell\HTMLMin\Facades\HTMLMin::class,
         'Avatar'    => Laravolt\Avatar\Facade::class
 

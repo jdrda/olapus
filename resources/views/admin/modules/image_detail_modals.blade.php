@@ -10,7 +10,7 @@
                     <h4 class='modal-title'>{{ $result->name }}</h4>
                 </div>
                 <div class='modal-body text-center'>
-                    <img src="{{ route('getImage', ['imageName' => $result->url, 'imageExtension' => $result->image_extension]) }}" alt="{{ $result->name }}" class="img-responsive">
+                    <img src="{{ $media[0]->getFullUrl() }}" class="img-responsive">
                 </div>
                 <div class='modal-footer'>
                     <table class="table table-bordered table-responsive table-hover table-striped">
