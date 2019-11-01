@@ -1,6 +1,6 @@
 <?php
 /**
- * Example user frontend file
+ * User frontend file
  * 
  * User route definition
  * 
