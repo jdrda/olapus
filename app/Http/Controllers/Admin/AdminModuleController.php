@@ -545,7 +545,7 @@ class AdminModuleController extends Controller{
                    /**
                     * Numeric zero ?
                     */
-                   if(isset($request->name) && is_numeric($request->input($name)) == TRUE){
+                   if(isset($request->$name) && is_numeric($request->input($name)) == TRUE){
                        
                       $arResults->$name = $request->input($name);
                    }
