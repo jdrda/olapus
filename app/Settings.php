@@ -20,7 +20,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Settings extends Model
 {
     use SoftDeletes, AdminModelTrait;
-    
+
+    /**
+     * Get settings by name
+     *
+     * @param $name
+     * @return |null
+     */
+    public static function getByName($name){
+        $result = self::where('name', $name)->first();
+        if(!empty($result)){
+            return $result->value;
+        }
+        else{
+            return null;
+        }
+    }
+
+
     /**
      * The database table used by the model.
      *
