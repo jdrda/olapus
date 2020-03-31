@@ -17,24 +17,24 @@
                             
                             <div class="thumbnail thumbnail-select" style="height: 100px;">
                                 <a href='#'>
-                                    <img data-original="{{ route('getImage', ['imageName' => $image->url, 'imageExtension' => $image->image_extension]) }}" alt="{{ $image->name }}" class="lazy" style="max-height: 80px;"> 
-                                </a>
-                                <input type='hidden' class='thumbnail_id' value='{{ $image->id }}'>
-                                <input type='hidden' class='thumbnail_name' value='{{ $image->name }}'>
-                            </div>
-                        </div>
-                    
-                        @endforeach
-                    </div>
-                </div>
-                <div class='modal-footer'>
-                    
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
+{{--<img data-original="{{ route('getImage', ['imageName' => $image->url, 'imageExtension' => $image->image_extension]) }}" alt="{{ $image->name }}" class="lazy" style="max-height: 80px;">--}}
+</a>
+<input type='hidden' class='thumbnail_id' value='{{ $image->id }}'>
+<input type='hidden' class='thumbnail_name' value='{{ $image->name }}'>
+</div>
+</div>
+
+@endforeach
+</div>
+</div>
+<div class='modal-footer'>
+
+</div>
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 </div>
 <!-- /Image detail modals -->

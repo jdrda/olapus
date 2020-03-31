@@ -6,7 +6,7 @@ return [
      * The disk on which to store added files and derived images by default. Choose
      * one or more of the disks you've configured in config/filesystems.php.
      */
-    'disk_name' => env('MEDIA_DISK', 'local'),
+    'disk_name' => env('MEDIA_DISK', 'public'),
 
     /*
      * The maximum file size of an item in bytes.
@@ -49,12 +49,12 @@ return [
     'responsive_images' => [
 
         /*
-        * This class is responsible for calculating the target widths of the responsive
-        * images. By default we optimize for filesize and create variations that each are 20%
-        * smaller than the previous one. More info in the documentation.
-        *
-        * https://docs.spatie.be/laravel-medialibrary/v7/advanced-usage/generating-responsive-images
-        */
+         * This class is responsible for calculating the target widths of the responsive
+         * images. By default we optimize for filesize and create variations that each are 20%
+         * smaller than the previous one. More info in the documentation.
+         *
+         * https://docs.spatie.be/laravel-medialibrary/v7/advanced-usage/generating-responsive-images
+         */
         'width_calculator' => Spatie\MediaLibrary\ResponsiveImages\WidthCalculator\FileSizeOptimizedWidthCalculator::class,
 
         /*
@@ -75,6 +75,12 @@ return [
      * if your files are stored locally above the site root or on s3.
      */
     'url_generator' => null,
+
+    /*
+     * Whether to activate versioning when urls to files get generated.
+     * When activated, this attaches a ?v=xx query string to the URL.
+     */
+    'version_urls' => false,
 
     /*
      * The class that contains the strategy for determining a media file's path.
@@ -123,7 +129,7 @@ return [
      * The engine that should perform the image conversions.
      * Should be either `gd` or `imagick`.
      */
-    'image_driver' => 'gd',
+    'image_driver' => env('IMAGE_DRIVER', 'gd'),
 
     /*
      * FFMPEG & FFProbe binaries paths, only used if you try to generate video
