@@ -145,6 +145,7 @@ elixir(function (mix) {
      */
     mix
             .copy("bower_components/tinymce/langs", "public/js/admin/tinymce/langs")
+            .copy("bower_components/tinymce/icons", "public/js/admin/tinymce/icons")
             .copy("bower_components/tinymce/plugins/**/*.min.js", "public/js/admin/tinymce/plugins")
             .copy("bower_components/tinymce/skins", "public/js/admin/tinymce/skins")
             .copy("bower_components/tinymce/themes/**/*.min.js", "public/js/admin/tinymce/themes")
