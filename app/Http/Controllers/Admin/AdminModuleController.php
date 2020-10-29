@@ -405,7 +405,12 @@ class AdminModuleController extends Controller{
         /**
          * Redirect to index
          */
-        return redirect(route($this->moduleBasicRoute . '.index'));
+        if(!empty($request->custom_route)){
+            return redirect($request->custom_route);
+        }
+        else {
+            return redirect(route($this->moduleBasicRoute . '.index'));
+        }
     }
 
     /**
@@ -593,9 +598,14 @@ class AdminModuleController extends Controller{
         $this->associateRelationshipsWithID($arResults, $request);
 
         /**
-         * Return to index
+         * Redirect to index
          */
-        return redirect(route($this->moduleBasicRoute . '.index'));
+        if(!empty($request->custom_route)){
+            return redirect($request->custom_route);
+        }
+        else {
+            return redirect(route($this->moduleBasicRoute . '.index'));
+        }
     }
 
     /**
