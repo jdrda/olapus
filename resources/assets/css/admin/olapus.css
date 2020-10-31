@@ -62,3 +62,6 @@ and open the template in the editor.
     border: 0;
     border-top: 1px solid #eee;
 }
+.alert h4 small{
+    color: #ffffff;
+}
