@@ -47,8 +47,9 @@ class AddColumnsToUsers extends Migration
     public function down()
     {
         Schema::table('users', function ($table) {
-            $table->dropColumn(['usergroup_id', 'age', 'blacklisted', 'ip', 'activation_code', 'active',
-                'fname', 'sname', 'bno', 'city', 'citypart', 'street', 'hno', 'zip']);
+            $table->dropColumn(['usergroup_id', 'activation_code', 'active', 'fname', 'mname', 'sname',
+                'phone', 'fax', 'mobile', 'im', 'street', 'hno', 'city', 'zip', 'state', 'country',
+                'da_street', 'da_hno', 'da_city', 'da_zip', 'da_state', 'da_country', 'notice']);
         });
     }
 }
