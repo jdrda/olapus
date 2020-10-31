@@ -149,6 +149,24 @@ class AdminModuleController extends Controller{
     }
 
     /**
+     * Runs after store
+     *
+     * @param $request
+     */
+    protected function afterStore($request){
+
+    }
+
+    /**
+     * Runs after update
+     *
+     * @param $request
+     */
+    protected function afterUpdate($request){
+
+    }
+
+    /**
      * Save transaction
      *
      * @param int $typeId
@@ -401,7 +419,12 @@ class AdminModuleController extends Controller{
          * Associate relatinships with ID
          */
         $this->associateRelationshipsWithID($object, $request);
-        
+
+        /**
+         * After store
+         */
+        $this->afterStore($request);
+
         /**
          * Redirect to index
          */
@@ -596,6 +619,11 @@ class AdminModuleController extends Controller{
          * Associate relatinships with ID
          */
         $this->associateRelationshipsWithID($arResults, $request);
+
+        /**
+         * After update
+         */
+        $this->afterUpdate($request);
 
         /**
          * Redirect to index
