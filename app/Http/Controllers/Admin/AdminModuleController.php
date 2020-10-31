@@ -153,7 +153,7 @@ class AdminModuleController extends Controller{
      *
      * @param $request
      */
-    protected function afterStore($request){
+    protected function afterStore($request, $model){
 
     }
 
@@ -162,7 +162,7 @@ class AdminModuleController extends Controller{
      *
      * @param $request
      */
-    protected function afterUpdate($request){
+    protected function afterUpdate($request, $model){
 
     }
 
@@ -423,7 +423,7 @@ class AdminModuleController extends Controller{
         /**
          * After store
          */
-        $this->afterStore($request);
+        $this->afterStore($request, $object);
 
         /**
          * Redirect to index
@@ -623,7 +623,7 @@ class AdminModuleController extends Controller{
         /**
          * After update
          */
-        $this->afterUpdate($request);
+        $this->afterUpdate($request,$object);
 
         /**
          * Redirect to index
