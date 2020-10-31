@@ -623,7 +623,7 @@ class AdminModuleController extends Controller{
         /**
          * After update
          */
-        $this->afterUpdate($request,$object);
+        $this->afterUpdate($request, $arResults);
 
         /**
          * Redirect to index
