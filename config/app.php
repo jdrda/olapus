@@ -242,7 +242,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         
-        'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
+        //'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
         //'Analytics' => Spatie\LaravelAnalytics\LaravelAnalyticsFacade::class,
         //'HTMLMin' => GrahamCampbell\HTMLMin\Facades\HTMLMin::class,
         'Avatar'    => Laravolt\Avatar\Facade::class
