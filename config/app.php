@@ -192,7 +192,7 @@ return [
         //Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
         //GrahamCampbell\HTMLMin\HTMLMinServiceProvider::class,
         //Intervention\Image\ImageServiceProvider::class,
-        Laravolt\Avatar\ServiceProvider::class
+        Laravolt\Avatar\ServiceProvider::class,
 
     ],
 
