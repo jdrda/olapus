@@ -101,15 +101,18 @@ trait AdminModelTrait {
             foreach ($relations as $relation){
                 
                 $keyvalue = explode(':', $relation);
-                
-                $key = trim($keyvalue[0]);
-                $value = trim($keyvalue[1]);
-                
-                $allTables[$key] = $value;
-                
-                if(is_numeric($value) == TRUE){
-                    
-                    $query->where(strtolower($key)."_id", '=', $value);
+
+                if(count($keyvalue) > 1) {
+
+                    $key = trim($keyvalue[0]);
+                    $value = trim($keyvalue[1]);
+
+                    $allTables[$key] = $value;
+
+                    if (is_numeric($value) == TRUE) {
+
+                        $query->where(strtolower($key) . "_id", '=', $value);
+                    }
                 }
             }
             
