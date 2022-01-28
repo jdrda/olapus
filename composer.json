@@ -24,10 +24,10 @@
         "laravel/framework": "^8.65",
 	"laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.2.1",
-        "laravolt/avatar": "^4.1.3",
+        "laravel/ui": "^3.4",
+        "laravolt/avatar": "^4.1",
         "league/flysystem-aws-s3-v3": "^1.0",
-        "spatie/laravel-medialibrary": "^7.19.5"
+        "spatie/laravel-medialibrary": "^9.11"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
