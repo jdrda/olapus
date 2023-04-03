@@ -15,12 +15,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+//use Spatie\MediaLibrary\HasMedia\HasMedia;
+//use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Image extends Model implements HasMedia
+class Image extends Model
 {
-    use SoftDeletes, AdminModelTrait, HasMediaTrait;
+    use SoftDeletes, AdminModelTrait;
     
     /**
      * The database table used by the model.
