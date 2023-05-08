@@ -1,8 +1,8 @@
 <?php
 /**
- * Advert location module model
+ * Settings module model
  * 
- * Model for module Advert location
+ * Model for module Settings
  * 
  * @category Model
  * @subpackage Admin
@@ -15,18 +15,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AdvertLocation extends Model
+class StockUpdate extends Model
 {
-    use SoftDeletes, AdminModelTrait;
+    use AdminModelTrait;
     
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'advertlocation';
+    protected $table = 'stock_update';
     
     /**
      * The attributes that should be mutated to dates.
@@ -38,15 +37,13 @@ class AdvertLocation extends Model
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
     ];
-
-
-
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'color'];
+    protected $fillable = ['shop', 'sku', 'quantity'];
     
     /**
      * Columns to exclude from index
@@ -54,7 +51,7 @@ class AdvertLocation extends Model
      * @var array 
      */
     protected $excludedFromIndex = [];
-
+    
     /**
      * Fields to search in fulltext mode
      * 
@@ -62,12 +59,12 @@ class AdvertLocation extends Model
      */
     protected $fulltextFields = [
         'id',
-        'name' => [
+        'shop' => [
             'operator' => 'LIKE',
             'prefix' => '%',
             'sufix' => '%'
         ],
-        'description' => [
+        'sku' => [
             'operator' => 'LIKE',
             'prefix' => '%',
             'sufix' => '%'
@@ -80,27 +77,7 @@ class AdvertLocation extends Model
      * @var array
      */
     protected $defaultOrderBy = [
-      'name' => 'asc'  
+      'shop' => 'asc'
     ];
     
-    /**
-     * Image link
-     * 
-     * @return object
-     */
-    public function adverts(){
-        
-        return $this->belongsToMany('App\Advert', 'advert_advertlocation', 'advert_id', 'advertlocation_id');
-    }
-    
-    /**
-     * Process relationships
-     * 
-     * @param type $query
-     * @return object
-     */
-    public function scopeRelationships($query){
-        
-        return $query->with('adverts');
-    }
 }

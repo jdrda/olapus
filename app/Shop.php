@@ -1,8 +1,8 @@
 <?php
 /**
- * Slide module model
+ * Settings module model
  * 
- * Model for module Slide
+ * Model for module Settings
  * 
  * @category Model
  * @subpackage Admin
@@ -17,7 +17,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Slide extends Model
+class Shop extends Model
 {
     use SoftDeletes, AdminModelTrait;
     
@@ -26,7 +26,7 @@ class Slide extends Model
      *
      * @var string
      */
-    protected $table = 'slide';
+    protected $table = 'shop';
     
     /**
      * The attributes that should be mutated to dates.
@@ -44,14 +44,14 @@ class Slide extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'caption', 'text', 'position', 'image_id', 'slider_id'];
+    protected $fillable = ['name', 'language', 'description'];
     
     /**
      * Columns to exclude from index
      * 
      * @var array 
      */
-    protected $excludedFromIndex = ['image'];
+    protected $excludedFromIndex = [];
     
     /**
      * Fields to search in fulltext mode
@@ -65,12 +65,16 @@ class Slide extends Model
             'prefix' => '%',
             'sufix' => '%'
         ],
+        'language' => [
+            'operator' => 'LIKE',
+            'prefix' => '%',
+            'sufix' => '%'
+        ],
         'description' => [
             'operator' => 'LIKE',
             'prefix' => '%',
             'sufix' => '%'
         ],
-        'position'
     ];
     
     /**
@@ -79,40 +83,7 @@ class Slide extends Model
      * @var array
      */
     protected $defaultOrderBy = [
-      'id' => 'desc'  
+      'name' => 'asc'  
     ];
     
-    /**
-     * Slide link
-     * 
-     * @return object
-     */
-    public function sliders(){
-        
-        return $this->belongsTo('App\Slider', 'slider_id');
-    }
-    
-    /**
-     * Image link
-     * 
-     * @return object
-     */
-    public function images(){
-        
-        return $this->belongsTo('App\Image', 'image_id')->select('id', 'name', 'description', 
-                'alt', 'url', 'imagecategory_id', 'image_mime_type', 'image_extension', 
-                'image_original_name', 'image_size', 'image_width', 'image_height',
-                'created_at', 'updated_at', 'deleted_at');
-    }
-    
-    /**
-     * Process relationships
-     * 
-     * @param query $query
-     * @return query
-     */
-    public function scopeRelationships($query){
-        
-        return $query->with('images', 'images.imagecategories', 'sliders');
-    }
 }
