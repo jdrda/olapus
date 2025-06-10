@@ -1,79 +1,84 @@
 {
-    "name": "jandrda/olapus",
-    "description": "Simple out of box solution for easy administering of any website.",
-    "keywords": ["laravel", "cms"],
-    "license": "MIT",
-    "type": "project",
-    "homepage": "https://www.olapus.com/",
-    "authors": [
-        {
-            "name": "Jan Drda",
-            "email": "jdrda@outlook.com",
-            "role": "Developer"
-        }
+  "name": "jandrda/olapus",
+  "description": "Simple out of box solution for easy administering of any website.",
+  "keywords": [
+    "laravel",
+    "cms"
+  ],
+  "license": "MIT",
+  "type": "project",
+  "homepage": "https://www.olapus.com/",
+  "authors": [
+    {
+      "name": "Jan Drda",
+      "email": "jdrda@outlook.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "support@olapus.com"
+  },
+  "require": {
+    "php": "^8.2",
+    "guzzlehttp/guzzle": "^7.9",
+    "laravel/framework": "^12.0",
+    "laravel/sanctum": "^4.0",
+    "laravel/tinker": "^2.10.1",
+    "laravel/ui": "^4.6",
+    "laravolt/avatar": "^6.1",
+    "league/flysystem-aws-s3-v3": "^3.29",
+    "phpoffice/phpspreadsheet": "^4.1",
+    "spatie/laravel-medialibrary": "^11.12",
+    "symfony/mailgun-mailer": "^7.2"
+  },
+  "require-dev": {
+    "fakerphp/faker": "^1.23",
+    "laravel/pint": "^1.13",
+    "laravel/sail": "^1.41",
+    "mockery/mockery": "^1.6",
+    "nunomaduro/collision": "^8.6",
+    "phpunit/phpunit": "^11.5.3",
+    "spatie/laravel-ignition": "^2.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Database\\Factories\\": "database/factories/",
+      "Database\\Seeders\\": "database/seeders/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": [
+      ]
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi"
     ],
-    "support": {
-        "email": "support@olapus.com"
-    },
-    "require": {
-        "php": "^8.1",
-	"guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^10.8",
-        "laravel/sanctum": "^3.2",
-        "laravel/tinker": "^2.8",
-        "laravel/ui": "^4.2",
-        "laravolt/avatar": "^5.0",
-        "league/flysystem-aws-s3-v3": "^3.12",
-        "spatie/laravel-medialibrary": "^10.7"
-    },
-    "require-dev": {
-	"fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.0",
-        "laravel/sail": "^1.18",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^7.0",
-        "phpunit/phpunit": "^10.1",
-        "spatie/laravel-ignition": "^2.0"
-    },
-    "autoload": {
-       "psr-4": {
-            "App\\": "app/",
-            "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "dont-discover": [
-            ]
-        }
-    },
-    "scripts": {
-        "post-autoload-dump": [
-	    "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
-        ]
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true,
-	    "php-http/discovery": true
-        }
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@php artisan key:generate --ansi"
+    ]
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "php-http/discovery": true
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
 }
