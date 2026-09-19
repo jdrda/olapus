@@ -1,0 +1,27 @@
+/*
+ * AdminLTE 4
+ * AdminLTE CSS already contains Bootstrap 5 styles.
+ */
+@import "admin-lte/dist/css/adminlte.css";
+
+/* Icons */
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+/* Scrollbars / maps */
+@import "overlayscrollbars/overlayscrollbars.css";
+@import "jsvectormap/dist/jsvectormap.css";
+
+/* Forms */
+@import "flatpickr/dist/flatpickr.min.css";
+@import "tom-select/dist/css/tom-select.bootstrap5.css";
+
+/* Tables */
+@import "tabulator-tables/dist/css/tabulator_bootstrap5.min.css";
+
+/* Rich text editor */
+@import "quill/dist/quill.snow.css";
+
+/*
+ * Olapus overrides always last.
+ */
+@import "./olapus.css";
