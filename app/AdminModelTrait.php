@@ -57,7 +57,7 @@ trait AdminModelTrait {
      */
     public function scopeExcludeFromIndex(Builder $query)
     {
-        return $query->select( array_diff(Schema::getColumnListing($this->table), $this->excludedFromIndex) );
+        return $query->select( array_diff(Schema::getColumnListing($this->getTable()), $this->excludedFromIndex) );
     }
     
     /**

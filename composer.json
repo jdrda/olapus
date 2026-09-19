@@ -1,6 +1,7 @@
 {
+  "$schema": "https://getcomposer.org/schema.json",
   "name": "jandrda/olapus",
-  "description": "Simple out of box solution for easy administering of any website.",
+  "description": "Simple out of box solution for application development",
   "keywords": [
     "laravel",
     "cms"
@@ -19,26 +20,23 @@
     "email": "support@olapus.com"
   },
   "require": {
-    "php": "^8.2",
-    "guzzlehttp/guzzle": "^7.9",
-    "laravel/framework": "^12.0",
+    "php": "^8.3",
+    "laravel/framework": "^13.17",
+    "laravel/tinker": "^3.0",
     "laravel/sanctum": "^4.0",
-    "laravel/tinker": "^2.10.1",
     "laravel/ui": "^4.6",
-    "laravolt/avatar": "^6.1",
+    "laravolt/avatar": "^7.0",
     "league/flysystem-aws-s3-v3": "^3.29",
-    "phpoffice/phpspreadsheet": "^4.1",
-    "spatie/laravel-medialibrary": "^11.12",
-    "symfony/mailgun-mailer": "^7.2"
+    "spatie/laravel-medialibrary": "^11.12"
   },
   "require-dev": {
     "fakerphp/faker": "^1.23",
-    "laravel/pint": "^1.13",
-    "laravel/sail": "^1.41",
+    "laravel/pail": "^1.2.5",
+    "laravel/pao": "^1.0.6",
+    "laravel/pint": "^1.27",
     "mockery/mockery": "^1.6",
     "nunomaduro/collision": "^8.6",
-    "phpunit/phpunit": "^11.5.3",
-    "spatie/laravel-ignition": "^2.9"
+    "phpunit/phpunit": "^12.5.12"
   },
   "autoload": {
     "psr-4": {
@@ -59,15 +57,39 @@
     }
   },
   "scripts": {
+    "setup": [
+      "composer install",
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+      "@php artisan key:generate",
+      "@php artisan migrate --force",
+      "npm install --ignore-scripts",
+      "npm run build"
+    ],
+    "dev": [
+      "Composer\\Config::disableProcessTimeout",
+      "@php artisan dev"
+    ],
+    "test": [
+      "@php artisan config:clear --ansi @no_additional_args",
+      "@php artisan test"
+    ],
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover --ansi"
+    ],
+    "post-update-cmd": [
+      "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
     ],
     "post-root-package-install": [
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
     ],
     "post-create-project-cmd": [
-      "@php artisan key:generate --ansi"
+      "@php artisan key:generate --ansi",
+      "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+      "@php artisan migrate --graceful --ansi"
+    ],
+    "pre-package-uninstall": [
+      "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
     ]
   },
   "config": {
