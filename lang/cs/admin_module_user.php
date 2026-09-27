@@ -10,6 +10,7 @@ return [
         'email' => 'E-mail',
         'password' => 'Heslo',
         'password_again' => 'Heslo znovu',
+        'password_leave_empty' => 'Při úpravě ponechte prázdné, pokud heslo nechcete změnit.',
         'roles' => 'Uživatelské skupiny',
         'created_at' => 'Vytvořeno',
         'updated_at' => 'Aktualizováno',

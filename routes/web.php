@@ -21,9 +21,11 @@ Route::get('/home', function () {
 |--------------------------------------------------------------------------
 | Authentication
 |--------------------------------------------------------------------------
+|
+| Laravel Fortify registers the login, logout and password reset routes.
+| Olapus only supplies the Blade views via FortifyServiceProvider.
+|
 */
-
-require __DIR__.'/auth.php';
 
 
 /*
@@ -33,4 +35,3 @@ require __DIR__.'/auth.php';
 */
 
 require __DIR__.'/admin.php';
-

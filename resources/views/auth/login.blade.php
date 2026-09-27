@@ -15,48 +15,36 @@
 <body class="login-page bg-body-secondary">
 
 <div class="login-box">
-
     <div class="login-logo text-center">
-        <a href="{{ route('root') }}">
-            {{ config('app.name') }}
-        </a>
+        <a href="{{ route('root') }}">{{ config('app.name') }}</a>
     </div>
 
     <div class="card">
         <div class="card-body login-card-body">
+            <p class="login-box-msg">{{ trans('login.headline') }}</p>
 
-            <p class="login-box-msg">
-                {{ trans('login.headline') }}
-            </p>
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
 
             @include('admin.errors')
-            <form action="{{ route('authPostLogin') }}" method="post">
+
+            <form action="{{ route('login.store') }}" method="post">
                 @csrf
-                @honeypot
 
                 <div class="input-group mb-3">
-                    <input
-                            type="email"
-                            name="email"
-                            class="form-control"
-                            placeholder="{{ trans('login.email') }}"
-                            value="{{ old('email') }}"
-                    >
-
+                    <input type="email" name="email" class="form-control"
+                           placeholder="{{ trans('login.email') }}" value="{{ old('email') }}" required autofocus>
                     <div class="input-group-text">
                         <span class="bi bi-envelope"></span>
                     </div>
                 </div>
 
                 <div class="input-group mb-3">
-                    <input
-                            type="password"
-                            name="password"
-                            class="form-control"
-                            placeholder="{{ trans('login.password') }}"
-                            id="password"
-                    >
-
+                    <input type="password" name="password" class="form-control"
+                           placeholder="{{ trans('login.password') }}" id="password" required>
                     <div class="input-group-text">
                         <span class="bi bi-lock-fill"></span>
                     </div>
@@ -65,13 +53,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="form-check">
-                            <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    name="remember"
-                                    id="remember"
-                            >
-
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember">
                             <label class="form-check-label" for="remember">
                                 {{ trans('login.remeber_me') }}
                             </label>
@@ -89,14 +71,12 @@
             </form>
 
             <p class="mb-0 mt-3">
-                <a href="{{ route('authPasswordEmailGet') }}">
+                <a href="{{ route('password.request') }}">
                     {{ trans('login.lost_password') }}
                 </a>
             </p>
-
         </div>
     </div>
-
 </div>
 
 </body>

@@ -10,6 +10,7 @@ return [
         'email' => 'Email',
         'password' => 'Password',
         'password_again' => 'Password again',
+        'password_leave_empty' => 'Leave blank when editing if you do not want to change the password.',
         'roles' => 'User groups',
         'created_at' => 'Created',
         'updated_at' => 'Updated',

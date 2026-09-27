@@ -26,7 +26,6 @@
     "laravel/framework": "^13.17",
     "laravel/sanctum": "^4.0",
     "laravel/tinker": "^3.0",
-    "laravel/ui": "^4.6",
     "laravolt/avatar": "^7.0",
     "league/flysystem-aws-s3-v3": "^3.29",
     "spatie/laravel-honeypot": "^4.7",

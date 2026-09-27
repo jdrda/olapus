@@ -10,6 +10,7 @@ return [
         'email' => 'E-mail',
         'password' => 'Mot de passe',
         'password_again' => 'Répéter le mot de passe',
+        'password_leave_empty' => 'Laissez vide lors de la modification si vous ne souhaitez pas changer le mot de passe.',
         'roles' => 'Groupes d’utilisateurs',
         'created_at' => 'Créé',
         'updated_at' => 'Mis à jour',

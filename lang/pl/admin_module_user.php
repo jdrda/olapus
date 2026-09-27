@@ -10,6 +10,7 @@ return [
         'email' => 'E-mail',
         'password' => 'Hasło',
         'password_again' => 'Powtórz hasło',
+        'password_leave_empty' => 'Podczas edycji pozostaw puste, jeśli nie chcesz zmieniać hasła.',
         'roles' => 'Grupy użytkowników',
         'created_at' => 'Utworzono',
         'updated_at' => 'Zaktualizowano',

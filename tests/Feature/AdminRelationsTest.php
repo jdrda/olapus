@@ -172,7 +172,7 @@ class AdminRelationsTest extends TestCase
     public function test_authentication_still_uses_laravel_ui(): void
     {
         $user = User::factory()->create(['password' => Hash::make('A-testing-password-42')]);
-        $this->post(route('authPostLogin'), ['email' => $user->email, 'password' => 'A-testing-password-42'])
+        $this->post(route('login.store'), ['email' => $user->email, 'password' => 'A-testing-password-42'])
             ->assertRedirect();
         $this->assertAuthenticatedAs($user);
     }

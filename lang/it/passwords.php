@@ -11,6 +11,7 @@ return [
     'reset_password' => 'Reimposta password',
     'reset' => 'La password è stata reimpostata!',
     'sent' => 'Ti abbiamo inviato via e-mail un link per reimpostare la password!',
+    'throttled' => 'Attendi prima di riprovare.',
     'token' => 'Questa richiesta di reimpostazione della password non è valida.',
     'user' => 'Non è stato trovato alcun utente con questo indirizzo e-mail.',
 ];

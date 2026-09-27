@@ -10,6 +10,7 @@ return [
         'email' => 'E-mail',
         'password' => 'Wachtwoord',
         'password_again' => 'Wachtwoord herhalen',
+        'password_leave_empty' => 'Laat leeg bij bewerken als u het wachtwoord niet wilt wijzigen.',
         'roles' => 'Gebruikersgroepen',
         'created_at' => 'Aangemaakt',
         'updated_at' => 'Bijgewerkt',

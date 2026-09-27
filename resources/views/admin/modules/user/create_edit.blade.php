@@ -9,6 +9,8 @@
 @section('menu-class-user', 'active')
 
 @section('content')
+@php($editing = isset($results->_method))
+
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">{{ trans($moduleNameBlade . '.name') }}</h3>
@@ -18,9 +20,9 @@
             <div class="col-12 col-md-8 col-lg-6 mx-auto">
                 @include('admin.errors')
 
-                <form action="{{ isset($results->_method) ? route($moduleBasicRoute . '.update', $results->id) : route($moduleBasicRoute . '.store') }}" method="post">
+                <form action="{{ $editing ? route($moduleBasicRoute . '.update', $results->id) : route($moduleBasicRoute . '.store') }}" method="post">
                     @csrf
-                    @if (isset($results->_method))
+                    @if ($editing)
                         @method($results->_method)
                     @endif
 
@@ -29,11 +31,13 @@
                         <input type="text" name="name" id="name" class="form-control"
                                value="{{ old('name', $results->name ?? '') }}" required>
                     </div>
+
                     <div class="mb-3">
                         <label for="email" class="form-label">{{ trans($moduleNameBlade . '.fields.email') }} *</label>
                         <input type="email" name="email" id="email" class="form-control"
                                value="{{ old('email', $results->email ?? '') }}" required>
                     </div>
+
                     <div class="mb-3">
                         <label for="roles" class="form-label">{{ trans($moduleNameBlade . '.fields.roles') }}</label>
                         <select name="roles[]" id="roles" class="form-select" multiple data-enhance="select">
@@ -45,17 +49,26 @@
                             @endforeach
                         </select>
                     </div>
-                    {{-- Keep the existing controller sentinel for this UI-only migration.
-                         Do not deploy without checking UserController treats ###### as unchanged. --}}
+
                     <div class="mb-3">
-                        <label for="password" class="form-label">{{ trans($moduleNameBlade . '.fields.password') }} *</label>
-                        <input type="password" name="password" id="password" class="form-control" autocomplete="new-password"
-                               value="{{ isset($results->password) ? '######' : '' }}" required>
+                        <label for="password" class="form-label">
+                            {{ trans($moduleNameBlade . '.fields.password') }}@if(!$editing) *@endif
+                        </label>
+                        <input type="password" name="password" id="password" class="form-control"
+                               autocomplete="new-password" @required(!$editing)>
+                        @if ($editing)
+                            <div class="form-text">
+                                {{ trans($moduleNameBlade . '.fields.password_leave_empty') }}
+                            </div>
+                        @endif
                     </div>
+
                     <div class="mb-3">
-                        <label for="password_confirmation" class="form-label">{{ trans($moduleNameBlade . '.fields.password_again') }} *</label>
-                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" autocomplete="new-password"
-                               value="{{ isset($results->password) ? '######' : '' }}" required>
+                        <label for="password_confirmation" class="form-label">
+                            {{ trans($moduleNameBlade . '.fields.password_again') }}@if(!$editing) *@endif
+                        </label>
+                        <input type="password" name="password_confirmation" id="password_confirmation"
+                               class="form-control" autocomplete="new-password" @required(!$editing)>
                     </div>
 
                     <div class="d-flex flex-wrap justify-content-end gap-2">

@@ -17,23 +17,13 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Laravel\Fortify\Contracts\ResetsUserPasswords;
 use Spatie\Permission\Models\Role;
 
 class UserController extends AdminModuleController
 {
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    protected $arValidationArray = [
-        'name' => 'required|max:255',
-        'email' => 'required|email|max:255|unique:users,email',
-        'password' => 'required|confirmed|min:6',
-    ];
-
     public function create()
     {
         return view($this->viewFor('create'), [
@@ -42,21 +32,22 @@ class UserController extends AdminModuleController
     }
 
     /**
-     * Store function override
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * Store function override.
      */
     public function store(Request $request)
     {
-        $this->validate($request, array_merge($this->arValidationArray, $this->roleValidationRules()));
+        $this->validate($request, $this->roleValidationRules());
 
         DB::transaction(function () use ($request): void {
-            $user = User::create([
-                'name' => $request['name'],
-                'email' => $request['email'],
-                'password' => Hash::make($request['password']),
-            ]);
+            /** @var User $user */
+            $user = app(CreatesNewUsers::class)->create(
+                $request->only([
+                    'name',
+                    'email',
+                    'password',
+                    'password_confirmation',
+                ])
+            );
 
             $user->syncRoles($this->selectedRoles($request));
         });
@@ -83,18 +74,19 @@ class UserController extends AdminModuleController
     }
 
     /**
-     * Update function override
-     *
-     * @param Request $request
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
+     * Update function override.
      */
     public function update(Request $request, $id)
     {
         $this->validate($request, array_merge([
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users,email,'.$id,
-            'password' => 'required|confirmed|min:6',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('users', 'email')->ignore($id),
+            ],
         ], $this->roleValidationRules()));
 
         $user = User::find($id);
@@ -106,14 +98,17 @@ class UserController extends AdminModuleController
         }
 
         DB::transaction(function () use ($request, $user): void {
-            $user->name = $request['name'];
-            $user->email = $request['email'];
+            $user->name = $request->string('name')->toString();
+            $user->email = $request->string('email')->toString();
+            $user->save();
 
-            if ($request['password'] !== '######') {
-                $user->password = Hash::make($request['password']);
+            if ($request->filled('password') || $request->filled('password_confirmation')) {
+                app(ResetsUserPasswords::class)->reset($user, [
+                    'password' => (string) $request->input('password'),
+                    'password_confirmation' => (string) $request->input('password_confirmation'),
+                ]);
             }
 
-            $user->save();
             $user->syncRoles($this->selectedRoles($request));
         });
 

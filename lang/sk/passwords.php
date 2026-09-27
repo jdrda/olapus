@@ -11,6 +11,7 @@ return [
     'reset_password' => 'Obnoviť heslo',
     'reset' => 'Vaše heslo bolo obnovené!',
     'sent' => 'Odkaz na obnovenie hesla sme vám poslali e-mailom!',
+    'throttled' => 'Pred ďalším pokusom chvíľu počkajte.',
     'token' => 'Požiadavka na obnovenie hesla nie je platná.',
     'user' => 'Používateľa s touto e-mailovou adresou sa nepodarilo nájsť.',
 ];

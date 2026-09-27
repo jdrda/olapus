@@ -10,6 +10,7 @@ return [
         'email' => 'Correo electrónico',
         'password' => 'Contraseña',
         'password_again' => 'Repetir contraseña',
+        'password_leave_empty' => 'Déjelo vacío al editar si no desea cambiar la contraseña.',
         'roles' => 'Grupos de usuarios',
         'created_at' => 'Creado',
         'updated_at' => 'Actualizado',

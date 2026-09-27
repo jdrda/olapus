@@ -15,65 +15,41 @@
 <body class="login-page bg-body-secondary">
 
 <div class="login-box">
-
     <div class="login-logo text-center">
-        <a href="{{ route('root') }}">
-            {{ config('app.name') }}
-        </a>
+        <a href="{{ route('root') }}">{{ config('app.name') }}</a>
     </div>
 
     <div class="card">
         <div class="card-body login-card-body">
-
-            <p class="login-box-msg">
-                {{ trans('passwords.enter_new_password') }}
-            </p>
+            <p class="login-box-msg">{{ trans('passwords.enter_new_password') }}</p>
 
             @include('admin.errors')
 
-            <form action="{{ route('authPasswordPostReset') }}" method="post">
+            <form action="{{ route('password.update') }}" method="post">
                 @csrf
-                @honeypot
 
-                <input type="hidden" name="token" value="{{ $token }}">
+                <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
                 <div class="input-group mb-3">
-                    <input
-                            type="email"
-                            name="email"
-                            class="form-control"
-                            placeholder="{{ trans('passwords.email') }}"
-                            value="{{ old('email') }}"
-                    >
-
+                    <input type="email" name="email" class="form-control"
+                           placeholder="{{ trans('login.email') }}"
+                           value="{{ old('email', $request->email) }}" required>
                     <div class="input-group-text">
                         <span class="bi bi-envelope"></span>
                     </div>
                 </div>
 
                 <div class="input-group mb-3">
-                    <input
-                            type="password"
-                            name="password"
-                            class="form-control"
-                            placeholder="{{ trans('passwords.password') }}"
-                            id="password"
-                    >
-
+                    <input type="password" name="password" class="form-control"
+                           placeholder="{{ trans('passwords.password') }}" autocomplete="new-password" required autofocus>
                     <div class="input-group-text">
                         <span class="bi bi-lock-fill"></span>
                     </div>
                 </div>
 
                 <div class="input-group mb-3">
-                    <input
-                            type="password"
-                            name="password_confirmation"
-                            class="form-control"
-                            placeholder="{{ trans('passwords.confirm_password') }}"
-                            id="confirm_password"
-                    >
-
+                    <input type="password" name="password_confirmation" class="form-control"
+                           placeholder="{{ trans('passwords.confirm_password') }}" autocomplete="new-password" required>
                     <div class="input-group-text">
                         <span class="bi bi-lock-fill"></span>
                     </div>
@@ -85,10 +61,8 @@
                     </button>
                 </div>
             </form>
-
         </div>
     </div>
-
 </div>
 
 </body>

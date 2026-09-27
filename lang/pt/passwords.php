@@ -11,6 +11,7 @@ return [
     'reset_password' => 'Repor palavra-passe',
     'reset' => 'A sua palavra-passe foi reposta!',
     'sent' => 'Enviámos por e-mail uma ligação para repor a palavra-passe!',
+    'throttled' => 'Aguarde antes de tentar novamente.',
     'token' => 'Este pedido de reposição de palavra-passe não é válido.',
     'user' => 'Não foi encontrado nenhum utilizador com esse endereço de e-mail.',
 ];

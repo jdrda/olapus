@@ -15,40 +15,32 @@
 <body class="login-page bg-body-secondary">
 
 <div class="login-box">
-
     <div class="login-logo text-center">
-        <a href="{{ route('root') }}">
-            {{ config('app.name') }}
-        </a>
+        <a href="{{ route('root') }}">{{ config('app.name') }}</a>
     </div>
 
     <div class="card">
         <div class="card-body login-card-body">
+            <p class="login-box-msg">{{ trans('passwords.headline') }}</p>
 
-            <p class="login-box-msg">
-                {{ trans('passwords.headline') }}
-            </p>
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
 
             @include('admin.errors')
 
-            <form action="{{ route('authPasswordEmailPost') }}" method="post">
+            <form action="{{ route('password.email') }}" method="post">
                 @csrf
-                @honeypot
 
                 <div class="input-group mb-3">
-                    <input
-                            type="email"
-                            name="email"
-                            class="form-control"
-                            placeholder="{{ trans('passwords.email') }}"
-                            value="{{ old('email') }}"
-                    >
-
+                    <input type="email" name="email" class="form-control"
+                           placeholder="{{ trans('login.email') }}" value="{{ old('email') }}" required autofocus>
                     <div class="input-group-text">
                         <span class="bi bi-envelope"></span>
                     </div>
                 </div>
-
 
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">
@@ -56,10 +48,8 @@
                     </button>
                 </div>
             </form>
-
         </div>
     </div>
-
 </div>
 
 </body>

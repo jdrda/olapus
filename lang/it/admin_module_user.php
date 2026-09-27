@@ -10,6 +10,7 @@ return [
         'email' => 'E-mail',
         'password' => 'Password',
         'password_again' => 'Ripeti password',
+        'password_leave_empty' => 'Lascia vuoto durante la modifica se non vuoi cambiare la password.',
         'roles' => 'Gruppi utenti',
         'created_at' => 'Creato',
         'updated_at' => 'Aggiornato',
