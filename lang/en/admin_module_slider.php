@@ -1,30 +1,17 @@
 <?php
-/**
- * Module admin Slider language file - English
- * 
- * Language translation for elements in admin module Slider in English language
- * 
- * @category Languages
- * @subpackage Admin
- * @package Olapus
- * @author Jan Drda <jdrda@outlook.com>
- * @copyright Jan Drda
- * @license https://opensource.org/licenses/MIT MIT
- */
 
 return [
-
     'name' => 'Sliders',
-    'description' => 'Sliders management',
-    'delete_row_confirmation' => 'Are you sure you want to delete slider called',
+    'description' => 'Manage sliders',
+    'delete_row_confirmation' => 'Are you sure you want to delete the slider named',
     'fields' => [
         'id' => 'ID',
         'name' => 'Name',
         'description' => 'Description',
-        'cycle_interval' => 'Cycle interval [ms]',
-        'created_at' => 'Create at',
-        'updated_at' => 'Update at',
-        'deleted_at' => 'Deleted at',
+        'cycle_interval' => 'Change interval [ms]',
+        'created_at' => 'Created',
+        'updated_at' => 'Updated',
+        'deleted_at' => 'Deleted',
     ],
     'show_slides' => 'Show slides',
 ];

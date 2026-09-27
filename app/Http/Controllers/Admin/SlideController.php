@@ -31,12 +31,8 @@ class SlideController extends AdminModuleController {
         /**
          * Add lookup tables
          */
-        $this->middleware('add.lookup.tables:Slider', ['only' => ['index', 'create', 'edit']]);
+        $this->middleware('add.lookup.tables:Slider', ['only' => ['create', 'edit']]);
 
-        /**
-         * Other tables
-         */
-        $this->middleware('media.image.select:Image', ['only' => ['create', 'edit']]);
     }
 
     /**
@@ -81,28 +77,6 @@ class SlideController extends AdminModuleController {
         else {
 
             $object->sliders()->associate($request->input('slider_id'));
-        }
-
-        /**
-         * Validate image ID, if failed set to default
-         */
-        $validator = Validator::make($request->all(), [
-                    'image_id' => 'required|integer|min:1|exists:image,id',
-        ]);
-        
-        /**
-         * Validator fails - nothing to do
-         */
-        if ($validator->fails()) {
-
-        } 
-        
-        /**
-         * Validator OK - save it
-         */
-        else {
-
-            $object->images()->associate($request->input('image_id'));
         }
     }
 }

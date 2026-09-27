@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'active' => 'Aktívne filtre',
+    'apply' => 'Použiť',
+    'clear' => 'Vymazať',
+    'clear_all' => 'Zrušiť všetky filtre',
+    'remove' => 'Odobrať',
+    'user_group' => 'Skupina používateľov',
+    'search_mode' => 'Režim hľadania',
+    'phrase' => 'Celá fráza',
+    'all_words' => 'Všetky slová',
+    'presets' => 'Predvoľby',
+    'columns' => 'Filtre stĺpcov',
+    'any' => 'Ľubovoľná hodnota',
+    'created_from' => 'Vytvorené od',
+    'created_to' => 'Vytvorené do',
+    'this_month' => 'Tento mesiac',
+    'any_period' => 'Ľubovoľné obdobie',
+    'completed' => 'Dokončené',
+    'no' => 'Nie',
+    'yes' => 'Áno',
+    'pending' => 'Nedokončené',
+    'done' => 'Dokončené',
+    'any_state' => 'Ľubovoľný stav',
+    'name_prefix' => 'Názov začína',
+    'created_on' => 'Vytvorené dňa',
+];

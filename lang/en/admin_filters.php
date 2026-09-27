@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'active' => 'Active filters',
+    'apply' => 'Apply',
+    'clear' => 'Clear',
+    'clear_all' => 'Clear all filters',
+    'remove' => 'Remove',
+    'user_group' => 'User group',
+    'search_mode' => 'Search mode',
+    'phrase' => 'Whole phrase',
+    'all_words' => 'All words',
+    'presets' => 'Presets',
+    'columns' => 'Column filters',
+    'any' => 'Any value',
+    'created_from' => 'Created from',
+    'created_to' => 'Created through',
+    'this_month' => 'This month',
+    'any_period' => 'Any period',
+    'completed' => 'Completed',
+    'no' => 'No',
+    'yes' => 'Yes',
+    'pending' => 'Pending',
+    'done' => 'Completed',
+    'any_state' => 'Any status',
+    'name_prefix' => 'Name starts with',
+    'created_on' => 'Created on',
+];

@@ -1,36 +1,23 @@
 <?php
-/**
- * Module admin Comment language file - English
- * 
- * Language translation for elements in admin module Comment in English language
- * 
- * @category Languages
- * @subpackage Admin
- * @package Olapus
- * @author Jan Drda <jdrda@outlook.com>
- * @copyright Jan Drda
- * @license https://opensource.org/licenses/MIT MIT
- */
 
 return [
-    
     'name' => 'Comments',
-    'description' => 'Comments management',
-    'delete_row_confirmation' => 'Are you sure you want to delete comment with headline',
+    'description' => 'Manage comments',
+    'delete_row_confirmation' => 'Are you sure you want to delete the comment titled',
     'fields' => [
         'id' => 'ID',
-        'name' => 'Author',
+        'name' => 'Name',
         'headline' => 'Headline',
         'text' => 'Text',
         'approved' => 'Approved',
-        'email' => 'E-mail',
+        'email' => 'Email',
         'url' => 'URL',
         'page' => 'Page',
         'article' => 'Article',
         'commentstatus' => 'Status',
-        'created_at' => 'Create at',
-        'updated_at' => 'Update at',
-        'deleted_at' => 'Deleted at',
-        'published_at' => 'Published at',
-    ]
+        'created_at' => 'Created',
+        'updated_at' => 'Updated',
+        'deleted_at' => 'Deleted',
+        'published_at' => 'Published',
+    ],
 ];

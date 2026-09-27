@@ -1,142 +1,86 @@
 @extends('admin.master')
 
-@section('page-name', trans($moduleNameBlade . '.name') )
-
-@section('page-icon', 'fa fa-comments-o')
-
+@section('page-name', trans($moduleNameBlade . '.name'))
+@section('page-icon', 'bi bi-chat-dots')
 @section('page-description', trans($moduleNameBlade . '.description'))
+@section('delete_confirmation_text', trans($moduleNameBlade . '.delete_row_confirmation'))
 
-@section('menu-class-publishing', 'active')
+@section('menu-class-publishing', 'menu-open')
 @section('menu-class-comment', 'active')
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">
-                    {{ trans($moduleNameBlade . '.name') }}
-                </h3>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">{{ trans($moduleNameBlade . '.name') }}</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                @include('admin.errors')
 
+                <form action="{{ isset($results->_method) ? route($moduleBasicRoute . '.update', $results->id) : route($moduleBasicRoute . '.store') }}" method="post">
+                    @csrf
+                    @if (isset($results->_method))
+                        @method($results->_method)
+                    @endif
 
-                <div class="box-tools">
-
-
-                    <!-- Search box DEACTIVATED -->
-                    <!--<div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>-->
-                    <!-- /Search box DEACTIVATED -->
-                </div>
-
-            </div>
-            <!-- /.box-header -->
-
-            <div class='box-body'>
-                <div class='row'>
-                    <div class='col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4'>
-
-                        @include('admin.errors')
-
-                    </div>
-
-                </div>
-
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6">
-                        <!-- Form -->
-                        <form action="@if(isset($results->_method)){{ route($moduleBasicRoute . '.update', $results->id) }}@else{{ route($moduleBasicRoute . '.store') }}@endif" method="post">
-                            {!! csrf_field() !!}
-                            @if(isset($results->_method))
-                            <input type="hidden" name="_method" value="{{ $results->_method }}">
-                            @endif
-
-                            <div class="form-group has-feedback">
-                                <label for='color'>{{ trans($moduleNameBlade . '.fields.text') }}</label>
-                                <textarea name='text' class='form-control html' rows="23">{!! $results->text ?? '' !!}</textarea>
-                                <span class="fa fa-align-left form-control-feedback"></span>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="mb-3">
+                                <label for="text" class="form-label">{{ trans($moduleNameBlade . '.fields.text') }}</label>
+                                <textarea name="text" id="text" class="form-control" rows="18">{{ old('text', $results->text ?? '') }}</textarea>
                             </div>
-                    </div>
-                
-
-                    <div class="col-xs-12 col-sm-6">
-
-                        <div class="form-group has-feedback">
-                            <label for='page'>{{ trans($moduleNameBlade . '.fields.page') }}</label>
-                            <input type="text" name="page" class="form-control" value="{{ $results->pages->name ?? '-' }}" disabled>
-                            <span class="fa fa-sticky-note-o form-control-feedback"></span>
                         </div>
-                        <div class="form-group has-feedback">
-                            <label for='article'>{{ trans($moduleNameBlade . '.fields.article') }}</label>
-                            <input type="text" name="article" class="form-control" value="{{ $results->articles->name ?? '-' }}" disabled>
-                            <span class="fa fa-newspaper-o form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                            <label for='headline'>{{ trans($moduleNameBlade . '.fields.headline') }} *</label>
-                            <input type="text" name="headline" class="form-control" value="{{ $results->headline ?? old('headline') }}">
-                            <span class="fa fa-header form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                            <label for='name'>{{ trans($moduleNameBlade . '.fields.name') }}</label>
-                            <input type="name" name="name" class="form-control" value="{{ $results->name ?? old('name') }}">
-                            <span class="fa fa-user form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                            <label for='email'>{{ trans($moduleNameBlade . '.fields.email') }}</label>
-                            <input type="email" name="email" class="form-control" value="{{ $results->email ?? old('email') }}">
-                            <span class="fa fa-envelope form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                            <label for='url'>{{ trans($moduleNameBlade . '.fields.url') }}</label>
-                            <input type="url" name="url" class="form-control" value="{{ $results->url ?? old('url') }}">
-                            <span class="fa fa-anchor form-control-feedback"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for='commentstatus_id'>{{ trans($moduleNameBlade . '.fields.commentstatus') }} * </label>
-                            <select name="commentstatus_id" class='form-control select2'>                      
-                                @foreach (request('CommentStatus') as $status) 
-                                <option value="{{ $status->id }}" @if(isset($results) == TRUE and $results->commentstatus_id == $status->id)selected @endif>{{ $status->name }}</option>                                 
-                                @endforeach
-                            </select> 
+                        <div class="col-12 col-md-6">
+                            <div class="mb-3">
+                                <label for="page" class="form-label">{{ trans($moduleNameBlade . '.fields.page') }}</label>
+                                <input type="text" name="page" id="page" class="form-control" value="{{ $results->pages->name ?? '-' }}" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="article" class="form-label">{{ trans($moduleNameBlade . '.fields.article') }}</label>
+                                <input type="text" name="article" id="article" class="form-control" value="{{ $results->articles->name ?? '-' }}" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="headline" class="form-label">{{ trans($moduleNameBlade . '.fields.headline') }}</label>
+                                <input type="text" name="headline" id="headline" class="form-control"
+                                       value="{{ old('headline', $results->headline ?? '') }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">{{ trans($moduleNameBlade . '.fields.name') }}</label>
+                                <input type="text" name="name" id="name" class="form-control"
+                                       value="{{ old('name', $results->name ?? '') }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">{{ trans($moduleNameBlade . '.fields.email') }}</label>
+                                <input type="email" name="email" id="email" class="form-control"
+                                       value="{{ old('email', $results->email ?? '') }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="url" class="form-label">{{ trans($moduleNameBlade . '.fields.url') }}</label>
+                                <input type="url" name="url" id="url" class="form-control"
+                                       value="{{ old('url', $results->url ?? '') }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="commentstatus_id" class="form-label">{{ trans($moduleNameBlade . '.fields.commentstatus') }} *</label>
+                                <select name="commentstatus_id" id="commentstatus_id" class="form-select" data-enhance="select">
+                                    @foreach (request('CommentStatus', []) as $status)
+                                        <option value="{{ $status->id }}" @selected((string) old('commentstatus_id', $results->commentstatus_id ?? '') === (string) $status->id)>{{ $status->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
 
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="form-group text-right">
-                            <button type='submit' name='submit' class='btn btn-primary btn-flat'>{{ trans('admin.save') }}</button>
-                        </div>
-                        </form>
+                    <div class="d-flex flex-wrap justify-content-end gap-2">
+                        <button type="submit" name="submit" class="btn btn-primary">{{ trans('admin.save') }}</button>
                     </div>
-                </div>
-
-                <!-- /Form -->
-
+                </form>
             </div>
-            <!-- /.box-body -->
         </div>
-        <!-- /.box -->
     </div>
 </div>
 @endsection
 
-@section('foot')
-
-@parent
-
-<script>
-    $(function () {
-        $('select').select2();
-
-    });
-
-</script>
-
-@endsection
+@push('scripts')
+    @include('admin.modules.form_scripts')
+@endpush

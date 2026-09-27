@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'active' => 'Actieve filters',
+    'apply' => 'Toepassen',
+    'clear' => 'Wissen',
+    'clear_all' => 'Alle filters wissen',
+    'remove' => 'Verwijderen',
+    'user_group' => 'Gebruikersgroep',
+    'search_mode' => 'Zoekmodus',
+    'phrase' => 'Hele zin',
+    'all_words' => 'Alle woorden',
+    'presets' => 'Voorinstellingen',
+    'columns' => 'Kolomfilters',
+    'any' => 'Elke waarde',
+    'created_from' => 'Aangemaakt vanaf',
+    'created_to' => 'Aangemaakt tot en met',
+    'this_month' => 'Deze maand',
+    'any_period' => 'Elke periode',
+    'completed' => 'Voltooid',
+    'no' => 'Nee',
+    'yes' => 'Ja',
+    'pending' => 'Openstaand',
+    'done' => 'Voltooid',
+    'any_state' => 'Elke status',
+    'name_prefix' => 'Naam begint met',
+    'created_on' => 'Aangemaakt op',
+];

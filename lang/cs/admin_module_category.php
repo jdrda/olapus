@@ -1,19 +1,6 @@
 <?php
-/**
- * Module admin Settings language file - Czech
- * 
- * Language translation for elements in admin module Settings in Czech language
- * 
- * @category Languages
- * @subpackage Admin
- * @package Olapus
- * @author Jan Drda <jdrda@outlook.com>
- * @copyright Jan Drda
- * @license https://opensource.org/licenses/MIT MIT
- */
 
 return [
-    
     'name' => 'Kategorie',
     'description' => 'Mapování kategorií',
     'delete_row_confirmation' => 'Jste si jisti, že chcete odstranit kategorii',
@@ -24,5 +11,5 @@ return [
         'created_at' => 'Vytvořeno',
         'updated_at' => 'Aktualizováno',
         'deleted_at' => 'Odstraněno',
-    ]
+    ],
 ];

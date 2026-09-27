@@ -1,0 +1,9 @@
+<?php
+
+// Labels can be customized independently in each locale.
+return [
+    'name' => {{label}},
+    'description' => {{description}},
+    'delete_row_confirmation' => {{deleteConfirmation}},
+    'fields' => {{fields}},
+];

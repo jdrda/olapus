@@ -4,4 +4,4 @@
 
 @section('title', trans('errors.404.title'))
 
-@section ('description', trans('errors.404.description'));
+@section('description', trans('errors.404.description'))

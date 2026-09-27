@@ -1,20 +1,7 @@
 <?php
-/**
- * Login language file - Czech
- * 
- * Language translation for elements in login in Czech language
- * 
- * @category Languages
- * @subpackage Frontend
- * @package Olapus
- * @author Jan Drda <jdrda@outlook.com>
- * @copyright Jan Drda
- * @license https://opensource.org/licenses/MIT MIT
- */
 
 return [
-    
-    'headline' => 'Přihlašte se',
+    'headline' => 'Přihlaste se',
     'email' => 'E-mail',
     'password' => 'Heslo',
     'sign_in' => 'Přihlásit se',
@@ -22,5 +9,5 @@ return [
     'error' => 'Chyba',
     'problems_with_input' => 'Vyskytly se problémy se vstupními daty',
     'remeber_me' => 'Neodhlašovat',
-
+    'sign_out' => 'Odhlásit se',
 ];

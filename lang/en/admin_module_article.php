@@ -1,22 +1,9 @@
 <?php
-/**
- * Module admin Article language file - English
- * 
- * Language translation for elements in admin module Article in English language
- * 
- * @category Languages
- * @subpackage Admin
- * @package Olapus
- * @author Jan Drda <jdrda@outlook.com>
- * @copyright Jan Drda
- * @license https://opensource.org/licenses/MIT MIT
- */
 
 return [
-
     'name' => 'Articles',
-    'description' => 'Articles management',
-    'delete_row_confirmation' => 'Are you sure you want to delete article called',
+    'description' => 'Manage articles',
+    'delete_row_confirmation' => 'Are you sure you want to delete the article named',
     'publish' => 'Publish',
     'fields' => [
         'id' => 'ID',
@@ -30,9 +17,9 @@ return [
         'image' => 'Image',
         'author' => 'Author',
         'articlecategory' => 'Category',
-        'created_at' => 'Create at',
-        'updated_at' => 'Update at',
-        'deleted_at' => 'Deleted at',
-        'published_at' => 'Published at',
-    ]
+        'created_at' => 'Created',
+        'updated_at' => 'Updated',
+        'deleted_at' => 'Deleted',
+        'published_at' => 'Published',
+    ],
 ];

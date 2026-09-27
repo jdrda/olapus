@@ -1,19 +1,6 @@
 <?php
-/**
- * General admin language file - Czech
- * 
- * Language translation for general elements in admin interface in Czech language
- * 
- * @category Languages
- * @subpackage Admin
- * @package Olapus
- * @author Jan Drda <jdrda@outlook.com>
- * @copyright Jan Drda
- * @license https://opensource.org/licenses/MIT MIT
- */
 
 return [
-    
     'toggle_navigation' => 'Přepnout navigaci',
     'home' => 'Domů',
     'menu_header' => 'Navigace',
@@ -27,6 +14,7 @@ return [
     'play' => 'Přehrát',
     'approve' => 'Schválit',
     'spam' => 'SPAM',
+    'member_since' => 'členem od',
     'delete_row' => 'Odstranit řádek č.',
     'delete_row_confirmation' => 'Opravdu chcete odstranit řádek č.',
     'select_image' => 'Vybrat obrázek',
@@ -42,5 +30,7 @@ return [
     'menu_group_media' => 'Média',
     'menu_group_advertising' => 'Reklama',
     'menu_group_administration' => 'Správa',
-    
+    'no_records' => 'Zatím nejsou žádné záznamy.',
+    'statistics_unavailable' => 'Statistiky zatím nejsou k dispozici.',
+    'image_library_removed' => 'Původní vlastní obrázková knihovna byla vyřazena. Tento modul už nenabízí úpravy ani nahrávání obrázků.',
 ];

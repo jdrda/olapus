@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends AdminModuleController {
+    protected $relationFields = ['articlecategory_id' => 'articlecategories'];
+
 
     /**
      * Contructor
@@ -35,10 +37,6 @@ class ArticleController extends AdminModuleController {
         $this->middleware('add.lookup.tables:ArticleCategory', ['only' => ['create', 'edit']]);
         $this->middleware('add.published.at', ['only' => ['store', 'update']]);
 
-        /**
-         * Other tables
-         */
-        $this->middleware('media.image.select:Image', ['only' => ['create', 'edit']]);
     }
 
     /**
@@ -54,7 +52,7 @@ class ArticleController extends AdminModuleController {
         'text' => 'max:1000000',
         'url' => 'required|max:255|unique:article,url',
         'author_name' => 'max:255',
-        'published_at' => 'date',
+        'published_at' => 'nullable|date',
     ];
 
     /**
@@ -85,72 +83,6 @@ class ArticleController extends AdminModuleController {
         else {
 
             $object->users()->associate($request->input('user_id'));
-        }
-
-        /**
-         * Validate image ID, if failed set to default
-         */
-        $validator = Validator::make($request->all(), [
-                    'image_id' => 'integer|min:1|exists:image,id',
-        ]);
-        
-        /**
-         * Validator fails - nothing to do
-         */
-        if ($validator->fails()) {
-
-        } 
-        /**
-         * Validator OK - save it
-         */
-        else {
-
-            $object->images()->associate($request->input('image_id'));
-        }
-    }
-    
-    /**
-     * Associate relationships to other table, where ID if object must be present
-     * 
-     * @param object $object
-     * @param Request $request
-     */
-    public function associateRelationshipsWithID($object, Request $request) {
-        
-        /**
-         * Validate article category ID, if failed set to default
-         */
-        if($request->has('articlecategory_id')){
-            
-            $validIDs = [];
-
-            foreach ($request->input('articlecategory_id') as $articlecategory_id) {
-
-                $arrayForValidator = ['articlecategory_id' =>  $articlecategory_id];
-
-                $validator = Validator::make($arrayForValidator, [
-                            'articlecategory_id' => 'required|integer|min:1|exists:articlecategory,id',
-                ]);
-                
-                /**
-                 * Validator fails - nothing to do
-                 */
-                if ($validator->fails()) {
-
-                } 
-                
-                /**
-                 * Validator OK - save it
-                 */ else {
-
-                    $validIDs[] = $articlecategory_id;
-                }
-            }
-            
-            /**
-             * Sync all to pivot
-             */
-            $object->articlecategories()->sync($validIDs);
         }
     }
 }

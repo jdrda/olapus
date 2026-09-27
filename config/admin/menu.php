@@ -21,7 +21,7 @@ return [
         'name'  => 'admin_module_dashboard.name',
         'class' => 'menu-class-dashboard',
         'route' => 'admin.dashboard.index',
-        'icon'  => 'fa fa-dashboard',
+        'icon'  => 'bi bi-speedometer2',
         'items' => [
         ]
     ],
@@ -33,17 +33,17 @@ return [
         'name'  => 'admin.menu_group_publishing',
         'class' => 'menu-class-publishing',
         'route' => null,
-        'icon'  => 'fa fa-newspaper-o',
+        'icon'  => 'bi bi-newspaper',
         'items' => [
             
             /**
              * Item Page
              */
-            'publishing' => [
+            'page' => [
                 'name'  => 'admin_module_page.name',
                 'class' => 'menu-class-page',
                 'route' => 'admin.page.index',
-                'icon'  => 'fa fa-sticky-note-o',
+                'icon'  => 'bi bi-file-earmark-text',
             ],
             
             /**
@@ -53,7 +53,7 @@ return [
                 'name'  => 'admin_module_pagecategory.name',
                 'class' => 'menu-class-pagecategory',
                 'route' => 'admin.pageCategory.index',
-                'icon'  => 'fa fa-object-group',
+                'icon'  => 'bi bi-collection',
             ],
             
             /**
@@ -63,7 +63,7 @@ return [
                 'name'  => 'admin_module_article.name',
                 'class' => 'menu-class-article',
                 'route' => 'admin.article.index',
-                'icon'  => 'fa fa-newspaper-o',
+                'icon'  => 'bi bi-newspaper',
             ],
             
             /**
@@ -73,17 +73,17 @@ return [
                 'name'  => 'admin_module_articlecategory.name',
                 'class' => 'menu-class-articlecategory',
                 'route' => 'admin.articleCategory.index',
-                'icon'  => 'fa fa-clone',
+                'icon'  => 'bi bi-files',
             ],
             
             /**
-             * Feedback category
+             * Feedback
              */
             'feedback' => [
                 'name'  => 'admin_module_feedback.name',
                 'class' => 'menu-class-feedback',
                 'route' => 'admin.feedback.index',
-                'icon'  => 'fa fa-commenting-o',
+                'icon'  => 'bi bi-chat-left-text',
             ],
             
             /**
@@ -93,49 +93,12 @@ return [
                 'name'  => 'admin_module_comment.name',
                 'class' => 'menu-class-comment',
                 'route' => 'admin.comment.index',
-                'icon'  => 'fa fa-comments-o',
+                'icon'  => 'bi bi-chat-dots',
             ],
         ],
     ],
     /**
      * /Group Publishing
-     */
-    
-    /**
-     * Group Media
-     */
-    'media' => [
-        'name'  => 'admin.menu_group_media',
-        'class' => 'menu-class-media',
-        'route' => null,
-        'icon'  => 'fa fa-camera-retro',
-        'items' => [
-            
-            /**
-             * Item Image
-             */
-            'image' => [
-                'name'  => 'admin_module_image.name',
-                'class' => 'menu-class-image',
-                'route' => 'admin.image.index',
-                'icon'  => 'fa fa-image',
-            ],
-            
-            /**
-             * Item Image category
-             */
-            'imageCategory' => [
-                'name'  => 'admin_module_imagecategory.name',
-                'class' => 'menu-class-imagecategory',
-                'route' => 'admin.imageCategory.index',
-                'icon'  => 'fa fa-file-image-o',
-            ],
-            
-            
-        ],
-    ],
-    /**
-     * /Group Media
      */
     
     /**
@@ -145,7 +108,7 @@ return [
         'name'  => 'admin.menu_group_components',
         'class' => 'menu-class-components',
         'route' => null,
-        'icon'  => 'fa fa-cubes',
+        'icon'  => 'bi bi-boxes',
         'items' => [
             
             /**
@@ -155,7 +118,7 @@ return [
                 'name'  => 'admin_module_slider.name',
                 'class' => 'menu-class-slider',
                 'route' => 'admin.slider.index',
-                'icon'  => 'fa fa-sliders',
+                'icon'  => 'bi bi-sliders',
             ],
             
             /**
@@ -165,9 +128,8 @@ return [
                 'name'  => 'admin_module_slide.name',
                 'class' => 'menu-class-slide',
                 'route' => 'admin.slide.index',
-                'icon'  => 'fa fa-slideshare',
+                'icon'  => 'bi bi-easel',
             ],
-            
             
         ],
     ],
@@ -183,17 +145,17 @@ return [
         'name'  => 'admin.menu_group_advertising',
         'class' => 'menu-class-advertising',
         'route' => null,
-        'icon'  => 'fa fa-bullhorn',
+        'icon'  => 'bi bi-megaphone',
         'items' => [
             
             /**
-             * Item Advert location
+             * Item Advert
              */
             'advert' => [
                 'name'  => 'admin_module_advert.name',
                 'class' => 'menu-class-advert',
                 'route' => 'admin.advert.index',
-                'icon'  => 'fa fa-bullhorn',
+                'icon'  => 'bi bi-megaphone',
             ],
             
             /**
@@ -203,9 +165,8 @@ return [
                 'name'  => 'admin_module_advertlocation.name',
                 'class' => 'menu-class-advertlocation',
                 'route' => 'admin.advertLocation.index',
-                'icon'  => 'fa fa-building-o',
+                'icon'  => 'bi bi-building',
             ],
-            
             
         ],
     ],
@@ -220,9 +181,8 @@ return [
         'name'  => 'admin.menu_group_ecommerce',
         'class' => 'menu-class-ecommerce',
         'route' => null,
-        'icon'  => 'fa fa-shopping-cart',
+        'icon'  => 'bi bi-cart3',
         'items' => [*/
-            
             
             /**
              * Product categories
@@ -231,7 +191,7 @@ return [
                 'name'  => 'admin_module_productcategory.name',
                 'class' => 'menu-class-productcategory',
                 'route' => 'admin.productCategory.index',
-                'icon'  => 'fa fa-cubes',
+                'icon'  => 'bi bi-boxes',
             ],*/
             
             /**
@@ -241,7 +201,7 @@ return [
                 'name'  => 'admin_module_product.name',
                 'class' => 'menu-class-product',
                 'route' => 'admin.product.index',
-                'icon'  => 'fa fa-cube',
+                'icon'  => 'bi bi-box',
             ],
             
         ],
@@ -250,7 +210,51 @@ return [
      * /Group E-commerce
      */
 
+    /**
+     * Group Composite relation example
+     */
+    'compositeExample' => [
+        'name'  => 'admin_composite.menu',
+        'class' => 'menu-class-composite-example',
+        'route' => null,
+        'icon'  => 'bi bi-link-45deg',
+        'items' => [
+            
+            /**
+             * Item External record
+             */
+            'externalRecord' => [
+                'name'  => 'admin_module_externalrecord.name',
+                'class' => 'menu-class-externalrecord',
+                'route' => 'admin.externalRecord.index',
+                'icon'  => 'bi bi-folder2-open',
+            ],
+            
+            /**
+             * Item External row
+             */
+            'externalRow' => [
+                'name'  => 'admin_module_externalrow.name',
+                'class' => 'menu-class-externalrow',
+                'route' => 'admin.externalRow.index',
+                'icon'  => 'bi bi-list-ul',
+            ],
+            
+        ],
+    ],
+    /**
+     * /Group Composite relation example
+     */
+
     
+    /**
+     * Generated modules
+     *
+     * This file is managed by make:admin-module. Generated items can be
+     * copied to the appropriate group below or above and then removed from it.
+     */
+    ...(require __DIR__.'/generated_menu.php'),
+
     /**
      * Group Administration
      */
@@ -258,35 +262,43 @@ return [
         'name'  => 'admin.menu_group_administration',
         'class' => 'menu-class-administration',
         'route' => null,
-        'icon'  => 'fa fa-gears',
+        'icon'  => 'bi bi-gear-wide-connected',
         'items' => [
             
             /**
-             * Settings Image
+             * Settings
              */
             'settings' => [
                 'name'  => 'admin_module_settings.name',
                 'class' => 'menu-class-settings',
                 'route' => 'admin.settings.index',
-                'icon'  => 'fa fa-gear',
+                'icon'  => 'bi bi-gear',
             ],
             
             /**
-             * Item Image category
+             * Item User
              */
             'user' => [
                 'name'  => 'admin_module_user.name',
                 'class' => 'menu-class-user',
                 'route' => 'admin.user.index',
-                'icon'  => 'fa fa-user',
+                'icon'  => 'bi bi-person',
             ],
             
+            /**
+             * Item User group
+             */
+            'usergroup' => [
+                'name'  => 'admin_module_usergroup.name',
+                'class' => 'menu-class-usergroup',
+                'route' => 'admin.usergroup.index',
+                'icon'  => 'bi bi-people',
+            ],
             
         ],
     ],
     /**
      * /Group Administration
      */
-    
-];
 
+];

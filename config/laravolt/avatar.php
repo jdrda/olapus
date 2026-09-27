@@ -148,4 +148,20 @@ return [
             ],
         ],
     ],
+
+    /*
+|--------------------------------------------------------------------------
+| Cache
+|--------------------------------------------------------------------------
+|
+| Avatar generation is inexpensive in Olapus and only a few avatars are
+| displayed in the administration. Keep the package cache disabled.
+|
+*/
+
+    'cache' => [
+        'enabled' => false,
+        'key_prefix' => 'avatar_',
+        'duration' => 86400,
+    ],
 ];

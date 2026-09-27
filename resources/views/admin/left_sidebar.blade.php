@@ -1,63 +1,169 @@
-<!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
+<aside
+        class="app-sidebar bg-body-secondary shadow"
+        data-bs-theme="dark"
+>
 
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+    {{-- Brand --}}
+    <div class="sidebar-brand">
 
-      @section('sidebar_user')
-      <!-- Sidebar user panel (optional) DISABLED -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="{{ asset('build/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+        <a href="{{ route('admin.dashboard.index') }}"
+           class="brand-link">
+
+            <span class="brand-text fw-light">
+                {{ config('app.name') }}
+            </span>
+
+        </a>
+
+    </div>
+
+
+    {{-- Optional user panel --}}
+    @section('sidebar_user')
+
+        <div class="p-3 d-flex align-items-center gap-2">
+
+            <img
+                    src="{{ Avatar::create(auth()->user()->name)->toBase64() }}"
+                    class="rounded-circle"
+                    width="36"
+                    height="36"
+                    alt="{{ auth()->user()->name }}"
+            >
+
+            <div>
+                {{ auth()->user()->name }}
+            </div>
+
         </div>
-        <div class="pull-left info">
-          <p>Alexander Pierce</p>
-          <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
-      <!-- /Sidebar user panel (optional) DISABLED -->
-      @endsection
 
-      @section('sidebar_search')
-      <!-- search form (Optional) DISABLED -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-      <!-- /.search form DISABLED -->
-      @endsection
+    @show
 
-      @section('sidebar_menu')
-      <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
-        <li class="header">{{ strtoupper(trans('admin.menu_header')) }}</li>
-        
-        @foreach (config('admin.menu') as $item)
-            @if(empty($item['items']))
-            <li class="@yield($item['class'])"><a href="{{ route($item['route']) }}"><i class="{{ $item['icon'] }}"></i> <span>{{ trans($item['name']) }}</span></a></li>
-            @else
-            <li class="treeview @yield($item['class'])">
-                <a href="#"><i class="{{ $item['icon'] }}"></i> <span>{{ trans($item['name']) }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    @foreach($item['items'] as $subitem)
-                    <li class="@yield($subitem['class'])"><a href="{{ route($subitem['route']) }}"><i class="{{ $subitem['icon'] }}"></i> {{ trans($subitem['name']) }}</a></li>
+
+    {{-- Sidebar search --}}
+    @section('sidebar_search')
+
+        <div class="sidebar-search px-3 pb-3">
+
+            <label
+                    for="sidebar-search-input"
+                    class="visually-hidden"
+            >
+                {{ trans('admin.search') }}
+            </label>
+
+            <input
+                    type="search"
+                    id="sidebar-search-input"
+                    class="form-control form-control-sm"
+                    placeholder="{{ trans('admin.search') }}"
+                    autocomplete="off"
+                    data-lte-toggle="sidebar-search"
+                    data-lte-target="#admin-navigation"
+            >
+
+        </div>
+
+    @show
+
+
+    <div class="sidebar-wrapper">
+
+        @section('sidebar_menu')
+
+            <nav class="mt-2">
+
+                <ul
+                        id="admin-navigation"
+                        class="nav sidebar-menu flex-column"
+                        data-lte-toggle="treeview"
+                        role="menu"
+                        data-accordion="false"
+                >
+
+                    <li class="nav-header">
+                        {{ strtoupper(trans('admin.menu_header')) }}
+                    </li>
+
+
+                    @foreach (config('admin.menu') as $item)
+
+                        @if(empty($item['items']))
+
+                            <li class="nav-item">
+
+                                <a
+                                        href="{{ route($item['route']) }}"
+                                        class="nav-link @yield($item['class'])"
+                                >
+
+                                    <i class="nav-icon {{ $item['icon'] }}"></i>
+
+                                    <p>
+                                        {{ trans($item['name']) }}
+                                    </p>
+
+                                </a>
+
+                            </li>
+
+                        @else
+
+                            <li class="nav-item @yield($item['class'])">
+
+                                <a
+                                        href="#"
+                                        class="nav-link"
+                                >
+
+                                    <i class="nav-icon {{ $item['icon'] }}"></i>
+
+                                    <p>
+                                        {{ trans($item['name']) }}
+
+                                        <i class="nav-arrow bi bi-chevron-right"></i>
+                                    </p>
+
+                                </a>
+
+
+                                <ul class="nav nav-treeview">
+
+                                    @foreach($item['items'] as $subitem)
+
+                                        <li class="nav-item">
+
+                                            <a
+                                                    href="{{ route($subitem['route']) }}"
+                                                    class="nav-link @yield($subitem['class'])"
+                                            >
+
+                                                <i class="nav-icon {{ $subitem['icon'] }}"></i>
+
+                                                <p>
+                                                    {{ trans($subitem['name']) }}
+                                                </p>
+
+                                            </a>
+
+                                        </li>
+
+                                    @endforeach
+
+                                </ul>
+
+                            </li>
+
+                        @endif
+
                     @endforeach
+
                 </ul>
-            </li>
-            @endif
-        @endforeach
-        
-      </ul>
-      <!-- /.sidebar-menu -->
-      @show
-      
-      
-    </section>
-    <!-- /.sidebar -->
-  </aside>
+
+            </nav>
+
+        @show
+
+    </div>
+
+</aside>

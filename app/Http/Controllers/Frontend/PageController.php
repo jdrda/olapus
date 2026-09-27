@@ -15,19 +15,18 @@
 namespace App\Http\Controllers\Frontend;
 
 
-use App\Application;
-use App\Campaign;
-use App\Payment;
-use App\Transaction;
-use App\User;
-use App\Recommendation;
+use App\Models\Campaign;
+use App\Models\Payment;
+use App\Models\Transaction;
+use App\Models\User;
+use App\Models\Recommendation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
-use DB;
 use Carbon\Carbon;
-use Cache;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 
 
@@ -104,22 +103,12 @@ class PageController extends FrontendController
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function registerEmail(Request $request){
-
         /**
-         * Validate
+         * Validate.
          */
-        if(env('RECAPTCHA_ENABLED') == 1){
-            $this->validate($request, [
-                'email' => 'email|required|max:255',
-                'g-recaptcha-response' => 'required|recaptcha'
-            ]);
-        }
-        else {
-
-            $this->validate($request, [
-                'email' => 'email|required|max:255'
-            ]);
-        }
+        $this->validate($request, [
+            'email' => 'email|required|max:255',
+        ]);
 
         /**
          * User data
@@ -136,8 +125,8 @@ class PageController extends FrontendController
          * Check if user exists
          */
         $user = User::where('email', $email)->orWhere('ip', $ip)->first();
-        $login = NULL;
-        $password = NULL;
+        $login = null;
+        $password = null;
         $activation_code = base64_encode(Hash::make($email . time()));
 
         /**
@@ -146,7 +135,7 @@ class PageController extends FrontendController
         if(empty($user)){
 
             $login = $email;
-            $password = str_random(10);
+            $password = Str::random(10);
 
             $user = new User();
             $user->email = $login;
@@ -154,7 +143,6 @@ class PageController extends FrontendController
             $user->password = Hash::make($password);
             $user->activation_code = $activation_code;
             $user->ip = $ip;
-            $user->usergroup_id = 2;
 
             /**
              * Save recommendation
@@ -195,7 +183,7 @@ class PageController extends FrontendController
                 'activation_code' => $activation_code
 
             ], function ($message) {
-                $message->from(env('MAIL_FROM_EMAIL', 'info@surimail.cz'), env('MAIL_FROM_NAME', 'Surimail.cz'));
+                $message->from(config('mail.from.address'), config('mail.from.name'));
                 $message->to(request('email'), request('email'));
                 $message->subject('Registrace na serveru Surimail.cz');
 
@@ -242,7 +230,7 @@ class PageController extends FrontendController
          */
         else{
             $user->active = true;
-            $user->activation_code = str_random(16);
+            $user->activation_code = Str::random(16);
             $user->save();
 
             /**

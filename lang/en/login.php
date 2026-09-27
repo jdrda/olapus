@@ -1,26 +1,13 @@
 <?php
-/**
- * Login language file - English
- * 
- * Language translation for elements in login in English language
- * 
- * @category Languages
- * @subpackage Frontend
- * @package Olapus
- * @author Jan Drda <jdrda@outlook.com>
- * @copyright Jan Drda
- * @license https://opensource.org/licenses/MIT MIT
- */
 
 return [
-    
-    'headline' => 'Sign in to start your session',
-    'email' => 'E-mail',
+    'headline' => 'Sign in',
+    'email' => 'Email',
     'password' => 'Password',
-    'sign_in' => 'Sign In',
-    'lost_password' => 'I forgot my password',
+    'sign_in' => 'Sign in',
+    'lost_password' => 'Forgotten password',
     'error' => 'Error',
-    'problems_with_input' => 'There were some problems with your input',
-    'remeber_me' => 'Remember me',
-
+    'problems_with_input' => 'There were problems with the entered data',
+    'remeber_me' => 'Keep me signed in',
+    'sign_out' => 'Sign out',
 ];

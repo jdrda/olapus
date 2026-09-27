@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'active' => 'Filtres actifs',
+    'apply' => 'Appliquer',
+    'clear' => 'Effacer',
+    'clear_all' => 'Supprimer tous les filtres',
+    'remove' => 'Retirer',
+    'user_group' => 'Groupe d’utilisateurs',
+    'search_mode' => 'Mode de recherche',
+    'phrase' => 'Expression entière',
+    'all_words' => 'Tous les mots',
+    'presets' => 'Préréglages',
+    'columns' => 'Filtres de colonnes',
+    'any' => 'Toute valeur',
+    'created_from' => 'Créé à partir du',
+    'created_to' => 'Créé jusqu’au',
+    'this_month' => 'Ce mois-ci',
+    'any_period' => 'Toute période',
+    'completed' => 'Terminé',
+    'no' => 'Non',
+    'yes' => 'Oui',
+    'pending' => 'En cours',
+    'done' => 'Terminé',
+    'any_state' => 'Tout état',
+    'name_prefix' => 'Le nom commence par',
+    'created_on' => 'Créé le',
+];

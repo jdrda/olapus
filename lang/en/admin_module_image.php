@@ -1,48 +1,35 @@
 <?php
-/**
- * Module admin Image language file - English
- * 
- * Language translation for elements in admin module Image in English language
- * 
- * @category Languages
- * @subpackage Admin
- * @package Olapus
- * @author Jan Drda <jdrda@outlook.com>
- * @copyright Jan Drda
- * @license https://opensource.org/licenses/MIT MIT
- */
 
 return [
-
     'name' => 'Images',
-    'description' => 'Manage pictures',
-    'delete_row_confirmation' => 'Are you sure you want to delete image called',
+    'description' => 'Manage images',
+    'delete_row_confirmation' => 'Are you sure you want to delete the image named',
     'fields' => [
         'id' => 'ID',
         'name' => 'Name',
         'description' => 'Description',
-        'alt' => 'Alternative name (ALT attribute)',
-        'url' => 'Friendly URL',
+        'alt' => 'Alternative text (ALT attribute)',
+        'url' => 'URL',
         'image' => 'Image file',
         'category' => 'Category',
-        'created_at' => 'Create at',
-        'updated_at' => 'Update at',
-        'deleted_at' => 'Deleted at',
+        'created_at' => 'Created',
+        'updated_at' => 'Updated',
+        'deleted_at' => 'Deleted',
     ],
     'action' => 'Action',
     'get_url' => 'Get URL',
-    'get_info' => 'Get info',
+    'get_info' => 'Details',
     'detail_modal' => [
         'width' => 'Width',
         'height' => 'Height',
-        'px'    => 'px',
+        'px' => 'px',
         'size' => 'Size',
-        'type'  => 'Type',
-        'original_name'  => 'Original name',
+        'type' => 'Type',
+        'original_name' => 'Original name',
     ],
     'url_modal' => [
-        'url_of' => 'URL of',
+        'url_of' => 'URL',
         'instruction' => 'Press CTRL + C to copy the URL',
-        'subinstruction'    => '(then ESCAPE or click x on the top right cortner to close this window)',
+        'subinstruction' => '(then press ESCAPE or click the x in the top-right corner to close this window)',
     ],
 ];

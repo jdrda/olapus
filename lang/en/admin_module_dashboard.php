@@ -1,28 +1,15 @@
 <?php
-/**
- * Module admin Dashboard language file - English
- * 
- * Language translation for elements in admin module Dashboard in English language
- * 
- * @category Languages
- * @subpackage Admin
- * @package Olapus
- * @author Jan Drda <jdrda@outlook.com>
- * @copyright Jan Drda
- * @license https://opensource.org/licenses/MIT MIT
- */
 
 return [
-    
     'name' => 'Dashboard',
-    'description' => 'Basic screen for administration',
+    'description' => 'Main administration screen',
     'analytics' => [
         'visitors' => 'Visitors',
-        'pageviews' => 'Pageviews',
+        'pageviews' => 'Page views',
         'days' => 'days',
-        'day' => 'Day',
-        'top_referers' => 'Top referers',
+        'day' => 'Date',
+        'top_referers' => 'Referring pages',
         'url' => 'URL',
-        'visits_and_pageviews' => 'Visits and pageviews',
+        'visits_and_pageviews' => 'Visits and page views',
     ],
 ];

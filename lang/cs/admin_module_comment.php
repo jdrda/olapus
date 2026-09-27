@@ -1,19 +1,6 @@
 <?php
-/**
- * Module admin Comment language file - Czech
- * 
- * Language translation for elements in admin module Comment in Czech language
- * 
- * @category Languages
- * @subpackage Admin
- * @package Olapus
- * @author Jan Drda <jdrda@outlook.com>
- * @copyright Jan Drda
- * @license https://opensource.org/licenses/MIT MIT
- */
 
 return [
-    
     'name' => 'Komentáře',
     'description' => 'Správa komentářů',
     'delete_row_confirmation' => 'Jste si jisti, že chcete odstranit komentář s titulkem',
@@ -32,5 +19,5 @@ return [
         'updated_at' => 'Aktualizováno',
         'deleted_at' => 'Odstraněno',
         'published_at' => 'Publikováno',
-    ]
+    ],
 ];

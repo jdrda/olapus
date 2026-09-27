@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 class PageController extends AdminModuleController {
+    protected $relationFields = ['pagecategory_id' => 'pagecategories'];
+
 
     /**
      * Constructor
@@ -35,10 +37,6 @@ class PageController extends AdminModuleController {
         $this->middleware('add.lookup.tables:PageCategory', ['only' => ['create', 'edit']]);
         $this->middleware('add.published.at', ['only' => ['store', 'update']]);
 
-        /**
-         * Other tables
-         */
-        $this->middleware('media.image.select:Image', ['only' => ['create', 'edit']]);
     }
 
     /**
@@ -54,7 +52,7 @@ class PageController extends AdminModuleController {
         'text' => 'max:1000000',
         'url' => 'required|max:255|unique:page,url',
         'author_name' => 'max:255',
-        'published_at' => 'date',
+        'published_at' => 'nullable|date',
     ];
 
     /**
@@ -87,77 +85,6 @@ class PageController extends AdminModuleController {
         else {
 
             $object->users()->associate($request->input('user_id'));
-        }
-
-        /**
-         * Validate image ID, if failed set to default
-         */
-        $validator = Validator::make($request->all(), [
-                    'image_id' => 'integer|min:1|exists:image,id',
-        ]);
-
-        /**
-         * Validator fails - nothing to do
-         */
-        if ($validator->fails()) {
-
-           
-        } 
-        
-        /**
-         * Validator OK - save it
-         */
-        else {
-
-            $object->images()->associate($request->input('image_id'));
-        }
-    }
-    
-    /**
-     * Associate relationships to other table, where ID if object must be present
-     * 
-     * @param object $object
-     * @param Request $request
-     */
-    public function associateRelationshipsWithID($object, Request $request) {
-        
-        /**
-         * Validate page category ID, if failed set to default
-         */
-        if($request->has('pagecategory_id')){
-            $validIDs = [];
-            
-            /**
-             * For each category
-             */
-            foreach ($request->input('pagecategory_id') as $pagecategory_id) {
-
-                $arrayForValidator = ['pagecategory_id' =>  $pagecategory_id];
-
-                $validator = Validator::make($arrayForValidator, [
-                            'pagecategory_id' => 'required|integer|min:1|exists:pagecategory,id',
-                ]);
-
-                /**
-                 * Validator fails - nothing to do
-                 */
-                if ($validator->fails()) {
-
-                } 
-                
-                /**
-                 * Validator OK - save it
-                 */
-                else {
-
-                    $validIDs[] = $pagecategory_id;
-                }
-            }
-            
-            /**
-             * Sync to pivot
-             */
-            $object->pagecategories()->sync($validIDs);
         }
     }
 }

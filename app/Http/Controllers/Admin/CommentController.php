@@ -16,8 +16,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Comment;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\Comment;
 
 class CommentController extends AdminModuleController {
     
@@ -32,7 +31,7 @@ class CommentController extends AdminModuleController {
         /**
          * Add lookup tables
          */
-        $this->middleware('add.lookup.tables:CommentStatus', ['only' => ['index','create','edit']]);
+        $this->middleware('add.lookup.tables:CommentStatus', ['only' => ['create', 'edit']]);
     }
 
     /**
@@ -73,7 +72,7 @@ class CommentController extends AdminModuleController {
             /**
              * Auto approve ?
              */
-            if(env('AUTO_APPROVE_COMMENTS', 0) == 1){
+            if (config('olapus.comments.auto_approve', false)) {
                 
                 $object->commentstatuses()->associate(2);
             }
@@ -177,7 +176,7 @@ class CommentController extends AdminModuleController {
             $object->save();
         }
         
-         return Redirect::back();
+         return back();
        
     }
 
@@ -219,6 +218,6 @@ class CommentController extends AdminModuleController {
             $object->save();
         }
         
-         return Redirect::back();
+         return back();
     }
 }

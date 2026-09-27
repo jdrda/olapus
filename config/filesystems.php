@@ -6,80 +6,99 @@ return [
     |--------------------------------------------------------------------------
     | Default Filesystem Disk
     |--------------------------------------------------------------------------
-    |
-    | Here you may specify the default filesystem disk that should be used
-    | by the framework. A "local" driver, as well as a variety of cloud
-    | based drivers are available for your choosing. Just store away!
-    |
-    | Supported: "local", "ftp", "s3", "rackspace"
-    |
     */
 
-    'default' => 'local',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Default Cloud Filesystem Disk
-    |--------------------------------------------------------------------------
-    |
-    | Many applications store files both locally and in the cloud. For this
-    | reason, you may specify a default "cloud" driver here. This driver
-    | will be bound as the Cloud disk implementation in the container.
-    |
-    */
-
-    'cloud' => 's3',
+    'default' => env(
+        'FILESYSTEM_DISK',
+        'local'
+    ),
 
     /*
     |--------------------------------------------------------------------------
     | Filesystem Disks
     |--------------------------------------------------------------------------
-    |
-    | Here you may configure as many filesystem "disks" as you wish, and you
-    | may even configure multiple disks of the same driver. Defaults have
-    | been setup for each driver as an example of the required options.
-    |
     */
 
     'disks' => [
 
+        /*
+         * Compatibility with existing Olapus files.
+         *
+         * Modern Laravel normally uses storage/app/private here.
+         */
         'local' => [
             'driver' => 'local',
-            'root'   => storage_path('app'),
+            'root' => storage_path('app'),
+            'serve' => true,
+            'throw' => false,
+            'report' => false,
         ],
 
-        'ftp' => [
-            'driver'   => 'ftp',
-            'host'     => 'ftp.example.com',
-            'username' => 'your-username',
-            'password' => 'your-password',
+        'public' => [
+            'driver' => 'local',
 
-            // Optional FTP Settings...
-            // 'port'     => 21,
-            // 'root'     => '',
-            // 'passive'  => true,
-            // 'ssl'      => true,
-            // 'timeout'  => 30,
+            'root' => storage_path(
+                'app/public'
+            ),
+
+            'url' => rtrim(
+                    env('APP_URL', 'http://localhost'),
+                    '/'
+                ).'/storage',
+
+            'visibility' => 'public',
+
+            'throw' => false,
+            'report' => false,
         ],
 
         's3' => [
             'driver' => 's3',
-            'key'    => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
+
+            'key' => env(
+                'AWS_ACCESS_KEY_ID'
+            ),
+
+            'secret' => env(
+                'AWS_SECRET_ACCESS_KEY'
+            ),
+
+            'region' => env(
+                'AWS_DEFAULT_REGION'
+            ),
+
+            'bucket' => env(
+                'AWS_BUCKET'
+            ),
+
+            'url' => env(
+                'AWS_URL'
+            ),
+
+            'endpoint' => env(
+                'AWS_ENDPOINT'
+            ),
+
+            'use_path_style_endpoint' => env(
+                'AWS_USE_PATH_STYLE_ENDPOINT',
+                false
+            ),
+
+            'throw' => false,
+            'report' => false,
         ],
 
-        'rackspace' => [
-            'driver'    => 'rackspace',
-            'username'  => 'your-username',
-            'key'       => 'your-key',
-            'container' => 'your-container',
-            'endpoint'  => 'https://identity.api.rackspacecloud.com/v2.0/',
-            'region'    => 'IAD',
-            'url_type'  => 'publicURL',
-        ],
+    ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Symbolic Links
+    |--------------------------------------------------------------------------
+    */
+
+    'links' => [
+        public_path('storage')
+        => storage_path('app/public'),
     ],
 
 ];

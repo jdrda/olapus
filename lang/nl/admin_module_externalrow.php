@@ -1,0 +1,20 @@
+<?php
+
+return [
+    'name' => 'Regels van externe records',
+    'description' => 'Integratievoorbeeld',
+    'delete_row_confirmation' => 'Dit record verwijderen?',
+    'fields' => [
+        'id' => 'ID',
+        'name' => 'Naam',
+        'created_at' => 'Aangemaakt op',
+        'updated_at' => 'Bijgewerkt op',
+        'deleted_at' => 'Verwijderd op',
+        'description' => 'Beschrijving',
+        'owner' => 'Eigenaar',
+        'labels' => 'Labels',
+        'tasks' => 'Taken',
+        'completed' => 'Voltooid',
+        'project' => 'Project',
+    ],
+];

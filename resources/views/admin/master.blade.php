@@ -1,29 +1,24 @@
-
 <!DOCTYPE html>
-<!--
-Admin master template
--->
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-  @include('admin.head')
+    @include('admin.head')
 </head>
 
-<body class="hold-transition @yield('body-skin', 'skin-blue') @yield('body-style', '') sidebar-mini">
-<div class="wrapper">
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary @yield('body-style', '')">
 
- 
-  @include('admin.header')
-  
-  @include('admin.left_sidebar')
+<div class="app-wrapper">
 
-  @include('admin.content')
-  
-  @include('admin.footer')
+    @include('admin.header')
 
- 
+    @include('admin.left_sidebar')
+
+    @include('admin.content')
+
+    @include('admin.footer')
+
 </div>
-<!-- ./wrapper -->
 
 @include('admin.foot')
+
 </body>
 </html>

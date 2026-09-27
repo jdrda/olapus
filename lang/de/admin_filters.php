@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'active' => 'Aktive Filter',
+    'apply' => 'Anwenden',
+    'clear' => 'Leeren',
+    'clear_all' => 'Alle Filter entfernen',
+    'remove' => 'Entfernen',
+    'user_group' => 'Benutzergruppe',
+    'search_mode' => 'Suchmodus',
+    'phrase' => 'Gesamter Ausdruck',
+    'all_words' => 'Alle Wörter',
+    'presets' => 'Voreinstellungen',
+    'columns' => 'Spaltenfilter',
+    'any' => 'Beliebiger Wert',
+    'created_from' => 'Erstellt ab',
+    'created_to' => 'Erstellt bis',
+    'this_month' => 'Dieser Monat',
+    'any_period' => 'Beliebiger Zeitraum',
+    'completed' => 'Abgeschlossen',
+    'no' => 'Nein',
+    'yes' => 'Ja',
+    'pending' => 'Offen',
+    'done' => 'Abgeschlossen',
+    'any_state' => 'Beliebiger Status',
+    'name_prefix' => 'Name beginnt mit',
+    'created_on' => 'Erstellt am',
+];

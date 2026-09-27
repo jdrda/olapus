@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+class {{module}}Controller extends AdminModuleController
+{
+    protected $arValidationArray = ['name' => 'required|string|max:255'];
+
+    // Example: protected $relationFields = ['owner_id' => 'owner', 'label_ids' => 'labels'];
+    // Use add.lookup.tables middleware for options on create/edit forms.
+}

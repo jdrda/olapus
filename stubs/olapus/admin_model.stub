@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class {{module}} extends Model
+{
+    use SoftDeletes, AdminModelTrait;
+
+    protected $table = '{{table}}';
+    protected $fillable = ['name'];
+    protected $excludedFromIndex = [];
+    protected $fulltextFields = ['name' => ['operator' => 'LIKE', 'prefix' => '%', 'suffix' => '%']];
+    protected $defaultOrderBy = ['name' => 'asc'];
+
+    // Add eager-loaded relations and the allowed table filters here.
+    protected $adminWith = [];
+    protected $adminFilters = [];
+
+    // Search stays phrase-based unless explicitly switched in the index form.
+    protected $adminSearchMode = 'phrase';
+    // Example: 'name' => ['type' => 'like', 'label' => 'admin_module_{{slug}}.fields.name']
+    protected $adminColumnFilters = [];
+    // Example: ['label' => 'My shortcut', 'filters' => ['name' => 'Example']]
+    protected $adminFilterPresets = [];
+}

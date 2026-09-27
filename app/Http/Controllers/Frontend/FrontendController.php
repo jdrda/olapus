@@ -16,11 +16,11 @@ namespace App\Http\Controllers\Frontend;
 
 
 use App\Http\Controllers\Controller;
-use App\Settings;
+use App\Models\Settings;
 use Illuminate\Support\Facades\View;
-use App\Page;
-use App\Transaction;
-use App\User;
+use App\Models\Page;
+use App\Models\Transaction;
+use App\Models\User;
 
 
 
@@ -57,6 +57,8 @@ class FrontendController extends Controller
      * @param $request
      */
     protected function _saveSessionFields($request){
+
+        $arData = [];
 
         foreach ($request->all() as $key=>$value){
             $arData[$key] = $value;
@@ -138,7 +140,7 @@ class FrontendController extends Controller
             return $settings['value'];
         }
         else{
-            return NULL;
+            return null;
         }
     }
 

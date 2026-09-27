@@ -1,19 +1,6 @@
 <?php
-/**
- * General admin language file - English
- * 
- * Language translation for general elements in admin interface in English language
- * 
- * @category Languages
- * @subpackage Admin
- * @package Olapus
- * @author Jan Drda <jdrda@outlook.com>
- * @copyright Jan Drda
- * @license https://opensource.org/licenses/MIT MIT
- */
 
 return [
-    
     'toggle_navigation' => 'Toggle navigation',
     'home' => 'Home',
     'menu_header' => 'Navigation',
@@ -27,8 +14,9 @@ return [
     'play' => 'Play',
     'approve' => 'Approve',
     'spam' => 'SPAM',
-    'delete_row' => 'Delete the row #',
-    'delete_row_confirmation' => 'Are you sure you want to delete row #',
+    'member_since' => 'member since',
+    'delete_row' => 'Delete row no.',
+    'delete_row_confirmation' => 'Are you sure you want to delete row no.',
     'select_image' => 'Select image',
     'total_rows' => 'total rows',
     'of' => 'of',
@@ -42,6 +30,7 @@ return [
     'menu_group_media' => 'Media',
     'menu_group_advertising' => 'Advertising',
     'menu_group_administration' => 'Administration',
-    'menu_group_ecommerce' => 'E-commerce',
-    
+    'no_records' => 'No records yet.',
+    'statistics_unavailable' => 'Statistics are not available yet.',
+    'image_library_removed' => 'The original custom image library has been retired. This module no longer provides image editing or uploads.',
 ];

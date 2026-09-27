@@ -1,160 +1,148 @@
 @extends('admin.master')
 
-@section('page-name', trans($moduleNameBlade . '.name') )
-
-@section('page-icon', 'fa fa-sticky-note-o')
-
+@section('page-name', trans($moduleNameBlade . '.name'))
+@section('page-icon', 'bi bi-file-earmark-text')
 @section('page-description', trans($moduleNameBlade . '.description'))
-
 @section('delete_confirmation_text', trans($moduleNameBlade . '.delete_row_confirmation'))
 
-
-@section('menu-class-publishing', 'active')
+@section('menu-class-publishing', 'menu-open')
 @section('menu-class-page', 'active')
 
-
-{{-- Order by --}}
-
-
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">
-                    {{ trans($moduleNameBlade . '.name') }}
-                    <small>({{ trans('admin.total_rows') }} {{ $results->count() }} {{ trans('admin.of') }} {{ $results->total() }}, {{ trans('admin.showing_page') }} {{ $results->currentPage() }} {{ trans('admin.of') }} {{ $results->lastPage() }})</small>
-                </h3>
-
-
-                <div class="box-tools">
-
-                    <form action="{{ route($moduleBasicRoute . '.index') }}" method="get">
-
-                        <!-- Search box -->
-                        <div class="input-group input-group-sm" style="width: 200px;">
-                            <input type="text" name="search" class="form-control pull-right" placeholder="{{ trans('admin.search') }}" value="{{ request('search') }}">
-
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                            </div>
-                            <!-- /Search box -->
-
-                            <a href="{{ route($moduleBasicRoute . '.create') }}" class="btn btn-success btn-sm form-control">
-                                <i class="fa fa-plus"></i> {{ trans('admin.add_new') }}
-                            </a>
-                        </div>
-
-                    </form>
-
-                </div>
-
+<div class="card">
+    <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div>
+            <h3 class="card-title float-none mb-1">{{ trans($moduleNameBlade . '.name') }}</h3>
+            <small class="text-body-secondary">
+                {{ trans('admin.total_rows') }} {{ $results->count() }} {{ trans('admin.of') }} {{ $results->total() }},
+                {{ trans('admin.showing_page') }} {{ $results->currentPage() }} {{ trans('admin.of') }} {{ $results->lastPage() }}
+            </small>
+        </div>
+        <form action="{{ route($moduleBasicRoute . '.index') }}" method="get" class="d-flex flex-wrap gap-2">
+            @if (request()->filled('relation'))
+                <input type="hidden" name="relation" value="{{ request('relation') }}">
+            @endif
+            <div class="input-group input-group-sm w-auto">
+                <input type="search" name="search" class="form-control" value="{{ request('search') }}"
+                       placeholder="{{ trans('admin.search') }}" aria-label="{{ trans('admin.search') }}">
+                <button type="submit" class="btn btn-outline-secondary" aria-label="{{ trans('admin.search') }}"><i class="bi bi-search" aria-hidden="true"></i></button>
             </div>
-            <!-- /.box-header -->
+            <a href="{{ route($moduleBasicRoute . '.create') }}" class="btn btn-success btn-sm">
+                <i class="bi bi-plus-lg" aria-hidden="true"></i> {{ trans('admin.add_new') }}
+            </a>
+        </form>
+    </div>
+    <div class="card-body">
+        @include('admin.errors')
+        @include('admin.modules.filters')
+        @include('admin.modules.index_filters', ['extraFilterControls' => \Illuminate\Support\Arr::only($filterControls ?? [], ['user'])])
 
-            <!-- Data table -->
-            <div class="box-body no-padding">
-
-                <div class='row'>
-                    <div class='col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4'>
-                        @include('admin.errors')
-                    </div>
-                </div>
-                <table class="table table-hover table-responsive">
-                    <tbody>
-                        <tr>
-                            <th>
-                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'id' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'id', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'id', 'orderbytype' => 'asc']) }}@endif">
-                                    {{ trans($moduleNameBlade . '.fields.id') }}
-                                    @if(Request::has('orderbycolumn'))
-                                        @if(request('orderbycolumn') == 'id')
-                                        <i class='fa fa-sort-numeric-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
-                                        @endif
-                                    @else
-                                    <i class='fa fa-sort-numeric-desc'></i>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>
+                            <a href="{{ route($moduleBasicRoute . '.index', array_merge(request()->only(['search', 'relation', 'orderbycolumn', 'orderbytype']), [
+                                    'orderbycolumn' => 'id',
+                                    'orderbytype' => request('orderbycolumn') === 'id' && request('orderbytype') === 'asc' ? 'desc' : 'asc',
+                                ])) }}">
+                                {{ trans($moduleNameBlade . '.fields.id') }}
+                                @if(request()->has('orderbycolumn'))
+                                    @if(request('orderbycolumn') == 'id')
+                                        <i class='bi bi-sort-numeric-{{ request('orderbytype') == 'asc' ? 'down' : 'down-alt' }}'></i>
                                     @endif
-                                </a>
-                            </th>
-                            <th>
-                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'name' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'name', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'name', 'orderbytype' => 'asc']) }}@endif">
-                                    {{ trans($moduleNameBlade . '.fields.name') }}
-                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'name')
-                                    <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
-                                    @endif
-                                </a>
-                            </th>
-                            <th class="hidden-xs">
-                               {{ trans($moduleNameBlade . '.fields.pagecategory') }}
-                            </th>
-                           <th class="hidden-xs hidden-sm">
-                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'url' and request('orderbytype') == 'asc'){{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'url', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'url', 'orderbytype' => 'asc']) }}@endif">
-                                    {{ trans($moduleNameBlade . '.fields.url') }}
-                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'url')
-                                    <i class='fa fa-sort-alpha-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
-                                    @endif
-                                </a>
-                            </th>
-                            <th class="hidden-xs hidden-sm">
-                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'published_at' and request('orderbytype') == 'asc'){{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'published_at', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'published_at', 'orderbytype' => 'asc']) }}@endif">
-                                    {{ trans($moduleNameBlade . '.fields.published_at') }}
-                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'published_at')
-                                    <i class='fa fa-sort-numeric-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
-                                    @endif
-                                </a>
-                            </th>
-                            <th class="hidden-xs hidden-sm">
-                                <a href="@if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at' and request('orderbytype') == 'asc'){{ route('admin.user.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'desc']) }}@else{{ route($moduleBasicRoute . '.index', ['search' => request('search'), 'orderbycolumn' => 'updated_at', 'orderbytype' => 'asc']) }}@endif">
-                                    {{ trans($moduleNameBlade . '.fields.updated_at') }}
-                                    @if(Request::has('orderbycolumn') and request('orderbycolumn') == 'updated_at')
-                                    <i class='fa fa-sort-numeric-{{ request('orderbytype') == 'asc' ? 'asc' : 'desc' }}'></i>
-                                    @endif
-                                </a>
-                            </th>
-                            <th class="text-right">
-                                {{ trans('admin.actions') }}
-                            </th>
-                        </tr>
-                        @foreach ($results as $result)
+                                @else
+                                    <i class='bi bi-sort-numeric-down-alt'></i>
+                                @endif
+                            </a>
+                        </th>
+                        <th>
+                            <a href="{{ route($moduleBasicRoute . '.index', array_merge(request()->only(['search', 'relation', 'orderbycolumn', 'orderbytype']), [
+                                    'orderbycolumn' => 'name',
+                                    'orderbytype' => request('orderbycolumn') === 'name' && request('orderbytype') === 'asc' ? 'desc' : 'asc',
+                                ])) }}">
+                                {{ trans($moduleNameBlade . '.fields.name') }}
+                                @if(request()->has('orderbycolumn') and request('orderbycolumn') == 'name')
+                                    <i class='bi bi-sort-alpha-{{ request('orderbytype') == 'asc' ? 'down' : 'down-alt' }}'></i>
+                                @endif
+                            </a>
+                        </th>
+                        <th class="d-none d-md-table-cell">
+                            {{ trans($moduleNameBlade . '.fields.pagecategory') }}
+                            @include('admin.modules.index_filter', ['filter' => $filterControls['pagecategory'] ?? null])
+                        </th>
+                        <th class="d-none d-lg-table-cell">
+                            <a href="{{ route($moduleBasicRoute . '.index', array_merge(request()->only(['search', 'relation', 'orderbycolumn', 'orderbytype']), [
+                                    'orderbycolumn' => 'url',
+                                    'orderbytype' => request('orderbycolumn') === 'url' && request('orderbytype') === 'asc' ? 'desc' : 'asc',
+                                ])) }}">
+                                {{ trans($moduleNameBlade . '.fields.url') }}
+                                @if(request()->has('orderbycolumn') and request('orderbycolumn') == 'url')
+                                    <i class='bi bi-sort-alpha-{{ request('orderbytype') == 'asc' ? 'down' : 'down-alt' }}'></i>
+                                @endif
+                            </a>
+                        </th>
+                        <th class="d-none d-lg-table-cell">
+                            <a href="{{ route($moduleBasicRoute . '.index', array_merge(request()->only(['search', 'relation', 'orderbycolumn', 'orderbytype']), [
+                                    'orderbycolumn' => 'published_at',
+                                    'orderbytype' => request('orderbycolumn') === 'published_at' && request('orderbytype') === 'asc' ? 'desc' : 'asc',
+                                ])) }}">
+                                {{ trans($moduleNameBlade . '.fields.published_at') }}
+                                @if(request()->has('orderbycolumn') and request('orderbycolumn') == 'published_at')
+                                    <i class='bi bi-sort-numeric-{{ request('orderbytype') == 'asc' ? 'down' : 'down-alt' }}'></i>
+                                @endif
+                            </a>
+                        </th>
+                        <th class="d-none d-lg-table-cell">
+                            <a href="{{ route($moduleBasicRoute . '.index', array_merge(request()->only(['search', 'relation', 'orderbycolumn', 'orderbytype']), [
+                                    'orderbycolumn' => 'updated_at',
+                                    'orderbytype' => request('orderbycolumn') === 'updated_at' && request('orderbytype') === 'asc' ? 'desc' : 'asc',
+                                ])) }}">
+                                {{ trans($moduleNameBlade . '.fields.updated_at') }}
+                                @if(request()->has('orderbycolumn') and request('orderbycolumn') == 'updated_at')
+                                    <i class='bi bi-sort-numeric-{{ request('orderbytype') == 'asc' ? 'down' : 'down-alt' }}'></i>
+                                @endif
+                            </a>
+                        </th>
+                        <th class="text-end">
+                            {{ trans('admin.actions') }}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($results as $result)
                         <tr>
                             <td>{{ $result->id }}</td>
                             <td>{{ $result->name }}</td>
-                            <td class="hidden-xs">
-                                @foreach($result['pagecategories'] as $pagecategory)
-                                <span class="label label-{{ $pagecategory->color }}">{{ $pagecategory->name }}</span>
+                            <td class="d-none d-md-table-cell">
+                                @foreach(($result['pagecategories'] ?? []) as $pagecategory)
+                                    <a href="{{ $indexFilters->addUrl('pagecategory', $pagecategory->id) }}" class="badge text-bg-{{ ($pagecategory->color) === 'default' ? 'secondary' : (($pagecategory->color) ?: 'secondary') }} text-decoration-none">{{ $pagecategory->name }}</a>
                                 @endforeach
                             </td>
-                            <td class="hidden-xs hidden-sm">{{ $result->url }}</td>
-                            <td class="hidden-xs hidden-sm">@if(empty($result->published_at) == FALSE){{ $result->published_at->format(trans('locale.date_format')) }}@endif</td>
-                            <td class="hidden-xs hidden-sm">{{ $result->updated_at->format(trans('locale.date_format'))}}</td>
-                            <td class="text-right">
-                                <a href="{{ route($moduleBasicRoute . '.edit', $result->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> {{ trans('admin.edit') }}</a>
-                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{ $result->id }}"><i class="fa fa-remove"></i> {{ trans('admin.delete') }}</button>
+                            <td class="d-none d-lg-table-cell">{{ $result->url }}</td>
+                            <td class="d-none d-lg-table-cell">@if(empty($result->published_at) == FALSE){{ $result->published_at->format(trans('locale.date_format')) }}@endif</td>
+                            <td class="d-none d-lg-table-cell">{{ $result->updated_at->format(trans('locale.date_format'))}}</td>
+                            <td class="text-end">
+                                <a href="{{ route($moduleBasicRoute . '.edit', $result->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> {{ trans('admin.edit') }}</a>
+                                @if (\Illuminate\Support\Facades\Route::has($moduleBasicRoute . '.destroy'))
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $result->id }}"><i class="bi bi-trash"></i> {{ trans('admin.delete') }}</button>
+                                @endif
                             </td>
                         </tr>
-                        @endforeach
-
-                    </tbody>
-
-                </table>
-
-                <hr>
-                <div class="row">
-                    <div class="col-xs-12 text-center"> 
-                        {!! $results->appends(Request::all())->render() !!}
-                    </div>
-                </div>
-            </div>
-            <!-- Data table -->
-            <!-- /.box-body -->
+                    @empty
+                        <tr><td colspan="7" class="text-center text-body-secondary py-4">{{ trans('admin.no_records') }}</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
-        <!-- /.box -->
+    </div>
+    <div class="card-footer">
+        {{ $results->withQueryString()->links('pagination::bootstrap-5') }}
     </div>
 </div>
 @endsection
 
-@section('foot')
-
-@include('admin/modules/delete_modals');
-
-@parent
-@endsection
+@push('scripts')
+    @include('admin.modules.delete_modals')
+    @include('admin.modules.form_scripts')
+@endpush

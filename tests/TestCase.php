@@ -1,25 +1,28 @@
 <?php
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase
+namespace Tests;
+
+use Illuminate\Foundation\Application;
+
+abstract class TestCase extends \Illuminate\Foundation\Testing\TestCase
 {
-    /**
-     * The base URL to use while testing the application.
-     *
-     * @var string
-     */
-    protected $baseUrl = 'http://localhost';
-
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
+    public function createApplication(): Application
     {
-        $app = require __DIR__.'/../bootstrap/app.php';
-
-        $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
-
+        $app = parent::createApplication();
+        // Never allow RefreshDatabase to touch a developer's persistent database,
+        // even if their config cache still contains production/local DB settings.
+        $app['config']->set([
+            'app.env' => 'testing',
+            'app.key' => 'base64:'.base64_encode(str_repeat('t', 32)),
+            'database.default' => 'sqlite',
+            'database.connections.sqlite.database' => ':memory:',
+            'database.connections.sqlite.url' => null,
+            'cache.default' => 'array',
+            'session.driver' => 'array',
+            'queue.default' => 'sync',
+            'mail.default' => 'array',
+        ]);
+        $app['db']->purge();
         return $app;
     }
 }
