@@ -92,4 +92,60 @@ class FortifyAuthenticationTest extends TestCase
             Hash::check('new-testing-password-42', $user->fresh()->password)
         );
     }
+
+    public function test_admin_edit_without_password_keeps_existing_password(): void
+    {
+        $operator = User::factory()->create();
+        $user = User::factory()->create([
+            'password' => Hash::make('original-testing-password-42'),
+        ]);
+        $originalHash = $user->password;
+
+        $this->actingAs($operator)->put(route('admin.user.update', $user->id), [
+            'name' => 'Updated User',
+            'email' => $user->email,
+            'roles' => [],
+        ])->assertRedirect(route('admin.user.index'));
+
+        $user->refresh();
+
+        $this->assertSame($originalHash, $user->password);
+        $this->assertTrue(Hash::check('original-testing-password-42', $user->password));
+    }
+
+    public function test_admin_can_change_user_password_through_fortify_reset_action(): void
+    {
+        $operator = User::factory()->create();
+        $user = User::factory()->create([
+            'password' => Hash::make('old-admin-password-42'),
+        ]);
+
+        $this->actingAs($operator)->put(route('admin.user.update', $user->id), [
+            'name' => $user->name,
+            'email' => $user->email,
+            'password' => 'new-admin-password-42',
+            'password_confirmation' => 'new-admin-password-42',
+            'roles' => [],
+        ])->assertRedirect(route('admin.user.index'));
+
+        $user->refresh();
+
+        $this->assertTrue(Hash::check('new-admin-password-42', $user->password));
+        $this->assertFalse(Hash::check('old-admin-password-42', $user->password));
+    }
+
+    public function test_admin_password_change_uses_fortify_password_validation(): void
+    {
+        $operator = User::factory()->create();
+        $user = User::factory()->create();
+
+        $this->actingAs($operator)->put(route('admin.user.update', $user->id), [
+            'name' => $user->name,
+            'email' => $user->email,
+            'password' => 'short',
+            'password_confirmation' => 'short',
+            'roles' => [],
+        ])->assertSessionHasErrors('password');
+    }
+
 }

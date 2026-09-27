@@ -44,8 +44,6 @@ class SpatieUserGroupsTest extends TestCase
         $this->actingAs($operator)->put(route('admin.user.update', $user->id), [
             'name' => $user->name,
             'email' => $user->email,
-            'password' => '######',
-            'password_confirmation' => '######',
             'roles' => [$editor->id],
         ])->assertRedirect(route('admin.user.index'));
 

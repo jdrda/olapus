@@ -169,7 +169,7 @@ class AdminRelationsTest extends TestCase
         $this->assertFileDoesNotExist(app_path('Models/PortSmokeExample.php'));
     }
 
-    public function test_authentication_still_uses_laravel_ui(): void
+    public function test_authentication_uses_fortify_login_route(): void
     {
         $user = User::factory()->create(['password' => Hash::make('A-testing-password-42')]);
         $this->post(route('login.store'), ['email' => $user->email, 'password' => 'A-testing-password-42'])
