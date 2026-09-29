@@ -1,6 +1,39 @@
 @once
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    const pageLocale = document.documentElement.lang || 'cs';
+    const pageLanguage = pageLocale.toLowerCase().split('-')[0];
+    const invalidPhoneMessage = @json(trans('admin_module_user.invalid_phone'));
+
+    // Populate ISO country selectors from the same country dataset used by intl-tel-input.
+    document.querySelectorAll('select[data-country-select]').forEach(function (select) {
+        if (!window.intlTelInput) return;
+
+        const displayNames = typeof Intl.DisplayNames === 'function'
+            ? new Intl.DisplayNames([pageLocale], { type: 'region' })
+            : null;
+        const selected = (select.dataset.selected || '').toUpperCase();
+        const countries = window.intlTelInput.getAllCountries()
+            .map(function (country) {
+                const code = country.iso2.toUpperCase();
+                return {
+                    code: code,
+                    name: displayNames?.of(code) || country.name || code,
+                };
+            })
+            .sort(function (a, b) {
+                return a.name.localeCompare(b.name, pageLocale, { sensitivity: 'base' });
+            });
+
+        countries.forEach(function (country) {
+            const option = document.createElement('option');
+            option.value = country.code;
+            option.textContent = country.name;
+            option.selected = country.code === selected;
+            select.append(option);
+        });
+    });
+
     // The shared Vite bundle is loaded before DOMContentLoaded.
     document.querySelectorAll('select[data-enhance="select"]').forEach(function (select) {
         if (!window.TomSelect || select.tomselect) return;
@@ -9,6 +42,136 @@ document.addEventListener('DOMContentLoaded', function () {
             create: false,
             dropdownParent: select.closest('.table-responsive') ? 'body' : null,
             plugins: select.multiple ? ['remove_button'] : [],
+        });
+    });
+
+    // International telephone inputs. Values are normalised to E.164 before submit.
+    const phoneInputs = [];
+    document.querySelectorAll('input[data-phone-input]').forEach(function (input) {
+        if (!window.intlTelInput) return;
+
+        let initialCountry = 'cz';
+        if (input.name === 'billing_phone') {
+            initialCountry = (document.querySelector('#billing_country')?.value || 'CZ').toLowerCase();
+        } else if (input.name === 'shipping_phone') {
+            initialCountry = (document.querySelector('#shipping_country')?.value || 'CZ').toLowerCase();
+        }
+
+        const iti = window.intlTelInput(input, {
+            initialCountry: initialCountry,
+            countryOrder: ['cz', 'sk', 'de', 'at', 'pl'],
+            countryNameLocale: pageLocale,
+            uiTranslations: window.intlTelInputUiTranslations?.[pageLanguage],
+            separateDialCode: true,
+            loadUtils: window.intlTelInputLoadUtils,
+        });
+
+        phoneInputs.push({ input: input, iti: iti });
+
+        input.addEventListener('input', function () {
+            input.setCustomValidity('');
+        });
+    });
+
+    const validatePhone = async function (entry) {
+        const input = entry.input;
+        input.setCustomValidity('');
+
+        if (input.value.trim() === '') {
+            return true;
+        }
+
+        try {
+            await entry.iti.promise;
+        } catch (error) {
+            input.setCustomValidity(input.dataset.invalidMessage || invalidPhoneMessage);
+            return false;
+        }
+
+        if (!entry.iti.isValidNumber()) {
+            input.setCustomValidity(input.dataset.invalidMessage || invalidPhoneMessage);
+            return false;
+        }
+
+        input.value = entry.iti.getNumber();
+        return true;
+    };
+
+    new Set(phoneInputs.map(function (entry) { return entry.input.form; }).filter(Boolean))
+        .forEach(function (form) {
+            form.addEventListener('submit', async function (event) {
+                if (form.dataset.phoneValidationComplete === '1') {
+                    delete form.dataset.phoneValidationComplete;
+                    return;
+                }
+
+                event.preventDefault();
+                const formPhones = phoneInputs.filter(function (entry) { return entry.input.form === form; });
+                let firstInvalid = null;
+
+                for (const entry of formPhones) {
+                    if (!await validatePhone(entry) && firstInvalid === null) {
+                        firstInvalid = entry.input;
+                    }
+                }
+
+                if (firstInvalid) {
+                    firstInvalid.reportValidity();
+                    firstInvalid.focus();
+                    return;
+                }
+
+                form.dataset.phoneValidationComplete = '1';
+                if (event.submitter) {
+                    form.requestSubmit(event.submitter);
+                } else {
+                    form.requestSubmit();
+                }
+            });
+        });
+
+    // Copy billing address to shipping address without coupling the stored values.
+    document.querySelectorAll('[data-copy-billing-address]').forEach(function (button) {
+        button.addEventListener('click', async function () {
+            const fields = [
+                'name',
+                'contact_name',
+                'street',
+                'house_number',
+                'city',
+                'zip',
+                'state',
+                'country',
+                'email',
+            ];
+
+            fields.forEach(function (field) {
+                const source = document.querySelector('[name="billing_' + field + '"]');
+                const target = document.querySelector('[name="shipping_' + field + '"]');
+                if (!source || !target) return;
+
+                if (target.tomselect) {
+                    target.tomselect.setValue(source.value, true);
+                } else {
+                    target.value = source.value;
+                    target.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            });
+
+            const sourcePhone = document.querySelector('[name="billing_phone"]');
+            const targetPhone = document.querySelector('[name="shipping_phone"]');
+            if (!sourcePhone || !targetPhone || !window.intlTelInput) return;
+
+            const sourceIti = window.intlTelInput.getInstance(sourcePhone);
+            const targetIti = window.intlTelInput.getInstance(targetPhone);
+            if (!sourceIti || !targetIti) return;
+
+            try {
+                await sourceIti.promise;
+                targetIti.setNumber(sourcePhone.value.trim() === '' ? '' : sourceIti.getNumber());
+            } catch (error) {
+                targetPhone.value = sourcePhone.value;
+            }
         });
     });
 

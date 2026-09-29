@@ -18,6 +18,8 @@
 
 </div>
 
+@include('admin.partials.toasts')
+
 @include('admin.foot')
 
 </body>

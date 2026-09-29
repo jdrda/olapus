@@ -26,7 +26,7 @@
             </div>
             <div class="d-flex justify-content-end gap-2">
                 <a href="{{ route($moduleBasicRoute.'.index') }}" class="btn btn-outline-secondary">{{ trans('admin.close') }}</a>
-                <button class="btn btn-primary" type="submit">{{ trans('admin.save') }}</button>
+                <button class="js-disable-on-submit btn btn-primary" type="submit">{{ trans('admin.save') }}</button>
             </div>
         </form>
     </div>

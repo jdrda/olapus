@@ -44,7 +44,7 @@
                         @if (isset($results->_method))
                             <a href="{{ route('admin.slide.index', ['relation' => 'slider:' . $results->id]) }}" class="btn btn-warning">{{ trans('admin_module_slider.show_slides') }}</a>
                         @endif
-                        <button type="submit" name="submit" class="btn btn-primary">{{ trans('admin.save') }}</button>
+                        <button type="submit" name="submit" class="js-disable-on-submit btn btn-primary">{{ trans('admin.save') }}</button>
                     </div>
                 </form>
             </div>

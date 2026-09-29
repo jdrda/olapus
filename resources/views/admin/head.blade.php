@@ -12,6 +12,16 @@
   </title>
 @show
 
+<script>
+  (() => {
+    const theme = localStorage.getItem('olapus-theme');
+
+    if (theme === 'dark' || theme === 'light') {
+      document.documentElement.setAttribute('data-bs-theme', theme);
+    }
+  })();
+</script>
+
 @vite([
     'resources/css/adminlte.css',
     'resources/js/adminlte.js',

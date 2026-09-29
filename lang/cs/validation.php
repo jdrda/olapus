@@ -64,10 +64,75 @@ return [
     'unique' => ':attribute byl již použit.',
     'url' => 'Formát :attribute je neplatný.',
     'row_not_exist' => 'Řádek neexistuje',
+
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'vlastní zpráva',
+        'contact_phone' => [
+            'regex' => 'Kontaktní telefon musí být platné číslo v mezinárodním formátu.',
+        ],
+        'billing_phone' => [
+            'regex' => 'Fakturační telefon musí být platné číslo v mezinárodním formátu.',
+        ],
+        'shipping_phone' => [
+            'regex' => 'Dodací telefon musí být platné číslo v mezinárodním formátu.',
+        ],
+        'website' => [
+            'url' => 'Web musí být platná adresa začínající http:// nebo https://.',
+        ],
+        'locale' => [
+            'regex' => 'Jazyk / locale má neplatný formát. Použijte např. cs, en nebo cs-CZ.',
+        ],
+        'billing_country' => [
+            'alpha' => 'Fakturační země musí být dvoupísmenný ISO kód.',
+            'size' => 'Fakturační země musí být dvoupísmenný ISO kód.',
+        ],
+        'shipping_country' => [
+            'alpha' => 'Dodací země musí být dvoupísmenný ISO kód.',
+            'size' => 'Dodací země musí být dvoupísmenný ISO kód.',
         ],
     ],
-    'attributes' => [],
+
+    'attributes' => [
+        'name' => 'název uživatele',
+        'email' => 'přihlašovací e-mail',
+        'password' => 'heslo',
+        'password_confirmation' => 'potvrzení hesla',
+        'roles' => 'uživatelské skupiny',
+        'roles.*' => 'uživatelská skupina',
+        'active' => 'aktivní účet',
+
+        'company_name' => 'firma / organizace',
+        'contact_name' => 'kontaktní osoba',
+        'contact_email' => 'kontaktní e-mail',
+        'contact_phone' => 'kontaktní telefon',
+        'company_id' => 'IČ',
+        'vat_id' => 'DIČ',
+        'website' => 'web',
+        'customer_number' => 'číslo zákazníka',
+        'external_id' => 'externí ID',
+        'locale' => 'jazyk / locale',
+        'timezone' => 'časové pásmo',
+
+        'billing_name' => 'fakturační název / firma',
+        'billing_contact_name' => 'fakturační kontaktní osoba',
+        'billing_street' => 'fakturační ulice',
+        'billing_house_number' => 'fakturační číslo domu',
+        'billing_city' => 'fakturační město',
+        'billing_zip' => 'fakturační PSČ',
+        'billing_state' => 'fakturační kraj / stát / provincie',
+        'billing_country' => 'fakturační země',
+        'billing_email' => 'fakturační e-mail',
+        'billing_phone' => 'fakturační telefon',
+
+        'shipping_name' => 'dodací název / firma',
+        'shipping_contact_name' => 'dodací kontaktní osoba',
+        'shipping_street' => 'dodací ulice',
+        'shipping_house_number' => 'dodací číslo domu',
+        'shipping_city' => 'dodací město',
+        'shipping_zip' => 'dodací PSČ',
+        'shipping_state' => 'dodací kraj / stát / provincie',
+        'shipping_country' => 'dodací země',
+        'shipping_email' => 'dodací e-mail',
+        'shipping_phone' => 'dodací telefon',
+        'notice' => 'poznámka',
+    ],
 ];

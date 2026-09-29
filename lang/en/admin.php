@@ -30,7 +30,20 @@ return [
     'menu_group_media' => 'Media',
     'menu_group_advertising' => 'Advertising',
     'menu_group_administration' => 'Administration',
-    'no_records' => 'No records yet.',
+    'no_records' => 'There are no records yet.',
     'statistics_unavailable' => 'Statistics are not available yet.',
-    'image_library_removed' => 'The original custom image library has been retired. This module no longer provides image editing or uploads.',
+    'image_library_removed' => 'The original custom image library has been retired. This module no longer provides image editing or uploading.',
+    'user_menu' => [
+        'profile' => 'My profile',
+        'change_password' => 'Change password',
+        'theme' => 'Light / dark mode',
+        'support' => 'Support',
+        'sign_out' => 'Sign out',
+    ],
+    'toast' => [
+        'success' => 'Done',
+        'error' => 'Error',
+        'warning' => 'Warning',
+        'info' => 'Information',
+    ],
 ];

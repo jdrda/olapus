@@ -21,6 +21,8 @@ import Sortable from 'sortablejs';
  */
 import flatpickr from 'flatpickr';
 import TomSelect from 'tom-select';
+import intlTelInput from 'intl-tel-input';
+import { cs as intlTelInputCs } from 'intl-tel-input/locale';
 
 /*
  * Tables
@@ -53,6 +55,11 @@ window.Sortable = Sortable;
 
 window.flatpickr = flatpickr;
 window.TomSelect = TomSelect;
+window.intlTelInput = intlTelInput;
+window.intlTelInputLoadUtils = () => import('intl-tel-input/utils');
+window.intlTelInputUiTranslations = {
+    cs: intlTelInputCs,
+};
 
 window.Tabulator = Tabulator;
 window.Quill = Quill;

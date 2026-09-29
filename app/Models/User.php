@@ -59,25 +59,37 @@ class User extends Authenticatable
         'password',
         'activation_code',
         'active',
-        'fname',
-        'mname',
-        'sname',
-        'phone',
-        'fax',
-        'mobile',
-        'im',
-        'street',
-        'hno',
-        'city',
-        'zip',
-        'state',
-        'country',
-        'da_street',
-        'da_hno',
-        'da_city',
-        'da_zip',
-        'da_state',
-        'da_country',
+        'company_name',
+        'contact_name',
+        'contact_email',
+        'contact_phone',
+        'company_id',
+        'vat_id',
+        'website',
+        'customer_number',
+        'external_id',
+        'locale',
+        'timezone',
+        'billing_name',
+        'billing_contact_name',
+        'billing_street',
+        'billing_house_number',
+        'billing_city',
+        'billing_zip',
+        'billing_state',
+        'billing_country',
+        'billing_email',
+        'billing_phone',
+        'shipping_name',
+        'shipping_contact_name',
+        'shipping_street',
+        'shipping_house_number',
+        'shipping_city',
+        'shipping_zip',
+        'shipping_state',
+        'shipping_country',
+        'shipping_email',
+        'shipping_phone',
         'notice',
     ];
 
@@ -108,6 +120,36 @@ class User extends Authenticatable
             'sufix' => '%'
         ],
         'email' => [
+            'operator' => 'LIKE',
+            'prefix' => '%',
+            'sufix' => '%'
+        ],
+        'company_name' => [
+            'operator' => 'LIKE',
+            'prefix' => '%',
+            'sufix' => '%'
+        ],
+        'contact_name' => [
+            'operator' => 'LIKE',
+            'prefix' => '%',
+            'sufix' => '%'
+        ],
+        'company_id' => [
+            'operator' => 'LIKE',
+            'prefix' => '%',
+            'sufix' => '%'
+        ],
+        'vat_id' => [
+            'operator' => 'LIKE',
+            'prefix' => '%',
+            'sufix' => '%'
+        ],
+        'customer_number' => [
+            'operator' => 'LIKE',
+            'prefix' => '%',
+            'sufix' => '%'
+        ],
+        'external_id' => [
             'operator' => 'LIKE',
             'prefix' => '%',
             'sufix' => '%'

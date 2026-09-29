@@ -53,7 +53,7 @@
                 @include('admin.modules.project.task_row', ['index' => '__INDEX__', 'task' => []])
             </template>
             <button type="button" class="btn btn-sm btn-outline-secondary mb-3" data-add-task>{{ trans('admin_examples.add_task') }}</button>
-            <div class="text-end"><button class="btn btn-primary" type="submit">{{ trans('admin.save') }}</button></div>
+            <div class="text-end"><button class="btn btn-primary js-disable-on-submit" type="submit">{{ trans('admin.save') }}</button></div>
         </form>
     </div>
 </div>

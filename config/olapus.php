@@ -18,6 +18,7 @@ return [
     */
 
     'admin_url' => env('APP_ADMIN_URL', 'admin'),
+    'support_url' => env('SUPPORT_URL'),
 
     'admin' => [
         'paginate' => (int) env('ADMIN_PAGINATE', 10),

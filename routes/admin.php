@@ -166,6 +166,12 @@ Route::prefix(config('olapus.admin_url'))
         |--------------------------------------------------------------------------
         */
 
+        Route::get('profile', [UserController::class, 'selfEdit'])
+            ->name('profile.edit');
+
+        Route::put('profile', [UserController::class, 'selfUpdate'])
+            ->name('profile.update');
+
         Route::resource(
             'user',
             UserController::class

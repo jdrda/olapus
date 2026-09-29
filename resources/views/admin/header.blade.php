@@ -125,6 +125,7 @@
 
             {{-- User menu --}}
             @section('user_menu')
+                @php($supportUrl = config('olapus.support_url'))
 
                 <li class="nav-item dropdown user-menu">
 
@@ -144,83 +145,89 @@
                         >
 
                         <span class="d-none d-md-inline">
-                {{ auth()->user()->name }}
-            </span>
+                            {{ auth()->user()->name }}
+                        </span>
                     </a>
 
 
                     {{-- User dropdown --}}
-                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                    <ul class="dropdown-menu dropdown-menu-end p-0 olapus-user-menu">
 
-                        {{-- User header --}}
-                        <li class="user-header text-bg-primary text-center p-3">
-
+                        {{-- User identity --}}
+                        <li class="d-flex align-items-center gap-3 px-3 py-3 border-bottom">
                             <img
                                     src="{{ Avatar::create(auth()->user()->name)->toBase64() }}"
-                                    class="rounded-circle shadow mb-2"
-                                    width="90"
-                                    height="90"
+                                    class="rounded-circle shadow-sm flex-shrink-0"
+                                    width="44"
+                                    height="44"
                                     alt="{{ auth()->user()->name }}"
                             >
 
-                            <p class="mb-0">
-                                {{ auth()->user()->name }}
-                            </p>
+                            <div class="min-w-0">
+                                <div class="fw-semibold text-truncate">
+                                    {{ auth()->user()->name }}
+                                </div>
 
-                            @if(auth()->user()->email)
-                                <small class="d-block">
-                                    {{ auth()->user()->email }}
-                                </small>
-                            @endif
-
-                            @if(auth()->user()->created_at)
-                                <small class="d-block mt-1">
-                                    {{ trans('admin.member_since') }}
-                                    {{ auth()->user()->created_at->format('m/Y') }}
-                                </small>
-                            @endif
-
-                        </li>
-
-
-                        {{-- User body --}}
-                        <li class="user-body p-3">
-
-                            <div class="text-center text-body-secondary small">
-                                {{ config('app.name') }}
+                                @if(auth()->user()->email)
+                                    <div class="small text-body-secondary text-truncate">
+                                        {{ auth()->user()->email }}
+                                    </div>
+                                @endif
                             </div>
-
                         </li>
 
-
-                        {{-- User footer --}}
-                        <li class="user-footer d-flex align-items-center px-3 py-2">
-
-                            <a
-                                    href="{{ route('admin.dashboard.index') }}"
-                                    class="btn btn-outline-secondary"
-                            >
-                                <i class="bi bi-speedometer2 me-1"></i>
-                                {{ trans('admin.home') }}
+                        {{-- Profile actions --}}
+                        <li class="p-2">
+                            <a href="{{ route('admin.profile.edit') }}" class="dropdown-item rounded-2">
+                                <i class="bi bi-person-gear me-2"></i>
+                                {{ trans('admin.user_menu.profile') }}
                             </a>
 
-                            <form
-                                    action="{{ route('logout') }}"
-                                    method="POST"
-                                    class="ms-auto mb-0"
+                            <a href="{{ route('admin.profile.edit') }}#password" class="dropdown-item rounded-2">
+                                <i class="bi bi-key me-2"></i>
+                                {{ trans('admin.user_menu.change_password') }}
+                            </a>
+                        </li>
+
+                        <li><hr class="dropdown-divider my-0"></li>
+
+                        {{-- UI / support --}}
+                        <li class="p-2">
+                            <button
+                                    type="button"
+                                    class="dropdown-item rounded-2 d-flex align-items-center"
+                                    data-olapus-theme-toggle
                             >
+                                <i class="bi bi-moon-stars me-2" data-olapus-theme-icon></i>
+                                <span>{{ trans('admin.user_menu.theme') }}</span>
+                            </button>
+
+                            @if($supportUrl)
+                                <a
+                                        href="{{ $supportUrl }}"
+                                        class="dropdown-item rounded-2 d-flex align-items-center"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                >
+                                    <i class="bi bi-life-preserver me-2"></i>
+                                    <span>{{ trans('admin.user_menu.support') }}</span>
+                                    <i class="bi bi-box-arrow-up-right ms-auto small"></i>
+                                </a>
+                            @endif
+                        </li>
+
+                        <li><hr class="dropdown-divider my-0"></li>
+
+                        {{-- Sign out --}}
+                        <li class="p-2">
+                            <form action="{{ route('logout') }}" method="POST" class="mb-0">
                                 @csrf
 
-                                <button
-                                        type="submit"
-                                        class="btn btn-outline-danger"
-                                >
-                                    <i class="bi bi-box-arrow-right me-1"></i>
-                                    {{ trans('login.sign_out') }}
+                                <button type="submit" class="dropdown-item rounded-2 text-danger">
+                                    <i class="bi bi-box-arrow-right me-2"></i>
+                                    {{ trans('admin.user_menu.sign_out') }}
                                 </button>
-
                             </form>
-
                         </li>
 
                     </ul>

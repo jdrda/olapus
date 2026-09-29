@@ -33,4 +33,17 @@ return [
     'no_records' => 'Zatím nejsou žádné záznamy.',
     'statistics_unavailable' => 'Statistiky zatím nejsou k dispozici.',
     'image_library_removed' => 'Původní vlastní obrázková knihovna byla vyřazena. Tento modul už nenabízí úpravy ani nahrávání obrázků.',
+    'user_menu' => [
+        'profile' => 'Můj profil',
+        'change_password' => 'Změnit heslo',
+        'theme' => 'Světlý / tmavý režim',
+        'support' => 'Support',
+        'sign_out' => 'Odhlásit se',
+    ],
+    'toast' => [
+        'success' => 'Hotovo',
+        'error' => 'Chyba',
+        'warning' => 'Upozornění',
+        'info' => 'Informace',
+    ],
 ];

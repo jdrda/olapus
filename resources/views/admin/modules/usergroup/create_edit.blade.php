@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="d-flex flex-wrap justify-content-end gap-2">
-                        <button type="submit" name="submit" class="btn btn-primary">{{ trans('admin.save') }}</button>
+                        <button type="submit" name="submit" class="js-disable-on-submit btn btn-primary">{{ trans('admin.save') }}</button>
                     </div>
                 </form>
             </div>

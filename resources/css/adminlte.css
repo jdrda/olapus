@@ -14,6 +14,7 @@
 /* Forms */
 @import "flatpickr/dist/flatpickr.min.css";
 @import "tom-select/dist/css/tom-select.bootstrap5.css";
+@import "intl-tel-input/styles" layer(intl-tel-input);
 
 /* Tables */
 @import "tabulator-tables/dist/css/tabulator_bootstrap5.min.css";
